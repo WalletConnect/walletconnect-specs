@@ -68,13 +68,13 @@ Finally the proposal fixes the issue of requiring the Dapp to be online to send 
 ## Pairing URI
 ### Schema ([EIP-1328](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1328.md))
 
-    uri		    = "wc" ":" topic [ "@" version ][ "?" parameters ]
-    topic		= STRING
-    version	    = 1*DIGIT
-    parameters	= parameter *( "&" parameter )
-    parameter	= key "=" value
-    key		    = STRING
-    value	    = STRING
+    uri         = "wc" ":" topic [ "@" version ][ "?" parameters ]
+    topic       = STRING
+    version     = 1*DIGIT
+    parameters  = parameter *( "&" parameter )
+    parameter   = key "=" value
+    key         = STRING
+    value       = STRING
 
 ### Parameters
 #### Required
