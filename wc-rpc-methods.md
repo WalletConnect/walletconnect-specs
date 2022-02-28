@@ -3,7 +3,7 @@ This doc should be used as a *source-of-truth* and reflect the latest decisions 
 
 ## Definitions
 Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
-```json
+```jsonc
 // Success
 result: true
 
