@@ -22,6 +22,13 @@ error: {
 ### wc_pairingExtend
 
 ### wc_pairingDelete
+Used to inform the peer to close and delete a pairing. All associated sessions of the given pairing must also be deleted.
+```jsonc
+// wc_pairingDelete params
+{
+    "reason": string
+}
+```
 
 ### wc_pairingPing
 
@@ -38,6 +45,13 @@ error: {
 ### wc_sessionExtend
 
 ### wc_sessionDelete
+Used to inform the peer to close and delete a session.
+```jsonc
+// wc_sessionDelete params
+{
+    "reason": string
+}
+```
 
 ### wc_sessionPing
 
