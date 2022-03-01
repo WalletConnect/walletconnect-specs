@@ -34,6 +34,23 @@ error: {
 ### wc_sessionUpdate
 
 ### wc_sessionUpgrade
+Used to upgrade the permissions of an active session. New permissions are merged over current permissions.
+```jsonc
+// wc_sessionUpgrade params
+{
+    "permissions": {
+        "blockchain": {
+            "chains": [string] // CAIP-2 chain IDs
+        },
+        "jsonrpc": {
+            "methods": [string]
+        },
+        "notifications": {
+            "types": [string]
+        }
+    }
+}
+```
 
 ### wc_sessionExtend
 
