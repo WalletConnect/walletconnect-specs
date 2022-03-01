@@ -19,16 +19,19 @@ error: {
 
 ### wc_sessionPropose
 Used to propose a session through topic A. Requires a success response with associated data. 
--   Success response is equivalent to session approval.
--   Error response is equivalent to session rejection.
--   This method *might* require a special timeout, because it needs end-user interaction to respond.
+- Success response is equivalent to session approval.
+- Error response is equivalent to session rejection.
+- This method *might* require a special timeout, because it needs end-user interaction to respond.
+- Proposer must use the relay parameter selected and sent by the responder, if different than the proposed one.
 ```jsonc
 // wc_sessionPropose params
 {
-    "relay": {
-        "protocol": string,
-        "data": string // Optional
-    },
+    "relay": [
+        {
+            "protocol": string,
+            "data": string // Optional
+        },
+    ],
     "blockchainProposed": {
         "auth": string, // Optional
         "chains": [string] // CAIP-2 chain IDs
@@ -39,9 +42,6 @@ Used to propose a session through topic A. Requires a success response with asso
         },
         "notifications": {
             "types": [string]
-        },
-        "controller": {
-            "publicKey": string
         }
     },
     "proposer": {
