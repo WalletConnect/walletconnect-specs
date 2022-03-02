@@ -28,6 +28,42 @@ error: {
 ## Sessions:
 
 ### wc_sessionSettle
+Used to settle a session over topic B.
+```jsonc
+// wc_sessionSettle params
+{
+    "relay": {
+        "protocol": string,
+        "data": string // Optional
+    },
+    "state": ???,
+    "blockchainSettled": {
+        "auth": string, // Optional
+        "chains": [string], // CAIP-2 chain IDs
+        "accounts": [string], // CAIP-10 account IDs
+        "signatures": ???
+    },
+    "permissions": {
+        "jsonrpc": {
+            "methods": [string]
+        },
+        "notifications": {
+            "types": [string]
+        }
+    },
+    "controller": {
+        "publicKey": string,
+        "metadata": {
+            "name": string,
+            "description": string,
+            "url": string,
+            "icons": [string]
+        }
+    }
+}
+```
+
+
 
 ### wc_sessionRequest
 
