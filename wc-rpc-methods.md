@@ -46,7 +46,7 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 ### wc_sessionExtend
 
 ### wc_sessionDelete
-Used to inform the peer to close and delete a session.
+Used to inform the peer to close and delete a session. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
 ```jsonc
 // wc_sessionDelete params
 {
