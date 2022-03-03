@@ -19,16 +19,6 @@ error: {
 
 ### wc_sessionPropose
 
-### wc_pairingExtend
-Used to extend the lifetime of a pairing.
-- The expiry is the absolute timestamp of the expiration date, in seconds.
-```jsonc
-// wc_pairingExtend params
-{
-    "expiry": number
-}
-```
-
 ### wc_pairingDelete
 
 ### wc_pairingPing
