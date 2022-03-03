@@ -70,8 +70,6 @@ Used to propose a session through topic A. Requires a success response with asso
 }
 ```
 
-### wc_pairingExtend
-
 ### wc_pairingDelete
 
 ### wc_pairingPing
@@ -87,6 +85,14 @@ Used to propose a session through topic A. Requires a success response with asso
 ### wc_sessionUpgrade
 
 ### wc_sessionExtend
+Used to extend the lifetime of a session.
+- The expiry is the absolute timestamp of the expiration date, in seconds.
+```jsonc
+// wc_sessionExtend params
+{
+    "expiry": number
+}
+```
 
 ### wc_sessionDelete
 
