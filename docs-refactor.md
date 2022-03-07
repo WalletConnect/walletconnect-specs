@@ -21,11 +21,12 @@
 - Introduction
 - Javascript
   -   Guides
+    -   
           - Dapps on Browser
           - Dapps on React-Native
           - Wallets on React-Native
   -   APIs
-          -   Protocol Client (@walletconnect/client)
+          -   "Remote Signer Protocol" Client (@walletconnect/client)
           -   Ethereum Provider (@walletconnect/ethereum-provider)
           -   Cosmos Provider (@walletconnect/cosmos-provider)
           -   Solana Provider (@walletconnect/solana-provider)
@@ -39,6 +40,16 @@
       -   etc  
 - Swift 
 - Kotlin
-
+- Protocols
+  - WalletConnect Protocol   (RS)
+    -   Client Communication
+    -   Glossary
+    -   Reason Codes
+    -   Technical Specification
+    -   UX Considerations
+  - WalletMail Protocol (DM)
+    -   ...
+  - WalletPush Protocol (PN)
+    -   ...
 
 
