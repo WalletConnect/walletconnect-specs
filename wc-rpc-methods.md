@@ -26,7 +26,7 @@ Used to propose a session through topic A. Requires a success response with asso
 ```jsonc
 // wc_sessionPropose params
 {
-    "relay": [
+    "relays": [
         {
             "protocol": string,
             "data": string // Optional
@@ -46,7 +46,6 @@ Used to propose a session through topic A. Requires a success response with asso
     },
     "proposer": {
         "publicKey": string,
-        "controller": bool,
         "metadata": {
             "name": string,
             "description": string,
