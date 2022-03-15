@@ -52,8 +52,7 @@ Used to propose a session through topic A. Requires a success response with asso
             "url": string,
             "icons": [string]
         }
-    },
-    "ttl": uInt64
+    }
 }
 ```
 
@@ -105,7 +104,8 @@ Used to settle a session over topic B.
             "url": string,
             "icons": [string]
         }
-    }
+    },
+    "expiryTimestamp": Int64,
 }
 ```
 
