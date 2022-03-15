@@ -71,6 +71,14 @@ Used to propose a session through topic A. Requires a success response with asso
 ```
 
 ### wc_pairingDelete
+Used to inform the peer to close and delete a pairing. All associated sessions of the given pairing must also be deleted.
+```jsonc
+// wc_pairingDelete params
+{
+    "code": int,
+    "reason": string
+}
+```
 
 ### wc_pairingPing
 
@@ -128,6 +136,14 @@ Used to extend the lifetime of a session.
 ```
 
 ### wc_sessionDelete
+Used to inform the peer to close and delete a session. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
+```jsonc
+// wc_sessionDelete params
+{
+    "code": int,
+    "reason": string
+}
+```
 
 ### wc_sessionPing
 
