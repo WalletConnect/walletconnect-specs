@@ -120,6 +120,17 @@ Used to settle a session over topic B.
 
 
 ### wc_sessionRequest
+Sends a CAIP-27 request to the peer client. The client should immediately reject the request and respond an error if the target session permissions doesn't include the requested method or chain ID.
+```jsonc
+// wc_sessionRequest params
+{
+    "request": {
+        "method": string,
+        "params": any
+    },
+    "chainId": string // Optional
+}
+```
 
 ### wc_sessionUpdate
 
