@@ -1,9 +1,12 @@
 # JSON-RPC Methods
-This doc should be used as a *source-of-truth* and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
+
+This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
 
 ## Definitions
+
 - **Nullables:** Fields flagged as `Optional` can be ommited from the payload.
 - Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
+
 ```jsonc
 // Success
 result: true
@@ -18,11 +21,14 @@ error: {
 ## Pairings:
 
 ### wc_sessionPropose
-Used to propose a session through topic A. Requires a success response with associated data. 
+
+Used to propose a session through topic A. Requires a success response with associated data.
+
 - Success response is equivalent to session approval.
 - Error response is equivalent to session rejection.
-- This method *might* require a special timeout, because it needs end-user interaction to respond.
+- This method _might_ require a special timeout, because it needs end-user interaction to respond.
 - Proposer must use the relay parameter selected and sent by the responder, if different than the proposed one.
+
 ```jsonc
 // wc_sessionPropose params
 {
@@ -32,7 +38,7 @@ Used to propose a session through topic A. Requires a success response with asso
             "data": string // Optional
         },
     ],
-    "blockchainProposed": {
+    "blockchain": {
         "auth": string, // Optional
         "chains": [string] // CAIP-2 chain IDs
     },
@@ -70,7 +76,9 @@ Used to propose a session through topic A. Requires a success response with asso
 ```
 
 ### wc_pairingDelete
+
 Used to inform the peer to close and delete a pairing. All associated sessions of the given pairing must also be deleted.
+
 ```jsonc
 // wc_pairingDelete params
 {
@@ -84,7 +92,9 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 ## Sessions:
 
 ### wc_sessionSettle
+
 Used to settle a session over topic B.
+
 ```jsonc
 // wc_sessionSettle params
 {
@@ -117,10 +127,10 @@ Used to settle a session over topic B.
 }
 ```
 
-
-
 ### wc_sessionRequest
+
 Sends a CAIP-27 request to the peer client. The client should immediately reject the request and respond an error if the target session permissions doesn't include the requested method or chain ID.
+
 ```jsonc
 // wc_sessionRequest params
 {
@@ -137,8 +147,11 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
 ### wc_sessionUpgrade
 
 ### wc_sessionExtend
+
 Used to extend the lifetime of a session.
+
 - The expiry is the absolute timestamp of the expiration date, in seconds.
+
 ```jsonc
 // wc_sessionExtend params
 {
@@ -147,7 +160,9 @@ Used to extend the lifetime of a session.
 ```
 
 ### wc_sessionDelete
+
 Used to inform the peer to close and delete a session. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
+
 ```jsonc
 // wc_sessionDelete params
 {
