@@ -65,8 +65,10 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 ```jsonc
 // wc_pairingDelete params
 {
-    "code": int,
-    "reason": string
+    "reason": {
+        "code": Int64,
+        "message": string
+    }
 }
 ```
 
