@@ -16,23 +16,23 @@ abstract class Client {
 
   // for proposer to propose a session to a responder
   public abstract connect(params: {
-		chains: string[];
+    chains: string[];
     methods: string[];
-		events: string[];
+    events: string[];
     pairingTopic?: string;
   }): Promise<Sequence>;
 
   // for responder to approve a session proposal
   public abstract approveSession(params: {
-    proposalId: string;
-		accounts: string[];
+    proposerPublicKey: string;
+    accounts: string[];
     methods: string[];
-		events: string[];
+    events: string[];
   }): Promise<Sequence>;
 
   // for responder to reject a session proposal
   public abstract rejectSession(params: {
-    proposalId: string;
+    proposerPublicKey: string;
     reason: Reason;
   }): Promise<void>;
 
