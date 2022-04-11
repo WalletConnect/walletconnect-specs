@@ -4,3 +4,4 @@ In this repository, we document and discuss features that are currently under de
 ## Sections
 - THE Refactor: [WC v2.0 Protocol Refactor](v2-protocol-refactor.md)
 - WC Methods reference: [JSON-RPC Methods](wc-rpc-methods.md)
+- Internal data structures reference: [Data Structures](data-structures.md)
