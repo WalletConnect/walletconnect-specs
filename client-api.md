@@ -9,10 +9,10 @@ abstract class Client {
     metadata?: AppMetadata;
   }): Promise<void>;
 
-	// for responder to pair a pairing created by a proposer
+  // for responder to pair a pairing created by a proposer
   public abstract pair(params: {
-		uri: string;
-	}): Promise<Sequence>;
+    uri: string;
+  }): Promise<Sequence>;
 
   // for proposer to propose a session to a responder
   public abstract connect(params: {
@@ -74,7 +74,7 @@ abstract class Client {
   }): Promise<void>;
 
   // for either to ping and verify peer is online
-  public abstract ping(params: {
+  public abstract pingSession(params: {
     topic: string;
   }): Promise<void>;
 
@@ -86,7 +86,20 @@ abstract class Client {
   }): Promise<void>;
 
   // for either to disconnect a session
-  public abstract disconnect(params: {
+  public abstract deleteSession(params: {
+    topic: string;
+    reason: Reason;
+  }): Promise<void>;
+  
+  
+  // for either to ping and verify peer is online (for pairing)
+  public abstract pingPairing(params: {
+    topic: string;
+  }): Promise<void>;
+
+
+  // for either to delete a pairing 
+  public abstract deletePairing(params: {
     topic: string;
     reason: Reason;
   }): Promise<void>;
@@ -94,7 +107,7 @@ abstract class Client {
   // ---------- Events ----------------------------------------------- //
 
   // subscribe to pairing proposal
-  public abstract on("pairing_created", (pairingCreated: PairingCreated) => {}): void;
+  public abstract on("pairing_proposal", (pairingCreated: PairingCreated) => {}): void;
 
   // subscribe to session proposal
   public abstract on("session_proposal", (sessionProposal: SessionProposal) => {}): void;
