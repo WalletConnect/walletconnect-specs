@@ -128,7 +128,7 @@ Used to settle a session over topic B.
 Used to extend the lifetime of a session.
 - The expiry is the absolute timestamp of the expiration date, in seconds.
 ```jsonc
-// wc_sessionExtend params
+// wc_sessionUpdateExpiry params
 {
     "expiry": number
 }
@@ -139,8 +139,10 @@ Used to inform the peer to close and delete a session. The reason field should b
 ```jsonc
 // wc_sessionDelete params
 {
-    "code": int,
-    "reason": string
+    "reason": {
+        "code": Int64,
+        "message": string
+    }
 }
 ```
 
