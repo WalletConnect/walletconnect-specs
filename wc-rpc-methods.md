@@ -105,7 +105,7 @@ Used to settle a session over topic B.
             "icons": [string]
         }
     },
-    "expiryTimestamp": Int64,
+    "expiry": Int64,
 }
 ```
 
