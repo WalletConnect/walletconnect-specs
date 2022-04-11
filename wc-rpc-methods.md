@@ -65,10 +65,8 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 ```jsonc
 // wc_pairingDelete params
 {
-    "reason": {
-        "code": Int64,
-        "message": string
-    }
+    "code": Int64,
+    "message": string
 }
 ```
 
@@ -139,10 +137,8 @@ Used to inform the peer to close and delete a session. The reason field should b
 ```jsonc
 // wc_sessionDelete params
 {
-    "reason": {
-        "code": Int64,
-        "message": string
-    }
+    "code": Int64,
+    "message": string
 }
 ```
 
