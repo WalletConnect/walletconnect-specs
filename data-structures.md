@@ -37,23 +37,14 @@ Pairing is a topic encrypted by a symmetric key shared through a URI between two
 		"protocol": string,
 		"data": string
 	},
-	"self": {
-		"metadata": {
-			"name": string,
-			"description": string,
-			"url": string,
-			"icons": [string]
-		}
-	},
-	"peer": {
-		"metadata": {
-			"name": string,
-			"description": string,
-			"url": string,
-			"icons": [string]
-		}
+	"peerMetadata": {
+		"name": string,
+		"description": string,
+		"url": string,
+		"icons": [string]
 	},
 	"expiry": Int64,
+	"active": boolean
 }
 ```
 
@@ -86,7 +77,8 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
 			"icons": [string]
 		}
 	},
-	"expiry": Int64,
+	"expiry": Int64, // timestamp (seconds)
+	"acknowledged": boolean,
 	"controller": string,
 	"accounts": [string],
 	"methods": [string],
@@ -106,7 +98,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
 			"data": string
 		}
 	],
-	"peer": {
+	"proposer": {
 		"publicKey": string,
 		"metadata": {
 			"name": string,
