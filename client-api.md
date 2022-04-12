@@ -14,7 +14,7 @@ abstract class Client {
     uri: string;
   }): Promise<Sequence>;
 
-  // for proposer to propose a session to a responder
+  // for proposer to create a session with or without pairing creation
   public abstract connect(params: {
     chains: string[];
     methods: string[];
@@ -23,7 +23,7 @@ abstract class Client {
   }): Promise<Sequence>;
 
   // for responder to approve a session proposal
-  public abstract approveSession(params: {
+  public abstract approve(params: {
     proposerPublicKey: string;
     accounts: string[];
     methods: string[];
@@ -31,7 +31,7 @@ abstract class Client {
   }): Promise<Sequence>;
 
   // for responder to reject a session proposal
-  public abstract rejectSession(params: {
+  public abstract reject(params: {
     proposerPublicKey: string;
     reason: Reason;
   }): Promise<void>;
@@ -48,66 +48,54 @@ abstract class Client {
     methods: string[]
   }): Promise<void>;
 
-	// for controller to update session events
+  // for controller to update session events
   public abstract updateEvents(params: {
     topic: string;
     events: string[]
   }): Promise<void>;
 
-	// for controller to update session expiry
+  // for controller to update session expiry
   public abstract updateExpiry(params: {
     topic: string;
     expiry: number
   }): Promise<void>;
 
-  // for proposer to request JSON-RPC
+  // for proposer to request JSON-RPC request
   public abstract request(params: {
     topic: string;
     request: RequestArguments;
     chainId?: string;
   }): Promise<any>;
 
-  // for responder to respond JSON-RPC
+  // for responder to respond JSON-RPC request
   public abstract respond(params: {
     topic: string;
     response: JsonRpcResponse;
-  }): Promise<void>;
-
-  // for either to ping and verify peer is online
-  public abstract pingSession(params: {
-    topic: string;
   }): Promise<void>;
 
   // for controller to send events
   public abstract emit(params: {
     topic: string;
     event: SessionEvent;
-		chainId?: string;
+    chainId?: string;
   }): Promise<void>;
 
-  // for either to disconnect a session
-  public abstract deleteSession(params: {
+    // for either to ping a peer in a session or pairing
+  public abstract ping(params: {
+    topic: string;
+  }): Promise<void>;
+
+  // for either to disconnect a session or pairing
+  public abstract disconnect(params: {
     topic: string;
     reason: Reason;
   }): Promise<void>;
-  
-  
-  // for either to ping and verify peer is online (for pairing)
-  public abstract pingPairing(params: {
-    topic: string;
-  }): Promise<void>;
 
-
-  // for either to delete a pairing 
-  public abstract deletePairing(params: {
-    topic: string;
-    reason: Reason;
-  }): Promise<void>;
 
   // ---------- Events ----------------------------------------------- //
 
-  // subscribe to pairing proposal
-  public abstract on("pairing_proposal", (pairingCreated: PairingCreated) => {}): void;
+  // subscribe to pairing created
+  public abstract on("pairing_created", (pairingCreated: PairingCreated) => {}): void;
 
   // subscribe to session proposal
   public abstract on("session_proposal", (sessionProposal: SessionProposal) => {}): void;
@@ -115,7 +103,7 @@ abstract class Client {
   // subscribe to session request
   public abstract on("session_request", (sessionRequest: SessionRequest) => {}): void;
 
-  // subscribe to session notification
+  // subscribe to session event
   public abstract on("session_event", (sessionEvent: SessionEvent) => {}): void;
 }
 ```
