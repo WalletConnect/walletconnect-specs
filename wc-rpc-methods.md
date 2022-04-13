@@ -72,6 +72,15 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 
 ### wc_pairingPing
 
+
+```jsonc
+// wc_pairingPing params
+{
+    // empty
+}
+```
+
+
 ## Sessions:
 
 ### wc_sessionSettle
