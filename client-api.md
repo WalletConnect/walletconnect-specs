@@ -19,6 +19,7 @@ abstract class Client {
     chains: string[];
     methods: string[];
     events: string[];
+    relays?: RelayProtocolOptions[];
     pairingTopic?: string;
   }): Promise<Sequence>;
 
