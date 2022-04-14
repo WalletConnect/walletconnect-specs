@@ -25,6 +25,7 @@ abstract class Client {
   // for responder to approve a session proposal
   public abstract approve(params: {
     proposerPublicKey: string;
+    relayProtocol: string;
     accounts: string[];
     methods: string[];
     events: string[];
