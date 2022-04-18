@@ -28,6 +28,7 @@ abstract class Client {
     accounts: string[];
     methods: string[];
     events: string[];
+    relayProtocol?: string;
   }): Promise<Sequence>;
 
   // for responder to reject a session proposal
