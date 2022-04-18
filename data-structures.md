@@ -124,9 +124,7 @@ Response is sent by the responder client and can either be an approval or reject
 		"protocol": string,
 		"data": string // Optional
 	},
-	"responder": {
-		"publicKey": string
-	}
+	"responderPublicKey": string
 }
 
 // Rejection
