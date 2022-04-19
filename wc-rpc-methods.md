@@ -44,6 +44,7 @@ Used to propose a session through topic A. Requires a success response with asso
     "chains": [string], // CAIP-2 chain IDs
     "methods": [string],
     "events": [string],
+    "pairingTopic": string
 }
 ```
 

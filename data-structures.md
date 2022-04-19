@@ -109,7 +109,8 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
 	},
 	"chains": [string],
 	"methods": [string],
-	"events": [string]
+	"events": [string],
+	"pairingTopic": string
 }
 ```
 
