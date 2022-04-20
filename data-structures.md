@@ -92,6 +92,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
 
 ```jsonc
 {
+	"id": number, // json-rpc request id
 	"relays": [
 		{
 			"protocol": string,
