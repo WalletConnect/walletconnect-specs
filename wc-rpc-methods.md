@@ -54,9 +54,7 @@ Used to propose a session through topic A. Requires a success response with asso
         "protocol": string,
         "data": string // Optional
     },
-    "responder": {
-        "publicKey": string
-    }
+    "responderPublicKey": string,
 }
 ```
 
