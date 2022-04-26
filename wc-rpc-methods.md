@@ -41,9 +41,13 @@ Used to propose a session through topic A. Requires a success response with asso
             "icons": [string]
         }
     },
-    "chains": [string], // CAIP-2 chain IDs
-    "methods": [string],
-    "events": [string],
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	]
 }
 ```
 
@@ -100,34 +104,32 @@ Used to settle a session over topic B.
         }
     },
     "accounts": [string], // CAIP-10 account IDs
-    "methods": [string], // json-rpc method names
-    "events": [string], // event names
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	],
     "expiry": Int64, // seconds
 }
 ```
 
 
-### wc_sessionUpdateAccounts
+### wc_sessionUpdateNamespaces
 ```jsonc
-// wc_sessionUpdateAccounts params
+// wc_sessionUpdateNamespaces params
 {
-    "accounts": [string]
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	]
 }
 ```
-### wc_sessionUpdateMethods
-```jsonc
-// wc_sessionUpdateMethods params
-{
-    "methods": [string]
-}
-```
-### wc_sessionUpdateEvents
-```jsonc
-// wc_sessionUpdateEvents params
-{
-    "events": [string]
-}
-```
+
 
 ### wc_sessionUpdateExpiry
 Used to extend the lifetime of a session.
