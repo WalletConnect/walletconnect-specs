@@ -115,6 +115,13 @@ Used to settle a session over topic B.
 }
 ```
 
+### wc_sessionUpdateAccounts
+```jsonc
+// wc_sessionUpdateAccounts params
+{
+    "accounts": [string]
+}
+```
 
 ### wc_sessionUpdateNamespaces
 ```jsonc
