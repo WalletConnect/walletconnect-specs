@@ -81,8 +81,13 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
 	"acknowledged": boolean,
 	"controller": string,
 	"accounts": [string],
-	"methods": [string],
-	"events": [string]
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	]
 }
 ```
 
@@ -108,9 +113,13 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
 			"icons": [string]
 		}
 	},
-	"chains": [string],
-	"methods": [string],
-	"events": [string],
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	],
 	"pairingTopic": string
 }
 ```
@@ -159,8 +168,13 @@ Settelement is sent by the responder after approval and it's broadcasted right a
 		}
 	},
 	"accounts": [string], // CAIP-10 account IDs
-	"methods": [string], // json-rpc method names
-	"events": [string], // event names
+	"namespaces": [
+		{
+			"chains": [string],
+			"methods": [string],
+			"events": [string],
+		}
+	],
 	"expiry": Int64, // seconds
 }
 ```
