@@ -8,7 +8,7 @@ In this repository, we document and discuss features that are currently under de
 
 - Auth Overview ([doc](auth/README.md))
 - Pairing URI ([doc](auth/pairing-uri.md))
-- WalletConnect RPC methods ([doc](auth/wc-rpc-methods.md))
+- RPC methods ([doc](auth/rpc-methods.md))
 - Client API ([doc](auth/client-api.md))
 - Data Structures ([doc](auth/data-structures.md))
 - Error Codes ([doc](auth/error-codes.md))
