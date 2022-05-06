@@ -11,6 +11,7 @@ In this repository, we document and discuss features that are currently under de
 - WalletConnect RPC methods [WalletConnect methods](auth/wc-rpc-methods.md)
 - Client API [Client API](auth/client-api.md)
 - Data Structures [Data Structures](auth/data-structures.md)
+- Error Codes [Error Codes](auth/error-codes.md)
 
 ### Chat
 
