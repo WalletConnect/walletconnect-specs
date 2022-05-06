@@ -74,8 +74,8 @@ Finally the proposal fixes the issue of requiring the Dapp to be online to send 
 
 ## Architecture
 
-- Pairing URI [Pairing URI](pairing-uri.md)
-- WalletConnect RPC methods [WalletConnect methods](wc-rpc-methods.md)
-- Client API [Client API](client-api.md)
-- Data Structures [Data Structures](data-structures.md)
-- Error Codes [Error Codes](error-codes.md)
+- Pairing URI ([doc](pairing-uri.md))
+- WalletConnect RPC methods ([doc](wc-rpc-methods.md))
+- Client API ([doc](client-api.md))
+- Data Structures ([doc](data-structures.md))
+- Error Codes ([doc](error-codes.md))

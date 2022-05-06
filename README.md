@@ -6,17 +6,17 @@ In this repository, we document and discuss features that are currently under de
 
 ### Auth
 
-- Auth Overview [Overview](auth/README.md)
-- Pairing URI [Pairing URI](auth/pairing-uri.md)
-- WalletConnect RPC methods [WalletConnect methods](auth/wc-rpc-methods.md)
-- Client API [Client API](auth/client-api.md)
-- Data Structures [Data Structures](auth/data-structures.md)
-- Error Codes [Error Codes](auth/error-codes.md)
+- Auth Overview ([doc](auth/README.md))
+- Pairing URI ([doc](auth/pairing-uri.md))
+- WalletConnect RPC methods ([doc](auth/wc-rpc-methods.md))
+- Client API ([doc](auth/client-api.md))
+- Data Structures ([doc](auth/data-structures.md))
+- Error Codes ([doc](auth/error-codes.md))
 
 ### Chat
 
-- Chat Overview [Overview](chat/README.md)
+- Chat Overview ([doc](chat/README.md))
 
 ### Push
 
-- Push Overview [Overview](push/README.md)
+- Push Overview ([doc](push/README.md))
