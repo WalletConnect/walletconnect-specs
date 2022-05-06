@@ -192,7 +192,7 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
     "method": string,
     "params": any
   },
-  "chainId": string // Optional
+  "chainId": string
 }
 ```
 
@@ -205,6 +205,6 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
     "name": string,
     "data": any
   },
-  "chainId": string // Optional
+  "chainId": string
 }
 ```
