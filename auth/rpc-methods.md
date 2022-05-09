@@ -111,24 +111,14 @@ Used to settle a session over topic B.
       "icons": [string]
     }
   },
-  "accounts": [string], // CAIP-10 account IDs
   "namespaces": [
     {
-      "chains": [string],
+      "accounts": [string], // CAIP-10 account IDs
       "methods": [string],
       "events": [string],
     }
   ],
   "expiry": Int64, // seconds
-}
-```
-
-### wc_sessionUpdateAccounts
-
-```jsonc
-// wc_sessionUpdateAccounts params
-{
-  "accounts": [string]
 }
 ```
 
@@ -139,7 +129,7 @@ Used to settle a session over topic B.
 {
   "namespaces": [
     {
-      "chains": [string],
+      "accounts": [string],
       "methods": [string],
       "events": [string],
     }
