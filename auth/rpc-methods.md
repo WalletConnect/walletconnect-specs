@@ -47,7 +47,7 @@ Used to propose a session through topic A. Requires a success response with asso
       "icons": [string]
     }
   },
-  "namespaces": [
+  "proposedNamespaces": [
     {
       "chains": [string],
       "methods": [string],
