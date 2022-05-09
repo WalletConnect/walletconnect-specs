@@ -80,10 +80,9 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
   "expiry": Int64, // timestamp (seconds)
   "acknowledged": boolean,
   "controller": string,
-  "accounts": [string],
   "namespaces": [
     {
-      "chains": [string],
+      "accounts": [string], // CAIP-10
       "methods": [string],
       "events": [string],
     }
@@ -113,7 +112,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
       "icons": [string]
     }
   },
-  "namespaces": [
+  "proposedNamespaces": [
     {
       "chains": [string],
       "methods": [string],
