@@ -57,7 +57,7 @@ abstract class Client {
   public abstract request(params: {
     topic: string;
     request: RequestArguments;
-    chainId?: string;
+    chainId: string;
   }): Promise<any>;
 
   // for responder to respond JSON-RPC request
@@ -70,7 +70,7 @@ abstract class Client {
   public abstract emit(params: {
     topic: string;
     event: SessionEvent;
-    chainId?: string;
+    chainId: string;
   }): Promise<void>;
 
     // for either to ping a peer in a session or pairing
