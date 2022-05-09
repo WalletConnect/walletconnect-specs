@@ -35,15 +35,14 @@ abstract class Client {
   }): Promise<void>;
 
   // for controller to update session namespaces
-  public abstract updateNamespaces(params: {
+  public abstract update(params: {
     topic: string;
     namespaces: SessionNamespace[];
   }): Promise<void>;
 
   // for controller to update session expiry
-  public abstract updateExpiry(params: {
+  public abstract extend(params: {
     topic: string;
-    expiry: number
   }): Promise<void>;
 
   // for proposer to request JSON-RPC request
