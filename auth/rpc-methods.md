@@ -122,10 +122,10 @@ Used to settle a session over topic B.
 }
 ```
 
-### wc_sessionUpdateNamespaces
+### wc_sessionUpdate
 
 ```jsonc
-// wc_sessionUpdateNamespaces params
+// wc_sessionUpdate params
 {
   "namespaces": [
     {
@@ -137,14 +137,14 @@ Used to settle a session over topic B.
 }
 ```
 
-### wc_sessionUpdateExpiry
+### wc_sessionExtend
 
 Used to extend the lifetime of a session.
 
 - The expiry is the absolute timestamp of the expiration date, in seconds.
 
 ```jsonc
-// wc_sessionUpdateExpiry params
+// wc_sessionExtend params
 {
   "expiry": number
 }
