@@ -47,13 +47,20 @@ Used to propose a session through topic A. Requires a success response with asso
       "icons": [string]
     }
   },
-  "proposedNamespaces": [
-    {
+  "requiredNamespaces": {
+    [namespace_name] : {
       "chains": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "chains": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ]
+  },
 }
 ```
 
@@ -111,13 +118,20 @@ Used to settle a session over topic B.
       "icons": [string]
     }
   },
-  "namespaces": [
-    {
-      "accounts": [string], // CAIP-10 account IDs
+  "namespaces": {
+    [namespace_name] : {
+      "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ],
+  },
   "expiry": Int64, // seconds
 }
 ```
@@ -127,13 +141,20 @@ Used to settle a session over topic B.
 ```jsonc
 // wc_sessionUpdate params
 {
-  "namespaces": [
-    {
+  "namespaces": {
+    [namespace_name] : {
       "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ]
+  }
 }
 ```
 

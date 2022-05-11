@@ -16,7 +16,7 @@ abstract class Client {
 
   // for proposer to create a session with or without pairing creation
   public abstract connect(params: {
-    proposedNamespaces: ProposalNamespace[];
+    requiredNamespaces: ProposalNamespace[];
     relays?: RelayProtocolOptions[];
     pairingTopic?: string;
   }): Promise<Sequence>;
