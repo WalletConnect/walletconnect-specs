@@ -80,13 +80,21 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
   "expiry": Int64, // timestamp (seconds)
   "acknowledged": boolean,
   "controller": string,
-  "namespaces": [
-    {
-      "accounts": [string], // CAIP-10
+  "namespaces": {
+    [namespace_name] : {
+      "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ]
+
+  }
 }
 ```
 
@@ -112,13 +120,20 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
       "icons": [string]
     }
   },
-  "proposedNamespaces": [
-    {
+  "requiredNamespaces": {
+    [namespace_name] : {
       "chains": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "chains": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ],
+  },
   "pairingTopic": string
 }
 ```
@@ -167,13 +182,20 @@ Settelement is sent by the responder after approval and it's broadcasted right a
     }
   },
   "accounts": [string], // CAIP-10 account IDs
-  "namespaces": [
-    {
-      "chains": [string],
+  "namespaces": {
+    [namespace_name] : {
+      "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string], // optional
+          "events": [string], // optional
+        }
+      ]
     }
-  ],
+  },
   "expiry": Int64, // seconds
 }
 ```
