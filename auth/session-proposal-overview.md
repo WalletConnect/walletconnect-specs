@@ -55,7 +55,7 @@ If the Wallet (or the user) does NOT approve the session, then it is rejected. O
 }
 ```
 
-Dapp then validates if recieved session namespaces are valid for requested proposal namespaces. If they are valid then session is established. If they are not valid then session cannot be established.  
+The Dapp then validates if the received session namespaces comply with the requested proposal namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data.
 
 # Validation test cases
 
