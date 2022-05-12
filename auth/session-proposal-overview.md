@@ -27,7 +27,7 @@ It issues required methods and events for specific blockchains in form of  propo
 }
 ```
 
-Wallet then validates if recieved proposal namespaces are valid. If they are not valid then session cannot be established and is rejected. If they are valid then Wallet decides if it should approve the proposal.
+Wallet then validates if recieved proposal namespaces are valid. If they are not valid then session cannot be established and wallet rejects it with some special reason and code that tells the Dapp the proposal namespaces are invalid (TODO: Define reason and code) . If they are valid then Wallet decides if it should approve the proposal.
 
 If Wallet doesn't approve then session is rejected. Otherwise, Wallet responds with slighly different structure than proposal namespaces called session namespaces. Instead of list of `chains` it has list of `accounts` that approves given methods and events. If wallet approves session proposal it needs to accept all methods and events in every proposal namespace. If Wallet wants it can give permissions for more methods and events than requested, but never less.
 
