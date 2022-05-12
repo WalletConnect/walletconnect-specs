@@ -1,6 +1,6 @@
 # Session proposal overview:
 Let's say a dapp wants access to Ethereum Mainnet, Polygon, Cosmos Mainnet.
-It issues required methods and events for specific blockchains in form of  proposal namespaces. For example Ethereum Mainnet and Polygon it requires: `eth_sign` method and `accountsChanged` event, and for Cosmos Mainnet it requires: `cosmos_signDirect` method and `someCosmosEvent` event. Let's say that Polygon also has special method `personalSign` and event `chainChanged` not available for Ethereum Mainnet. Dapp can request those only for Polygon via `extensions` field. 
+It specifies the proposed execution environment for each blockchain in the form of namespaces. For example, for Ethereum Mainnet and Polygon, it requires: `eth_sign` method and `accountsChanged` event, and, for Cosmos Mainnet, it requires: `cosmos_signDirect` method and `someCosmosEvent` event. Let's say that Polygon also has a special method `personalSign` and an event `chainChanged` not available in Ethereum Mainnet. The Dapp can require chain-exclusive parameters via the `extensions` field. 
 
 
 ## Example proposal namespaces request
