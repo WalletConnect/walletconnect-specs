@@ -219,9 +219,6 @@ Note: Even though, the first proposal namespace is valid the second being invali
 
 ---
 
-
-Czy dodawać walidacje tego co jest wewntarz przestrzeni?? eip155 musi jedynie zawierac eip155:42 itp?
-
 ## Non-controller side validation of incoming proposal namespaces (Dapp)
 ---
 ### 2.1. Session namespaces MUST NOT have accounts empty
