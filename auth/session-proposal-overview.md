@@ -275,14 +275,14 @@ Note: `0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
 
 ---
 
-### 2.3. Session namespaces MUST accept all methods and events
+### 2.3. Session namespaces MUST accept all methods 
 Requested proposal namespaces:
 ```json
 {
     "eip155": {
         "chains": ["eip155:1"],
         "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
+        "events": []
     }
 }
 ```
@@ -292,13 +292,13 @@ Received session namespaces:
     "eip155": {
         "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
         "methods": [],
-        "events": ["someOtherNotDefinedEvent"]
+        "events": []
     }
 }
 ```
 Is valid?: No
 
-Note: `eth_sign` method and `accountsChanged` event are missing in the session namespace 
+Note: `eth_sign` method is missing in the session namespace 
 
 ---
 
@@ -552,5 +552,33 @@ Received session namespaces:
 }
 ```
 Is valid?: Yes/No
+
+---
+
+
+### 2.13. Session namespaces MUST accept all events 
+Requested proposal namespaces:
+```json
+{
+    "eip155": {
+        "chains": ["eip155:1"],
+        "methods": [],
+        "events": ["chainChanged"]
+    }
+}
+```
+Received session namespaces:
+```json
+{
+    "eip155": {
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "methods": [],
+        "events": []
+    }
+}
+```
+Is valid?: No
+
+Note: `chainChanged` event is missing in the session namespace 
 
 ---
