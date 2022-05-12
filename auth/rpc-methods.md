@@ -48,7 +48,7 @@ Used to propose a session through topic A. Requires a success response with asso
     }
   },
   "requiredNamespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "chains": [string],
       "methods": [string],
       "events": [string],
@@ -119,7 +119,7 @@ Used to settle a session over topic B.
     }
   },
   "namespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "accounts": [string],
       "methods": [string],
       "events": [string],
@@ -142,7 +142,7 @@ Used to settle a session over topic B.
 // wc_sessionUpdate params
 {
   "namespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "accounts": [string],
       "methods": [string],
       "events": [string],

@@ -81,7 +81,7 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
   "acknowledged": boolean,
   "controller": string,
   "namespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "accounts": [string],
       "methods": [string],
       "events": [string],
@@ -121,7 +121,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
     }
   },
   "requiredNamespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "chains": [string],
       "methods": [string],
       "events": [string],
@@ -183,7 +183,7 @@ Settelement is sent by the responder after approval and it's broadcasted right a
   },
   "accounts": [string], // CAIP-10 account IDs
   "namespaces": {
-    [namespace_name] : {
+    "<namespace_name>" : {
       "accounts": [string],
       "methods": [string],
       "events": [string],
