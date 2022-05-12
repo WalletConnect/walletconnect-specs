@@ -109,7 +109,7 @@ Requested proposal namespaces:
 Is valid?: Yes
 
 ---
-### 1.4. Different origin blockchains can be defined in one namespace
+### 1.4. TODO: Different origin blockchains can be defined in one namespace
 Requested proposal namespaces:
 ```json
 {
@@ -124,7 +124,7 @@ Is valid?: Yes/No?
 
 ---
 
-### 1.5. Blockchain can be in mutliple namespaces
+### 1.5. TODO: Blockchain can be in mutliple namespaces
 Requested proposal namespaces:
 ```json
 {
@@ -164,6 +164,7 @@ Requested proposal namespaces:
 Is valid?: No
 
 Note: Proposal namespace extension doesn't have any chains, hence it's invalid
+
 ---
 
 ### 1.7. Extensions have optional method and events
@@ -524,38 +525,6 @@ Received session namespaces:
 Is valid?: Yes/No
 
 ---
-
-### 2.11. TODO: Expanding proposal namespaces into multiple, logically correct, session namespace (Only if 2.9 is valid)
-Requested proposal namespaces:
-```json
-{
-    "eip155": {
-        "chains": ["eip155:137", "eip155:1"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-
-Received session namespaces:
-```json
-{
-    "eip155": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    },
-    "eip155ButBetter":{
-        "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-Is valid?: Yes/No
-
----
-
 
 ### 2.12. TODO: Extensions merged with to namespace
 Requested proposal namespaces:
