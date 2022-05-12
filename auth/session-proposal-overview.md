@@ -62,7 +62,7 @@ Dapp then validates if recieved session namespaces are valid for requested propo
 ## Controller side validation of incoming proposal namespaces (Wallet)
 
 ---
-### 1.1. Proposal namespaces mustn't have chains empty
+### 1.1. Proposal namespaces MUST NOT have chains empty
 Requested proposal namespaces:
 ```json
 {
@@ -78,7 +78,7 @@ Is valid?: No
 Note: Proposal namespace doesn't have any chains, hence it's invalid
 
 ---
-### 1.2. Chains must be CAIP-2 compliant
+### 1.2. Chains MUST be CAIP-2 compliant
 Requested proposal namespaces:
 ```json
 {
@@ -95,7 +95,7 @@ Note: `42` is not CAIP-2 compliant. `eip155:42` is CAIP-2 compliant.
 
 ---
 
-### 1.3. Proposal namespace can have no methods and events 
+### 1.3. Proposal namespace methods and events MAY be empty
 Requested proposal namespaces:
 ```json
 {
@@ -109,7 +109,7 @@ Requested proposal namespaces:
 Is valid?: Yes
 
 ---
-### 1.4. TODO: Different origin blockchains can be defined in one namespace
+### 1.4. TODO: Different origin blockchains MAY be defined in one namespace
 Requested proposal namespaces:
 ```json
 {
@@ -124,7 +124,7 @@ Is valid?: Yes/No?
 
 ---
 
-### 1.5. TODO: Blockchain can be in mutliple namespaces
+### 1.5. TODO: Blockchain MAY be in mutliple namespaces
 Requested proposal namespaces:
 ```json
 {
@@ -144,7 +144,7 @@ Is valid?: Yes/No?
 
 ---
 
-### 1.6. Proposal namespaces extensions mustn't have chains empty
+### 1.6. Proposal namespaces extensions MUST NOT have chains empty
 Requested proposal namespaces:
 ```json
 {
@@ -167,7 +167,7 @@ Note: Proposal namespace extension doesn't have any chains, hence it's invalid
 
 ---
 
-### 1.7. Extensions have optional method and events
+### 1.7. Extensions method and events are OPTIONAL
 Requested proposal namespaces:
 ```json
 {
@@ -197,7 +197,7 @@ Note: First extension is missing `events` field but remains valid. Second extens
 
 ---
 
-### 1.8. One invalid namespace makes whole request invalid
+### 1.8. All namespaces MUST be valid
 Requested proposal namespaces:
 ```json
 {
@@ -224,7 +224,7 @@ Czy dodawać walidacje tego co jest wewntarz przestrzeni?? eip155 musi jedynie z
 
 ## Non-controller side validation of incoming proposal namespaces (Dapp)
 ---
-### 2.1. Session namespaces mustn't have accounts empty
+### 2.1. Session namespaces MUST NOT have accounts empty
 Requested proposal namespaces:
 ```json
 {
@@ -239,7 +239,7 @@ Received session namespaces:
 ```json
 {
     "cosmos": {
-        "chains": [],
+        "accounts": [],
         "methods": ["cosmos_signDirect"],
         "events": ["someCosmosEvent"]
     }
@@ -250,7 +250,7 @@ Is valid?: No
 Note: Proposal namespace doesn't have any accounts, hence it's invalid
 
 ---
-### 2.2. Session namespaces addresses must be CAIP-10 compliant
+### 2.2. Session namespaces addresses MUST be CAIP-10 compliant
 Requested proposal namespaces:
 ```json
 {
@@ -278,7 +278,7 @@ Note: `0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
 
 ---
 
-### 2.3. Session namespaces must accept all methods and events
+### 2.3. Session namespaces MUST accept all methods and events
 Requested proposal namespaces:
 ```json
 {
@@ -305,7 +305,7 @@ Note: `eth_sign` method and `accountsChanged` event are missing in the session n
 
 ---
 
-### 2.4. Session namespaces must contain at least one account in requested chains
+### 2.4. Session namespaces MUST contain at least one account in requested chains
 Requested proposal namespaces:
 ```json
 {
@@ -332,7 +332,7 @@ Note: There is no account specified for `eip155:10`
 
 ---
 
-### 2.5. Session namespaces can contain multiple accounts for one chain
+### 2.5. Session namespaces MAY contain multiple accounts for one chain
 Requested proposal namespaces:
 ```json
 {
@@ -360,7 +360,7 @@ Is valid?: Yes
 
 ---
 
-### 2.6. Session namespaces can extend methods and events of proposal namespaces
+### 2.6. Session namespaces MAY extend methods and events of proposal namespaces
 Requested proposal namespaces:
 ```json
 {
@@ -385,7 +385,7 @@ Is valid?: Yes
 
 ---
 
-### 2.7. TODO: Multiple accounts from different origin in one namespace
+### 2.7. TODO: Namespace MAY contain blockchain from different namespace
 Requested proposal namespaces:
 ```json
 {
@@ -410,7 +410,7 @@ Is valid?: Yes/No?
 
 ---
 
-### 2.8. TODO: Session namespaces can/musn't contain accounts from chains not defined in proposal namespaces
+### 2.8. TODO: Session namespaces MAY/MUST NOT contain accounts from chains not defined in proposal namespaces
 Requested proposal namespaces:
 ```json
 {
@@ -435,7 +435,7 @@ Is valid?: Yes/No
 
 ---
 
-### 2.9. Proposal namespace and session namespaces must have matching namespaces
+### 2.9. Proposal namespace and session namespaces MUST have matching namespaces
 Requested proposal namespaces:
 ```json
 {
@@ -465,7 +465,7 @@ Is valid?: Yes/No
 
 ---
 
-### 2.10. TODO: Merging proposal namespaces into one, logically correct, session namespace (Only if 2.9 is valid)
+### 2.10. TODO: Proposal namespaces MAY/MUST NOT be merged into one, logically correct, session namespace (Only if 2.9 is valid)
 Requested proposal namespaces:
 ```json
 {
@@ -495,7 +495,7 @@ Is valid?: Yes/No
 
 ---
 
-### 2.11. TODO: Expanding proposal namespaces into multiple, logically correct, session namespace (Only if 2.9 is valid)
+### 2.11. TODO: Proposal namespaces MAY/MUST NOT be expanded into multiple, logically correct, session namespace (Only if 2.9 is valid)
 Requested proposal namespaces:
 ```json
 {
@@ -526,7 +526,7 @@ Is valid?: Yes/No
 
 ---
 
-### 2.12. TODO: Extensions merged with to namespace
+### 2.12. TODO: Extensions MAY/MUST NOT be merged into namespace
 Requested proposal namespaces:
 ```json
 {
