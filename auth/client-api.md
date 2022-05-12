@@ -16,7 +16,7 @@ abstract class Client {
 
   // for proposer to create a session with or without pairing creation
   public abstract connect(params: {
-    requiredNamespaces: ProposalNamespace[];
+    requiredNamespaces: Map<string, ProposalNamespace>;
     relays?: RelayProtocolOptions[];
     pairingTopic?: string;
   }): Promise<Sequence>;
@@ -24,7 +24,7 @@ abstract class Client {
   // for responder to approve a session proposal
   public abstract approve(params: {
     id: number;
-    namespaces: SessionNamespace[];
+    namespaces: Map<string, SessionNamespace>;
     relayProtocol?: string;
   }): Promise<Sequence>;
 
@@ -37,7 +37,7 @@ abstract class Client {
   // for controller to update session namespaces
   public abstract update(params: {
     topic: string;
-    namespaces: SessionNamespace[];
+    namespaces: Map<string, SessionNamespace>;
   }): Promise<void>;
 
   // for controller to update session expiry
