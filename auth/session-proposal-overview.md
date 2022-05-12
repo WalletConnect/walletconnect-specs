@@ -29,7 +29,7 @@ It specifies the proposed execution environment for each blockchain in the form 
 
 The Wallet then validates if the received proposal namespaces are valid. If they are not valid, then the session cannot be established and the Wallet rejects it with a `1006` code that tells the Dapp that the proposal namespaces are invalid. If they are valid, then the Wallet if free to decide whether to approve the proposal, or reject it.
 
-If Wallet doesn't approve then session is rejected. Otherwise, Wallet responds with slighly different structure than proposal namespaces called session namespaces. Instead of list of `chains` it has list of `accounts` that approves given methods and events. If wallet approves session proposal it needs to accept all methods and events in every proposal namespace. If Wallet wants it can give permissions for more methods and events than requested, but never less.
+If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: session namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to accept all methods and events of all proposal namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
 
 
 ## Example session namespaces response
