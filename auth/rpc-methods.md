@@ -55,8 +55,8 @@ Used to propose a session through topic A. Requires a success response with asso
       "extension": [ // optional
         {
           "chains": [string],
-          "methods": [string], // optional
-          "events": [string], // optional
+          "methods": [string],
+          "events": [string],
         }
       ]
     }
@@ -126,8 +126,8 @@ Used to settle a session over topic B.
       "extension": [ // optional
         {
           "accounts": [string],
-          "methods": [string], // optional
-          "events": [string], // optional
+          "methods": [string],
+          "events": [string],
         }
       ]
     }
@@ -149,8 +149,8 @@ Used to settle a session over topic B.
       "extension": [ // optional
         {
           "accounts": [string],
-          "methods": [string], // optional
-          "events": [string], // optional
+          "methods": [string],
+          "events": [string],
         }
       ]
     }
