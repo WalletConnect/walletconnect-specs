@@ -47,13 +47,20 @@ Used to propose a session through topic A. Requires a success response with asso
       "icons": [string]
     }
   },
-  "namespaces": [
-    {
+  "requiredNamespaces": {
+    "<namespace_name>" : {
       "chains": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "chains": [string],
+          "methods": [string],
+          "events": [string],
+        }
+      ]
     }
-  ]
+  },
 }
 ```
 
@@ -111,50 +118,54 @@ Used to settle a session over topic B.
       "icons": [string]
     }
   },
-  "accounts": [string], // CAIP-10 account IDs
-  "namespaces": [
-    {
-      "chains": [string],
+  "namespaces": {
+    "<namespace_name>" : {
+      "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string],
+          "events": [string],
+        }
+      ]
     }
-  ],
+  },
   "expiry": Int64, // seconds
 }
 ```
 
-### wc_sessionUpdateAccounts
+### wc_sessionUpdate
 
 ```jsonc
-// wc_sessionUpdateAccounts params
+// wc_sessionUpdate params
 {
-  "accounts": [string]
-}
-```
-
-### wc_sessionUpdateNamespaces
-
-```jsonc
-// wc_sessionUpdateNamespaces params
-{
-  "namespaces": [
-    {
-      "chains": [string],
+  "namespaces": {
+    "<namespace_name>" : {
+      "accounts": [string],
       "methods": [string],
       "events": [string],
+      "extension": [ // optional
+        {
+          "accounts": [string],
+          "methods": [string],
+          "events": [string],
+        }
+      ]
     }
-  ]
+  }
 }
 ```
 
-### wc_sessionUpdateExpiry
+### wc_sessionExtend
 
 Used to extend the lifetime of a session.
 
 - The expiry is the absolute timestamp of the expiration date, in seconds.
 
 ```jsonc
-// wc_sessionUpdateExpiry params
+// wc_sessionExtend params
 {
   "expiry": number
 }
