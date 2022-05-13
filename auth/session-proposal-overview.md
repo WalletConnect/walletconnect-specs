@@ -1,6 +1,6 @@
 # Session proposal overview:
 Let's say a dapp wants access to Ethereum Mainnet, Polygon, Cosmos Mainnet.
-It issues required methods and events for specific blockchains in form of  proposal namespaces. For example Ethereum Mainnet and Polygon it requires: `eth_sign` method and `accountsChanged` event, and for Cosmos Mainnet it requires: `cosmos_signDirect` method and `someCosmosEvent` event. Let's say that Polygon also has special method `personalSign` and event `chainChanged` not available for Ethereum Mainnet. Dapp can request those only for Polygon via `extensions` field. 
+It specifies the proposed execution environment for each blockchain in the form of namespaces. For example, for Ethereum Mainnet and Polygon, it requires: `eth_sign` method and `accountsChanged` event, and, for Cosmos Mainnet, it requires: `cosmos_signDirect` method and `someCosmosEvent` event. Let's say that Polygon also has a special method `personalSign` and an event `chainChanged` not available in Ethereum Mainnet. The Dapp can require chain-exclusive parameters via the `extensions` field. 
 
 
 ## Example proposal namespaces request
@@ -27,9 +27,9 @@ It issues required methods and events for specific blockchains in form of  propo
 }
 ```
 
-Wallet then validates if recieved proposal namespaces are valid. If they are not valid then session cannot be established and wallet rejects it with `1006` code that tells the Dapp the proposal namespaces are invalid. If they are valid then Wallet decides if it should approve the proposal.
+The Wallet then validates if the received proposal namespaces are valid. If they are not valid, then the session cannot be established and the Wallet rejects it with a `1006` code that tells the Dapp that the proposal namespaces are invalid. If they are valid, then the Wallet if free to decide whether to approve the proposal, or reject it.
 
-If Wallet doesn't approve then session is rejected. Otherwise, Wallet responds with slighly different structure than proposal namespaces called session namespaces. Instead of list of `chains` it has list of `accounts` that approves given methods and events. If wallet approves session proposal it needs to accept all methods and events in every proposal namespace. If Wallet wants it can give permissions for more methods and events than requested, but never less.
+If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: session namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to accept all methods and events of all proposal namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
 
 
 ## Example session namespaces response
@@ -55,7 +55,7 @@ If Wallet doesn't approve then session is rejected. Otherwise, Wallet responds w
 }
 ```
 
-Dapp then validates if recieved session namespaces are valid for requested proposal namespaces. If they are valid then session is established. If they are not valid then session cannot be established.  
+The Dapp then validates if the received session namespaces comply with the requested proposal namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data.
 
 # Validation test cases
 
