@@ -582,3 +582,113 @@ Is valid?: No
 Note: `chainChanged` event is missing in the session namespace 
 
 ---
+
+### 2.14. TODO: Session namespaces extensions MAY/MUST NOT extend methods and events of proposal namespaces extensions
+Requested proposal namespaces:
+```json
+{
+    "eip155": {
+        "chains": ["eip155:1", "eip155:137"],
+        "methods": [],
+        "events": ["chainChanged"],
+        "extensions": [
+            {
+                "chains": ["eip155:137"],
+                "methods": ["eth_sign"]
+            }
+        ]
+    }
+}
+```
+Received session namespaces:
+```json
+{
+    "eip155": {
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "methods": [],
+        "events": ["chainChanged"],
+        "extensions": [
+            {
+                "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+                "methods": ["eth_sign", "personalSign"],
+                "events": ["accountsChanged"]
+            }
+        ]
+    }
+}
+```
+Is valid?: Yes/No
+
+---
+
+### 2.15. TODO: Session namespaces extensions MAY/MUST NOT contain accounts from chains not defined in proposal namespaces extensions
+Requested proposal namespaces:
+```json
+{
+    "eip155": {
+        "chains": ["eip155:1", "eip155:137"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"],
+        "extensions": [
+            {
+                "chains": ["eip155:137"],
+                "methods": ["personalSign"],
+                "events": ["accountsChainged"]
+            }
+        ]
+    }
+}
+```
+Received session namespaces:
+```json
+{
+    "eip155": {
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"],
+        "extensions": [
+            {
+                "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "eip155:42:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+                "methods": ["personalSign"],
+                "events": ["accountsChainged"]
+            }
+        ]
+    }
+}
+```
+Is valid?: Yes/No
+
+---
+
+
+### 2.16. TODO: Session namespaces MAY/MUST NOT add extensions not defined in proposal namespaces extensions
+Requested proposal namespaces:
+```json
+{
+    "eip155": {
+        "chains": ["eip155:1", "eip155:137"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"]
+    }
+}
+```
+Received session namespaces:
+```json
+{
+    "eip155": {
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"],
+        "extensions": [
+            {
+                "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+                "methods": ["personalSign"],
+                "events": ["accountsChainged"]
+            }
+        ]
+    }
+}
+```
+Is valid?: Yes/No
+
+---
