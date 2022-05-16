@@ -55,7 +55,7 @@ If the Wallet (or the user) does NOT approve the session, then it is rejected. O
 }
 ```
 
-The Dapp then validates if the received Session Namespaces comply with the requested Proposal Namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data. The Dapp MUST send a `1007` code that tells the Wallet that the Session Namespaces are invalid.
+The Dapp then validates if the received Session Namespaces comply with the requested Proposal Namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data.
 
 # Validation test cases
 

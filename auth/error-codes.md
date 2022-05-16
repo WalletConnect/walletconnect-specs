@@ -33,5 +33,4 @@ case .invalidUpdateAccountsRequest: return 1003
 case .invalidUpdateNamespaceRequest: return 1004
 case .invalidUpdateExpiryRequest: return 1005
 case .invalidSessionProposeRequest: return 1006
-case .invalidSessionProposeResponse: return 1007
 ```
