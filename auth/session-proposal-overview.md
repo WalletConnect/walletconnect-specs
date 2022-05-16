@@ -3,7 +3,7 @@ Let's say a dapp wants access to Ethereum Mainnet, Polygon, Cosmos Mainnet.
 It specifies the proposed execution environment for each blockchain in the form of namespaces. For example, for Ethereum Mainnet and Polygon, it requires: `eth_sign` method and `accountsChanged` event, and, for Cosmos Mainnet, it requires: `cosmos_signDirect` method and `someCosmosEvent` event. Let's say that Polygon also has a special method `personalSign` and an event `chainChanged` not available in Ethereum Mainnet. The Dapp can require chain-exclusive parameters via the `extensions` field. 
 
 
-## Example proposal namespaces request
+## Example Proposal Namespaces request
 
 ```json
 {
@@ -27,12 +27,12 @@ It specifies the proposed execution environment for each blockchain in the form 
 }
 ```
 
-The Wallet then validates if the received proposal namespaces are valid. If they are not valid, then the session cannot be established and the Wallet rejects it with a `1006` code that tells the Dapp that the proposal namespaces are invalid. If they are valid, then the Wallet if free to decide whether to approve the proposal, or reject it.
+The Wallet then validates if the received Proposal Namespaces are valid. If they are not valid, then the session cannot be established and the Wallet rejects it with a `1006` code that tells the Dapp that the Proposal Namespaces are invalid. If they are valid, then the Wallet if free to decide whether to approve the proposal, or reject it.
 
-If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: session namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to accept all methods and events of all proposal namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
+If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: Session Namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to accept all methods and events of all Proposal Namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
 
 
-## Example session namespaces response
+## Example Session Namespaces response
 ``` json
 {
     "eip155":{
@@ -55,15 +55,15 @@ If the Wallet (or the user) does NOT approve the session, then it is rejected. O
 }
 ```
 
-The Dapp then validates if the received session namespaces comply with the requested proposal namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data.
+The Dapp then validates if the received Session Namespaces comply with the requested Proposal Namespaces. If so, the session is established / settled. If not, the session is not established and MUST delete all related cached data. The Dapp MUST send a `1007` code that tells the Wallet that the Session Namespaces are invalid.
 
 # Validation test cases
 
-## Controller side validation of incoming proposal namespaces (Wallet)
+## Controller side validation of incoming Proposal Namespaces (Wallet)
 
 ---
-### 1.1. Proposal namespaces MUST NOT have chains empty
-Requested proposal namespaces:
+### 1.1. Proposal Namespaces MUST NOT have chains empty
+Requested Proposal Namespaces:
 ```json
 {
     "cosmos":{
@@ -79,7 +79,7 @@ Note: Proposal namespace doesn't have any chains, hence it's invalid
 
 ---
 ### 1.2. Chains MUST be CAIP-2 compliant
-Requested proposal namespaces:
+Requested Proposal Namespaces:
 ```json
 {
     "eip155":{
@@ -96,7 +96,7 @@ Note: `42` is not CAIP-2 compliant. `eip155:42` is CAIP-2 compliant.
 ---
 
 ### 1.3. Proposal namespace methods and events MAY be empty
-Requested proposal namespaces:
+Requested Proposal Namespaces:
 ```json
 {
     "eip155":{
@@ -109,43 +109,26 @@ Requested proposal namespaces:
 Is valid?: Yes
 
 ---
-### 1.4. TODO: Different origin blockchains MAY be defined in one namespace
-Requested proposal namespaces:
+
+### 1.4. All chains in the namespace MUST contain the namespace prefix
+Requested Proposal Namespaces:
 ```json
 {
-    "someSpecialKey":{
-        "chains": ["eip155:1", "cosmos:cosmoshub-4", "bip122:12a765e31ffd4059bada1e25190f6e98", "cosmos:Binance-Chain-Tigris"],
+    "eip155":{
+        "chains": ["eip155:1", "cosmos:cosmoshub-4"],
         "methods": ["personalSign"],
         "events": ["chainChanged"]
     }
 }
 ```
-Is valid?: Yes/No?
+Is valid?: No
+
+Note: `cosmos:cosmoshub-4` does not contain `eip155` prefix
 
 ---
 
-### 1.5. TODO: Blockchain MAY be in mutliple namespaces
-Requested proposal namespaces:
-```json
-{
-    "eip155":{
-        "chains": ["eip155:1", "eip155:10"],
-        "methods": ["personalSign"],
-        "events": []
-    },
-    "someSpecialKey":{
-        "chains": ["eip155:1"],
-        "methods": ["eth_getAccounts"],
-        "events": []
-    }
-}
-```
-Is valid?: Yes/No?
-
----
-
-### 1.6. Proposal namespaces extensions MUST NOT have chains empty
-Requested proposal namespaces:
+### 1.5. Extensions MUST NOT have chains empty
+Requested Proposal Namespaces:
 ```json
 {
     "eip155":{
@@ -167,8 +150,31 @@ Note: Proposal namespace extension doesn't have any chains, hence it's invalid
 
 ---
 
-### 1.7. Extensions method and events are OPTIONAL
-Requested proposal namespaces:
+### 1.6. Extensions methods are REQUIRED
+Requested Proposal Namespaces:
+```json
+{
+    "eip155":{
+        "chains": ["eip155:1", "eip155:137", "eip155:10"],
+        "methods": ["personalSign"],
+        "events": [],
+        "extensions": [
+            {
+                "chains" : ["eip155:1"],
+                "events": ["chainChanged"],
+            }
+        ]
+    }
+}
+```
+Is valid?: No
+
+Note: Extension is missing `methods` field. 
+
+---
+
+### 1.7. Extensions events are REQUIRED
+Requested Proposal Namespaces:
 ```json
 {
     "eip155":{
@@ -179,26 +185,42 @@ Requested proposal namespaces:
             {
                 "chains" : ["eip155:137"],
                 "methods": ["eth_getAccounts"],
-            },
-            {
-                "chains" : ["eip155:1"],
-                "events": ["chainChanged"],
-            },
-            {
-                "chains" : ["eip155:10"],
             }
         ]
     }
 }
 ```
-Is valid?: Yes
+Is valid?: No
 
-Note: First extension is missing `events` field but remains valid. Second extensions is missing `methods` field but remains valid. Third extensions only has `chains` field but due to `method` and `events` field being optional it remains valid, even though it has no logical value. 
+Note: Extension is missing `events` field.
 
 ---
 
-### 1.8. All namespaces MUST be valid
-Requested proposal namespaces:
+
+### 1.8. Namespace key must specification
+Requested Proposal Namespaces:
+```json
+{
+    "":{
+        "chains": [":1"],
+        "methods": ["personalSign"],
+        "events": []
+    },
+    "**":{
+        "chains": ["**:1"],
+        "methods": ["personalSign"],
+        "events": []
+    }
+}
+```
+Is valid?: No
+
+Note: Namespaces must match regex `[-a-z0-9]{3,8}`. Source: [CAIP-2](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md)
+
+---
+
+### 1.9. All namespaces MUST be valid
+Requested Proposal Namespaces:
 ```json
 {
     "eip155":{
@@ -219,10 +241,13 @@ Note: Even though, the first proposal namespace is valid the second being invali
 
 ---
 
-## Non-controller side validation of incoming proposal namespaces (Dapp)
+
+## Non-controller side validation of incoming Proposal Namespaces (Dapp)
+
 ---
-### 2.1. Session namespaces MUST NOT have accounts empty
-Requested proposal namespaces:
+
+### 2.1. Session Namespaces MUST NOT have accounts empty
+Requested Proposal Namespaces:
 ```json
 {
     "cosmos": {
@@ -232,7 +257,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "cosmos": {
@@ -247,8 +272,8 @@ Is valid?: No
 Note: Proposal namespace doesn't have any accounts, hence it's invalid
 
 ---
-### 2.2. Session namespaces addresses MUST be CAIP-10 compliant
-Requested proposal namespaces:
+### 2.2. Session Namespaces addresses MUST be CAIP-10 compliant
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -258,7 +283,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -275,8 +300,8 @@ Note: `0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
 
 ---
 
-### 2.3. Session namespaces MUST accept all methods 
-Requested proposal namespaces:
+### 2.3. Session Namespaces MUST accept all methods 
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -286,7 +311,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -302,8 +327,8 @@ Note: `eth_sign` method is missing in the session namespace
 
 ---
 
-### 2.4. Session namespaces MUST contain at least one account in requested chains
-Requested proposal namespaces:
+### 2.4. Session Namespaces MUST contain at least one account in requested chains
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -313,7 +338,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -329,8 +354,8 @@ Note: There is no account specified for `eip155:10`
 
 ---
 
-### 2.5. Session namespaces MAY contain multiple accounts for one chain
-Requested proposal namespaces:
+### 2.5. Session Namespaces MAY contain multiple accounts for one chain
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -340,7 +365,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -357,8 +382,8 @@ Is valid?: Yes
 
 ---
 
-### 2.6. Session namespaces MAY extend methods and events of proposal namespaces
-Requested proposal namespaces:
+### 2.6. Session Namespaces MAY extend methods and events of Proposal Namespaces
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -368,7 +393,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -382,33 +407,8 @@ Is valid?: Yes
 
 ---
 
-### 2.7. TODO: Namespace MAY contain blockchain from different namespace
-Requested proposal namespaces:
-```json
-{
-    "someSpecialKey": {
-        "chains": ["eip155:1", "cosmos:cosmoshub-4"],
-        "methods": ["personalSign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-Received session namespaces:
-```json
-{
-    "someSpecialKey": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0"],
-        "methods": ["personalSign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-Is valid?: Yes/No?
-
----
-
-### 2.8. TODO: Session namespaces MAY/MUST NOT contain accounts from chains not defined in proposal namespaces
-Requested proposal namespaces:
+### 2.7. All accounts in the namespace MUST contain the namespace prefix
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -418,7 +418,34 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Requested Proposal Namespaces:
+```json
+{
+    "eip155":{
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"]
+    }
+}
+```
+Is valid?: No
+
+Note: `cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0` does not contain `eip155` prefix.
+
+---
+
+### 2.8. Session Namespaces MAY contain accounts from chains not defined in Proposal Namespaces
+Requested Proposal Namespaces:
+```json
+{
+    "eip155": {
+        "chains": ["eip155:1"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"]
+    }
+}
+```
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -428,12 +455,12 @@ Received session namespaces:
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: Yes
 
 ---
 
-### 2.9. Proposal namespace and session namespaces MUST have matching namespaces
-Requested proposal namespaces:
+### 2.9. Session Namespaces MUST have at least the same namespaces as the Proposal Namespaces
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -448,83 +475,24 @@ Requested proposal namespaces:
     }
 
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
-    "someSpecialKey": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0"],
+    "eip155": {
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",],
         "methods": ["eth_sign", "cosmos_signDirect"],
         "events": ["accountsChanged", "someCosmosEvent"]
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: No
+
+Note: `cosmos` namespace is missing in Session Namespaces
 
 ---
 
-### 2.10. TODO: Proposal namespaces MAY/MUST NOT be merged into one, logically correct, session namespace (Only if 2.9 is valid)
-Requested proposal namespaces:
-```json
-{
-    "eip155": {
-        "chains": ["eip155:137", "eip155:1"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    },
-    "cosmos":{
-        "chains": ["cosmos:cosmoshub-4"],
-        "methods": ["cosmos_signDirect"],
-        "events": ["someCosmosEvent"]
-    }
-
-```
-Received session namespaces:
-```json
-{
-    "someSpecialKey": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0"],
-        "methods": ["eth_sign", "cosmos_signDirect"],
-        "events": ["accountsChanged", "someCosmosEvent"]
-    }
-}
-```
-Is valid?: Yes/No
-
----
-
-### 2.11. TODO: Proposal namespaces MAY/MUST NOT be expanded into multiple, logically correct, session namespace (Only if 2.9 is valid)
-Requested proposal namespaces:
-```json
-{
-    "eip155": {
-        "chains": ["eip155:137", "eip155:1"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-
-Received session namespaces:
-```json
-{
-    "eip155": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    },
-    "eip155ButBetter":{
-        "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
-        "methods": ["eth_sign"],
-        "events": ["accountsChanged"]
-    }
-}
-```
-Is valid?: Yes/No
-
----
-
-### 2.12. TODO: Extensions MAY/MUST NOT be merged into namespace
-Requested proposal namespaces:
+### 2.10. Extensions MAY be merged into namespace
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -534,14 +502,15 @@ Requested proposal namespaces:
         "extensions":[
             {
                 "chains": ["eip155:137"],
-                "methods": ["personalSign"]
+                "methods": ["personalSign"],
+                "events": []
             }
         ]
     }
 }
 ```
 
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -551,13 +520,13 @@ Received session namespaces:
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: Yes
 
 ---
 
 
-### 2.13. Session namespaces MUST accept all events 
-Requested proposal namespaces:
+### 2.11. Session Namespaces MUST accept all events 
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -567,7 +536,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -583,8 +552,8 @@ Note: `chainChanged` event is missing in the session namespace
 
 ---
 
-### 2.14. TODO: Session namespaces extensions MAY/MUST NOT extend methods and events of proposal namespaces extensions
-Requested proposal namespaces:
+### 2.12. Session Namespaces extensions MAY extend methods and events of Proposal Namespaces extensions
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -594,13 +563,14 @@ Requested proposal namespaces:
         "extensions": [
             {
                 "chains": ["eip155:137"],
-                "methods": ["eth_sign"]
+                "methods": ["eth_sign"],
+                "events": []
             }
         ]
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -617,12 +587,12 @@ Received session namespaces:
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: Yes
 
 ---
 
-### 2.15. TODO: Session namespaces extensions MAY/MUST NOT contain accounts from chains not defined in proposal namespaces extensions
-Requested proposal namespaces:
+### 2.13. Session Namespaces extensions MAY contain accounts from chains not defined in Proposal Namespaces extensions
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -633,13 +603,13 @@ Requested proposal namespaces:
             {
                 "chains": ["eip155:137"],
                 "methods": ["personalSign"],
-                "events": ["accountsChainged"]
+                "events": ["accountsChanged"]
             }
         ]
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -650,19 +620,19 @@ Received session namespaces:
             {
                 "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "eip155:42:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
                 "methods": ["personalSign"],
-                "events": ["accountsChainged"]
+                "events": ["accountsChanged"]
             }
         ]
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: Yes
 
 ---
 
 
-### 2.16. TODO: Session namespaces MAY/MUST NOT add extensions not defined in proposal namespaces extensions
-Requested proposal namespaces:
+### 2.14. Session Namespaces MAY add extensions not defined in Proposal Namespaces extensions
+Requested Proposal Namespaces:
 ```json
 {
     "eip155": {
@@ -672,7 +642,7 @@ Requested proposal namespaces:
     }
 }
 ```
-Received session namespaces:
+Received Session Namespaces:
 ```json
 {
     "eip155": {
@@ -683,12 +653,12 @@ Received session namespaces:
             {
                 "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
                 "methods": ["personalSign"],
-                "events": ["accountsChainged"]
+                "events": ["accountsChanged"]
             }
         ]
     }
 }
 ```
-Is valid?: Yes/No
+Is valid?: Yes
 
 ---
