@@ -287,7 +287,7 @@ Received Session Namespaces:
 ```json
 {
     "eip155": {
-        "accounts": ["0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "accounts": ["eip155:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
         "methods": ["eth_sign"],
         "events": ["accountsChanged"]
     }
@@ -295,7 +295,7 @@ Received Session Namespaces:
 ```
 Is valid?: No
 
-Note: `0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
+Note: `eip155:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
 `eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is CAIP-10 compliant
 
 ---
