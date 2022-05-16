@@ -29,7 +29,7 @@ It specifies the proposed execution environment for each blockchain in the form 
 
 The Wallet then validates if the received Proposal Namespaces are valid. If they are not valid, then the session cannot be established and the Wallet rejects it with a `1006` code that tells the Dapp that the Proposal Namespaces are invalid. If they are valid, then the Wallet if free to decide whether to approve the proposal, or reject it.
 
-If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: Session Namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to accept all methods and events of all Proposal Namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
+If the Wallet (or the user) does NOT approve the session, then it is rejected. Otherwise, the Wallet responds with a slightly different namespace schema: Session Namespaces. Instead of having a list of `chains`, it has list of `accounts` compatible with the given methods and events. If the Wallet approves a session proposal, it needs to approve all methods and events of all Proposal Namespaces. If needed, the Wallet can add permissions for more methods and events than the ones requested, but never less.
 
 
 ## Example Session Namespaces response
@@ -77,6 +77,8 @@ Is valid?: No
 
 Note: Proposal namespace doesn't have any chains, hence it's invalid
 
+Throw Message: `Chains must not be empty`
+
 ---
 ### 1.2. Chains MUST be CAIP-2 compliant
 Requested Proposal Namespaces:
@@ -92,6 +94,8 @@ Requested Proposal Namespaces:
 Is valid?: No
 
 Note: `42` is not CAIP-2 compliant. `eip155:42` is CAIP-2 compliant.
+
+Throw Message: `Chains must be CAIP-2 compliant`
 
 ---
 
@@ -125,9 +129,11 @@ Is valid?: No
 
 Note: `cosmos:cosmoshub-4` does not contain `eip155` prefix
 
+Throw Message: `Chains must be defined in matching namespace`
+
 ---
 
-### 1.5. Extensions MUST NOT have chains empty
+### 1.5. Extension MUST NOT have chains empty
 Requested Proposal Namespaces:
 ```json
 {
@@ -139,6 +145,7 @@ Requested Proposal Namespaces:
             {
                 "chains" : [],
                 "methods": ["eth_getAccounts"],
+                "events": []
             }
         ]
     }
@@ -148,9 +155,11 @@ Is valid?: No
 
 Note: Proposal namespace extension doesn't have any chains, hence it's invalid
 
+Throw Message: `Chains must not be empty`
+
 ---
 
-### 1.6. Extensions methods are REQUIRED
+### 1.6. Extension methods field is REQUIRED
 Requested Proposal Namespaces:
 ```json
 {
@@ -161,7 +170,7 @@ Requested Proposal Namespaces:
         "extensions": [
             {
                 "chains" : ["eip155:1"],
-                "events": ["chainChanged"],
+                "events": ["chainChanged"]
             }
         ]
     }
@@ -171,9 +180,11 @@ Is valid?: No
 
 Note: Extension is missing `methods` field. 
 
+Throw Message: `Methods field is missing`
+
 ---
 
-### 1.7. Extensions events are REQUIRED
+### 1.7. Extension events field is REQUIRED
 Requested Proposal Namespaces:
 ```json
 {
@@ -194,10 +205,11 @@ Is valid?: No
 
 Note: Extension is missing `events` field.
 
+Throw Message: `Events field is missing`
+
 ---
 
-
-### 1.8. Namespace key must specification
+### 1.8. Namespace key must comply with CAIP-2 specification
 Requested Proposal Namespaces:
 ```json
 {
@@ -216,6 +228,8 @@ Requested Proposal Namespaces:
 Is valid?: No
 
 Note: Namespaces must match regex `[-a-z0-9]{3,8}`. Source: [CAIP-2](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md)
+
+Throw Message: `Namespace formatting must match CAIP-2`
 
 ---
 
@@ -238,6 +252,8 @@ Requested Proposal Namespaces:
 Is valid?: No
 
 Note: Even though, the first proposal namespace is valid the second being invalid makes whole proposal invalid
+
+Throw Message should be the first one caught 
 
 ---
 
@@ -271,6 +287,8 @@ Is valid?: No
 
 Note: Proposal namespace doesn't have any accounts, hence it's invalid
 
+Throw Message: `Accounts must not be empty`
+
 ---
 ### 2.2. Session Namespaces addresses MUST be CAIP-10 compliant
 Requested Proposal Namespaces:
@@ -298,9 +316,11 @@ Is valid?: No
 Note: `eip155:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 compliant.
 `eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is CAIP-10 compliant
 
+Throw Message: `Accounts must be CAIP-10 compliant`
+
 ---
 
-### 2.3. Session Namespaces MUST accept all methods 
+### 2.3. Session Namespaces MUST approve all methods 
 Requested Proposal Namespaces:
 ```json
 {
@@ -324,6 +344,8 @@ Received Session Namespaces:
 Is valid?: No
 
 Note: `eth_sign` method is missing in the session namespace 
+
+Throw Message: `All methods must be approved`
 
 ---
 
@@ -351,6 +373,8 @@ Received Session Namespaces:
 Is valid?: No
 
 Note: There is no account specified for `eip155:10`
+
+Throw Message: `All chains must have at least one account`
 
 ---
 
@@ -432,6 +456,9 @@ Is valid?: No
 
 Note: `cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0` does not contain `eip155` prefix.
 
+
+Throw Message: `Accounts must be defined in matching namespace`
+
 ---
 
 ### 2.8. Session Namespaces MAY contain accounts from chains not defined in Proposal Namespaces
@@ -489,6 +516,9 @@ Is valid?: No
 
 Note: `cosmos` namespace is missing in Session Namespaces
 
+
+Throw Message: `All namespaces must be approved`
+
 ---
 
 ### 2.10. Extensions MAY be merged into namespace
@@ -525,7 +555,7 @@ Is valid?: Yes
 ---
 
 
-### 2.11. Session Namespaces MUST accept all events 
+### 2.11. Session Namespaces MUST approve all events 
 Requested Proposal Namespaces:
 ```json
 {
@@ -549,6 +579,8 @@ Received Session Namespaces:
 Is valid?: No
 
 Note: `chainChanged` event is missing in the session namespace 
+
+Throw Message: `All events must be approved`
 
 ---
 
