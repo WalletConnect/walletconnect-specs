@@ -181,7 +181,6 @@ Settelement is sent by the responder after approval and it's broadcasted right a
       "icons": [string]
     }
   },
-  "accounts": [string], // CAIP-10 account IDs
   "namespaces": {
     "<namespace_name>" : {
       "accounts": [string],
