@@ -506,9 +506,9 @@ Received Session Namespaces:
 ```json
 {
     "eip155": {
-        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb",],
-        "methods": ["eth_sign", "cosmos_signDirect"],
-        "events": ["accountsChanged", "someCosmosEvent"]
+        "accounts": ["eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb","eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
+        "methods": ["eth_sign"],
+        "events": ["accountsChanged"]
     }
 }
 ```
