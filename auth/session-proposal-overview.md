@@ -635,7 +635,7 @@ Requested Proposal Namespaces:
             {
                 "chains": ["eip155:137"],
                 "methods": ["personalSign"],
-                "events": ["accountsChanged"]
+                "events": ["chainChanged"]
             }
         ]
     }
@@ -652,7 +652,7 @@ Received Session Namespaces:
             {
                 "accounts": ["eip155:137:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb", "eip155:42:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb"],
                 "methods": ["personalSign"],
-                "events": ["accountsChanged"]
+                "events": ["chainChanged"]
             }
         ]
     }
