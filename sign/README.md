@@ -1,5 +1,9 @@
 # Sign API Overview
 
+## Description
+
+Sign API establishes a session between a dapp and a wallet in order to expose a set of blockchain accounts that can sign transactions and/or messages using a secure remote JSON-RPC transport with methods and events.
+
 ## Context
 
 In v1.0 the session and pairing were coupled which meant that a URI was shared to retrieve the session proposal and it established the pairing simultaneously. However that also meant that a new session would require establishing a pairing again.
