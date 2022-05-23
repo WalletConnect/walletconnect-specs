@@ -18,8 +18,8 @@ case .unsupportedEvents: return 5102
 case .unauthorizedMethod: return 3001
 case .unauthorizedEvent: return 3002
 
-case .unauthorizedUpdateRequest: return 3004
-case .unauthorizedExtendRequest: return 3005
+case .unauthorizedUpdateRequest: return 3003
+case .unauthorizedExtendRequest: return 3004
 ```
 
 ## INVALID
@@ -28,6 +28,6 @@ case .unauthorizedExtendRequest: return 3005
 case .invalidMethod: return 1001
 case .invalidEvent: return 1002
 
-case .invalidUpdateRequest: return 1004
-case .invalidUpdateExtendRequest: return 1005
+case .invalidUpdateRequest: return 1003
+case .invalidUpdateExtendRequest: return 1004
 ```
