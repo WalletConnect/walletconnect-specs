@@ -4,18 +4,23 @@ In this repository, we document and discuss features that are currently under de
 
 ## Sections
 
-### Auth
+### Sign
 
-- Auth Overview ([doc](auth/README.md))
-- Pairing URI ([doc](auth/pairing-uri.md))
-- RPC methods ([doc](auth/rpc-methods.md))
-- Client API ([doc](auth/client-api.md))
-- Data Structures ([doc](auth/data-structures.md))
-- Error Codes ([doc](auth/error-codes.md))
+- Sign Overview ([doc](sign/README.md))
+- Session Proposal ([doc](sign/session-proposal.md))
+- Pairing URI ([doc](sign/pairing-uri.md))
+- RPC methods ([doc](sign/rpc-methods.md))
+- Client API ([doc](sign/client-api.md))
+- Data Structures ([doc](sign/data-structures.md))
+- Error Codes ([doc](sign/error-codes.md))
 
 ### Chat
 
 - Chat Overview ([doc](chat/README.md))
+
+### Auth
+
+- Auth Overview ([doc](auth/README.md))
 
 ### Push
 
