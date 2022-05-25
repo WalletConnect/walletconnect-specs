@@ -13,6 +13,7 @@ In this repository, we document and discuss features that are currently under de
 - Client API ([doc](sign/client-api.md))
 - Data Structures ([doc](sign/data-structures.md))
 - Error Codes ([doc](sign/error-codes.md))
+- Migration ([doc](sign/migration.md))
 
 ### Chat
 
