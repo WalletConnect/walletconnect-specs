@@ -3,9 +3,10 @@
 ## REJECTED (CAIP-25)
 
 ```sh
-case .userRejectedChains: return 5000
-case .userRejectedMethods: return 5001
-case .userRejectedEvents: return 5002
+case .userRejected return 5000
+case .userRejectedChains: return 5001
+case .userRejectedMethods: return 5002
+case .userRejectedEvents: return 5003
 
 case .unsupportedChains: return 5100
 case .unsupportedMethods: return 5101
