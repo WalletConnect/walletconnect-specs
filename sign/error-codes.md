@@ -30,7 +30,7 @@ case .invalidMethod: return 1001
 case .invalidEvent: return 1002
 
 case .invalidUpdateRequest: return 1003
-case .invalidUpdateExtendRequest: return 1004
+case .invalidExtendRequest: return 1004
 ```
 
 ## REMAINING
