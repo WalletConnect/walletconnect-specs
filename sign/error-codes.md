@@ -32,3 +32,8 @@ case .invalidEvent: return 1002
 case .invalidUpdateRequest: return 1003
 case .invalidUpdateExtendRequest: return 1004
 ```
+
+
+```sh
+case .userDisconnected: return 6000
+```
