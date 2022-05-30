@@ -33,6 +33,7 @@ case .invalidUpdateRequest: return 1003
 case .invalidUpdateExtendRequest: return 1004
 ```
 
+## REMAINING
 
 ```sh
 case .userDisconnected: return 6000
