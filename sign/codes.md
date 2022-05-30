@@ -46,9 +46,3 @@ case .userDisconnected: return 6000
 ```sh
 case .sessionSettlementFailed: return 7000
 ```
-
-## REMAINING
-
-```sh
-case .userDisconnected: return 6000
-```
