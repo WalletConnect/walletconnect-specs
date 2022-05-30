@@ -18,6 +18,10 @@ In this repository, we document and discuss features that are currently under de
 ### Chat
 
 - Chat Overview ([doc](chat/README.md))
+- Invite URI ([doc](chat/invite-uri.md))
+- Client API ([doc](chat/client-api.md))
+- Discoverability ([doc](chat/discoverability.md))
+- Chat Invite ([doc](chat/chat-invite.md))
 
 ### Auth
 
