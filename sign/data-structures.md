@@ -93,8 +93,21 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
         }
       ]
     }
-
-  }
+  },
+  "requiredNamespaces": {
+    "<namespace_name>" : {
+      "chains": [string],
+      "methods": [string],
+      "events": [string],
+      "extension": [ // optional
+        {
+          "chains": [string],
+          "methods": [string],
+          "events": [string],
+        }
+      ]
+    }
+  },
 }
 ```
 
