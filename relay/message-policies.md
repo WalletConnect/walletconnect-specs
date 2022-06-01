@@ -5,7 +5,7 @@ In this document we decribe message policies for each of WalletConnect APIs. The
 
 All policies are composed of different categories that define the behaviour when there is no web-socket nor Internet connection.
 
-All the consideration is about the client (Kotlin, Swift, JS) part of given protocol. 
+All the consideration is about the RelayClient which is a part of Kotlin, Swift and JS SDKs.
 
 ## Sign API
 
