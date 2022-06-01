@@ -10,7 +10,7 @@ Chat functionality would be present in wallets where you could search or add a n
 
 It would resemble direct messaging (DM) currently present in many social media applications but it would be end-to-end encrypted and available across different wallet providers.
 
-Additionally it could be recovered from a seed phrase to allow users to migrate wallet provider without loosing their chat.
+Additionally it could be recovered from a seed phrase to allow users to migrate wallet provider without losing their chat.
 
 ## Goals
 
