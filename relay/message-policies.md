@@ -38,7 +38,7 @@ All the consideration is about the client (Kotlin, Swift, JS) part of given prot
 
 ### Retry mechanism  
 
-* Chat API provides a retry mechanism, where the RelayClient tries to send a message 3x(**TBD: 3x or more?**) times until it is cached in the local persistent storage. When the RelayClient detects that it is again possible to publish messages, those are pubished in the oryginal order. 
+* Chat API provides a retry mechanism, where the RelayClient tries to send a message 3(**TBD: 3x or more?**) times until it is cached in the local persistent storage. When the RelayClient detects that it is again possible to publish messages, those are pubished in the oryginal order. 
 
 ### Error handling
 
