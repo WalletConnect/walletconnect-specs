@@ -1,5 +1,7 @@
 
-|  Connection Conditions    | Sign          | Chat              | Auth          | Push          |
-| :-----------              | :-----------  | :-----------      | :-----------  | :-----------  |
-|  No Internet Connection   | Header        | Title             |               |               |
-|  No WebSocket Connection  | Paragraph     | Text              |               |               |
+|  Protocol                 | Policy        |
+| :-----------              | :-----------  |
+|  Sign                     | *         |
+|  Chat                     | Paragraph     |
+|  Auth                     | Paragraph     |
+|  Push                     | Paragraph     |
