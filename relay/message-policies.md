@@ -32,7 +32,7 @@ All the consideration is about the client (Kotlin, Swift, JS) part of given prot
 
 ### Cache
 
-* Published messages: Chat API do not cache published messages over the network. (**TBD: Should we cache all messages locally? Or it is a part of our cloud architecture? Or should we provide both approaches?**)
+* Published messages: Chat API do not cache published messages over the network. (**TBD: Should we cache all messages locally? Or it is a part of our cloud architecture? Or should we consider both approaches?**)
 
 * Unpublished messages: Chat API caches all unpublished messages in the persistent storage. When RelayClient detects that it is again possible to publish messages, those are pubished in the oryginal order. 
 
