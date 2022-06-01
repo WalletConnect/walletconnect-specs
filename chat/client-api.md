@@ -40,7 +40,13 @@ abstract class Client {
   public abstract on("new_invite", ({ id: number, openingMessage: string }) => {}): void;
 
   // subscribe to new chat messages received
-  public abstract on("new_message", ({ topic: number, message: string }) => {}): void;
+  public abstract on("new_message", ({ topic: string, message: string }) => {}): void;
+  
+  // subscribe on new thread created
+  public abstract on("new_thread", ({ thread: Thread }) => {}): void;
+  
+    // subscribe on thread leave
+  public abstract on("thread_leave", ({ topic: string }) => {}): void;
 
 }
 ```
