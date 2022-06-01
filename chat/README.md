@@ -6,7 +6,7 @@ Chat API allows wallet users to message 1-on-1 with other wallet users in the Wa
 
 ## Context
 
-Chat functionality would be present in wallets where you could search or add a new contact from their wallet addres on-chain and start a one-to-one conversation with them.
+Chat functionality would be present in wallets where you could search or add a new contact from their wallet address on-chain and start a one-to-one conversation with them.
 
 It would resemble direct messaging (DM) currently present in many social media applications but it would be end-to-end encrypted and available across different wallet providers.
 
