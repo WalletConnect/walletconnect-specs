@@ -19,7 +19,7 @@ Used to invite a peer through the invite topic.
 // wc_chatInvite params
 {
     "pubKey": string
-    "opening_message": string
+    "openingMessage": string
 }
 ```
 `pubKey` - inviters public key used for DH key exchange to derive sym_key 
