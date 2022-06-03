@@ -27,3 +27,4 @@ A user can message another wallet user after inviting them into a chat thread th
 - Discoverability ([doc](discoverability.md))
 - Chat Invite ([doc](chat-invite.md))
 - RPC Methods ([doc](rpc-methods.md))
+- Chat Registry ([doc](chat-registry.md))
