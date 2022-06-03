@@ -22,6 +22,8 @@ In this repository, we document and discuss features that are currently under de
 - Client API ([doc](chat/client-api.md))
 - Discoverability ([doc](chat/discoverability.md))
 - Chat Invite ([doc](chat/chat-invite.md))
+- RPC Methods ([doc](chat/rpc-methods.md))
+
 
 ### Auth
 
