@@ -3,6 +3,7 @@
 ## Definitions
 
 `Invite topic` - topic derived by hashing registry item pub_key or invite uri pub_key with sha256 
+
 `Thread topic` - topic derived by hashing thread sym_key with sha256
 
 
@@ -23,6 +24,7 @@ Used to invite a peer through the invite topic.
 }
 ```
 `pubKey` - inviters public key used for DH key exchange to derive sym_key 
+
 `opening_message` - opening message encrypted with sym_key
 
 ## Message
