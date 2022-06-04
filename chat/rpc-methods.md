@@ -72,7 +72,7 @@ Used to send a message to its peer through topic T.
 Used to evaluate if peer is currently online. Timeout at 30 seconds
 
 ```jsonc
-// wc_sessionPing params
+// wc_chatPing params
 {
   // empty
 }
