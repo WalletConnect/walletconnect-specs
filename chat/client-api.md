@@ -29,6 +29,11 @@ abstract class Client {
     message: string;
   }): Promise<void>;
 
+  // ping its peer to evaluate if it's currently online
+  public asbtract ping(params: {
+    topic: string;
+  }): Promise<void>
+
   // leaves a chat thread and stops receiving messages
   public abstract leave(params: {
     topic: string;
