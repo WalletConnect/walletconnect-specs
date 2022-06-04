@@ -51,7 +51,7 @@ Used to send a message to its peer through topic T.
 ```jsonc
 // wc_chatInvite params
 {
-	"publicKey": string,
+  "publicKey": string,
   "message": string,
   "media": { // optional
     "type": string,
