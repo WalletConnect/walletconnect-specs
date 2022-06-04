@@ -6,15 +6,15 @@ In scenarios 1 and 2 we describe how public keys can be found publicly and in sc
 
 In any scenario, the proposer never needs to exchange their public key to its peer to create a chat thread but in scenarios 1 and 2 it assumes the proposer has prior knowledge of its peer blockchain account.
 
-## Scenario 1 - A finds B's public key through the default registry
+## Scenario 1 - A finds B's public key through the default keyserver
 
 In this scenario, it is assumed that A has knowledge of B's blockchain account.
 
-If B has not registered in the default registry then A would not be able to find its public key to invite to chat.
+If B has not registered in the default keyserver then A would not be able to find its public key to invite to chat.
 
-If B has already registered in the default registry then A would retrieve its public key to invite to chat.
+If B has already registered in the default keyserver then A would retrieve its public key to invite to chat.
 
-Thus A can query the default registry using the resolve() method to get B's public key.
+Thus A can query the default keyserver using the resolve() method to get B's public key.
 
 ## Scenario 2 - A finds B's public key through the ENS domain
 
