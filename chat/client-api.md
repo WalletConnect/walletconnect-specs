@@ -30,7 +30,7 @@ abstract class Client {
   }): Promise<void>;
 
   // ping its peer to evaluate if it's currently online
-  public asbtract ping(params: {
+  public abstract ping(params: {
     topic: string;
   }): Promise<void>
 
