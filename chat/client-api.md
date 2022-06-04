@@ -12,7 +12,7 @@ abstract class Client {
     account: string;
   }): Promise<string>;
 
-  // queries the default registry with a blockchain account and returns the public key
+  // queries the default keyserver with a blockchain account and returns the public key
   public abstract resolve(params: {
     account: string;
   }): Promise<string>;
@@ -29,6 +29,11 @@ abstract class Client {
     message: string;
   }): Promise<void>;
 
+  // ping its peer to evaluate if it's currently online
+  public abstract ping(params: {
+    topic: string;
+  }): Promise<void>
+
   // leaves a chat thread and stops receiving messages
   public abstract leave(params: {
     topic: string;
@@ -37,16 +42,15 @@ abstract class Client {
   // ---------- Events ----------------------------------------------- //
 
   // subscribe to new chat invites received
-  public abstract on("new_invite", ({ id: number, openingMessage: string }) => {}): void;
+  public abstract on("chat_invite", ({ id: number, openingMessage: string }) => {}): void;
+
+  // subscribe to new chat thread joined
+  public abstract on("chat_joined",  ({ topic: string }) => {}): void;
 
   // subscribe to new chat messages received
-  public abstract on("new_message", ({ topic: string, message: string }) => {}): void;
-  
-  // subscribe on new thread created
-  public abstract on("new_thread", ({ thread: Thread }) => {}): void;
-  
-    // subscribe on thread leave
-  public abstract on("thread_leave", ({ topic: string }) => {}): void;
+  public abstract on("chat_message", ({ topic: string, message: string }) => {}): void;
 
+  // subscribe to new chat thread left
+  public abstract on("chat_left",  ({ topic: string }) => {}): void;
 }
 ```

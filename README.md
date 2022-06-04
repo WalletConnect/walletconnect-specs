@@ -23,8 +23,8 @@ In this repository, we document and discuss features that are currently under de
 - Discoverability ([doc](chat/discoverability.md))
 - Chat Invite ([doc](chat/chat-invite.md))
 - RPC Methods ([doc](chat/rpc-methods.md))
-- Chat Registry ([doc](chat/chat-registry.md))
-
+- Message Status ([doc](chat/message-status.md))
+- Chat Keyserver ([doc](chat/chat-keyserver.md))
 
 ### Auth
 

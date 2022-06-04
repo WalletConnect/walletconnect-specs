@@ -15,23 +15,23 @@ Now both A and B can exchange messages in the newly created chat thread
 
 A retrieves the public key associated with B's blockchain account, pubKey X.
 
-A generates a keyPair Y to encrypt the invite with derived DH symKey I.
+A generates a keyPair Y to encrypt the opening message with derived DH symKey I.
 
-A sends invite encrypted with symKey I to the invite topic.
+A sends invite unecrypted to the invite topic.
 
 Invite topic is derived as the hash of the pubKey X.
 
-B decrypts invite with serialized pubKey Y and deriving DH symKey I.
+B decrypts opening message with the pubKey Y and deriving DH symKey I.
 
 B accepts the invite and generates a keyPair Z for chat thread.
 
-B sends acceptance on invite topic encrypted with symKey I.
+B sends pubKey Z encrypted with symKey I on invite topic.
 
 B derives symKey T using pubKey Y and privKey Z.
 
 Thread topic is derived as the hash of the symKey T.
 
-A receives acceptance which includes pubKey Z in the content.
+A receives response which includes encrypted pubKey Z.
 
 A derives symKey T using privKey Y and pubKey Z.
 
