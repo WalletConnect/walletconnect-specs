@@ -14,7 +14,7 @@ Additionally it could be recovered from a seed phrase to allow users to migrate 
 
 ## Goals
 
-A user can register their blockchain account to be discoverable in the public-key registry.
+A user can register their blockchain account to be discoversable in the default keyserver.
 
 A user can invite another wallet user to chat with their blockchain account regardless of its discoverability.
 
@@ -27,4 +27,5 @@ A user can message another wallet user after inviting them into a chat thread th
 - Discoverability ([doc](discoverability.md))
 - Chat Invite ([doc](chat-invite.md))
 - RPC Methods ([doc](rpc-methods.md))
-- Chat Registry ([doc](chat-registry.md))
+- Message Status ([doc](message-status.md))
+- Chat Keyserver ([doc](chat-keyserver.md))

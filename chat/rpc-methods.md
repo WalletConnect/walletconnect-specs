@@ -1,66 +1,95 @@
 # RPC Methods
 
+This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
+
 ## Definitions
 
-`Invite topic` - topic derived by hashing registry item pub_key or invite uri pub_key with sha256 
+- **Nullables:** Fields flagged as `Optional` can be ommited from the payload.
+- Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
 
-`Thread topic` - topic derived by hashing thread sym_key with sha256
+```jsonc
+// Success
+result: true
 
-
-This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect Chat collection of client-to-client JSON-RPC methods for all platforms SDKs.
-
-
-## Invite
-
-Used to invite a peer through the invite topic.
+// Failure
+error: {
+  "code": number,
+  "message": string
+}
+```
 
 ### wc_chatInvite
+
+Used to invite a peer through topic I. Requires a success response with associated data
+
+- Success response is equivalent to invite acceptance.
+- Error response is equivalent to invite rejection.
 
 ```jsonc
 // wc_chatInvite params
 {
-    "pubKey": string
-    "openingMessage": string
+  "publicKey": string,
+  "account": string,
+  "encryptedMessage": string // encrypted opening message
 }
 ```
-`pubKey` - inviters public key used for DH key exchange to derive sym_key 
 
-`opening_message` - opening message encrypted with sym_key
-
-## Message
-
-Used to send Chat messages through the thread topic.
+```jsonc
+// Success result
+{
+  "encryptedPublicKey": string,
+}
+```
 
 ### wc_chatMessage
 
+Used to send a message to its peer through topic T.
+
+- Success response is equivalent to message delivery receipt.
+- Error response is equivalent to message delivery failure.
+
 ```jsonc
-// wc_chatMessage params
+// wc_chatInvite params
 {
-    "message": string
+  "publicKey": string,
+  "message": string,
+  "media": { // optional
+    "type": string,
+    "data": string,
+  }
 }
 ```
 
-## Ping
+```jsonc
+// Success result
+{
+  "receivedAt": Int64 // timestamp when received
+}
+```
 
 ### wc_chatPing
 
-```jsonc
+Used to evaluate if peer is currently online. Timeout at 30 seconds
 
+```jsonc
 // wc_chatPing params
 {
   // empty
 }
 ```
 
-## Leave
-
-Used to communicate leaving the thread
-
 ### wc_chatLeave
 
 ```jsonc
-
-// wc_chatLeave params
+// wc_chatInvite params
 {
-  // empty
+  "publicKey": string,
 }
+```
+
+```jsonc
+// Success result
+{
+  "receivedAt": Int64 // timestamp when received
+}
+```
