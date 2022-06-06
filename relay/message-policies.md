@@ -29,27 +29,30 @@ The message policy is defined by the list of parameters, which describe the way 
 
 ## Publish payload
 
+Publish payload constructs a data structure that is to send over the network. The policy for a message is defined in the policy object.
+
 ```json
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
 	"method": string,
-
 	"params" : {
 		"topic" : string,
 		"message" : string,  
 		"ttl" : Int64, // seconds
         "policy": {
             "caching" : boolean,
-            "caching_duration" : Int64, // seconds, optional
+            "caching_duration" : Int64, // seconds optional
             "promtp" : boolean,
-		    "api" : string,
+		    "api" : string
         }
 	}
 }
 ```
 
 ## Relay API
+
+Relay API defines a public interface with set of supported methods.
 
 ```kotlin
 interface Relay {
