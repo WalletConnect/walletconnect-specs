@@ -42,7 +42,7 @@ Publish payload constructs a data structure that is to send over the network. Th
 		"ttl" : Int64,
         "policy": {
             "caching" : boolean,
-            "caching_duration" : Int64, // optional
+            "caching_duration" : Int64,
             "api" : string, 
             "promtp" : boolean,
         }
