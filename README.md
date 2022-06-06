@@ -31,5 +31,5 @@ In this repository, we document and discuss features that are currently under de
 
 - Relay Overview ([doc](relay/README.md))
 - Message Policies ([doc](relay/message-policies.md))
-- Publish Payload ([doc](relay/https://github.com/WalletConnect/walletconnect-specs/blob/message_policies/relay/message-policies.md#publish-payload))
-- Relay API ([doc](https://github.com/WalletConnect/walletconnect-specs/blob/message_policies/relay/message-policies.md#relay-api))
+- Publish Payload ([doc](relay/message-policies.md#publish-payload))
+- Relay API ([doc](relay/message-policies.md#relay-api))
