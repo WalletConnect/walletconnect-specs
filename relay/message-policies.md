@@ -1,79 +1,69 @@
 
 # Relay message policies
 
-In this document we decribe message policies for each of WalletConnect APIs. The main focus is to provide message policies under unstable networking conditions and consider offline support for following APIs.
+## Purpose
+The purpose of this document is to define the message policies on both client and server sides.
 
-All policies are composed of different categories that define the behaviour when there is no web-socket nor Internet connection.
+## Definition
 
-All the consideration is about the client (Kotlin, Swift, JS) part of given protocol. 
+The message policy is a set of rules/actions that have to be taken by involved parties without decrypting the message.
 
-## Sign API
+## Parameters
 
-### Cache
+The message policy is defined by the list of parameters, which describe the way of handling a given message. 
 
-* Published messages: Sign API do not cache published messages over the network. 
+* Publishing retrials - defines how many tries have to be taken when publishing a message fails
+* Caching - a flag that says whether a party should cache messages (true/false)
+* Caching duration - defines a caching duration in seconds. (0 - forever)
+* User prompt - a flag that says whether a server should send a push to a client (true/false)
+* Api label - a label that says what api sent a message (sign, chat, auth, push)
 
-* Unpublished messages: Sign API do not cache unpublished messages over the network. When the message cannot be published, an error is returned to the client.
+## Policies
 
-### Retry mechanism
+| Policy 	| Publishing <br>retrials 	| Client-side <br>caching 	| Client-side <br>caching duration 	| Server-side<br>caching 	| Server-side <br>caching duration  	|            User prompt            	| API label 	|
+|:------:	|:-----------------------:	|:-----------------------:	|:--------------------------------:	|:----------------------:	|:---------------------------------:	|:---------------------------------:	|:---------:	|
+|    1   	|            3x           	|          false          	|                 -                	|          true          	|                 6h                	| true<br>when<br>wc_sessionRequest 	|    sign   	|
+|    2   	|            3x           	|           true          	|              30 days             	|          true          	|                 0*                 	|   true<br>when<br>wc_chatMessage  	|    chat   	|
 
-* Sign API do not provide retry mechanism for unpublished messages. When the message cannot be published, an error is returned to the client. Client is responsible for sending the message again.
+\* _forever_
 
-### Error handling
+## Publish payload
 
-* If a message cannot be published, because of any reason, RelayClient must return an error to the Sign client.
+```json
+{
+	"id" : "",
+	"jsonrpc": "",
+	"method": "irn_publish",
 
-### Network conditions
+	"params" : {
+		"topic" : "",
+		"message" :  message(encrypted)
+		"ttl" : seconds
+		"promtp" : true,
+		"protocol" : "sing, chat, push"
 
-* SDK detects changing networking conditions. In terms of both no web-socket and no Internet connection an error is returned to the Sign client. 
+	}
+}
+```
 
+## Relay API
 
-## Chat API
+```kotlin
+interface Relay {
 
-### Cache
+    /*Publishes a message over the network under given topic*/
+    fun publish(topic: String, message: String, prompt: Boolean)
 
-* Published messages: Chat API do not cache published messages over the network. (**TBD: Should we cache all messages locally? Or it is a part of our cloud architecture? Or should we consider both approaches?**)
+    /*Subcribes on topic to receive messages*/
+    fun subscribe(topic: String)
 
-* Unpublished messages: Chat API caches all unpublished messages in the persistent storage. When RelayClient detects that it is again possible to publish messages, those are pubished in the oryginal order. 
+    /*Unsubcribes from a topic*/
+    fun unsubscribe(topic: String, subscriptionId: String)
+	
+    /*Opens a Web-Socket connection*/
+    fun connect()
 
-### Retry mechanism  
-
-* Chat API provides a retry mechanism, where the RelayClient tries to send a message 3x(**TBD: 3x or more?**) times until it is cached in the local persistent storage. When the RelayClient detects that it is again possible to publish messages, those are pubished in the oryginal order. 
-
-### Error handling
-
-* If a message cannot be published and a retry mechanism failed, the RelayClient must return an error to the Chat client.
-
-### Network conditions
-
-* SDK detects changing networking conditions. In terms of both no web-socket nor Internet connection and if a retry mechanism failed  an error is returned to the Chat client.
-
-
-## Auth API
-
-### Cache
-
-* TBD
-
-### Retry mechanism  
-
-* TBD
-
-### Error handling
-
-* TBD
-
-
-## Push API
-
-### Cache
-
-* TBD
-
-### Retry mechanism
-
-* TBD  
-
-### Error handling
-
-* TBD
+    /*Closes a Web-Socket connection*/
+    fun disconnect()
+}
+```
