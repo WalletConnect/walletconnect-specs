@@ -14,7 +14,7 @@ The message policy is defined by the list of parameters, which describe the way 
 
 * Publishing retrials - defines how many tries have to be taken when publishing a message fails
 * Caching - a flag that says whether a party should cache messages (true/false)
-* Caching duration - defines a caching duration in seconds. (0 - forever)
+* Caching duration - defines a caching duration in **seconds**. (0 - forever)
 * User prompt - a flag that says whether a server should send a push to a client (true/false)
 * Api label - a label that says what api sent a message (sign, chat, auth, push)
 
@@ -31,17 +31,20 @@ The message policy is defined by the list of parameters, which describe the way 
 
 ```json
 {
-	"id" : "",
-	"jsonrpc": "",
+	"id" : "1",
+	"jsonrpc": "2.0",
 	"method": "irn_publish",
 
 	"params" : {
-		"topic" : "",
-		"message" :  message(encrypted)
-		"ttl" : seconds
-		"promtp" : true,
-		"protocol" : "sing, chat, push"
-
+		"topic" : "message_topic",
+		"message" : "encrypted_message",  
+		"ttl" : 1234,
+        "policy": {
+            "caching" : true/false,
+            "caching_duration" : 0, // optional
+            "promtp" : true/false,
+		    "api" : "sing, chat, auth, push",
+        }
 	}
 }
 ```
@@ -52,7 +55,7 @@ The message policy is defined by the list of parameters, which describe the way 
 interface Relay {
 
     /*Publishes a message over the network under given topic*/
-    fun publish(topic: String, message: String, prompt: Boolean)
+    fun publish(topic: String, message: String, policy: Policy)
 
     /*Subcribes on topic to receive messages*/
     fun subscribe(topic: String)
