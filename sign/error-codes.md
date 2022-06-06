@@ -11,6 +11,10 @@ case .userRejectedEvents: return 5003
 case .unsupportedChains: return 5100
 case .unsupportedMethods: return 5101
 case .unsupportedEvents: return 5102
+case .unsupportedAccounts: return 5103
+case .unsupportedNamespaceKey: return 5104
+
+
 ```
 
 ## UNAUTHORIZED
