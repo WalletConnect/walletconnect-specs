@@ -22,10 +22,10 @@ The message policy is defined by the list of parameters, which describe the way 
 
 ## Policies
 
-| Policy 	| Client-side<br>Publishing retrials 	| Client-side <br>caching duration 	| Server-side <br>caching duration  	|            User prompt            	| API label 	|
-|:------:	|:----------------------------------:	|:--------------------------------:	|:---------------------------------:	|:---------------------------------:	|:---------:	|
-|    1   	|                 3x                 	|                -1*                	|                 6h                	| true<br>when<br>wc_sessionRequest 	|    sign   	|
-|    2   	|                 3x                 	|                6h                	|                 0*                 	|   true<br>when<br>wc_chatMessage  	|    chat   	|
+| Policy 	| Client-side<br>Publishing retrials 	| Client-side <br>caching duration 	| Server-side <br>caching duration  	|                          User prompt                          	| API label 	|
+|:------:	|:----------------------------------:	|:--------------------------------:	|:---------------------------------:	|:-------------------------------------------------------------:	|:---------:	|
+|    1   	|                 3x                 	|                -1                	|                 6h                	| true<br>when<br>wc_sessionPropose <br>or<br>wc_sessionRequest 	|    sign   	|
+|    2   	|                 3x                 	|                6h                	|                 0                 	|                 true<br>when<br>wc_chatMessage                	|    chat   	|
 
 \* 0 - _forever_ ; -1 - _no caching_
 
