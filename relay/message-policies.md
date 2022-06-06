@@ -24,7 +24,7 @@ The message policy is defined by the list of parameters, which describe the way 
 |    1   	|            3x           	|                -1*                	|                 6h                	| true<br>when<br>wc_sessionRequest 	|    sign   	|
 |    2   	|            3x           	|                8h                	|                 0*                 	|   true<br>when<br>wc_chatMessage  	|    chat   	|
 
-\* 0 -_forever_ ; -1 - _no caching_
+\* 0 - _forever_ ; -1 - _no caching_
 
 ## Publish payload
 
