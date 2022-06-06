@@ -6,7 +6,7 @@ The purpose of this document is to define the message policies on both client an
 
 ## Definition
 
-The message policy is a set of rules/actions that have to be taken by involved parties without decrypting the message.
+The message policy is a set of rules/actions that have to be taken to a message by involved parties without decrypting the message. Those rules are restricted by the list of parameters shown below.
 
 ## Parameters
 
@@ -39,14 +39,14 @@ Publish payload constructs a data structure that is to send over the network. Th
 	"params" : {
 		"topic" : string,
 		"message" : string,  
-		"ttl" : Int64, // seconds
+		"ttl" : Int64, 
         "policy": {
             "caching" : boolean,
-            "caching_duration" : Int64, // seconds optional
+            "caching_duration" : Int64,
             "promtp" : boolean,
 		    "api" : string
         }
-	}
+    }
 }
 ```
 
