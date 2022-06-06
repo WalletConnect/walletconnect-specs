@@ -14,9 +14,9 @@ The message policy is defined by the list of parameters, which describe the way 
 
 * Publishing retrials - defines how many tries have to be taken when publishing a message fails
 * Caching - a flag that says whether a party should cache messages **(true/false)**
-* Caching duration - defines a caching duration in **seconds**. (0 - forever)
+* Caching duration - defines a caching duration in **seconds**. **(0 - forever)**
 * User prompt - a flag that says whether a server should send a push to a client **(true/false)**
-* Api label - a label that says what api sent a message **(sign, chat, auth, push)**
+* Api label - a label that says what api sent a message. Adds bussines value to provide message metrics. **(sign, chat, auth, push)**
 
 ## Policies
 
@@ -29,7 +29,7 @@ The message policy is defined by the list of parameters, which describe the way 
 
 ## Publish payload
 
-Publish payload constructs a data structure that is to send over the network. The policy for a message is defined in the policy object.
+Publish payload constructs a data structure that is to send over the network. The server-side policy for a message is defined in the policy object.
 
 ```jsonc
 {
@@ -39,11 +39,11 @@ Publish payload constructs a data structure that is to send over the network. Th
 	"params" : {
 		"topic" : string,
 		"message" : string,  
-		"ttl" : Int64, 
+		"ttl" : Int64,
         "policy": {
             "caching" : boolean,
-            "caching_duration" : Int64,
-            "api" : string,
+            "caching_duration" : Int64, // optional
+            "api" : string, 
             "promtp" : boolean,
         }
     }
@@ -72,3 +72,20 @@ interface Relay {
     /*Closes a Web-Socket connection*/
     fun disconnect()
 }
+```
+
+### Policy
+
+The policy object defines the policy's parameters for both the client and server side.
+
+```jsonc
+{
+    "retrials" : number,
+    "client_caching" : boolean,
+    "client_caching_duration" : Int64,
+    "server_caching" : boolean,
+    "server_caching_duration" : Int64,
+    "api" : string,
+    "promtp" : boolean,
+}
+```
