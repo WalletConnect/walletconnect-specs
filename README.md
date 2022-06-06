@@ -30,3 +30,4 @@ In this repository, we document and discuss features that are currently under de
 ### Relay
 
 - Relay Overview ([doc](relay/README.md))
+- Message Policies ([doc](relay/message-policies.md))
