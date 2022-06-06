@@ -31,7 +31,7 @@ The message policy is defined by the list of parameters, which describe the way 
 
 Publish payload constructs a data structure that is to send over the network. The policy for a message is defined in the policy object.
 
-```json
+```jsonc
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
