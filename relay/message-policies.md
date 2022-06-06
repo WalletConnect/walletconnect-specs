@@ -66,4 +66,3 @@ interface Relay {
     /*Closes a Web-Socket connection*/
     fun disconnect()
 }
-```
