@@ -13,10 +13,10 @@ The message policy is a set of rules/actions that have to be taken by involved p
 The message policy is defined by the list of parameters, which describe the way of handling a given message. 
 
 * Publishing retrials - defines how many tries have to be taken when publishing a message fails
-* Caching - a flag that says whether a party should cache messages (true/false)
+* Caching - a flag that says whether a party should cache messages **(true/false)**
 * Caching duration - defines a caching duration in **seconds**. (0 - forever)
-* User prompt - a flag that says whether a server should send a push to a client (true/false)
-* Api label - a label that says what api sent a message (sign, chat, auth, push)
+* User prompt - a flag that says whether a server should send a push to a client **(true/false)**
+* Api label - a label that says what api sent a message **(sign, chat, auth, push)**
 
 ## Policies
 
@@ -33,17 +33,17 @@ The message policy is defined by the list of parameters, which describe the way 
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
-	"method": "irn_publish",
+	"method": string,
 
 	"params" : {
-		"topic" : "message_topic",
-		"message" : "encrypted_message",  
-		"ttl" : 1234,
+		"topic" : string,
+		"message" : string,  
+		"ttl" : Int64, // seconds
         "policy": {
-            "caching" : true/false,
-            "caching_duration" : 0, // optional
-            "promtp" : true/false,
-		    "api" : "sing, chat, auth, push",
+            "caching" : boolean,
+            "caching_duration" : Int64, // seconds, optional
+            "promtp" : boolean,
+		    "api" : string,
         }
 	}
 }
