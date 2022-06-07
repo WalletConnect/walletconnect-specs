@@ -3,13 +3,16 @@
 ## REJECTED (CAIP-25)
 
 ```sh
-case .userRejectedChains: return 5000
-case .userRejectedMethods: return 5001
-case .userRejectedEvents: return 5002
+case .userRejected return 5000
+case .userRejectedChains: return 5001
+case .userRejectedMethods: return 5002
+case .userRejectedEvents: return 5003
 
 case .unsupportedChains: return 5100
 case .unsupportedMethods: return 5101
 case .unsupportedEvents: return 5102
+case .unsupportedAccounts: return 5103
+case .unsupportedNamespaceKey: return 5104
 ```
 
 ## UNAUTHORIZED
@@ -29,5 +32,17 @@ case .invalidMethod: return 1001
 case .invalidEvent: return 1002
 
 case .invalidUpdateRequest: return 1003
-case .invalidUpdateExtendRequest: return 1004
+case .invalidExtendRequest: return 1004
+```
+
+## REASON
+
+```sh
+case .userDisconnected: return 6000
+```
+
+## FAILURE
+
+```sh
+case .sessionSettlementFailed: return 7000
 ```
