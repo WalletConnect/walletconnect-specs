@@ -41,7 +41,8 @@ case .invalidExtendRequest: return 1004
 case .userDisconnected: return 6000
 ```
 
-## REASON
+## FAILURE
+
 ```sh
 case .sessionSettlementFailed: return 7000
 ```
