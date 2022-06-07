@@ -87,6 +87,7 @@ Is valid?: No
 Note: Proposal namespace doesn't have any chains, hence it's invalid
 
 Throw Message: `Chains must not be empty`
+Throw Error Code: `case .unsupportedChains: return 5100`
 
 ---
 
@@ -109,6 +110,7 @@ Is valid?: No
 Note: `42` is not CAIP-2 compliant. `eip155:42` is CAIP-2 compliant.
 
 Throw Message: `Chains must be CAIP-2 compliant`
+Throw Error Code: `case .unsupportedChains: return 5100`
 
 ---
 
@@ -149,6 +151,7 @@ Is valid?: No
 Note: `cosmos:cosmoshub-4` does not contain `eip155` prefix
 
 Throw Message: `Chains must be defined in matching namespace`
+Throw Error Code: `case .unsupportedChains: return 5100`
 
 ---
 
@@ -178,6 +181,7 @@ Is valid?: No
 Note: Proposal namespace extension doesn't have any chains, hence it's invalid
 
 Throw Message: `Chains must not be empty`
+Throw Error Code: `case .unsupportedChains: return 5100`
 
 ---
 
@@ -206,6 +210,7 @@ Is valid?: No
 Note: Extension is missing `methods` field.
 
 Throw Message: `Methods field is missing`
+Throw Error Code: `case .unsupportedMethods: return 5101`
 
 ---
 
@@ -234,6 +239,7 @@ Is valid?: No
 Note: Extension is missing `events` field.
 
 Throw Message: `Events field is missing`
+Throw Error Code: `case .unsupportedEvents: return 5102`
 
 ---
 
@@ -261,6 +267,7 @@ Is valid?: No
 Note: Namespaces must match regex `[-a-z0-9]{3,8}`. Source: [CAIP-2](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md)
 
 Throw Message: `Namespace formatting must match CAIP-2`
+Throw Error Code: `case .unsupportedNamespaceKey: return 5104`
 
 ---
 
@@ -288,6 +295,7 @@ Is valid?: No
 Note: Even though, the first proposal namespace is valid the second being invalid makes whole proposal invalid
 
 Throw Message should be the first one caught
+Throw Error Code should be the frist one caught
 
 ---
 
@@ -326,6 +334,7 @@ Is valid?: No
 Note: Proposal namespace doesn't have any accounts, hence it's invalid
 
 Throw Message: `Accounts must not be empty`
+Throw Error Code: `case .userRejectedChains: return 5000`
 
 ---
 
@@ -361,6 +370,7 @@ Note: `eip155:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 complia
 `eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is CAIP-10 compliant
 
 Throw Message: `Accounts must be CAIP-10 compliant`
+Throw Error Code: `case .userRejectedChains: return 5000`
 
 ---
 
@@ -395,6 +405,7 @@ Is valid?: No
 Note: `eth_sign` method is missing in the session namespace
 
 Throw Message: `All methods must be approved`
+Throw Error Code: `case .userRejectedMethods: return 5001`
 
 ---
 
@@ -429,6 +440,7 @@ Is valid?: No
 Note: There is no account specified for `eip155:10`
 
 Throw Message: `All chains must have at least one account`
+Throw Error Code: `case .userRejectedChains: return 5000`
 
 ---
 
@@ -512,7 +524,7 @@ Requested Proposal Namespaces:
 }
 ```
 
-Requested Proposal Namespaces:
+Received Session Namespaces:
 
 ```json
 {
@@ -532,6 +544,7 @@ Is valid?: No
 Note: `cosmos:cosmoshub-4:cosmos1t2uflqwqe0fsj0shcfkrvpukewcw40yjj6hdc0` does not contain `eip155` prefix.
 
 Throw Message: `Accounts must be defined in matching namespace`
+Throw Error Code: `case .unsupportedAccounts: return 5103`
 
 ---
 
@@ -607,6 +620,7 @@ Is valid?: No
 Note: `cosmos` namespace is missing in Session Namespaces
 
 Throw Message: `All namespaces must be approved`
+Throw Error Code: `case .userRejected return 5000`
 
 ---
 
@@ -681,6 +695,7 @@ Is valid?: No
 Note: `chainChanged` event is missing in the session namespace
 
 Throw Message: `All events must be approved`
+Throw Error Code: `case .userRejectedEvents: return 5003`
 
 ---
 
