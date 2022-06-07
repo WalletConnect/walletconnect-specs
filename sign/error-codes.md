@@ -13,8 +13,6 @@ case .unsupportedMethods: return 5101
 case .unsupportedEvents: return 5102
 case .unsupportedAccounts: return 5103
 case .unsupportedNamespaceKey: return 5104
-
-
 ```
 
 ## UNAUTHORIZED
@@ -37,9 +35,13 @@ case .invalidUpdateRequest: return 1003
 case .invalidExtendRequest: return 1004
 ```
 
-## REMAINING
+## REASON
 
 ```sh
 case .userDisconnected: return 6000
-case .sessionSettlementFailed: return 6001
+```
+
+## REASON
+```sh
+case .sessionSettlementFailed: return 7000
 ```
