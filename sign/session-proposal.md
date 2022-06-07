@@ -334,7 +334,7 @@ Is valid?: No
 Note: Proposal namespace doesn't have any accounts, hence it's invalid
 
 Throw Message: `Accounts must not be empty`
-Throw Error Code: `case .userRejectedChains: return 5000`
+Throw Error Code: `case .userRejectedChains: return 5001`
 
 ---
 
@@ -370,7 +370,7 @@ Note: `eip155:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is not CAIP-10 complia
 `eip155:1:0xab16a96d359ec26a11e2c2b3d8f8b8942d5bfcdb` is CAIP-10 compliant
 
 Throw Message: `Accounts must be CAIP-10 compliant`
-Throw Error Code: `case .userRejectedChains: return 5000`
+Throw Error Code: `case .userRejectedChains: return 5001`
 
 ---
 
@@ -405,7 +405,7 @@ Is valid?: No
 Note: `eth_sign` method is missing in the session namespace
 
 Throw Message: `All methods must be approved`
-Throw Error Code: `case .userRejectedMethods: return 5001`
+Throw Error Code: `case .userRejectedMethods: return 5002`
 
 ---
 
@@ -440,7 +440,7 @@ Is valid?: No
 Note: There is no account specified for `eip155:10`
 
 Throw Message: `All chains must have at least one account`
-Throw Error Code: `case .userRejectedChains: return 5000`
+Throw Error Code: `case .userRejectedChains: return 5001`
 
 ---
 
