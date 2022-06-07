@@ -22,6 +22,11 @@ abstract class Client {
     publicKey: string;
     openingMessage: string;
   }): Promise<number>;
+  
+  // accepts a chat invite by id, returns thread topic
+  public abstract accept(params: {
+    inviteId: string; // invite.pubKey
+  }): Promise<string>;
 
   // sends a chat message to an active chat thread
   public abstract message(params: {
