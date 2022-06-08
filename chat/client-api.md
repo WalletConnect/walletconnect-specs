@@ -20,7 +20,7 @@ abstract class Client {
   // sends a chat invite with opening message / returns an invite id
   public abstract invite(params: {
     publicKey: string;
-    openingMessage: string;
+    message: string;
   }): Promise<number>;
 
   // accepts a chat invite by id / returns thread topic
@@ -47,7 +47,7 @@ abstract class Client {
   // ---------- Events ----------------------------------------------- //
 
   // subscribe to new chat invites received
-  public abstract on("chat_invite", ({ id: number, openingMessage: string }) => {}): void;
+  public abstract on("chat_invite", ({ id: number, invite: Invite }) => {}): void;
 
   // subscribe to new chat thread joined
   public abstract on("chat_joined",  ({ topic: string }) => {}): void;
