@@ -29,3 +29,4 @@ A user can message another wallet user after inviting them into a chat thread th
 - RPC Methods ([doc](rpc-methods.md))
 - Message Status ([doc](message-status.md))
 - Chat Keyserver ([doc](chat-keyserver.md))
+- Data Structures ([doc](data-structures.md))
