@@ -23,8 +23,8 @@ The message policy is defined by the list of parameters, which describe the way 
 
 | Policy 	| Api indicator<br> 	|                          User prompt                         	| Server-side<br>storage duration 	|
 |:------:	|:-------------:	|:------------------------------------------------------------:	|:-------------------------------:	|
-|    1   	|      0     	| true<br>when<br>wc_sessionPropose<br>or<br>wc_sessionRequest 	|                6h               	|
-|    2   	|      1     	|                true<br>when<br>wc_chatMessage                	|                *                	|
+|    1   	|      0 (sign)     	| true<br>when<br>wc_sessionPropose<br>or<br>wc_sessionRequest 	|                6h               	|
+|    2   	|      1 (chat)     	|                true<br>when<br>wc_chatMessage                	|                *                	|
 
 \* not defined yet
 
