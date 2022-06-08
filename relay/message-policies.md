@@ -37,16 +37,16 @@ Publish payload constructs a data structure that is to send over the network. Th
 	"id" : "1",
 	"jsonrpc": "2.0",
 	"method": string,
-	"params" : {
+	"params": {
 		"topic" : string,
 		"message" : string,  
 		"ttl" : Int64, //seconds
 
-        "policy": {
-            "indicator" : number,
-            "api" : string, 
-            "prompt" : boolean,
-        }
+		"policy": {
+            		"indicator" : number,
+            		"api" : string, 
+            		"prompt" : boolean,
+        	}
     }
 }
 ```
