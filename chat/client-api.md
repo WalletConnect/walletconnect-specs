@@ -19,8 +19,8 @@ abstract class Client {
 
   // sends a chat invite with opening message / returns an invite id
   public abstract invite(params: {
-    publicKey: string;
-    message: string;
+    peerPublicKey: string;
+    invite: Invite;
   }): Promise<number>;
 
   // accepts a chat invite by id / returns thread topic
@@ -32,6 +32,7 @@ abstract class Client {
   public abstract message(params: {
     topic: string;
     message: string;
+    media?: Media
   }): Promise<void>;
 
   // ping its peer to evaluate if it's currently online
