@@ -45,7 +45,7 @@ Publish payload constructs a data structure that is to send over the network. Th
             		"indicator" : number,
             		"api" : string, 
             		"prompt" : boolean,
-        }
+        	}
     }
 }
 ```
