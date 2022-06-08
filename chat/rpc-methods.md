@@ -37,7 +37,7 @@ Used to invite a peer through topic I. Requires a success response with associat
 ```jsonc
 // Success result
 {
-  "encryptedPublicKey": string,
+  "publicKey": string, // invitee public key
 }
 ```
 
