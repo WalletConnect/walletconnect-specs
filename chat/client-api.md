@@ -7,25 +7,25 @@ abstract class Client {
   // initializes the client with persisted storage and a network connection
   public abstract init(): Promise<void>;
 
-  // register a blockchain account with a public key and returns the public key
+  // register a blockchain account with a public key / returns the public key
   public abstract register(params: {
     account: string;
   }): Promise<string>;
 
-  // queries the default keyserver with a blockchain account and returns the public key
+  // queries the default keyserver with a blockchain account / returns the public key
   public abstract resolve(params: {
     account: string;
   }): Promise<string>;
 
-  // sends a chat invite with opening message and returns an invite id
+  // sends a chat invite with opening message / returns an invite id
   public abstract invite(params: {
     publicKey: string;
     openingMessage: string;
   }): Promise<number>;
-  
-  // accepts a chat invite by id, returns thread topic
+
+  // accepts a chat invite by id / returns thread topic
   public abstract accept(params: {
-    inviteId: string; // invite.pubKey
+    inviteId: string;
   }): Promise<string>;
 
   // sends a chat message to an active chat thread
