@@ -25,6 +25,7 @@ In this repository, we document and discuss features that are currently under de
 - RPC Methods ([doc](chat/rpc-methods.md))
 - Message Status ([doc](chat/message-status.md))
 - Chat Keyserver ([doc](chat/chat-keyserver.md))
+- Data Structures ([doc](chat/data-structures.md))
 
 ### Auth
 
