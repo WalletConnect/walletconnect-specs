@@ -33,3 +33,4 @@ In this repository, we document and discuss features that are currently under de
 - Message Policies ([doc](relay/message-policies.md))
 - Publish Payload ([doc](relay/message-policies.md#publish-payload))
 - Relay API ([doc](relay/message-policies.md#relay-api))
+- Relay Client Rules ([doc](relay/relay-client-rules.md))
