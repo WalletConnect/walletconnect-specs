@@ -20,7 +20,7 @@ Body:
 
 ### Resolve
 
-Used for resolving record by account.
+Used for resolving record by CAIP10 account.
 
 `GET /resolve?account=string`
 
