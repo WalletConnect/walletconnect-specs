@@ -26,11 +26,18 @@ Used to invite a peer through topic I. Requires a success response with associat
 - Error response is equivalent to invite rejection.
 
 ```jsonc
+// unencrypted invite struct
+{
+  "message": string,
+  "account": string,
+  "signature": string, // optional
+}
+
+
 // wc_chatInvite params
 {
   "publicKey": string,
-  "account": string,
-  "encryptedMessage": string // encrypted opening message
+  "invite": string // encrypted invite struct
 }
 ```
 
