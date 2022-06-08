@@ -17,14 +17,14 @@ The message policy is defined by the list of parameters, which describe the way 
 
 * Storage duration - defines a message storage duration on server-side in **seconds**. **(0 - forever, -1 - no caching)**
 * User prompt - a flag that says whether a server should send a push to a client **(true/false)**
-* Api label - a label that says what api sent a message. It allows collecting metrics. **(sign, chat, auth, push)**
+* Api indicator - a label that says what api sent a message. It allows collecting metrics. **(0 - sign, 1 - chat, 2 - auth, 3 - push)**
 
 ## Policies
 
-| Policy 	| Api label<br> 	|                          User prompt                         	| Server-side<br>storage duration 	|
+| Policy 	| Api indicator<br> 	|                          User prompt                         	| Server-side<br>storage duration 	|
 |:------:	|:-------------:	|:------------------------------------------------------------:	|:-------------------------------:	|
-|    1   	|      sign     	| true<br>when<br>wc_sessionPropose<br>or<br>wc_sessionRequest 	|                6h               	|
-|    2   	|      chat     	|                true<br>when<br>wc_chatMessage                	|                *                	|
+|    1   	|      0     	| true<br>when<br>wc_sessionPropose<br>or<br>wc_sessionRequest 	|                6h               	|
+|    2   	|      1     	|                true<br>when<br>wc_chatMessage                	|                *                	|
 
 \* not defined yet
 
@@ -43,7 +43,7 @@ Publish payload constructs a data structure that is to send over the network. Th
 		"ttl" : Int64, //seconds
 		"policy": {
             		"indicator" : number,
-            		"api" : string, 
+            		"api" : number, 
             		"prompt" : boolean,
         	}
     }
@@ -81,7 +81,7 @@ The policy object defines the policy's parameters.
 ```jsonc
 {
     "indicator" : number,
-    "api" : string,
+    "api" : number,
     "prompt" : boolean
 }
 ```
