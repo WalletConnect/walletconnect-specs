@@ -77,7 +77,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 ### wc_chatLeave
 
 ```jsonc
-// wc_chatInvite params
+// wc_chatLeave params
 {
   "publicKey": string,
 }
