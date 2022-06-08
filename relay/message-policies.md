@@ -41,12 +41,11 @@ Publish payload constructs a data structure that is to send over the network. Th
 		"topic" : string,
 		"message" : string,  
 		"ttl" : Int64, //seconds
-
 		"policy": {
             		"indicator" : number,
             		"api" : string, 
             		"prompt" : boolean,
-        	}
+        }
     }
 }
 ```
