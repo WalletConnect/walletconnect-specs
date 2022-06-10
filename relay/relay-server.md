@@ -41,10 +41,10 @@ Used when a client publishes a message to a server.
 	"params" : {
 		"topic" : string,
 		"message" : string,  
-        "policy" : number,
-        "api" : number, 
-        "prompt" : boolean
-    }
+        	"policy" : number,
+        	"api" : number, 
+        	"prompt" : boolean
+    	}
 }
 ```
 
@@ -59,7 +59,7 @@ Used when a client subscribes a given topic.
 	"method": "irn_subscribe",
 	"params" : {
 		"topic" : string
-    }
+    	}
 }
 ```
 
@@ -75,7 +75,7 @@ Used when a client unsubscribes a given topic.
 	"params" : {
 		"topic" : string,
 		"id": string
-    }
+    	}
 }
 ```
 
@@ -91,8 +91,8 @@ Used when a server sends a subscription message to a client.
 	"params" : {
 		"id" : string,
 		"data" : {
-				"topic" : string,
-				"message": string
+			"topic" : string,
+			"message": string
 		}
 	}
 }
