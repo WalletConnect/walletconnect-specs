@@ -6,11 +6,11 @@ abstract class Client {
 
   // initializes the client with persisted storage and a network connection
   public abstract init(): Promise<void>;
-  
+
   // register a blockchain account with a public key / returns the public key
   public abstract register(params: {
     account: string;
-    discoverable?: boolean; 
+    private?: boolean;
   }): Promise<string>;
 
   // queries the default keyserver with a blockchain account / returns the public key
@@ -18,7 +18,7 @@ abstract class Client {
     account: string;
   }): Promise<string>;
 
-  // sends a chat invite with opening message / returns an invite id
+  // sends a chat invite to peer public key / returns an invite id
   public abstract invite(params: {
     peerPublicKey: string;
     invite: Invite;
