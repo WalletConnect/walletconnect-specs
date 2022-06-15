@@ -28,8 +28,9 @@ Used to invite a peer through topic I. Requires a success response with associat
 ```jsonc
 // wc_chatInvite params
 {
-  "publicKey": string,
-  "invite": string // encrypted invite struct
+  "message": string,
+  "account": string,
+  "signature": string, // optional
 }
 ```
 
@@ -50,7 +51,6 @@ Used to send a message to its peer through topic T.
 ```jsonc
 // wc_chatMessage params
 {
-  "publicKey": string,
   "message": string,
   "media": Media // optional
 }
@@ -59,7 +59,7 @@ Used to send a message to its peer through topic T.
 ```jsonc
 // Success result
 {
-  "receivedAt": Int64 // timestamp when received
+  // empty
 }
 ```
 
@@ -79,13 +79,13 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 ```jsonc
 // wc_chatLeave params
 {
-  "publicKey": string,
+  // empty
 }
 ```
 
 ```jsonc
 // Success result
 {
-  "receivedAt": Int64 // timestamp when received
+  // empty
 }
 ```
