@@ -48,7 +48,7 @@ Used to send a message to its peer through topic T.
 - Error response is equivalent to message delivery failure.
 
 ```jsonc
-// wc_chatInvite params
+// wc_chatMessage params
 {
   "publicKey": string,
   "message": string,
