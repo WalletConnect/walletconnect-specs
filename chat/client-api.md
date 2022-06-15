@@ -29,6 +29,12 @@ abstract class Client {
     inviteId: string;
   }): Promise<string>;
 
+  public abstract getMessages(params: {
+    threadId: string;
+  }): Promise<[Messages]>;
+  
+ public abstract getThreads(): Promise<[Threads]>;
+  
   // sends a chat message to an active chat thread
   public abstract message(params: {
     topic: string;
