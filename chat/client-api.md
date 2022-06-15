@@ -18,9 +18,9 @@ abstract class Client {
     account: string;
   }): Promise<string>;
 
-  // sends a chat invite to peer public key / returns an invite id
+  // sends a chat invite to peer account / returns an invite id
   public abstract invite(params: {
-    peerPublicKey: string;
+    account: string;
     invite: Invite;
   }): Promise<number>;
 
@@ -29,12 +29,11 @@ abstract class Client {
     inviteId: string;
   }): Promise<string>;
 
-  public abstract getMessages(params: {
-    threadId: string;
-  }): Promise<[Messages]>;
-  
- public abstract getThreads(): Promise<[Threads]>;
-  
+// accepts a chat invite by id
+  public abstract reject(params: {
+    inviteId: string;
+  }): Promise<void>;
+
   // sends a chat message to an active chat thread
   public abstract message(params: {
     topic: string;
@@ -51,6 +50,27 @@ abstract class Client {
   public abstract leave(params: {
     topic: string;
   }): Promise<void>;
+
+  // adds peer account with public key
+  public abstract addContact(params: {
+    account: string;
+    publicKey: string;
+  })
+
+  // returns all invites matching an account / returns maps of invites indexed by id
+  public abstract getInvites(params: {
+    account: string;
+  }): Promise<Map<string, Invite>>
+
+  // returns all threads matching an account / returns map of threads indexed by topic
+  public abstract getThreads(params: {
+    account: string;
+  }): Promise<Map<string, Thread>>;
+
+  // returns all messages matching a thread's topic / returns array of messages
+  public abstract getMessages(params: {
+    topic: string;
+  }): Promise<[Message]>;
 
   // ---------- Events ----------------------------------------------- //
 
