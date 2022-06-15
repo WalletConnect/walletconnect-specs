@@ -17,15 +17,15 @@ A retrieves the public key associated with B's blockchain account, publicKey X.
 
 A generates a keyPair Y to encrypt the opening message with derived DH symKey I.
 
-A sends invite unecrypted to the invite topic.
+A sends invite encrypted with type 1 envelope to the invite topic including publicKey Y.
 
 Invite topic is derived as the hash of the publicKey X.
 
-B decrypts opening message with the privateKey Y and deriving DH symKey I.
+B decrypts type 1 envelope with the privateKey X and publicKey Y and deriving DH symKey I.
 
 B accepts the invite and generates a keyPair Z for chat thread.
 
-B sends response with publicKey Z on invite topic.
+B sends response with publicKey Z on invite topic encrypted with type 0 envelope.
 
 B derives symKey T using publicKey Y and privKey Z.
 
