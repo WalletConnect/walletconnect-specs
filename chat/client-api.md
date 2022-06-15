@@ -6,10 +6,11 @@ abstract class Client {
 
   // initializes the client with persisted storage and a network connection
   public abstract init(): Promise<void>;
-
+  
   // register a blockchain account with a public key / returns the public key
   public abstract register(params: {
     account: string;
+    discoverable?: boolean; 
   }): Promise<string>;
 
   // queries the default keyserver with a blockchain account / returns the public key
