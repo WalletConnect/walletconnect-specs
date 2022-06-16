@@ -29,7 +29,7 @@ abstract class Client {
     inviteId: string;
   }): Promise<string>;
 
-// accepts a chat invite by id
+// rejects a chat invite by id
   public abstract reject(params: {
     inviteId: string;
   }): Promise<void>;
