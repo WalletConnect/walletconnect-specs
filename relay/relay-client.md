@@ -17,13 +17,13 @@ Rules define the default behaviors that RelayClient must respect when publishing
 The way of handling unpublished messages in the RelayClient should differ depending on the consumer.
 
 * Given that the `api` field inside the `Policy` object equals `0` (sign): 
-    * once RelayClient fails to publish a message three times in a row, the unpublished message is not persistent in a local storage. Sending a message again is the responsibility of RelayClient's consumer.
+    * once RelayClient fails to publish a message three times in a row, the unpublished message is not persistent in a local storage. Sending a message again is the responsibility of RelayClient's consumer. RelayClient should throw a descriptive error to its consumer once a message publish fails.
 
 <br>
 
 * Given that `api` field inside the `Policy` object equals `1` (chat):
     * once RelayClient fails to publish a message three times in a row for no Internet availability or web-socket connection, the unpublished message is persistent in local storage. Once RelayClient detects that connection is again available, messages are sent in the original order. For a better user experience, RelayClient should throw a descriptive error to its consumer once a message publish fails.
-    * once RelayClient fails to publish a given message three time in a row for any other reason than no available connection, the unpublished message is persistent in local storage, and RelayClient's consumer is responsible for sending a message again.
+    * once RelayClient fails to publish a given message three time in a row for any other reason than no available connection, the unpublished message is persistent in local storage, and RelayClient's consumer is responsible for sending a message again. For a better user experience, RelayClient should throw a descriptive error to its consumer once a message publish fails.
 
 ## RelayClient API
 
