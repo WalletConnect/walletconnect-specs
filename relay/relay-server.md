@@ -8,16 +8,8 @@ This document aims to create the JsonRpc contract between a client and a server.
 ## Definition
 
 The message policy is a set of actions that have to be taken by involved parties without decrypting a message.<br>
-One can create a new policy by providing an unique set of parameters and assigning an unique id to it.<br>
+One can create a new policy by providing the TTL and assigning an unique id to it.<br>
 The number of policies is unlimited. Any policy is protocol agnostic.
-
-## Parameters
-
-The message policy is defined by the list of parameters, which describe the way of handling a given message. 
-
-* **TTL** - defines a message storage duration on server-side in **seconds**. **(0 - forever, -1 - no caching)**
-* **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
-* **Api indicator** - a label that says what api sent a message. It allows collecting metrics. **(0 - sign, 1 - chat, 2 - auth, 3 - push)**
 
 ## Policies
 
@@ -32,6 +24,8 @@ The message policy is defined by the list of parameters, which describe the way 
 ## Publish payload
 
 Used when a client publishes a message to a server.
+* **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
+* **Api indicator** - a label that says what api sent a message. It allows collecting metrics. **(0 - sign, 1 - chat, 2 - auth, 3 - push)**
 
 ```jsonc
 {
@@ -101,4 +95,3 @@ Used when a server sends a subscription message to a client.
 ## FAQ
 
 * What is a client? - Any SDK instance (Sign, Chat, Auth, Push)
-* Might an sdk have more than one message policy? - Yes, there is such a possibility.
