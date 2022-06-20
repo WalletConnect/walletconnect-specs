@@ -15,7 +15,7 @@ Any policy is protocol agnostic.
 
 * **TTL** - defines a message storage duration on server-side in **seconds**. **(0 - no caching, -1 - forever)**
 * **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
-* **Api indicator** - a label that says what api sent a message. It allows collecting metrics. **(0 - sign, 1 - chat, 2 - auth, 3 - push)**
+* **Api indicator** - a label that says what api sent a message. It allows collecting metrics. **(0 - unknown, 1 - sign, 2 - chat, 3 - auth, 4 - push)**
 
 ## Policies
 
