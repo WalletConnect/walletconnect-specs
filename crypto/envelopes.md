@@ -29,7 +29,7 @@ pk - public key (32 bytes)
 iv - initialization vector (12 bytes)
 ct - ciphertext (N bytes)
 tag - authentication tag (16 bytes)
-sb - sealbox: iv + ct + tag
+sb - sealbox: ct + tag
 
 ##### Serialized Type 1 Envelope:
 tp + pk + sb
