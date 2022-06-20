@@ -55,7 +55,7 @@ The policy object defines the policy's parameters.
 
 ```jsonc
 {
-    "indicator" : number,
+    "ttl" : seconds,
     "api" : number,
     "prompt" : boolean
 }
