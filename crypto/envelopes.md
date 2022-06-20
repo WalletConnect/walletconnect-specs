@@ -17,7 +17,7 @@ tag - authentication tag (16 bytes)
 sb - sealbox: ct + tag
 
 ##### Serialized Envelope:
-tp + sb
+tp + iv + sb
 
 #### Type 1 Envelope
 Used by client that is able to seal the message but it's peer is unable to open the sealbox as it is missing public key for Diffie Hellman key agreement. After deriving symmetric key using `pk` and private key associated with the topic the envelope has been reveived on both peers are able to seal and open the sealbox.
