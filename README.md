@@ -12,12 +12,20 @@ In this repository, we document and discuss features that are currently under de
 - RPC methods ([doc](sign/rpc-methods.md))
 - Client API ([doc](sign/client-api.md))
 - Data Structures ([doc](sign/data-structures.md))
-- Error Codes ([doc](sign/error-codes.md))
+- Error Codes ([doc](sign/codes.md))
 - Migration ([doc](sign/migration.md))
 
 ### Chat
 
 - Chat Overview ([doc](chat/README.md))
+- Invite URI ([doc](chat/invite-uri.md))
+- Client API ([doc](chat/client-api.md))
+- Discoverability ([doc](chat/discoverability.md))
+- Chat Invite ([doc](chat/chat-invite.md))
+- RPC Methods ([doc](chat/rpc-methods.md))
+- Message Status ([doc](chat/message-status.md))
+- Chat Keyserver ([doc](chat/chat-keyserver.md))
+- Data Structures ([doc](chat/data-structures.md))
 
 ### Auth
 
@@ -32,3 +40,7 @@ In this repository, we document and discuss features that are currently under de
 - Relay Overview ([doc](relay/README.md))
 - Relay Client ([doc](relay/relay-client.md))
 - Relay Server ([doc](relay/relay-server.md))
+
+### Client Authentication
+
+- Client Authentication Overview ([doc](client-auth/README.md))
