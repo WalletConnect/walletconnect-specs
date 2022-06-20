@@ -30,6 +30,7 @@ Used to invite a peer through topic I. Requires a success response with associat
 {
   "message": string,
   "account": string,
+  "publicKey": string,
   "signature": string, // optional
 }
 ```
