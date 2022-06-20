@@ -1,0 +1,25 @@
+## Typed Envelopes
+Typed envelopes purpose is to provide flexible and future proof jsonrpc serialization methods. All WalletConnect protocols requests should use on of following envelope serialization types.
+First byte of any serialised envelope string defines its type so envelope structure is known:  
+
+### Envelope Structure:
+First byte of any serialised envelope string defines its type so envelope structure is known:  
+
+tp - type byte (1 byte)
+pk - public key (32 bytes)
+iv - initialization vector (12 bytes)
+ct - ciphertext (N bytes)
+tag - authentication tag (8 bytes)
+sb - sealbox: iv + ct + tag
+
+#### Type 0 Envelope
+algo: ChaCha20-Poly1305 
+Used when peers agreed on symmetric key and both are able to seal and open the sealbox. 
+##### Serialized Envelope:
+tp + sb
+
+#### Type 1 Envelope
+algo: ChaCha20-Poly1305 
+Used by client that is able to seal the message but it's peer is unable to open the sealbox as it is missing public key for Diffie Hellman key agreement. After deriving symmetric key using `pk` and private key associated with the topic the envelope has been reveived on both peers are able to seal and open the sealbox.
+##### Serialized Type 1 Envelope:
+tp + pk + sb
