@@ -57,7 +57,7 @@ The policy object defines the policy's parameters.
 {
     "ttl" : seconds,
     "api" : number,
-    "prompt" : boolean
+    "prompt" : boolean // Optional / default = false
 }
 ```
 
