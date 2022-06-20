@@ -38,3 +38,7 @@ In this repository, we document and discuss features that are currently under de
 ### Relay
 
 - Relay Overview ([doc](relay/README.md))
+
+### Client Authentication
+
+- Client Authentication Overview ([doc](client-auth/README.md))
