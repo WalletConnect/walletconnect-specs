@@ -41,9 +41,9 @@ Used when a client publishes a message to a server.
 	"params" : {
 		"topic" : string,
 		"message" : string,  
-        "ttl" : seconds,
-        "api" : number, 
-        "prompt" : boolean
+        	"ttl" : seconds,
+	        "api" : number, 
+        	"prompt" : boolean
     }
 }
 ```
