@@ -30,6 +30,8 @@ Any policy is protocol agnostic.
 ## Publish payload
 
 Used when a client publishes a message to a server.
+* **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
+* **Api indicator** - a label that says what api sent a message. It allows collecting metrics. **(0 - sign, 1 - chat, 2 - auth, 3 - push)**
 
 ```jsonc
 {
@@ -57,7 +59,7 @@ Used when a client subscribes a given topic.
 	"method": "iridium_subscribe",
 	"params" : {
 		"topic" : string
-    }
+    	}
 }
 ```
 
@@ -73,7 +75,7 @@ Used when a client unsubscribes a given topic.
 	"params" : {
 		"topic" : string,
 		"id": string
-    }
+    	}
 }
 ```
 
@@ -89,8 +91,8 @@ Used when a server sends a subscription message to a client.
 	"params" : {
 		"id" : string,
 		"data" : {
-				"topic" : string,
-				"message": string
+			"topic" : string,
+			"message": string
 		}
 	}
 }
