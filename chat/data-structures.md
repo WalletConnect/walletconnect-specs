@@ -24,3 +24,28 @@ Media is an optional parameter used in wc_chatMessage to append a media file ref
   "data": string,
 }
 ```
+
+## Message
+
+An array of Messages is returned on `getMessages(params: {topic: string;})`
+
+```jsonc
+{
+  "message" : string,
+  "authorAccount": string, // to distinguish who sent it. Could also be a flag
+  "timestamp": Int64, 
+  "media": Media // optional
+}
+```
+
+## Thread
+
+A map of type `Map<string, Thread>` is returned on `getThreads(params: {account: string;}`. Topic is the key of the map.
+
+```jsonc
+{
+  "topic": string,
+  "selfAccount": string
+  "peerAccount": string
+}
+```
