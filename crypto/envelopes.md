@@ -1,9 +1,8 @@
 ## Typed Envelopes
-Typed envelopes purpose is to provide flexible and future proof jsonrpc serialization methods. All WalletConnect protocols requests should use on of following envelope serialization types.
-First byte of any serialised envelope string defines its type so envelope structure is known:  
+Typed envelopes purpose is to provide flexible and future proof jsonrpc serialization methods. All WalletConnect protocols requests should use one of the following envelope serialization types.
 
 ### Envelope Structure:
-First byte of any serialised envelope string defines its type so envelope structure is known:  
+First byte of any serialised envelope string always defines its type so envelope structure is known:  
 tp - type byte (1 byte)
 
 #### Type 0 Envelope
