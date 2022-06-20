@@ -56,7 +56,7 @@ The policy object defines the policy's parameters.
 ```jsonc
 {
     "ttl" : seconds,
-    "api" : number,
+    "api" : number, // Optional / default = 0
     "prompt" : boolean // Optional / default = false
 }
 ```
