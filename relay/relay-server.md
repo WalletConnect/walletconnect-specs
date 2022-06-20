@@ -5,15 +5,13 @@
 
 This document aims to create the JsonRpc contract between a client and a server. 
 
-## Definition
+## Definitions
 
 The message policy is a set of actions that have to be taken by involved parties without decrypting a message.<br>
-One can create a new policy by providing an unique set of parameters and assigning an unique id to it.<br>
-The number of policies is unlimited. Any policy is protocol agnostic.
-
-## Parameters
-
-The message policy is defined by the list of parameters, which describe the way of handling a given message. 
+One can create a new policy by providing an unique TTL value.<br>
+The TTL value equals the message policy.<br>
+The number of policies is unlimited.<br>
+Any policy is protocol agnostic.
 
 * **TTL** - defines a message storage duration on server-side in **seconds**. **(0 - forever, -1 - no caching)**
 * **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
@@ -21,12 +19,12 @@ The message policy is defined by the list of parameters, which describe the way 
 
 ## Policies
 
-| Policy id 	|   TTL   	|
+| Policy 	|   TTL   	|
 |:------:	|:-------:	|
 |    1   	|   5 min  	|
 |    2   	|    6 h   	|
 |    3   	|  7 days  	|
-|    4   	| forever 	|
+|    4   	| 0 	|
 
 
 ## Publish payload
@@ -37,11 +35,11 @@ Used when a client publishes a message to a server.
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
-	"method": "irn_publish",
+	"method": "iridium_publish",
 	"params" : {
 		"topic" : string,
 		"message" : string,  
-        "policy" : number,
+        "ttl" : seconds,
         "api" : number, 
         "prompt" : boolean
     }
@@ -56,7 +54,7 @@ Used when a client subscribes a given topic.
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
-	"method": "irn_subscribe",
+	"method": "iridium_subscribe",
 	"params" : {
 		"topic" : string
     }
@@ -71,7 +69,7 @@ Used when a client unsubscribes a given topic.
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
-	"method": "irn_unsubscribe",
+	"method": "iridium_unsubscribe",
 	"params" : {
 		"topic" : string,
 		"id": string
@@ -87,7 +85,7 @@ Used when a server sends a subscription message to a client.
 {
 	"id" : "1",
 	"jsonrpc": "2.0",
-	"method": "irn_subscription",
+	"method": "iridium_subscription",
 	"params" : {
 		"id" : string,
 		"data" : {
@@ -101,4 +99,3 @@ Used when a server sends a subscription message to a client.
 ## FAQ
 
 * What is a client? - Any SDK instance (Sign, Chat, Auth, Push)
-* Might an sdk have more than one message policy? - Yes, there is such a possibility.
