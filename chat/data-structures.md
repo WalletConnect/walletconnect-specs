@@ -44,6 +44,8 @@ A map of type `Map<string, Thread>` is returned on `getThreads(params: {account:
 
 ```jsonc
 {
-  "otherAccount": string,
+  "topic": string,
+  "selfAccount": string
+  "peerAccount": string
 }
 ```
