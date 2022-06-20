@@ -32,4 +32,4 @@ tag - authentication tag (16 bytes)
 sb - sealbox: ct + tag
 
 ##### Serialized Type 1 Envelope:
-tp + pk + sb
+tp + pk + iv + sb
