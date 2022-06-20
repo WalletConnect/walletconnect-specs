@@ -41,6 +41,10 @@ In this repository, we document and discuss features that are currently under de
 - Relay Client ([doc](relay/relay-client.md))
 - Relay Server ([doc](relay/relay-server.md))
 
+### Crypto
+
+- Crypto Overview ([doc](crypto/README.md))
+
 ### Client Authentication
 
 - Client Authentication Overview ([doc](client-auth/README.md))
