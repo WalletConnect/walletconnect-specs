@@ -55,7 +55,7 @@ abstract class Client {
   public abstract addContact(params: {
     account: string;
     publicKey: string;
-  })
+  }): Promise<void>
 
   // returns all invites matching an account / returns maps of invites indexed by id
   public abstract getInvites(params: {
