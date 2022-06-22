@@ -226,6 +226,8 @@ const seed = fromString(
 
 // Generate key pair from seed
 const keyPair = ed25519.generateKeyPairFromSeed(seed);
+// secretKey = "58e0254c211b858ef7896b00e3f36beeb13d568d47c6031c4218b87718061295884ab67f787b69e534bfdba8d5beb4e719700e90ac06317ed177d49e5a33be5a"
+// publicKey = "884ab67f787b69e534bfdba8d5beb4e719700e90ac06317ed177d49e5a33be5a"
 
 // Expected JWT for given nonce
 const expected =
