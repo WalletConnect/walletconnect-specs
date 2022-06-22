@@ -99,11 +99,11 @@ const DID_PREFIX = "did";
 
 const DID_METHOD = "key";
 
+const MULTIBASE_BASE58BTC_PREFIX = "z";
+
 const MULTICODEC_ED25519_ENCODING = "base58btc";
 
-const MULTICODEC_ED25519_BASE = "z";
-
-const MULTICODEC_ED25519_HEADER = "K36";
+const MULTICODEC_ED25519_KEY_TYPE = "K36";
 
 const MULTICODEC_ED25519_LENGTH = 32;
 
@@ -121,31 +121,30 @@ function encodeJSON(val: any): string {
 }
 
 function encodeIss(publicKey: Uint8Array): string {
-  const header = fromString(
-    MULTICODEC_ED25519_HEADER,
+  const keyType = fromString(
+    MULTICODEC_ED25519_KEY_TYPE,
     MULTICODEC_ED25519_ENCODING
   );
-  const multicodec =
-    MULTICODEC_ED25519_BASE +
-    toString(concat([header, publicKey]), MULTICODEC_ED25519_ENCODING);
-  return [DID_PREFIX, DID_METHOD, multicodec].join(DID_DELIMITER);
+  const multicodec = toString(concat([header, publicKey]), MULTICODEC_ED25519_ENCODING);
+  const multibase = MULTIBASE_BASE58BTC_PREFIX + multicodec
+  return [DID_PREFIX, DID_METHOD, multibase].join(DID_DELIMITER);
 }
 
 function decodeIss(issuer: string): Uint8Array {
-  const [prefix, method, multicodec] = issuer.split(DID_DELIMITER);
+  const [prefix, method, multibase] = issuer.split(DID_DELIMITER);
   if (prefix !== DID_PREFIX || method !== DID_METHOD) {
     throw new Error(`Issuer must be a DID with method "key"`);
   }
-  const base = multicodec.slice(0, 1);
-  if (base !== MULTICODEC_ED25519_BASE) {
-    throw new Error(`Issuer must be a key in mulicodec format`);
+  const base = multibase.slice(0, 1);
+  if (base !== MULTIBASE_BASE58BTC_PREFIX) {
+    throw new Error(`Issuer must be a multibase with encoding base58btc`);
   }
-  const bytes = fromString(multicodec.slice(1), MULTICODEC_ED25519_ENCODING);
-  const type = toString(bytes.slice(0, 2), MULTICODEC_ED25519_ENCODING);
-  if (type !== MULTICODEC_ED25519_HEADER) {
+  const multicodec = fromString(multibase.slice(1), MULTICODEC_ED25519_ENCODING);
+  const keyType = toString(multicodec.slice(0, 2), MULTICODEC_ED25519_ENCODING);
+  if (keyType !== MULTICODEC_ED25519_KEY_TYPE) {
     throw new Error(`Issuer must be a public key with type "Ed25519"`);
   }
-  const publicKey = bytes.slice(2);
+  const publicKey = multicodec.slice(2);
   if (publicKey.length !== MULTICODEC_ED25519_LENGTH) {
     throw new Error(`Issuer must be a public key with length 32 bytes`);
   }
