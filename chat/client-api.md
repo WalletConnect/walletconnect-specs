@@ -81,7 +81,7 @@ abstract class Client {
   public abstract on("chat_joined",  ({ topic: string }) => {}): void;
 
   // subscribe to new chat messages received
-  public abstract on("chat_message", ({ topic: string, message: string }) => {}): void;
+  public abstract on("chat_message", ({ topic: string, payload: Message }) => {}): void;
 
   // subscribe to new chat thread left
   public abstract on("chat_left",  ({ topic: string }) => {}): void;
