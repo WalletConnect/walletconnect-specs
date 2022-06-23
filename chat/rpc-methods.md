@@ -52,7 +52,9 @@ Used to send a message to its peer through topic T.
 ```jsonc
 // wc_chatMessage params
 {
-  "message": string,
+  "message" : string,
+  "authorAccount": string,
+  "timestamp": Int64, 
   "media": Media // optional
 }
 ```
