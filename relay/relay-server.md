@@ -20,9 +20,6 @@ Any policy is protocol agnostic.
 
 Used when a client publishes a message to a server.
 
-- **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
-- **Api label** - a label that says what api sent a message. It allows collecting metrics. **(0 - unknown, 1 - sign, 2 - chat, 3 - auth, 4 - push)**
-
 ```jsonc
 {
   "id" : "1",
