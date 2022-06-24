@@ -125,8 +125,11 @@ function encodeIss(publicKey: Uint8Array): string {
     MULTICODEC_ED25519_KEY_TYPE,
     MULTICODEC_ED25519_ENCODING
   );
-  const multicodec = toString(concat([header, publicKey]), MULTICODEC_ED25519_ENCODING);
-  const multibase = MULTIBASE_BASE58BTC_PREFIX + multicodec
+  const multicodec = toString(
+    concat([header, publicKey]),
+    MULTICODEC_ED25519_ENCODING
+  );
+  const multibase = MULTIBASE_BASE58BTC_PREFIX + multicodec;
   return [DID_PREFIX, DID_METHOD, multibase].join(DID_DELIMITER);
 }
 
@@ -139,7 +142,10 @@ function decodeIss(issuer: string): Uint8Array {
   if (base !== MULTIBASE_BASE58BTC_PREFIX) {
     throw new Error(`Issuer must be a multibase with encoding base58btc`);
   }
-  const multicodec = fromString(multibase.slice(1), MULTICODEC_ED25519_ENCODING);
+  const multicodec = fromString(
+    multibase.slice(1),
+    MULTICODEC_ED25519_ENCODING
+  );
   const keyType = toString(multicodec.slice(0, 2), MULTICODEC_ED25519_ENCODING);
   if (keyType !== MULTICODEC_ED25519_KEY_TYPE) {
     throw new Error(`Issuer must be a public key with type "Ed25519"`);

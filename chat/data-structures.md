@@ -33,7 +33,7 @@ An array of Messages is returned on `getMessages(params: {topic: string;})`
 {
   "message" : string,
   "authorAccount": string, // to distinguish who sent it. Could also be a flag
-  "timestamp": Int64, 
+  "timestamp": Int64,
   "media": Media // optional
 }
 ```
@@ -45,7 +45,7 @@ A map of type `Map<string, Thread>` is returned on `getThreads(params: {account:
 ```jsonc
 {
   "topic": string,
-  "selfAccount": string
+  "selfAccount": string,
   "peerAccount": string
 }
 ```
