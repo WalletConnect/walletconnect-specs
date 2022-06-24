@@ -34,7 +34,7 @@ Used when a client publishes a message to a server.
     "ttl" : seconds,
     "prompt" : boolean,
     "api" : number,
-	}
+  }
 }
 ```
 
@@ -49,7 +49,7 @@ Used when a client subscribes a given topic.
   "method": "iridium_subscribe",
   "params" : {
     "topic" : string
-	}
+  }
 }
 ```
 
@@ -65,7 +65,7 @@ Used when a client unsubscribes a given topic.
   "params" : {
     "topic" : string,
     "id": string
-	}
+  }
 }
 ```
 

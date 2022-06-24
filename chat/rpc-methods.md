@@ -54,7 +54,7 @@ Used to send a message to its peer through topic T.
 {
   "message" : string,
   "authorAccount": string,
-  "timestamp": Int64, 
+  "timestamp": Int64,
   "media": Media // optional
 }
 ```
