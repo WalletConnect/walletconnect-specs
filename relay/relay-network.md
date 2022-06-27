@@ -4,7 +4,7 @@ Relay network is defined by the federation of relay servers exchanging messages 
 
 ## Goals
 
-Relay servers will route messages between publishers and subscribers of a topic in the same server and route them to other servers in the network that also have matching subscriptions
+Relay servers will route messages through other servers in the network that also have matching subscribers on a topic whilst maintaing the same expected behavior described by a publisher when requested to its own server
 
 ## Iridium Message
 
