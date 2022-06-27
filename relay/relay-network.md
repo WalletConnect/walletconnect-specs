@@ -13,7 +13,7 @@ An Iridium message is defined as a serialized message of a successfully cached m
     iridium_message = prefix + version + tag + prompt + timestamp + length + message
     prefix          = utf8("irn")
     version         = uint8
-    tag             = unit8
+    tag             = uint8
     prompt          = boolean
     timestamp       = uint64
     length          = uint64
