@@ -1,6 +1,6 @@
 # Relay Network
 
-Relay network is defined by the federation of relay servers exchanging messages to route messages from a publishing client to a subscribing client on the same topic.
+Relay network is defined by the federation of relay servers exchanging messages to route from a publishing client to a subscribing client on the same topic.
 
 ## Goals
 
