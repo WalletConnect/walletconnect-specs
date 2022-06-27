@@ -15,7 +15,7 @@ Now both A and B can exchange messages in the newly created chat thread
 
 A retrieves the public key associated with B's blockchain account, publicKey X.
 
-A generates a keyPair Y to encrypt the opening message with derived DH symKey I.
+A generates a keyPair Y to encrypt the invite with derived DH symKey I.
 
 A sends invite encrypted with type 1 envelope to the invite topic including publicKey Y.
 
@@ -25,7 +25,9 @@ B decrypts type 1 envelope with the privateKey X and publicKey Y and deriving DH
 
 B accepts the invite and generates a keyPair Z for chat thread.
 
-B sends response with publicKey Z on invite topic encrypted with type 0 envelope.
+B sends response with publicKey Z on response topic encrypted with type 0 envelope.
+
+Response topic is derived as the hash of the symKey I.
 
 B derives symKey T using publicKey Y and privKey Z.
 
@@ -35,4 +37,4 @@ A receives response which includes publicKey Z.
 
 A derives symKey T using privKey Y and publicKey Z.
 
-A and B both subscribe to thread topic and sends messages with symKey T
+A and B both subscribe to thread topic and encrypt messages with symKey T.
