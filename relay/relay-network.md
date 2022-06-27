@@ -10,11 +10,25 @@ Relay servers will route messages through other servers in the network that also
 
 An Iridium message is defined as a serialized message of a successfully cached message from a publishing request from a connected client with one of the servers.
 
+
+- **prefix** - a fixed prefix ("irn") for exchanged iridium messages.
+- **version** - a version number of the serialized schema for messages.
+- **tag** - an integer label that identifies a message without knowing its contents.
+- **prompt** - a flag that identifies whether the server should prompt a user action.
+- **timestamp** - a epoch timestamp when message was observed by the publishing relay server.
+- **length** - an integer defining the size of the message length.
+- **message** - a plaintext message to be relayed to any subscribers on the topic.
+
+
+Serialized byte schema (v1.0) would be as follows: 
+
     iridium_message = prefix + version + tag + prompt + timestamp + length + message
-    prefix          = utf8("irn")
-    version         = uint8
+    prefix          = utf8  = "irn"
+    version         = uint8 = 1
     tag             = uint8
     prompt          = boolean
     timestamp       = uint64
     length          = uint64
     message         = utf8
+   
+   
