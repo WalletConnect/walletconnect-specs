@@ -11,8 +11,8 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 - **topic** - a target topic for the message to be subscribed by the receiver.
 - **message** - a plaintext message to be relayed to any subscribers on the topic.
 - **ttl** - a storage duration for the message to be cached server-side in **seconds** (aka time-to-live). **(0 - no caching, -1 - forever)**
-- **prompt** - a flag that identifies whether the server should trigger a notification webhook to a client through a push server **(true/false)**
 - **tag** - a label that identifies which api sent a message. It allows collecting metrics. **(0 - unknown, 1 - sign, 2 - chat, 3 - auth, 4 - push)**
+- **prompt** - a flag that identifies whether the server should trigger a notification webhook to a client through a push server **(true/false)**
 - **id** - a unique identifier for each subscription targetting a topic.
 
 ## Publish payload
