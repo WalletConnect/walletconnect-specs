@@ -79,6 +79,8 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 
 ### wc_chatLeave
 
+Used to signal to a peer that a chat thread is being left.
+
 ```jsonc
 // wc_chatLeave params
 {
