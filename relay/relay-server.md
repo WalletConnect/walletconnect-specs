@@ -6,15 +6,14 @@ This document aims to create the JsonRpc contract between a client and a server.
 
 ## Definitions
 
-The message policy is a set of actions that have to be taken by involved parties without decrypting a message.
-One can create a new policy by providing an unique TTL value.
-The TTL value equals the message policy.
-The number of policies is unlimited.
-Any policy is protocol agnostic.
+The following definitions are shared concepts across all JSON-RPC methods for the Iridium API:
 
-- **TTL** - defines a message storage duration on server-side in **seconds**. **(0 - no caching, -1 - forever)**
-- **User prompt** - a flag that says whether a server should send a push to a client **(true/false)**
-- **Api label** - a label that says what api sent a message. It allows collecting metrics. **(0 - unknown, 1 - sign, 2 - chat, 3 - auth, 4 - push)**
+- **topic** - a target topic for the message to be subscribed by the receiver.
+- **message** - a plaintext message to be relayed to any subscribers on the topic.
+- **ttl** - a storage duration for the message to be cached server-side in **seconds** (aka time-to-live). **(0 - no caching, -1 - forever)**
+- **prompt** - a flag that identifies whether the server should trigger a notification webhook to a client through a push server **(true/false)**
+- **tag** - a label that identifies which api sent a message. It allows collecting metrics. **(0 - unknown, 1 - sign, 2 - chat, 3 - auth, 4 - push)**
+- **id** - a unique identifier for each subscription targetting a topic.
 
 ## Publish payload
 
@@ -29,8 +28,8 @@ Used when a client publishes a message to a server.
     "topic" : string,
     "message" : string,
     "ttl" : seconds,
-    "prompt" : boolean,
-    "api" : number,
+    "tag" : number, // optional / default = 0
+    "prompt" : boolean, // optional / default = false
   }
 }
 ```
