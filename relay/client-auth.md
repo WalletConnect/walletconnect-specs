@@ -89,7 +89,7 @@ const JWT_IRIDIUM_TYP: IridiumJWTHeader["typ"] = "JWT";
 
 const JWT_DELIMITER = ".";
 
-const JWT_EXPIRATION = 30seconds;
+const JWT_EXPIRATION = 30;
 
 const JWT_ENCODING = "base64url";
 
@@ -201,7 +201,7 @@ function decodeJWT(jwt: string): IridiumJWTSigned {
 async function signJWT(subject: string, keyPair: ed25519.KeyPair) {
   const header = { alg: JWT_IRIDIUM_ALG, typ: JWT_IRIDIUM_TYP };
   const issuer = encodeIss(keyPair.publicKey);
-  const expiration = Math. floor(Date. now() / 1000) + 30;
+  const expiration = Math. floor(Date. now() / 1000) + JWT_EXPIRATION;
   const payload = { iss: issuer, sub: subject, exp: expiration };
   const data = fromString(encodeData({ header, payload }), "utf8");
   const signature = ed25519.sign(keyPair.secretKey, data);
