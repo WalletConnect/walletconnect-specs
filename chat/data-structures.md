@@ -10,6 +10,7 @@ Invite is an encrypted payload used in wc_chatInvite which will be tracked by th
 {
   "message": string,
   "account": string,
+  "publicKey": string,
   "signature": string, // optional
 }
 ```
