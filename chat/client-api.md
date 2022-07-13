@@ -26,7 +26,7 @@ abstract class Client {
 
   // accepts a chat invite by id / returns thread topic
   public abstract accept(params: {
-    inviteId: string;
+    inviteId: number;
   }): Promise<string>;
 
 // rejects a chat invite by id
