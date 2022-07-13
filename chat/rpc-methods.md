@@ -88,9 +88,7 @@ Used to send a message to its peer through topic T.
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -122,9 +120,7 @@ Used to signal to a peer that a chat thread is being left.
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -156,9 +152,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |

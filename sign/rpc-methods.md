@@ -44,9 +44,7 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -78,9 +76,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -212,9 +208,7 @@ Used to settle a session over topic B.
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -259,9 +253,7 @@ Used to update the namespaces of a session.
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -295,9 +287,7 @@ Used to extend the lifetime of a session.
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -333,9 +323,7 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -369,9 +357,7 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -404,9 +390,7 @@ Used to inform the peer to close and delete a session. The reason field should b
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
@@ -438,9 +422,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 
 ```jsonc
 // Success result
-{
-  // empty
-}
+true
 
 | Iridium |          |
 | ------- | -------- |
