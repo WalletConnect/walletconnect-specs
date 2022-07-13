@@ -114,7 +114,7 @@ Used to signal to a peer that a chat thread is being left.
 | Iridium |          |
 | ------- | -------- |
 | TTL     | 86400    |
-| Prompt  | false    |
+| Prompt  | true     |
 | Tag     | 2004     |
 ```
 
