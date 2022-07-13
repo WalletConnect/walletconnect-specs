@@ -69,7 +69,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
-| Tag     | 1102     |
+| Tag     | 1002     |
 ```
 
 **Response**
@@ -82,7 +82,7 @@ true
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
-| Tag     | 1103     |
+| Tag     | 1003     |
 ```
 
 ## Session:
