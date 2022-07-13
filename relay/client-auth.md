@@ -57,6 +57,7 @@ import * as ed25519 from "@stablelib/ed25519";
 import { concat } from "uint8arrays/concat";
 import { toString } from "uint8arrays/to-string";
 import { fromString } from "uint8arrays/from-string";
+import { fromMiliseconds } from "@walletconnect/time";
 import { safeJsonParse, safeJsonStringify } from "@walletconnect/safe-json";
 
 // ---------- Interfaces ----------------------------------------------- //
@@ -92,21 +93,23 @@ const JWT_ENCODING = "base64url";
 
 const JSON_ENCODING = "utf8";
 
+const DATA_ENCODING = "utf8";
+
 const DID_DELIMITER = ":";
 
 const DID_PREFIX = "did";
 
 const DID_METHOD = "key";
 
-const MULTIBASE_BASE58BTC_PREFIX = "z";
-
 const MULTICODEC_ED25519_ENCODING = "base58btc";
 
-const MULTICODEC_ED25519_KEY_TYPE = "K36";
+const MULTICODEC_ED25519_BASE = "z";
+
+const MULTICODEC_ED25519_HEADER = "K36";
 
 const MULTICODEC_ED25519_LENGTH = 32;
 
-// ---------- Utilities ----------------------------------------------- //
+// ---------- JSON ----------------------------------------------- //
 
 function decodeJSON(str: string): any {
   return safeJsonParse(toString(fromString(str, JWT_ENCODING), JSON_ENCODING));
@@ -118,6 +121,8 @@ function encodeJSON(val: any): string {
     JWT_ENCODING
   );
 }
+
+// ---------- Issuer ----------------------------------------------- //
 
 function encodeIss(publicKey: Uint8Array): string {
   const keyType = fromString(
@@ -156,6 +161,8 @@ function decodeIss(issuer: string): Uint8Array {
   return publicKey;
 }
 
+// ---------- Sig ----------------------------------------------- //
+
 function encodeSig(bytes: Uint8Array): string {
   return toString(bytes, JWT_ENCODING);
 }
@@ -164,18 +171,23 @@ function decodeSig(encoded: string): Uint8Array {
   return fromString(encoded, JWT_ENCODING);
 }
 
-function encodeData(params: IridiumJWTData): string {
-  return [encodeJSON(params.header), encodeJSON(params.payload)].join(
-    JWT_DELIMITER
+// ---------- Data ----------------------------------------------- //
+
+function encodeData(params: IridiumJWTData): Uint8Array {
+  return fromString(
+    [encodeJSON(params.header), encodeJSON(params.payload)].join(JWT_DELIMITER),
+    DATA_ENCODING
   );
 }
 
-function decodeData(jwt: string): IridiumJWTData {
-  const params = jwt.split(JWT_DELIMITER);
+function decodeData(data: Uint8Array): IridiumJWTData {
+  const params = toString(data, DATA_ENCODING).split(JWT_DELIMITER);
   const header = decodeJSON(params[0]);
   const payload = decodeJSON(params[1]);
   return { header, payload };
 }
+
+// ---------- JWT ----------------------------------------------- //
 
 function encodeJWT(params: IridiumJWTSigned): string {
   return [
@@ -195,11 +207,18 @@ function decodeJWT(jwt: string): IridiumJWTSigned {
 
 // ---------- API ----------------------------------------------- //
 
-async function signJWT(subject: string, keyPair: ed25519.KeyPair) {
+async function signJWT(
+  sub: string,
+  aud: string,
+  ttl: number,
+  keyPair: ed25519.KeyPair
+) {
   const header = { alg: JWT_IRIDIUM_ALG, typ: JWT_IRIDIUM_TYP };
-  const issuer = encodeIss(keyPair.publicKey);
-  const payload = { iss: issuer, sub: subject };
-  const data = fromString(encodeData({ header, payload }), "utf8");
+  const iss = encodeIss(keyPair.publicKey);
+  const iat = fromMiliseconds(Date.now());
+  const exp = iat + ttl;
+  const payload = { iss, sub, aud, iat, exp };
+  const data = encodeData({ header, payload });
   const signature = ed25519.sign(keyPair.secretKey, data);
   return encodeJWT({ header, payload, signature });
 }
@@ -210,7 +229,7 @@ async function verifyJWT(jwt: string) {
     throw new Error("JWT must use EdDSA algorithm");
   }
   const publicKey = decodeIss(payload.iss);
-  const data = fromString(encodeData({ header, payload }), "utf8");
+  const data = encodeData({ header, payload });
   return ed25519.verify(publicKey, data, signature);
 }
 ```
@@ -218,9 +237,15 @@ async function verifyJWT(jwt: string) {
 ### Test Cases
 
 ```JavaScript
-// Client generated unique id to be used as subject
-const subject =
+//  Client will sign a unique identifier as the subject
+const sub =
   "c479fe5dc464e771e78b193d239a65b58d278cad1c34bfb0b5716e5bb514928e";
+
+// Client will include the server endpoint as audience
+const aud = "wss://relay.walletconnect.com";
+
+// Client will use the JWT for 24 hours
+const ttl = 86400;
 
 // Fixed seed to generate the same key pair
 const seed = fromString(
@@ -228,17 +253,19 @@ const seed = fromString(
   "base16"
 );
 
+// Fixed issuedAt timestamp in seconds
+const iat = 1656910097;
+
 // Generate key pair from seed
 const keyPair = ed25519.generateKeyPairFromSeed(seed);
 // secretKey = "58e0254c211b858ef7896b00e3f36beeb13d568d47c6031c4218b87718061295884ab67f787b69e534bfdba8d5beb4e719700e90ac06317ed177d49e5a33be5a"
 // publicKey = "884ab67f787b69e534bfdba8d5beb4e719700e90ac06317ed177d49e5a33be5a"
 
-// Expected JWT for given subject
-const expected =
-  "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtvZEhad25lVlJTaHRhTGY4SktZa3hwREdwMXZHWm5wR21kQnBYOE0yZXh4SCIsInN1YiI6ImM0NzlmZTVkYzQ2NGU3NzFlNzhiMTkzZDIzOWE2NWI1OGQyNzhjYWQxYzM0YmZiMGI1NzE2ZTViYjUxNDkyOGUifQ.0JkxOM-FV21U7Hk-xycargj_qNRaYV2H5HYtE4GzAeVQYiKWj7YySY5AdSqtCgGzX4Gt98XWXn2kSr9rE1qvCA";
+// Expected JWT for given payload
+const expected = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtvZEhad25lVlJTaHRhTGY4SktZa3hwREdwMXZHWm5wR21kQnBYOE0yZXh4SCIsInN1YiI6ImM0NzlmZTVkYzQ2NGU3NzFlNzhiMTkzZDIzOWE2NWI1OGQyNzhjYWQxYzM0YmZiMGI1NzE2ZTViYjUxNDkyOGUiLCJhdWQiOiJ3c3M6Ly9yZWxheS53YWxsZXRjb25uZWN0LmNvbSIsImlhdCI6MTY1NjkxMDA5NywiZXhwIjoxNjU2OTk2NDk3fQ.bAKl1swvwqqV_FgwvD4Bx3Yp987B9gTpZctyBviA-EkAuWc8iI8SyokOjkv9GJESgid4U8Tf2foCgrQp2qrxBA";
 
 async function test() {
-  const jwt = await signJWT(subject, keyPair);
+  const jwt = await signJWT(sub, aud, ttl, keyPair);
   console.log("jwt", jwt);
   console.log("matches", jwt === expected);
   const verified = await verifyJWT(jwt);
