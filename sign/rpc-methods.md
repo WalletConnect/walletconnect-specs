@@ -68,7 +68,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 | Iridium |          |
 | ------- | -------- |
 | TTL     | 30       |
-| Prompt  | true     |
+| Prompt  | false    |
 | Tag     | 1102     |
 ```
 
