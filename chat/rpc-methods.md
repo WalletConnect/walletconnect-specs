@@ -106,7 +106,7 @@ Used to signal to a peer that a chat thread is being left.
 **Request**
 
 ```jsonc
-// wc_chatPing params
+// wc_chatLeave params
 {
   // empty
 }
