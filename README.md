@@ -41,6 +41,7 @@ In this repository, we document and discuss features that are currently under de
 - Relay Client ([doc](relay/relay-client.md))
 - Relay Server ([doc](relay/relay-server.md))
 - Client Auth ([doc](relay/client-auth.md))
+- User Agent ([doc](relay/user-agent.md))
 
 ### Crypto
 
