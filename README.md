@@ -8,6 +8,7 @@ In this repository, we document and discuss features that are currently under de
 
 - Sign Overview ([doc](sign/README.md))
 - Session Proposal ([doc](sign/session-proposal.md))
+- Session Namespaces ([doc](sign/session-namespaces.md))
 - Pairing URI ([doc](sign/pairing-uri.md))
 - RPC methods ([doc](sign/rpc-methods.md))
 - Client API ([doc](sign/client-api.md))
@@ -30,6 +31,11 @@ In this repository, we document and discuss features that are currently under de
 ### Auth
 
 - Auth Overview ([doc](auth/README.md))
+- Request URI ([doc](auth/request-uri.md))
+- Client API ([doc](auth/client-api.md))
+- Authentication ([doc](auth/authentication.md))
+- RPC Methods ([doc](auth/rpc-methods.md))
+- Data Structures ([doc](auth/data-structures.md))
 
 ### Push
 
