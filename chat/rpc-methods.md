@@ -36,7 +36,7 @@ Used to invite a peer through topic I. Requires a success response with associat
   "signature": string, // optional
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | true     |
@@ -52,7 +52,7 @@ Used to invite a peer through topic I. Requires a success response with associat
   "publicKey": string, // invitee public key
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -77,7 +77,7 @@ Used to send a message to its peer through topic T.
   "media": Media // optional
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | true     |
@@ -90,7 +90,7 @@ Used to send a message to its peer through topic T.
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -109,7 +109,7 @@ Used to signal to a peer that a chat thread is being left.
   // empty
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | true     |
@@ -122,7 +122,7 @@ Used to signal to a peer that a chat thread is being left.
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -141,7 +141,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
   // empty
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
@@ -154,7 +154,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
