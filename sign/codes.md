@@ -19,6 +19,12 @@ case .unauthorizedUpdateRequest: return 3003
 case .unauthorizedExtendRequest: return 3004
 ```
 
+## EIP-1193
+
+```sh
+case .userRejectedRequest return 4001
+```
+
 ## REJECTED (CAIP-25)
 
 ```sh
