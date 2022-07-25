@@ -33,7 +33,7 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
   "message": string
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -46,7 +46,7 @@ Used to inform the peer to close and delete a pairing. All associated sessions o
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -65,7 +65,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
   // empty
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
@@ -78,7 +78,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
@@ -132,7 +132,7 @@ Used to propose a session through topic A. Requires a success response with asso
   },
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | true     |
@@ -151,7 +151,7 @@ Used to propose a session through topic A. Requires a success response with asso
   "responderPublicKey": string,
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | false    |
@@ -197,7 +197,7 @@ Used to settle a session over topic B.
   "expiry": Int64, // seconds
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | false    |
@@ -210,7 +210,7 @@ Used to settle a session over topic B.
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | false    |
@@ -242,7 +242,7 @@ Used to update the namespaces of a session.
   }
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -255,7 +255,7 @@ Used to update the namespaces of a session.
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -276,7 +276,7 @@ Used to extend the lifetime of a session.
   "expiry": number
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -289,7 +289,7 @@ Used to extend the lifetime of a session.
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -312,7 +312,7 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
   "chainId": string
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | true     |
@@ -325,7 +325,7 @@ Sends a CAIP-27 request to the peer client. The client should immediately reject
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | false    |
@@ -346,7 +346,7 @@ true
   "chainId": string
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | true     |
@@ -359,7 +359,7 @@ true
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 300      |
 | Prompt  | false    |
@@ -379,7 +379,7 @@ Used to inform the peer to close and delete a session. The reason field should b
   "message": string
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -392,7 +392,7 @@ Used to inform the peer to close and delete a session. The reason field should b
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
@@ -411,7 +411,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
   // empty
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
@@ -424,7 +424,7 @@ Used to evaluate if peer is currently online. Timeout at 30 seconds
 // Success result
 true
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 30       |
 | Prompt  | false    |
