@@ -41,10 +41,8 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
       "icons": [string]
     },
   },
-  "header": {
-    "t": string,
-  },
-  "payload": {
+  "payloadParams": {
+    "type":  string,
     "chainId": string,
     "domain": string,
     "aud": string,
