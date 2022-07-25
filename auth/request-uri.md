@@ -14,7 +14,7 @@
 
 ### Required
 
-- `symKey` (STRING) = account associated with public key
+- `symKey` (STRING) = symmetric key used for pairing encryption
 - `relay-protocol` (STRING) = protocol name used for relay
 
 ### Optional
