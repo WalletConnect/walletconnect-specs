@@ -41,20 +41,7 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
       "icons": [string]
     },
   },
-  "payloadParams": {
-    "type":  string,
-    "chainId": string,
-    "domain": string,
-    "aud": string,
-    "version": string,
-    "nonce": string,
-    "iat": string,
-    "nbf": string, // Optional
-    "exp": string, // Optional
-    "statement": string, // Optional
-    "requestId": string, // Optional
-    "resources": [string] // Optional
-  }
+  "payloadParams": PayloadParams
 }
 
 | Iridium |          |
