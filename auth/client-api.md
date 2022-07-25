@@ -18,5 +18,7 @@ abstract class Client {
     requestId?: string;
     resources?: string[];
   }): Promise<boolean>;
-}
+// for wallet to listen on auth request
+  public abstract on("on_auth_request", (topic: string, cacao: UnsignedCACAO) => {}): void;
+  }
 ```
