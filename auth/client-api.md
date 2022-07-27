@@ -16,7 +16,7 @@ abstract class Client {
   public abstract request(params: RequestParams): Promise<boolean>;
 
   // respond wallet authentication
-  public abstract respond(params: RespondParas): Promise<boolean>;
+  public abstract respond(params: RespondParams): Promise<boolean>;
 
   // for wallet to listen on auth request
   public abstract on("auth_request", (topic: string, payloadParams: PayloadParams) => {}): void;
