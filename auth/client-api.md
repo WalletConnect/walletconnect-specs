@@ -18,6 +18,9 @@ abstract class Client {
   // respond wallet authentication
   public abstract respond(params: RespondParas): Promise<boolean>;
 
+  // subscribe to pairing created
+  public abstract on("pairing_created", (pairingCreated: PairingCreated) => {}): void;
+
   // for wallet to listen on auth request
   public abstract on("auth_request", (topic: string, payloadParams: PayloadParams) => {}): void;
   }
