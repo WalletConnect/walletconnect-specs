@@ -19,7 +19,7 @@ User returns to a previously visted website after authentication expiry
 
 1. Website checks if user is authenticated from local storage
 2. Website sends new request to previously paired wallet
-3. User views notification and redirects to wallet
+3. User is prompted/redirected to wallet
 4. User approves prompt for auth in wallet
 5. User returns to website after prompt success
 6. Website is now authenticated with signed message
