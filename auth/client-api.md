@@ -16,7 +16,7 @@ abstract class Client {
   public abstract request(params: RequestParams): Promise<boolean>;
 
   // respond wallet authentication
-  public abstract respond(params: RespondParas): Promise<boolean>;
+  public abstract respond(params: RespondParams): Promise<boolean>;
 
   // subscribe to pairing created
   public abstract on("pairing_created", (pairingCreated: PairingCreated) => {}): void;
