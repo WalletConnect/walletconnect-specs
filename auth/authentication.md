@@ -44,7 +44,7 @@ A starts polling messages on response topic.
 
 B subscribes to pairing topic from provided URI
 
-B receives request and decrypts it with symKey S.
+B receives request and decrypts it with symKey S from URI.
 
 B constructs message to be signed from request and signs it.
 
