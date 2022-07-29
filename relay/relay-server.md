@@ -23,7 +23,7 @@ Used when a client publishes a message to a server.
 {
   "id" : "1",
   "jsonrpc": "2.0",
-  "method": "iridium_publish",
+  "method": "irn_publish",
   "params" : {
     "topic" : string,
     "message" : string,
@@ -42,7 +42,7 @@ Used when a client subscribes a given topic.
 {
   "id" : "1",
   "jsonrpc": "2.0",
-  "method": "iridium_subscribe",
+  "method": "irn_subscribe",
   "params" : {
     "topic" : string
   }
@@ -57,7 +57,7 @@ Used when a client unsubscribes a given topic.
 {
   "id" : "1",
   "jsonrpc": "2.0",
-  "method": "iridium_unsubscribe",
+  "method": "irn_unsubscribe",
   "params" : {
     "topic" : string,
     "id": string
@@ -73,7 +73,7 @@ Used when a server sends a subscription message to a client.
 {
   "id" : "1",
   "jsonrpc": "2.0",
-  "method": "iridium_subscription",
+  "method": "irn_subscription",
   "params" : {
     "id" : string,
     "data" : {
