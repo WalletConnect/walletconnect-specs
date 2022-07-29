@@ -13,8 +13,8 @@ Body:
 
 ```jsonc
 {
-    “account”: string,
-    “publicKey”: string
+    "account": string,
+    "publicKey": string
 }
 ```
 
@@ -28,7 +28,7 @@ Response:
 
 ```jsonc
 {
-    “account”: string,
-    “publicKey”: string
+    "account": string,
+    "publicKey": string
 }
 ```

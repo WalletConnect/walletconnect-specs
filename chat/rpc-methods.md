@@ -25,6 +25,8 @@ Used to invite a peer through topic I. Requires a success response with associat
 - Success response is equivalent to invite acceptance.
 - Error response is equivalent to invite rejection.
 
+**Request**
+
 ```jsonc
 // wc_chatInvite params
 {
@@ -33,13 +35,28 @@ Used to invite a peer through topic I. Requires a success response with associat
   "publicKey": string,
   "signature": string, // optional
 }
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | true     |
+| Tag     | 2000     |
+
 ```
+
+**Response**
 
 ```jsonc
 // Success result
 {
   "publicKey": string, // invitee public key
 }
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | false    |
+| Tag     | 2001     |
 ```
 
 ### wc_chatMessage
@@ -49,6 +66,8 @@ Used to send a message to its peer through topic T.
 - Success response is equivalent to message delivery receipt.
 - Error response is equivalent to message delivery failure.
 
+**Request**
+
 ```jsonc
 // wc_chatMessage params
 {
@@ -57,40 +76,87 @@ Used to send a message to its peer through topic T.
   "timestamp": Int64,
   "media": Media // optional
 }
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | true     |
+| Tag     | 2002     |
 ```
+
+**Response**
 
 ```jsonc
 // Success result
-{
-  // empty
-}
-```
+true
 
-### wc_chatPing
-
-Used to evaluate if peer is currently online. Timeout at 30 seconds
-
-```jsonc
-// wc_chatPing params
-{
-  // empty
-}
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | false    |
+| Tag     | 2003     |
 ```
 
 ### wc_chatLeave
 
 Used to signal to a peer that a chat thread is being left.
 
+**Request**
+
 ```jsonc
 // wc_chatLeave params
 {
   // empty
 }
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | true     |
+| Tag     | 2004     |
 ```
+
+**Response**
 
 ```jsonc
 // Success result
+true
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 86400    |
+| Prompt  | false    |
+| Tag     | 2005     |
+```
+
+### wc_chatPing
+
+Used to evaluate if peer is currently online. Timeout at 30 seconds
+
+**Request**
+
+```jsonc
+// wc_chatPing params
 {
   // empty
 }
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 30       |
+| Prompt  | false    |
+| Tag     | 2006     |
+```
+
+**Response**
+
+```jsonc
+// Success result
+true
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 30       |
+| Prompt  | false    |
+| Tag     | 2007     |
 ```

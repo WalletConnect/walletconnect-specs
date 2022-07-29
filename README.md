@@ -8,6 +8,7 @@ In this repository, we document and discuss features that are currently under de
 
 - Sign Overview ([doc](sign/README.md))
 - Session Proposal ([doc](sign/session-proposal.md))
+- Session Namespaces ([doc](sign/session-namespaces.md))
 - Pairing URI ([doc](sign/pairing-uri.md))
 - RPC methods ([doc](sign/rpc-methods.md))
 - Client API ([doc](sign/client-api.md))
@@ -30,6 +31,11 @@ In this repository, we document and discuss features that are currently under de
 ### Auth
 
 - Auth Overview ([doc](auth/README.md))
+- Request URI ([doc](auth/request-uri.md))
+- Client API ([doc](auth/client-api.md))
+- Authentication ([doc](auth/authentication.md))
+- RPC Methods ([doc](auth/rpc-methods.md))
+- Data Structures ([doc](auth/data-structures.md))
 
 ### Push
 
@@ -40,8 +46,10 @@ In this repository, we document and discuss features that are currently under de
 - Relay Overview ([doc](relay/README.md))
 - Relay Client ([doc](relay/relay-client.md))
 - Relay Server ([doc](relay/relay-server.md))
-- Client Auth ([doc](relay/client-auth/README.md))
+- Client Auth ([doc](relay/client-auth.md))
+- User Agent ([doc](relay/user-agent.md))
 
 ### Crypto
 
 - Crypto Overview ([doc](crypto/README.md))
+- Typed Envelopes ([doc](crypto/envelopes.md))
