@@ -6,9 +6,9 @@ Relay network is defined by the federation of relay servers exchanging messages 
 
 Relay servers will route messages through other servers in the network that also have matching subscribers on a topic whilst maintaing the same expected behavior described by a publisher when requested to its own server
 
-## Iridium Message
+## Network Message
 
-An Iridium message is defined as a serialized message of a successfully cached message from a publishing request from a connected client with one of the servers.
+An Network message is defined as a serialized message of a successfully cached message from a publishing request from a connected client with one of the servers.
 
 Context:
 
@@ -32,7 +32,7 @@ Payload:
 ### Data Structure
 
 ```typescript
-interface IridiumMessage {
+interface NetworkMessage {
   context: {
     topic: string;
     hash: string;

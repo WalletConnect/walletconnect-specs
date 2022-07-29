@@ -6,7 +6,7 @@ This document aims to create the JsonRpc contract between a client and a server.
 
 ## Definitions
 
-The following definitions are shared concepts across all JSON-RPC methods for the Iridium API:
+The following definitions are shared concepts across all JSON-RPC methods for the Relay API:
 
 - **topic** - a target topic for the message to be subscribed by the receiver.
 - **message** - a plaintext message to be relayed to any subscribers on the topic.
