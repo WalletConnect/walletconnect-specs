@@ -44,7 +44,7 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
   "payloadParams": PayloadParams
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | true     |
@@ -80,7 +80,7 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
   }
 }
 
-| Iridium |          |
+| IRN     |          |
 | ------- | -------- |
 | TTL     | 86400    |
 | Prompt  | false    |
