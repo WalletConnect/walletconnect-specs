@@ -43,11 +43,11 @@ function decodeIss(issuer: string): Uint8Array;
 function encodeSig(bytes: Uint8Array): string;
 function decodeSig(encoded: string): Uint8Array;
 
-function encodeData(params: IridiumJWTData): string;
-function decodeData(jwt: string): IridiumJWTData;
+function encodeData(params: JWTData): string;
+function decodeData(jwt: string): JWTData;
 
-function encodeJWT(params: IridiumJWTSigned): string;
-function decodeJWT(jwt: string): IridiumJWTSigned;
+function encodeJWT(params: JWTSigned): string;
+function decodeJWT(jwt: string): JWTSigned;
 ```
 
 ### Reference Implementation
@@ -62,30 +62,30 @@ import { safeJsonParse, safeJsonStringify } from "@walletconnect/safe-json";
 
 // ---------- Interfaces ----------------------------------------------- //
 
-interface IridiumJWTHeader {
+interface JWTHeader {
   alg: "EdDSA";
   typ: "JWT";
 }
 
-interface IridiumJWTPayload {
+interface JWTPayload {
   iss: string;
   sub: string;
 }
 
-interface IridiumJWTData {
-  header: IridiumJWTHeader;
-  payload: IridiumJWTPayload;
+interface JWTData {
+  header: JWTHeader;
+  payload: JWTPayload;
 }
 
-interface IridiumJWTSigned extends IridiumJWTData {
+interface JWTSigned extends JWTData {
   signature: Uint8Array;
 }
 
 // ---------- Constants ----------------------------------------------- //
 
-const JWT_IRIDIUM_ALG: IridiumJWTHeader["alg"] = "EdDSA";
+const JWT_ALG: JWTHeader["alg"] = "EdDSA";
 
-const JWT_IRIDIUM_TYP: IridiumJWTHeader["typ"] = "JWT";
+const JWT_TYP: JWTHeader["typ"] = "JWT";
 
 const JWT_DELIMITER = ".";
 
@@ -173,14 +173,14 @@ function decodeSig(encoded: string): Uint8Array {
 
 // ---------- Data ----------------------------------------------- //
 
-function encodeData(params: IridiumJWTData): Uint8Array {
+function encodeData(params: JWTData): Uint8Array {
   return fromString(
     [encodeJSON(params.header), encodeJSON(params.payload)].join(JWT_DELIMITER),
     DATA_ENCODING
   );
 }
 
-function decodeData(data: Uint8Array): IridiumJWTData {
+function decodeData(data: Uint8Array): JWTData {
   const params = toString(data, DATA_ENCODING).split(JWT_DELIMITER);
   const header = decodeJSON(params[0]);
   const payload = decodeJSON(params[1]);
@@ -189,7 +189,7 @@ function decodeData(data: Uint8Array): IridiumJWTData {
 
 // ---------- JWT ----------------------------------------------- //
 
-function encodeJWT(params: IridiumJWTSigned): string {
+function encodeJWT(params: JWTSigned): string {
   return [
     encodeJSON(params.header),
     encodeJSON(params.payload),
@@ -197,7 +197,7 @@ function encodeJWT(params: IridiumJWTSigned): string {
   ].join(JWT_DELIMITER);
 }
 
-function decodeJWT(jwt: string): IridiumJWTSigned {
+function decodeJWT(jwt: string): JWTSigned {
   const params = jwt.split(JWT_DELIMITER);
   const header = decodeJSON(params[0]);
   const payload = decodeJSON(params[1]);
@@ -213,7 +213,7 @@ async function signJWT(
   ttl: number,
   keyPair: ed25519.KeyPair
 ) {
-  const header = { alg: JWT_IRIDIUM_ALG, typ: JWT_IRIDIUM_TYP };
+  const header = { alg: JWT_ALG, typ: JWT_TYP };
   const iss = encodeIss(keyPair.publicKey);
   const iat = fromMiliseconds(Date.now());
   const exp = iat + ttl;
@@ -225,7 +225,7 @@ async function signJWT(
 
 async function verifyJWT(jwt: string) {
   const { header, payload, signature } = decodeJWT(jwt);
-  if (header.alg !== JWT_IRIDIUM_ALG || header.typ !== JWT_IRIDIUM_TYP) {
+  if (header.alg !== JWT_ALG || header.typ !== JWT_TYP) {
     throw new Error("JWT must use EdDSA algorithm");
   }
   const publicKey = decodeIss(payload.iss);
