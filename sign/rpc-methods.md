@@ -177,7 +177,8 @@ Used to settle a session over topic B.
       "name": string,
       "description": string,
       "url": string,
-      "icons": [string]
+      "icons": [string],
+      "deepLink": string //optional
     }
   },
   "namespaces": {
