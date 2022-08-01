@@ -5,8 +5,10 @@
 ```typescript
 interface RequestParams {
   chainId: string;
+  domain: string;
   nonce: string;
-  aud?: string;
+  aud: string;
+  type?: string;
   nbf?: string;
   exp?: string;
   statement?: string;
