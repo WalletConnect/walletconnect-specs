@@ -22,7 +22,8 @@ Metadata is a set of parameters used to identify each participant in a session a
   "name": string,
   "description": string,
   "url": string,
-  "icons": [string]
+  "icons": [string],
+  "deepLink": string //optional
 }
 ```
 
@@ -74,7 +75,8 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
       "name": string,
       "description": string,
       "url": string,
-      "icons": [string]
+      "icons": [string],
+      "deepLink": string //optional
     }
   },
   "expiry": Int64, // timestamp (seconds)
@@ -191,7 +193,8 @@ Settelement is sent by the responder after approval and it's broadcasted right a
       "name": string,
       "description": string,
       "url": string,
-      "icons": [string]
+      "icons": [string],
+      "deepLink": string //optional
     }
   },
   "namespaces": {
