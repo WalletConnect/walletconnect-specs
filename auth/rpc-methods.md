@@ -34,12 +34,7 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
 {
   "requester": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string]
-    },
+    "metadata": Metadata,
   },
   "payloadParams": PayloadParams
 }
@@ -57,27 +52,9 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
 ```jsonc
 // Success result
 {
-  "header": {
-    "t": string,
-  },
-  "payload": {
-    "iss": string,
-    "domain": string,
-    "aud": string,
-    "version": string,
-    "nonce": string,
-    "iat": string,
-    "nbf": string, // Optional
-    "exp": string, // Optional
-    "statement": string, // Optional
-    "requestId": string, // Optional
-    "resources": [string] // Optional
-  },
-  "signature": {
-    "t": string,
-    "s": string,
-    "m": string //optional
-  }
+  "header": CacaoHeader,
+  "payload": CacaoPayload,
+  "signature": CacaoSignature
 }
 
 | IRN     |          |
