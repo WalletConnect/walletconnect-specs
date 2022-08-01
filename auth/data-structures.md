@@ -1,5 +1,18 @@
 # Data Structures
 
+## Metadata
+
+Metadata is a set of parameters used to identify each participant in a session and/or pairing which are provided by the consumer for the client to broadcast to its peer
+
+```jsonc
+{
+  "name": string,
+  "description": string,
+  "url": string,
+  "icons": [string]
+}
+```
+
 ## Request Params
 
 ```typescript
@@ -31,7 +44,7 @@ interface RespondParams {
 Used for requester to authenticate wallet
 
 ```typescript
-interface AuthPayloadParams {
+interface PayloadParams {
   type: string; // same as Cacao Header type (t)
   chainId: string;
   domain: string;
@@ -44,6 +57,16 @@ interface AuthPayloadParams {
   statement?: string;
   requestId?: string;
   resources?: string[];
+}
+```
+
+## Pending Request
+
+```typescript
+interface PendingRequest {
+  id: number;
+  payloadParams: PayloadParams;
+  message: string;
 }
 ```
 
