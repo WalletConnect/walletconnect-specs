@@ -23,7 +23,10 @@ Metadata is a set of parameters used to identify each participant in a session a
   "description": string,
   "url": string,
   "icons": [string],
-  "deepLink": string //optional
+  "redirect": { // Optional
+    "native": string, // Optional
+    "universal": string, // Optional
+  }
 }
 ```
 
@@ -69,6 +72,7 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
       "icons": [string]
     }
   },
+
   "peer": {
     "publicKey": string,
     "metadata": {
@@ -76,9 +80,13 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
       "description": string,
       "url": string,
       "icons": [string],
-      "deepLink": string //optional
+      "redirect": { // Optional
+        "native": string, // Optional
+        "universal": string, // Optional
+      }
     }
   },
+
   "expiry": Int64, // timestamp (seconds)
   "acknowledged": boolean,
   "controller": string,
@@ -132,7 +140,11 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
       "name": string,
       "description": string,
       "url": string,
-      "icons": [string]
+      "icons": [string],
+      "redirect": { // Optional
+        "native": string, // Optional
+        "universal": string, // Optional
+      }
     }
   },
   "requiredNamespaces": {
@@ -194,7 +206,10 @@ Settelement is sent by the responder after approval and it's broadcasted right a
       "description": string,
       "url": string,
       "icons": [string],
-      "deepLink": string //optional
+      "redirect": { // Optional
+        "native": string, // Optional
+        "universal": string, // Optional
+      }
     }
   },
   "namespaces": {
