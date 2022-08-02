@@ -9,7 +9,11 @@ Metadata is a set of parameters used to identify each participant in a session a
   "name": string,
   "description": string,
   "url": string,
-  "icons": [string]
+  "icons": [string],
+  "redirect": { // Optional
+    "native": string, // Optional
+    "universal": string, // Optional
+  }
 }
 ```
 
