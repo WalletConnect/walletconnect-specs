@@ -113,7 +113,11 @@ Used to propose a session through topic A. Requires a success response with asso
       "name": string,
       "description": string,
       "url": string,
-      "icons": [string]
+      "icons": [string],
+      "redirect": { // Optional
+        "native": string, // Optional
+        "universal": string, // Optional
+      }
     }
   },
   "requiredNamespaces": {
@@ -178,7 +182,10 @@ Used to settle a session over topic B.
       "description": string,
       "url": string,
       "icons": [string],
-      "deepLink": string //optional
+      "redirect": { // Optional
+        "native": string, // Optional
+        "universal": string, // Optional
+      }
     }
   },
   "namespaces": {
