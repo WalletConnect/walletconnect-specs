@@ -38,7 +38,7 @@ interface RequestParams {
 
 ```typescript
 interface RespondParams {
-  topic: string;
+  id: number;
   signature: CacaoSignature;
 }
 ```
