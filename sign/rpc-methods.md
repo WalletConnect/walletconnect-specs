@@ -109,16 +109,7 @@ Used to propose a session through topic A. Requires a success response with asso
   ],
   "proposer": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string],
-      "redirect": { // Optional
-        "native": string, // Optional
-        "universal": string, // Optional
-      }
-    }
+    "metadata": Metadata
   },
   "requiredNamespaces": {
     "<namespace_name>" : {
@@ -177,16 +168,7 @@ Used to settle a session over topic B.
   },
   "controller": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string],
-      "redirect": { // Optional
-        "native": string, // Optional
-        "universal": string, // Optional
-      }
-    }
+    "metadata": Metadata
   },
   "namespaces": {
     "<namespace_name>" : {

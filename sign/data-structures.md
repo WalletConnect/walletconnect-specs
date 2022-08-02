@@ -41,12 +41,7 @@ Pairing is a topic encrypted by a symmetric key shared through a URI between two
     "protocol": string,
     "data": string
   },
-  "peerMetadata": {
-    "name": string,
-    "description": string,
-    "url": string,
-    "icons": [string]
-  },
+  "peerMetadata": Metadata,
   "expiry": Int64,
   "active": boolean
 }
@@ -65,26 +60,12 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
   },
   "self": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string]
-    }
+    "metadata": Metadata
   },
 
   "peer": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string],
-      "redirect": { // Optional
-        "native": string, // Optional
-        "universal": string, // Optional
-      }
-    }
+    "metadata": Metadata
   },
 
   "expiry": Int64, // timestamp (seconds)
@@ -136,16 +117,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
   ],
   "proposer": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string],
-      "redirect": { // Optional
-        "native": string, // Optional
-        "universal": string, // Optional
-      }
-    }
+    "metadata": Metadata
   },
   "requiredNamespaces": {
     "<namespace_name>" : {
@@ -201,16 +173,7 @@ Settelement is sent by the responder after approval and it's broadcasted right a
   },
   "controller": {
     "publicKey": string,
-    "metadata": {
-      "name": string,
-      "description": string,
-      "url": string,
-      "icons": [string],
-      "redirect": { // Optional
-        "native": string, // Optional
-        "universal": string, // Optional
-      }
-    }
+    "metadata": Metadata
   },
   "namespaces": {
     "<namespace_name>" : {
