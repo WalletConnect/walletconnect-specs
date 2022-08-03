@@ -21,7 +21,6 @@ Metadata is a set of parameters used to identify each participant in a session a
 
 ```typescript
 interface RequestParams {
-  chainId: string;
   domain: string;
   nonce: string;
   aud: string;
