@@ -17,6 +17,7 @@ case .unauthorizedMethod: return 3001
 case .unauthorizedEvent: return 3002
 case .unauthorizedUpdateRequest: return 3003
 case .unauthorizedExtendRequest: return 3004
+case .unauthorizedChain: return 3005
 ```
 
 ## EIP-1193
@@ -50,4 +51,5 @@ case .userDisconnected: return 6000
 
 ```sh
 case .sessionSettlementFailed: return 7000
+case .noSessionForTopic: return 7001
 ```
