@@ -14,7 +14,7 @@ abstract class Client {
   public abstract request(params: RequestParams): Promise<{ uri, id }>;
 
   // respond wallet authentication
-  public abstract respond(result: Result<RespondParams, Error>): Promise<boolean>;
+  public abstract respond(result: RespondParams | Error): Promise<boolean>;
 
   // query all pending requests
   public abstract getPendingRequests(): Promise<Record<number, PendingRequest>>;
