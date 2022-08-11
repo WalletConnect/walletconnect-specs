@@ -25,7 +25,7 @@ abstract class Client {
   // ---------- Events ----------------------------------------------- //
 
   // subscribe to auth response
-  public abstract on("auth_response", (id: number, result: Result<Address, Error>) => {}): void;
+  public abstract on("auth_response", (id: number, result: Address | Error) => {}): void;
 
   // for wallet to listen on auth request
   public abstract on("auth_request", (id: number, message: string) => {}): void;
