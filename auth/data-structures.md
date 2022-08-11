@@ -119,3 +119,11 @@ interface Cacao {
   signature: CacaoSignature;
 }
 ```
+
+## Error 
+```typescript
+interface Error {
+  code: number;
+  message: string;
+}
+```
