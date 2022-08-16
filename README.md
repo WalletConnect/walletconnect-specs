@@ -13,7 +13,7 @@ In this repository, we document and discuss features that are currently under de
 - RPC methods ([doc](sign/rpc-methods.md))
 - Client API ([doc](sign/client-api.md))
 - Data Structures ([doc](sign/data-structures.md))
-- Error Codes ([doc](sign/codes.md))
+- Error Codes ([doc](sign/error-codes.md))
 - Migration ([doc](sign/migration.md))
 
 ### Chat
@@ -36,6 +36,7 @@ In this repository, we document and discuss features that are currently under de
 - Authentication ([doc](auth/authentication.md))
 - RPC Methods ([doc](auth/rpc-methods.md))
 - Data Structures ([doc](auth/data-structures.md))
+- Error Codes ([doc](auth/error-codes.md))
 
 ### Push
 
