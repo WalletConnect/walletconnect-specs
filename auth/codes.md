@@ -3,7 +3,7 @@
 ## REJECTED
 
 ```sh
-case .userRejectedRequest return 4001
+case .userRejectedRequest return 14001
 ```
 
 ## VALIDATION
