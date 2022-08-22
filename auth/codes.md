@@ -9,8 +9,8 @@ case .userRejectedRequest return 14001
 ## VALIDATION
 
 ```sh
-case .malformedResponseParams return 7001
-case .malformedRequestParams return 7002
-case .messageCompromised return 7003
-case .messageVerificationFailed return 7004
+case .malformedResponseParams return 12001
+case .malformedRequestParams return 12002
+case .messageCompromised return 12003
+case .messageVerificationFailed return 12004
 ```
