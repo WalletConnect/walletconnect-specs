@@ -33,7 +33,7 @@ uri = "wc:sign-7f6e504bfad60b485450578e05678ed3e8e8c4751d3c6160be17160d63ec90f9@
 ```
 
 ## Backwards Compatibility
-1. URI MAY not contain `sign-` prefix to bo valid
+1. URI MAY not contain `sign-` prefix to be valid
 
 ### Schema
 
