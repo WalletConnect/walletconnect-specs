@@ -37,10 +37,7 @@ interface RequestParams {
 ## Respond Params
 
 ```typescript
-interface RespondParams {
-  id: number;
-  signature: CacaoSignature;
-}
+type RespondParams = ResultResponse | ErrorResponse;
 ```
 
 ## Payload Params (partial Cacao)
@@ -62,6 +59,12 @@ interface PayloadParams {
   requestId?: string;
   resources?: string[];
 }
+```
+
+## Response
+
+```typescript
+type Response = Cacao | ErrorResponse;
 ```
 
 ## Pending Request
@@ -120,10 +123,23 @@ interface Cacao {
 }
 ```
 
-## Error 
+## Result Response
+
 ```typescript
-interface Error {
-  code: number;
-  message: string;
+interface ResultResponse {
+  id: number;
+  signature: CacaoSignature;
+}
+```
+
+## Error Response
+
+```typescript
+interface ErrorResponse {
+  id: number;
+  error: {
+    code: number;
+    message: string;
+  };
 }
 ```
