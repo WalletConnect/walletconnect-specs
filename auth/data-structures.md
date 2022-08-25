@@ -136,7 +136,10 @@ interface ResultResponse {
 
 ```typescript
 interface ErrorResponse {
-  code: number;
-  message: string;
+  id: number;
+  error: {
+    code: number;
+    message: string;
+  };
 }
 ```
