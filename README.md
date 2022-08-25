@@ -49,5 +49,6 @@ In this repository, we document and discuss features that are currently under de
 - Relay Server ([doc](core/relay-server.md))
 - Relay Client Auth ([doc](core/relay-clientauth.md))
 - Relay User Agent ([doc](core/relay-useragent.md))
-- Crypto Typed Envelopes ([doc](core/crypto-envelopes.md))
+- Crypto API ([doc](core/crypto-api.md))
+- Crypto Envelopes ([doc](core/crypto-envelopes.md))
 - Storage API ([doc](core/storage-api.md))
