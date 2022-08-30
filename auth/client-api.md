@@ -19,9 +19,6 @@ abstract class Client {
   // query all pending requests
   public abstract getPendingRequests(): Promise<Record<number, PendingRequest>>;
 
-  // query cached response matching id
-  public abstract getResponse(params: { id: number }): Promise<Response>;
-
   // ---------- Events ----------------------------------------------- //
 
   // subscribe to auth response
