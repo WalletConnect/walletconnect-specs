@@ -24,6 +24,9 @@ User returns to a previously visited website after authentication expiry
 5. User approves prompt for auth in wallet
 6. User returns to website after prompt success
 7. User approves prompt for auth in wallet, wallet responds on the new response topic
+8. User returns to website after prompt success
+9. Website is now authenticated with signed message
+
 ## Request Protocol
 
 A creates random symKey S for pairing topic.
