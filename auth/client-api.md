@@ -18,6 +18,12 @@ abstract class Client {
 
   // query all pending requests
   public abstract getPendingRequests(): Promise<Record<number, PendingRequest>>;
+  
+  // querry pairings
+  public abstract getPairings(): Promise<Array<Pairing>>;
+  
+  // for either to ping a peer in a pairing
+  public abstract ping(params: { topic: string; }): Promise<void>;
 
   // ---------- Events ----------------------------------------------- //
 
