@@ -71,8 +71,6 @@ export abstract class ICrypto {
 
   public abstract hasKeys(tag: string): boolean;
 
-  public abstract getClientId(): Promise<string>;
-
   public abstract generateKeyPair(): Promise<string>;
 
   public abstract generateSharedKey(
@@ -101,7 +99,5 @@ export abstract class ICrypto {
     encoded: string,
     opts?: CryptoTypes.DecodeOptions
   ): Promise<JsonRpcPayload>;
-
-  public abstract signJWT(aud: string): Promise<string>;
 }
 ```
