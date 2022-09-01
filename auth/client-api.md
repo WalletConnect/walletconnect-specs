@@ -19,7 +19,7 @@ abstract class Client {
   // query all pending requests
   public abstract getPendingRequests(): Promise<Record<number, PendingRequest>>;
   
-  // querry pairings
+  // query pairings
   public abstract getPairings(): Promise<Array<Pairing>>;
   
   // for either to ping a peer in a pairing
