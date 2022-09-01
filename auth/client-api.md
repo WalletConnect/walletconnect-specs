@@ -24,6 +24,10 @@ abstract class Client {
   
   // for either to ping a peer in a pairing
   public abstract ping(params: { topic: string; }): Promise<void>;
+  
+  // for either to disconnect a pairing
+  public abstract disconnect(params: { topic: string, reason: Reason}): Promise<void>;
+
 
   // ---------- Events ----------------------------------------------- //
 
