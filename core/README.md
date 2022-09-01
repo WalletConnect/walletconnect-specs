@@ -2,7 +2,7 @@
 
 ## Description
 
-Core API consolidates several core modules that are shared between all other high-level APIs avilable to developers on WalletConnect 2.0
+Core API consolidates several core modules that are shared between all other high-level APIs available to developers on WalletConnect 2.0
 
 ## Core Modules
 
