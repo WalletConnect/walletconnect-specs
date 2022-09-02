@@ -67,7 +67,7 @@ Parameters for request and response are compliant with [CAIP-74](https://github.
 
 ### wc_pairingDelete
 
-Used to inform the peer to close and delete a pairing. All associated sessions of the given pairing must also be deleted.
+Used to inform the peer to close and delete a pairing. The associated authentication state of the given pairing must also be deleted.
 
 **Request**
 
