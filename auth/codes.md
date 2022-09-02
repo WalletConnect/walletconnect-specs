@@ -1,16 +1,17 @@
 # Codes
 
-## REJECTED
-
-```sh
-case .userRejectedRequest return 14001
-```
-
 ## VALIDATION
 
 ```sh
-case .malformedResponseParams return 12001
-case .malformedRequestParams return 12002
-case .messageCompromised return 12003
-case .messageVerificationFailed return 12004
+case .malformedResponseParams return 11001
+case .malformedRequestParams return 11002
+case .messageCompromised return 11003
+case .signatureVerificationFailed return 11004
+```
+
+## REJECTED
+
+```sh
+case .userRejectedRequest return 12001
+case .userDisconnected: return 12002
 ```
