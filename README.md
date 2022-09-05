@@ -1,7 +1,9 @@
 ⚠️ This repo is now archived. The spec docs have moved to the docs repo ⚠️
 
 https://github.com/WalletConnect/walletconnect-docs/tree/main/docs/specs
+
 or
+
 https://specs.walletconnect.com/
 
 
