@@ -1,63 +1,32 @@
-⚠️ This repo is now archived. The spec docs have moved to the docs repo ⚠️
+# WalletConnect Docs
 
-https://github.com/WalletConnect/walletconnect-docs/tree/main/docs/specs
+This repo runs [docs.walletconnect.com](https://docs.walletconnect.com).
 
-or
+Source can be viewed in [`docs`](./docs/) directory.
 
-https://specs.walletconnect.com/
+## Running Locally
 
+1. `yarn install`
+2. `yarn start`
+3. Open `http://localhost:3000/`
 
-# WalletConnect v2.0 Protocol Specs
+## Adding a New Page
 
-In this repository, we document and discuss features that are currently under development and experimentation. All content is highly subjected to change and in constant development, so feel free to edit, propose, discuss, comment, rant, etc. If you want to start a technical discussion, just open a PR or an issue.
+1. Create a new file in `docs/`
+2. Configure `sidebars.js` to create the sidebar link.
 
-## APIs
+## Editing a Page
 
-### Sign
+1. Open the file in `docs/`
 
-- Sign Overview ([doc](sign/README.md))
-- Session Proposal ([doc](sign/session-proposal.md))
-- Session Namespaces ([doc](sign/session-namespaces.md))
-- Pairing URI ([doc](sign/pairing-uri.md))
-- RPC methods ([doc](sign/rpc-methods.md))
-- Client API ([doc](sign/client-api.md))
-- Data Structures ([doc](sign/data-structures.md))
-- Error Codes ([doc](sign/error-codes.md))
-- Migration ([doc](sign/migration.md))
+Older versions are available in `versioned_docs/`.
 
-### Chat
+## Customize Settings & Theme
 
-- Chat Overview ([doc](chat/README.md))
-- Invite URI ([doc](chat/invite-uri.md))
-- Client API ([doc](chat/client-api.md))
-- Discoverability ([doc](chat/discoverability.md))
-- Chat Invite ([doc](chat/chat-invite.md))
-- RPC Methods ([doc](chat/rpc-methods.md))
-- Message Status ([doc](chat/message-status.md))
-- Chat Keyserver ([doc](chat/chat-keyserver.md))
-- Data Structures ([doc](chat/data-structures.md))
+1. Open `docusaurus.config.js`
 
-### Auth
+## More
 
-- Auth Overview ([doc](auth/README.md))
-- Request URI ([doc](auth/request-uri.md))
-- Client API ([doc](auth/client-api.md))
-- Authentication ([doc](auth/authentication.md))
-- RPC Methods ([doc](auth/rpc-methods.md))
-- Data Structures ([doc](auth/data-structures.md))
-- Error Codes ([doc](auth/error-codes.md))
+For more options, check the [Docusaurus docs](https://docusaurus.io/).
 
-### Push
-
-- Push Overview ([doc](push/README.md))
-
-### Core
-
-- Core Overview ([doc](core/README.md))
-- Relay Client ([doc](core/relay-client.md))
-- Relay Server ([doc](core/relay-server.md))
-- Relay Client Auth ([doc](core/relay-clientauth.md))
-- Relay User Agent ([doc](core/relay-useragent.md))
-- Crypto API ([doc](core/crypto-api.md))
-- Crypto Envelopes ([doc](core/crypto-envelopes.md))
-- Storage API ([doc](core/storage-api.md))
+Archived v1.0 docs can be viewed in the [v1.0 branch](https://github.com/WalletConnect/walletconnect-docs/tree/v1.0).
