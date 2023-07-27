@@ -1,6 +1,6 @@
-# WalletConnect Docs
+# WalletConnect Specs
 
-This repo runs [docs.walletconnect.com](https://docs.walletconnect.com).
+This repo runs [specs.walletconnect.com](https://specs.walletconnect.com).
 
 Source can be viewed in [`docs`](./docs/) directory.
 
