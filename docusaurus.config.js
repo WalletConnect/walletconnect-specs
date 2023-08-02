@@ -22,7 +22,6 @@ const config = {
       'data-domain': 'docs.walletconnect.com'
     }
   ],
-
   presets: [
     [
       'classic',
@@ -62,48 +61,6 @@ const config = {
               '<a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/walletconnect-logo-white.svg#dark-mode-only"  alt="WalletConnect Logo"><img src="/img/walletconnect-logo-black.svg#light-mode-only"  alt="WalletConnect Logo"></div>WalletConnect<span>Docs<span></a>'
           },
           {
-            type: 'doc',
-            position: 'left',
-            docId: 'readme',
-            label: 'Overview'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'web',
-            label: 'Web'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'android',
-            label: 'Android'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'ios',
-            label: 'iOS'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'reactnative',
-            label: 'React Native'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'flutter',
-            label: 'Flutter'
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'unity',
-            label: 'Unity'
-          },
-          {
             href: 'https://github.com/walletconnect/',
             position: 'right',
             className: 'header-github-link',
@@ -122,17 +79,9 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'v2.0 Getting Started',
-                to: '/2.0/#getting-started'
+                label: 'Main Docs',
+                to: 'https://docs.walletconnect.com/2.0/'
               },
-              {
-                label: 'Web3Modal SDK',
-                to: '/2.0/web3modal/about'
-              },
-              {
-                label: 'Web3Wallet SDK',
-                to: '/2.0/web3wallet/about'
-              }
             ]
           },
           {
