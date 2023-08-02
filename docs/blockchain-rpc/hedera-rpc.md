@@ -91,7 +91,10 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
 
 ### Returns
 
-    1. `String` - Base64 encoded string of the Hedera transaction object that was converted to bytes
+    1. `Object` - signAndExecuteTransaction parameters
+      1.1 `transaction` : `Object` - transaction parameters
+        1.1.1 `type` : `String` - The Hedera function name (*1)
+        1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string
 
 #### Request
 
@@ -115,6 +118,11 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
 {
   "id": 1,
   "jsonrpc": "2.0",
-  "result": "VGhpcyBpcyBqdXN0IHNvbWUgc3R1ZmY..."
+  "result": {
+    "transaction": {
+      "type": "CryptoTransfer",
+      "bytes": "VGhpcyBpcyBqdXN0IHNvbWUgc3R1..."
+    }
+  }
 }
 ```
