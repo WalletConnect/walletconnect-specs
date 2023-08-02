@@ -1,0 +1,3 @@
+# Sequence
+
+Sequences refers to a complete flow starting from a Proposal and reaching Settlement. A proposer will create a sequence proposal that will derive a Signal to share out-of-band with the responder in order to reach agreement regarding different permissions and conditions for the sequence. A Sequence establishes how the two clients will relay messages with each other, which keys they will use to encrypt and authenticate messages and additionally what are the permissions regarding the JSON-RPC requests that can be made, notifications that can be emitted and what state will be shared.
