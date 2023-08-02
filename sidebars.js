@@ -102,22 +102,6 @@ module.exports = {
       collapsible: false,
       className: 'menu_outer_list',
       items: [
-        'advanced/glossary',
-        {
-          type: 'category',
-          label: 'RPC Reference',
-          items: [
-            'advanced/rpc-reference/everscale-rpc',
-            'advanced/rpc-reference/ethereum-rpc',
-            'advanced/rpc-reference/cosmos-rpc',
-            'advanced/rpc-reference/solana-rpc',
-            'advanced/rpc-reference/stellar-rpc',
-            'advanced/rpc-reference/tezos-rpc',
-            'advanced/rpc-reference/starknet-rpc',
-            'advanced/rpc-reference/near-rpc',
-            'advanced/rpc-reference/xrpl-rpc'
-          ]
-        },
         {
           type: 'category',
           label: 'Specs',
@@ -265,6 +249,22 @@ module.exports = {
             }
           ]
         },
+        {
+          type: 'category',
+          label: 'RPC Reference',
+          items: [
+            'advanced/rpc-reference/everscale-rpc',
+            'advanced/rpc-reference/ethereum-rpc',
+            'advanced/rpc-reference/cosmos-rpc',
+            'advanced/rpc-reference/solana-rpc',
+            'advanced/rpc-reference/stellar-rpc',
+            'advanced/rpc-reference/tezos-rpc',
+            'advanced/rpc-reference/starknet-rpc',
+            'advanced/rpc-reference/near-rpc',
+            'advanced/rpc-reference/xrpl-rpc'
+          ]
+        },
+        'advanced/glossary',
         'advanced/faq'
       ]
     }
