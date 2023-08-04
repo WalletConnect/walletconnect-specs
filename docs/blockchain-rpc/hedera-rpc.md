@@ -4,7 +4,7 @@ description: Hedera JSON-RPC Methods
 
 # Hedera
 
-The following JSON RPC methods are not meant to be forwarded directly to a Hedera network JSON RPC relay. Instead, they are meant to create a standard way of integrating dApps and wallets with the [Hedera™ Hashgraph JavaScript SDK](https://github.com/hashgraph/hedera-sdk-js), which interacts with the Hedera Hashgraph natively.
+The following JSON-RPC methods are for native integration into Hedera with the [Hedera™ Hashgraph JavaScript SDK](https://github.com/hashgraph/hedera-sdk-js). Hedera also has an open-source project implementing the [Ethereum JSON-RPC standard](https://docs.hedera.com/hedera/core-concepts/smart-contracts/json-rpc-relay) which is not covered in this documentation.
 
 ## Methods
 
