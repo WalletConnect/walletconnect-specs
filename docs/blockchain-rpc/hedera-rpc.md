@@ -6,6 +6,12 @@ description: Hedera JSON-RPC Methods
 
 The following methods are meant to be implemented on the dApp and wallet with the [`hedera-sdk-js` library](https://github.com/hashgraph/hedera-sdk-js).
 
+## Methods
+
+- [`hedera_signAndExecuteTransaction`](#hedera_signandexecutetransaction)
+- [`hedera_signAndReturnTransaction`](#hedera_signandreturntransaction)
+- [`hedera_signMessage`](#hedera_signmessage)
+
 ## hedera_signAndExecuteTransaction
 
 The `hedera_signAndExecuteTransaction` method is a generic method for sending a transaction that has been converted to bytes to the wallet for signing and execution. The dApp can therefore construct any type of Hedera transaction with the [`hedera-sdk-js` library](https://github.com/hashgraph/hedera-sdk-js)
@@ -96,6 +102,8 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
         1.1.1 `type` : `String` - The Hedera function name (*1)
         1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string
 
+### Example
+
 #### Request
 
 ```json
@@ -123,6 +131,47 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
       "type": "CryptoTransfer",
       "bytes": "VGhpcyBpcyBqdXN0IHNvbWUgc3R1..."
     }
+  }
+}
+```
+
+## hedera_signMessage
+
+The `hedera_signAndReturnTransaction` method is used to pass arbitrary data to the wallet to be signed with the user's private key. The resulting signed message is then passed back to the dApp.
+
+### Parameters
+
+    1. `Object` - signMessage parameters
+      1.1 `message` : `string` - base64 encoded string of arbitrary data
+
+### Returns
+
+    1. `Object` - signMessage result
+      1.1 `signature` : `string` - base64 encoded string of signed message bytes array
+
+### Example
+
+#### Request
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "hedera_signMessage",
+  "params": {
+    "message": "Co8BKowBCocBChoKDAjchKWmBhDW..."
+  }
+}
+```
+
+#### Result
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "signature": "CAAQABjMrxoYABIGCAAQABgHGIDIr..."
   }
 }
 ```
