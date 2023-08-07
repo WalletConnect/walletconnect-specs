@@ -23,7 +23,7 @@ The `hedera_signAndExecuteTransaction` method is a generic method for sending a 
         1.1.1 `type` : `String` - The Hedera function name (*1)
         1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string.
 
-\*1. Full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/RequestType.js) from the Hedera SDK.
+\*1. The full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/develop/src/RequestType.js) from the Hedera SDK.
 
 \*2. Transactions generated with the Hedera SDK can be converted to bytes with the [`toBytes` method](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/transaction/Transaction.js#L1015).
 
@@ -91,7 +91,7 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
         1.1.1 `type` : `String` - The Hedera function name (*1)
         1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string
 
-\*1. Full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/RequestType.js) from the Hedera SDK.
+\*1. The full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/RequestType.js) from the Hedera SDK.
 
 \*2. Transactions generated with the Hedera SDK can be converted to bytes with the [`toBytes` method](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/transaction/Transaction.js#L1015).
 
@@ -137,7 +137,7 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
 
 ## hedera_signMessage
 
-The `hedera_signAndReturnTransaction` method is used to pass arbitrary data to the wallet to be signed with the user's private key. The resulting signed message is then passed back to the dApp.
+The `hedera_signMessage` method is used to pass arbitrary data to the wallet to be signed with the user's private key. The resulting signed message is then passed back to the dApp.
 
 ### Parameters
 
