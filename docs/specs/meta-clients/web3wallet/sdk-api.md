@@ -7,6 +7,9 @@ class Web3Wallet {
   
   // establish pairing from URI (BOTH)
   public abstract pair(params: { uri: string }): Promise<void>;
+
+  // for responder to set supported and special namespaces
+  public abstract setNamespaceConfig(params: { namespaceConfig: NamespaceConfig }): Promise<void>;
   
    // approve a session proposal (SIGN)
   public abstract approveSession(params: {
