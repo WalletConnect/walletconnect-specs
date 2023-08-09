@@ -16,10 +16,15 @@ abstract class Client {
     pairingTopic: string;
   }): Promise<Sequence>;
 
+  // for responder to set supported and special namespaces
+  public abstract setNamespaceConfig(params: {
+     namespaceConfig: NamespaceConfig
+  }): Promise<void>;
+
   // for responder to approve a session proposal
   public abstract approveSession(params: {
     id: number;
-    namespaces: Map<string, SessionNamespace>;
+    namespaces: Map<string, SessionNamespace>;  // optional
     relayProtocol?: string;
   }): Promise<Sequence>;
 
