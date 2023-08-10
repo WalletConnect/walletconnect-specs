@@ -82,8 +82,8 @@ Response:
 
 ```typescript
 {
-  "identityPublicKey": string,
-  "subscribeTopicPublicKey": string,
+  "subscribeTopicPublicKey": string, // key agreement
+  "identityPublicKey": string, // authentication
 }
 ``` 
 
@@ -155,6 +155,8 @@ No response.
 ## Delete Webhook
 
 Delete a webhook.
+
+This method is idempotent. If webhook ID does not exist, the request will still be successful.
 
 `DELETE /webhooks/<webhook_id>`
 
