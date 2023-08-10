@@ -44,6 +44,53 @@ Failed:
 }
 ```
 
+## Subscribers 
+
+Returns the list of all accounts currently subscribed to this dapp.
+
+`GET /subscribers`
+
+Response:
+
+```jsonc
+{
+  []string
+}
+``` 
+
+## Subscribe Topic
+
+Used to generate a subscribe topic for a dapp to receive push subscriptions, returns a public key and identity key that should be stored on dapps's domain a did:web document. Requires the dapps url to be sent in the body.
+
+**Note:** this method is idempotent and will always return the same key.
+
+`POST /subscribe-topic`
+
+Body:
+
+```jsonc
+{
+  "dappUrl": string
+}
+``` 
+
+Response:
+
+```jsonc
+{
+  "identityPublicKey": string,
+  "subscribeTopicPublicKey": string 
+}
+``` 
+
+Failed:
+
+```jsonc
+{
+  "reason": string
+}
+```
+
 ## Register Webhook
 
 Used to register a webhook that would return when accounts are subscribed or unsubscribed
@@ -124,57 +171,8 @@ Body:
 } 
 ```
 
-
-
 ## Delete Webhook
 
 Used to delete the registered webhook
 
 `DELETE /webhooks/<webhook_id>`
-
-## Subscribe Topic
-
-Used to generate a subscribe topic for a dapp to receive push subscriptions, returns a public key and identity key that should be stored on dapps's domain a did:web document. Requires the dapps url to be sent in the body.
-
-**Note:** this method is idempotent and will always return the same key.
-
-`POST /subscribe-topic`
-
-Body:
-
-```jsonc
-{
-  "dappUrl": string
-}
-``` 
-
-Response:
-
-```jsonc
-{
-  "identityPublicKey": string,
-  "subscribeTopicPublicKey": string 
-}
-``` 
-
-Failed:
-
-```jsonc
-{
-  "reason": string
-}
-```
-
-## Subscribers 
-
-Returns the list of all accounts currently subscribed to this dapp.
-
-`GET /subscribers`
-
-Response:
-
-```jsonc
-{
-  []string
-}
-``` 
