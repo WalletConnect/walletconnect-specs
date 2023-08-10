@@ -13,8 +13,8 @@ Body:
 
 ```jsonc
 {
-    "events": string[], // subscribed or unsubscribed
-    "webhook": string
+  "events": string[], // subscribed or unsubscribed
+  "webhook": string
 }
 ```
 
@@ -22,7 +22,7 @@ Response:
 
 ```jsonc
 {
-    "id": string
+  "id": string
 }
 ```
 
@@ -30,10 +30,10 @@ Webhook payload:
 
 ```jsonc
 {
-    "id": string,
-    "event": string, // subscribed or unsubscribed
-    "account": string, // CAIP-10 account
-    "dappUrl": string // dApp's URL with which the account was registered
+  "id": string,
+  "event": string, // subscribed or unsubscribed
+  "account": string, // CAIP-10 account
+  "dappUrl": string // dApp's URL with which the account was registered
 }
 ```
 
@@ -84,8 +84,8 @@ Body:
 
 ```jsonc
 {
-    "events": string[], // subscribed or unsubscribed
-    "webhook": string
+  "events": string[], // subscribed or unsubscribed
+  "webhook": string
 } 
 ```
 
@@ -113,14 +113,14 @@ Body:
 
 ```jsonc
 {
-    "notification": {
-        "title": string,
-        "body": string,
-        "icon": string,
-        "url": string,
-        "type": string
-    },
-    "accounts": string[]
+  "notification": {
+    "title": string,
+    "body": string,
+    "icon": string,
+    "url": string,
+    "type": string
+  },
+  "accounts": string[]
 }
 ``` 
 
@@ -158,7 +158,7 @@ Body:
 
 ```jsonc
 {
-    "dappUrl": string
+  "dappUrl": string
 }
 ``` 
 
@@ -195,5 +195,3 @@ Response:
   []string
 }
 ``` 
-
-
