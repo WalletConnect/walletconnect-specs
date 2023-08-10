@@ -1,22 +1,5 @@
 # Notify Server API
 
-## Register Account
-
-Registers an account and notify subscription symmetric key. The `subscriptionAuth` must be attached in the request so the Notify server can verify if wallet proved ownership of an address.
-
-`POST /register`
-
-Body:
-
-```jsonc
-{
-    "account": string,
-    "symKey": string,
-    "subscriptionAuth": string,
-    "relayUrl": string
-}
-```
-
 ## Register Webhook
 
 Used to register a webhook that would return when accounts are subscribed or unsubscribed
@@ -24,7 +7,7 @@ Used to register a webhook that would return when accounts are subscribed or uns
 `POST /register-webhook`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_subscribe_topic_private_key`  
 
 Body:
 
@@ -62,7 +45,7 @@ Used to retrieve the list of registered webhooks
 `GET /webhooks`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
 Response:
 
@@ -95,7 +78,7 @@ Used to update the registered webhook
 `PUT /webhooks/<webhook_id>`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
 Body:
 
@@ -115,7 +98,7 @@ Used to delete the registered webhook
 `DELETE /webhooks/<webhook_id>`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
 ## Notify
 
@@ -124,7 +107,7 @@ Used to notify a message to a set of accounts
 `POST /notify`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
 Body:
 
@@ -162,20 +145,29 @@ Failed:
 
 ## Subscribe Topic
 
-Used to generate a subscribe topic for a dapp to receive notify subscriptions, returns a public key that should be stored on dapps's domain as a did:web document.
+Used to generate a subscribe topic for a dapp to receive push subscriptions, returns a public key and identity key that should be stored on dapps's domain a did:web document. Requires the dapps url to be sent in the body.
 
 **Note:** this method is idempotent and will always return the same key.
 
-`GET /subscribe-topic`
+`POST /subscribe-topic`
 
 ### Authentication
-Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+Body:
+
+```jsonc
+{
+    "dappUrl": string
+}
+``` 
 
 Response:
 
 ```jsonc
 {
-    "publicKey": string
+  "identityPublicKey": string,
+  "subscribeTopicPublicKey": string 
 }
 ``` 
 
@@ -187,26 +179,21 @@ Failed:
 }
 ```
 
-## Authentication Key
+## Subscribers 
 
-Used to generate an authentication key for a dapp to send signed notify messages, returns a public key that should be stored on dapps's domain as a did:web document.
+Returns the list of all accounts currently subscribed to this dapp.
 
-**Note:** this method is idempotent and will always return the same key.
+`GET /subscribers`
 
-`GET /authentication-key`
+### Authentication
+Notify server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
 Response:
 
 ```jsonc
 {
-  "publicKey": string
+  []string
 }
 ``` 
 
-Failed:
 
-```jsonc
-{
-  "reason": string
-}
-```
