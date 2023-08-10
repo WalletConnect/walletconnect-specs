@@ -17,7 +17,7 @@ abstract class Client {
   }): Promise<Sequence>;
 
   // for responder to set supported and special namespaces
-  public abstract setNamespaceConfig(params: {
+  public abstract setNamespaceConfig(params: NamespaceConfig) : Promise<void>;
      namespaceConfig: NamespaceConfig
   }): Promise<void>;
 
