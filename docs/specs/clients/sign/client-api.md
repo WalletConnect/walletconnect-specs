@@ -18,7 +18,6 @@ abstract class Client {
 
   // for responder to set supported and special namespaces
   public abstract setNamespaceConfig(params: NamespaceConfig) : Promise<void>;
-     namespaceConfig: NamespaceConfig
   }): Promise<void>;
 
   // for responder to approve a session proposal
