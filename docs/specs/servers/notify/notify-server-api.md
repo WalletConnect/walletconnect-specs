@@ -12,7 +12,7 @@ Used to notify a message to a set of accounts
 
 Body:
 
-```jsonc
+```typescript
 {
   "notification": {
     "title": string,
@@ -27,7 +27,7 @@ Body:
 
 Response: 
 
-```jsonc
+```typescript
 {
   "sent": string[],
   "failed": Failed[],
@@ -37,7 +37,7 @@ Response:
 
 Failed:
 
-```jsonc
+```typescript
 {
   "account": string,
   "reason": string
@@ -52,7 +52,7 @@ Returns the list of all accounts currently subscribed to this dapp.
 
 Response:
 
-```jsonc
+```typescript
 {
   []string
 }
@@ -68,7 +68,7 @@ Used to generate a subscribe topic for a dapp to receive push subscriptions, ret
 
 Body:
 
-```jsonc
+```typescript
 {
   "dappUrl": string
 }
@@ -76,7 +76,7 @@ Body:
 
 Response:
 
-```jsonc
+```typescript
 {
   "identityPublicKey": string,
   "subscribeTopicPublicKey": string 
@@ -85,7 +85,7 @@ Response:
 
 Failed:
 
-```jsonc
+```typescript
 {
   "reason": string
 }
@@ -99,7 +99,7 @@ Used to register a webhook that would return when accounts are subscribed or uns
 
 Body:
 
-```jsonc
+```typescript
 {
   "events": string[], // subscribed or unsubscribed
   "webhook": string
@@ -108,7 +108,7 @@ Body:
 
 Response:
 
-```jsonc
+```typescript
 {
   "id": string
 }
@@ -116,7 +116,7 @@ Response:
 
 Webhook payload:
 
-```jsonc
+```typescript
 {
   "id": string,
   "event": string, // subscribed or unsubscribed
@@ -134,7 +134,7 @@ Used to retrieve the list of registered webhooks
 
 Response:
 
-```jsonc
+```typescript
 {
   "<webhook_id1>": {
     "url": "<webhook_url1>",
@@ -164,7 +164,7 @@ Used to update the registered webhook
 
 Body:
 
-```jsonc
+```typescript
 {
   "events": string[], // subscribed or unsubscribed
   "webhook": string
