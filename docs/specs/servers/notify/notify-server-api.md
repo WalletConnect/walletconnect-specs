@@ -4,6 +4,46 @@
 
 All endpoints expect an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project ID. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_subscribe_topic_private_key`
 
+## Notify
+
+Used to notify a message to a set of accounts
+
+`POST /notify`
+
+Body:
+
+```jsonc
+{
+  "notification": {
+    "title": string,
+    "body": string,
+    "icon": string,
+    "url": string,
+    "type": string
+  },
+  "accounts": string[]
+}
+``` 
+
+Response: 
+
+```jsonc
+{
+  "sent": string[],
+  "failed": Failed[],
+  "notFound": string[]
+}
+```
+
+Failed:
+
+```jsonc
+{
+  "account": string,
+  "reason": string
+}
+```
+
 ## Register Webhook
 
 Used to register a webhook that would return when accounts are subscribed or unsubscribed
@@ -91,46 +131,6 @@ Body:
 Used to delete the registered webhook
 
 `DELETE /webhooks/<webhook_id>`
-
-## Notify
-
-Used to notify a message to a set of accounts
-
-`POST /notify`
-
-Body:
-
-```jsonc
-{
-  "notification": {
-    "title": string,
-    "body": string,
-    "icon": string,
-    "url": string,
-    "type": string
-  },
-  "accounts": string[]
-}
-``` 
-
-Response: 
-
-```jsonc
-{
-  "sent": string[],
-  "failed": Failed[],
-  "notFound": string[]
-}
-```
-
-Failed:
-
-```jsonc
-{
-  "account": string,
-  "reason": string
-}
-```
 
 ## Subscribe Topic
 
