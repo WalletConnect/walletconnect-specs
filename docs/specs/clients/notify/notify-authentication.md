@@ -26,7 +26,7 @@ JWT TTLs must be equal to the message TTLs they are sent on.
 
 If a client receives a JWT that is expired, it must ignore it as if it was never received. This is to ensure there are no race conditions between message TTL and JWT TTL.
 
-Another potential way to avoid the race condition is for the sender to set the message TTL to slightly less than the JWT TTL, however this is not ideal (and must not be done) as message TTL is a releative time from when the relay receives the message and not absolute like the JWT expiration is.
+A non-ideal way to avoid the race condition is for the sender to set the message TTL to slightly less than the JWT TTL, however this must not be done as message TTL is a relative time from when the relay receives the message and not absolute like the JWT expiration is.
 
 ## Notify Subscription
 
