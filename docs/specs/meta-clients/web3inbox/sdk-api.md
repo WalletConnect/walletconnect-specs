@@ -146,7 +146,7 @@ abstract class Web3InboxSDK {
   public static abstract init(params?: {
     relayUrl: string;
     projectId: string;
-    castUrl?: string;
+    notifyUrl?: string;
   }): Promise<Web3InboxSDK>
   
 }
