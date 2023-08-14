@@ -1,7 +1,9 @@
 # Notify Spam Protection
 
 To ensure a positive end-user experience, it's essential to mitigate spam and
-protect users from [chat spam](../chat/spam-protection.md) and notification spam. This document outlines the measures taken to prevent spam and maintain a high-quality experience for end-users.
+protect users from [chat spam](../chat/spam-protection.md) and notify spam.
+This document outlines the measures taken to prevent spam and maintain a
+high-quality experience for end-users.
 
 Note, wallets and dapps implementing this SDK have the ability to expand on this
 protection due to the customizability of the SDK. An example of this is
