@@ -113,7 +113,7 @@ abstract class Web3InboxSDKNotifyFacade {
   // request notify subscription
   public abstract request(params: { account: string, pairingTopic: string }): Promise<{ id }>;
   
-  // send notify notification message
+  // send notify message
   public abstract notify(params: { topic: string, message: NotifyMessage }): Promise<void>
   
   // query all active subscriptions
@@ -126,7 +126,7 @@ abstract class Web3InboxSDKNotifyFacade {
     Event observing.
     Note: All observers return a method to stop observing.
   */
-  public abstract observe("notify_response", Observer<{id: number, response:{error?: Reason, subscription?: NotifySubscription }}>): () => void;
+  public abstract observe("notify_subscription", Observer<{id: number, response:{error?: Reason, subscription?: NotifySubscription }}>): () => void;
 
   // subscribe to updates from sync stores
   public abstract observe("sync_update", Observer<{ store: string, update: StoreUpdate }>): () => void;
@@ -146,7 +146,7 @@ abstract class Web3InboxSDK {
   public static abstract init(params?: {
     relayUrl: string;
     projectId: string;
-    notifyUrl?: string;
+    castUrl?: string;
   }): Promise<Web3InboxSDK>
   
 }
