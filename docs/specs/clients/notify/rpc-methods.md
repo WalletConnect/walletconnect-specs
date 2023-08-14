@@ -34,9 +34,8 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 
 | IRN     |          |
 | ------- | -------- | 
-| TTL     | 86400    |
+| TTL     | 30       |
 | Tag     | 4000     |
-
 ```
 
 **Response**
@@ -49,7 +48,7 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 2592000  |
 | Tag     | 4001     |
 ```
 
@@ -73,7 +72,6 @@ Used to publish a notification message to a peer through notify topic. Response 
 | ------- | -------- |
 | TTL     | 2592000  |
 | Tag     | 4002     |
-
 ```
 
 **Response**
@@ -88,7 +86,6 @@ Used to publish a notification message to a peer through notify topic. Response 
 | ------- | -------- |
 | TTL     | 2592000  |
 | Tag     | 4003     |
-
 ```
 
 ### wc_notifyDelete
@@ -104,7 +101,7 @@ Used to inform the peer to close and delete a notify subscription through notify
 }
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 2592000  |
 | Tag     | 4004     |
 ```
 
@@ -117,7 +114,7 @@ Used to inform the peer to close and delete a notify subscription through notify
 true
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 2592000  |
 | Tag     | 4005     |
 ```
 
@@ -137,9 +134,8 @@ Used to update a notify subscription with a new notify subscription, replacing a
 
 | IRN     |          |
 | ------- | -------- | 
-| TTL     | 86400    |
+| TTL     | 30       |
 | Tag     | 4008     |
-
 ```
 
 **Response**
@@ -152,6 +148,6 @@ Used to update a notify subscription with a new notify subscription, replacing a
 
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 2592000  |
 | Tag     | 4009     |
 ```
