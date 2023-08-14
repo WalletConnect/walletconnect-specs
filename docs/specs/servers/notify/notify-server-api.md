@@ -1,163 +1,212 @@
 # Notify Server API
 
-## Authentication
+## Register Account
 
-All endpoints expect an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project ID. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_subscribe_topic_private_key`.
+Registers an account and notify subscription symmetric key. The `subscriptionAuth` must be attached in the request so the Notify server can verify if wallet proved ownership of an address.
 
-## Notify
-
-Send a notification to a set of accounts.
-
-`POST /notify`
+`POST /register`
 
 Body:
 
-```typescript
+```jsonc
 {
-  "notification": {
-    "title": string,
-    "body": string,
-    "icon": string,
-    "url": string,
-    "type": string,
-  },
-  "accounts": Account[],
+    "account": string,
+    "symKey": string,
+    "subscriptionAuth": string,
+    "relayUrl": string
 }
 ```
 
-Account:
+## Register Webhook
 
-```typescript
-string
+Used to register a webhook that would return when accounts are subscribed or unsubscribed
+
+`POST /register-webhook`
+
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+Body:
+
+```jsonc
+{
+    "events": string[], // subscribed or unsubscribed
+    "webhook": string
+}
 ```
+
+Response:
+
+```jsonc
+{
+    "id": string
+}
+```
+
+Webhook payload:
+
+```jsonc
+{
+    "id": string,
+    "event": string, // subscribed or unsubscribed
+    "account": string, // CAIP-10 account
+    "dappUrl": string // dApp's URL with which the account was registered
+}
+```
+
+
+## Registered Webhooks
+
+Used to retrieve the list of registered webhooks
+
+`GET /webhooks`
+
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+Response:
+
+```jsonc
+{
+  "<webhook_id1>": {
+    "url": "<webhook_url1>",
+    "events": [
+      "<event1>",
+      "<event2>",
+      ...
+    ]
+  },
+  "<webhook_id2>": {
+    "url": "<webhook_url2>",
+    "events": [
+      "<event1>",
+      ...
+    ]
+  },
+  ...
+}
+```
+
+
+## Update Webhook
+
+Used to update the registered webhook
+
+`PUT /webhooks/<webhook_id>`
+
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+Body:
+
+```jsonc
+{
+    "events": string[], // subscribed or unsubscribed
+    "webhook": string
+} 
+```
+
+
+
+## Delete Webhook
+
+Used to delete the registered webhook
+
+`DELETE /webhooks/<webhook_id>`
+
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+## Notify
+
+Used to notify a message to a set of accounts
+
+`POST /notify`
+
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
+
+Body:
+
+```jsonc
+{
+    "notification": {
+        "title": string,
+        "body": string,
+        "icon": string,
+        "url": string,
+        "type": string
+    },
+    "accounts": string[]
+}
+``` 
 
 Response: 
 
-```typescript
+```jsonc
 {
-  "sent": Account[], // notifications sent to subscribers
-  "failed": Failed[], // notifications not sent because there was a failure in delivering
-  "notFound": Account[], // notifications not sent becuase those accounts were not subscribers
+  "sent": string[],
+  "failed": Failed[],
+  "notFound": string[]
 }
 ```
 
 Failed:
 
-```typescript
+```jsonc
 {
-  "account": Account,
-  "reason": string,
+  "account": string,
+  "reason": string
 }
 ```
-
-## Subscribers 
-
-Get the list of all accounts currently subscribed to this dapp.
-
-`GET /subscribers`
-
-Response:
-
-```typescript
-Account[]
-``` 
 
 ## Subscribe Topic
 
-Used to generate a subscribe topic for a dapp to receive subscription requests from an account. Returns keys that should be stored on dapps's domain a did:web document.
+Used to generate a subscribe topic for a dapp to receive notify subscriptions, returns a public key that should be stored on dapps's domain as a did:web document.
 
 **Note:** this method is idempotent and will always return the same key.
 
-`POST /subscribe-topic`
+`GET /subscribe-topic`
 
-Body:
+### Authentication
+Cast server expects an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project id. The secret used should be the one that was generated automatically when configuring notify - with the name`cast_subscribe_topic_public_key`  
 
-```typescript
+Response:
+
+```jsonc
 {
-  "dappUrl": string,
+    "publicKey": string
 }
 ``` 
 
+Failed:
+
+```jsonc
+{
+  "reason": string
+}
+```
+
+## Authentication Key
+
+Used to generate an authentication key for a dapp to send signed notify messages, returns a public key that should be stored on dapps's domain as a did:web document.
+
+**Note:** this method is idempotent and will always return the same key.
+
+`GET /authentication-key`
+
 Response:
 
-```typescript
+```jsonc
 {
-  "subscribeTopicPublicKey": string, // key agreement
-  "identityPublicKey": string, // authentication
+  "publicKey": string
 }
 ``` 
 
-## Register Webhook
+Failed:
 
-Register a webhook that will be invoked when accounts are subscribed or unsubscribed.
-
-`POST /register-webhook`
-
-Body:
-
-```typescript
-Webhook
-```
-
-Webhook:
-
-```typescript
+```jsonc
 {
-  "events": Event[], // set of Events
-  "url": string, // webhook URL
+  "reason": string
 }
 ```
-
-Event:
-
-```typescript
-"subscribed" | "unsubscribed"
-```
-
-Response:
-
-```typescript
-{
-  "id": string, // webhook ID
-}
-```
-
-## Registered Webhooks
-
-Get the list of registered webhooks.
-
-`GET /webhooks`
-
-Response:
-
-```typescript
-{
-  "<webhook_id1>": Webhook,
-  "<webhook_id2>": Webhook,
-  ...
-}
-```
-
-## Update Webhook
-
-Update a webhook.
-
-`PUT /webhooks/<webhook_id>`
-
-Body:
-
-```typescript
-Webhook
-```
-
-No response.
-
-## Delete Webhook
-
-Delete a webhook.
-
-This method is idempotent. If webhook ID does not exist, the request will still be successful.
-
-`DELETE /webhooks/<webhook_id>`
-
-No response.
