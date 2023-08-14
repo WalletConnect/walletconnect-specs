@@ -1,7 +1,7 @@
 # Chat Spam Protection
 
 To ensure a positive end-user experience, it's essential to mitigate spam and
-protect users from chat spam and [push notifications spam](../push/spam-protection.md).
+protect users from chat spam and [notify spam](../notify/spam-protection.md).
 This document outlines the measures taken to prevent spam and maintain a
 high-quality experience for end-users.
 
@@ -38,4 +38,3 @@ the end user.
    `leave` function. This works inherently because of the above innate invite
    protection. For example, if a peer was compromised and began sending spam
    messages, one could immediately block them. 
-
