@@ -51,12 +51,12 @@ Subscribe protocol will be established as follows:
 5. W1 sends notify subscribe request (type 1 envelope) on subscribe topic with subscriptionAuth
 7. Response topic is derived from the sha256 hash of symmetric key S
 8. W1 subscribes to response topic
-9. Cast Server receives notify subscribe request on subscribe topic
-10. Cast Server derives symmetric key S and decrypts subscriptionAuth
-11. Cast Server triggers webhook to notify Dapp of new registered address
-12. Cast Server generates key pair Z
-13. Cast Server derives symmetric key P with keys Y and Z
-14. Cast Server responds to notify subscribe request on response topic
+9. Notify Server receives notify subscribe request on subscribe topic
+10. Notify Server derives symmetric key S and decrypts subscriptionAuth
+11. Notify Server triggers webhook to notify Dapp of new registered address
+12. Notify Server generates key pair Z
+13. Notify Server derives symmetric key P with keys Y and Z
+14. Notify Server responds to notify subscribe request on response topic
 15. W1 receives notify subscribe response on the response topic
 16. W1 derives symmetric key P
 17. Notify topic is derived from the sha256 hash of the symmetric key P
