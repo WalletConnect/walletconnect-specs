@@ -6,21 +6,19 @@ In this document we will describe the authentication payloads for different meth
 - Notify Subscription Response
 - Notify Message
 - Notify Receipt
-- Notify Subscription Update
-- Notify Subscription Update Response
-- Notify Subscription Delete
-- Notify Subscription Delete Response
+- Notify Update Response
+
 
 All of the above authentication payloads will share the following claims:
 
 - act - description of action intent. Must be equal to specific value defined in each payload
-- iat - timestamp when JWT was issued
-- exp - timestamp when JWT must expire
+- iat - timestamp when jwt was issued
+- exp - timestamp when jwt must expire
 - ksu - key server for identity key verification
 
 ## Notify Subscription
 
-The wallet creates a notify subscription by signing a JWT with the dentity Key corrresponding the blockchain account subscribed
+The wallet creates a notify subscription by signing a JWT with the Identity Key corrresponding the blockchain account subscribed
 
 This is achieved using [Identity Keys](../../servers/keys/identity-keys) and did-jwt with the following claims:
 
@@ -79,7 +77,7 @@ For each Notify message received, the Wallet will acknowledge its receipt with a
 
 Expiry should be calculated from the addition of the issuance date and the notify request TTL (86400 seconds)
 
-## Notify Subscription Update
+## Notify Update
 
 The wallet creates a notify update by signing a JWT with the Identity Key corrresponding the blockchain account subscribed
 
@@ -94,7 +92,8 @@ This is achieved using [Identity Keys](../../servers/keys/identity-keys) and did
 
 Expiry should be calculated from the addition of the issuance date and the notify request TTL (2592000 seconds)
 
-## Notify Subscription Update Response
+
+## Notify Update Response
 
 Once the Notify Server has successfully handled the incoming notify update request then it will acknowledge it by responding with a hash of the new subscription payload.
 
@@ -106,7 +105,7 @@ Once the Notify Server has successfully handled the incoming notify update reque
 
 Expiry should be calculated from the addition of the issuance date and the notify request TTL (86400 seconds)
 
-## Notify Subscription Delete
+## Notify Delete
 
 Once the Notify client wants to delete the subscription completely then it should authenticate the following request including the reason for deleting the subscription.
 
@@ -116,7 +115,7 @@ Once the Notify client wants to delete the subscription completely then it shoul
 - sub - reason for deleting the subscription
 - app - dapp's domain url
 
-## Notify Subscription Delete Response
+## Notify Delete Response
 
 Once the Notify Server has sucessfully handled the subscription deletion then it should authenticate the following request including the hash of the existing subscription payload.
 
