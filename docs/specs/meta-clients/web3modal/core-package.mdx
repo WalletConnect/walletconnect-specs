@@ -21,10 +21,10 @@ interface AccountController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Set isConnected value
   setIsConnected(isConnected: State['isConnected']): void
@@ -66,10 +66,10 @@ interface ApiController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Set projectId value
   setProjectId(projectId: State['projectId']): void
@@ -116,10 +116,10 @@ interface AssetControler {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Set walletImages value
   setWalletImages(key: string, value: string): void
@@ -160,10 +160,10 @@ interface ConnectionController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Get _client safely
   _getClient(): Client
@@ -204,10 +204,10 @@ interface ConnectorController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Set connectors value
   setConnectors(connectors: State['connectors']): void
@@ -230,10 +230,10 @@ interface ModalController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Open modal, set open value, optionaly set initial view (update RouterController)
   open(options?: { view: string }): void
@@ -265,10 +265,10 @@ interface NetworkController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Get _client safely
   _getClient(): Client
@@ -309,10 +309,10 @@ interface RouterController {
   state: State
 
   // Subscribe to all state changes
-  subscribe: (callback: (newState: State): void): void
+  subscribe: (callback: (newState: State): void): unsubscribe()
 
   // Subscribe to specific state key change
-  subscribeKey: (key: string, callback: (newState: State): void): void
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
   // Push new view to history, update view, data and history value
   push(view: State['view'], data?: State['data']): void
@@ -325,5 +325,33 @@ interface RouterController {
 
   // Go back to previous view
   goBack(): void
+}
+```
+
+## SnackController
+```ts
+interface State {
+  message?: string
+  variant: 'error' | 'success'
+  open: boolean
+}
+
+interface SnackController {
+  state: State
+
+  // Subscribe to all state changes
+  subscribe: (callback: (newState: State): void): unsubscribe()
+
+  // Subscribe to specific state key change
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
+
+  // Show success snack, update message, variant and open values
+  showSuccess(message: State['message']): void
+
+  // Show error snack, update message, variant and open values
+  showError(message: State['message']): void
+
+  // Hide snack, update open value
+  hide(): void
 }
 ```
