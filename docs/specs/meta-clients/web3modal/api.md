@@ -1,4 +1,4 @@
-# Api
+# API
 
 Web3Modal has it's own api available at [api.web3modal.com](https://api.web3modal.com) that is used to fetch wallet data from a WalletConnect maintained [wallet & dapp registry](https://walletconnect.com/explorer).
 
