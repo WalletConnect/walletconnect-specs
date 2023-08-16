@@ -11,7 +11,7 @@ In this document we will describe the authentication payloads for different meth
 - Notify Subscription Delete
 - Notify Subscription Delete Response
 
-All of the above authentication payloads are did-jwts and share the following claims:
+All of the above authentication payloads are DID JWTs and share the following claims:
 
 - act - description of action intent. Must be equal to specific value defined in each payload
 - iat - timestamp when JWT was issued
