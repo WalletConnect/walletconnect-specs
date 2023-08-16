@@ -6,15 +6,15 @@ const lightCodeTheme = require('prism-react-renderer/themes/github')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'WalletConnect Docs',
+  title: 'WalletConnect Specs',
   tagline: 'WalletConnect is an open protocol to communicate securely between Dapps and Wallets.',
-  url: 'https://docs.walletconnect.com/',
+  url: 'https://specs.walletconnect.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'walletconnect',
-  projectName: 'walletconnect-docs',
+  projectName: 'walletconnect-specs',
   scripts: [
     {
       src: 'https://plausible.io/js/plausible.js',
@@ -33,7 +33,7 @@ const config = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateTime: true,
-          editUrl: 'https://github.com/WalletConnect/walletconnect-docs/blob/main/',
+          editUrl: 'https://github.com/WalletConnect/walletconnect-specs/blob/main/',
           versions: {
             current: {
               badge: false,
@@ -58,7 +58,7 @@ const config = {
           {
             type: 'html',
             value:
-              '<a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/walletconnect-logo-white.svg#dark-mode-only"  alt="WalletConnect Logo"><img src="/img/walletconnect-logo-black.svg#light-mode-only"  alt="WalletConnect Logo"></div>WalletConnect<span>Docs<span></a>'
+              '<a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/walletconnect-logo-white.svg#dark-mode-only"  alt="WalletConnect Logo"><img src="/img/walletconnect-logo-black.svg#light-mode-only"  alt="WalletConnect Logo"></div>WalletConnect<span>Specs<span></a>'
           },
           {
             href: 'https://github.com/walletconnect/',
@@ -110,7 +110,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/walletconnect/walletconnect-docs/'
+                href: 'https://github.com/walletconnect/walletconnect-specs/'
               }
             ]
           }
