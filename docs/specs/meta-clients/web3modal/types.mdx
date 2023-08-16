@@ -1,0 +1,48 @@
+# Types
+
+```ts
+// CAIP Types
+type CaipAddress = `${string}:${string}:${string}`
+
+type CaipNetworkId = `${string}:${string}`
+
+type CaipNetwork = {
+  id: CaipNetworkId
+  name?: string
+  imageId?: string
+}
+
+// General Types
+type ProjectId = string
+
+type SdkType = 'wcm' | 'w3m'
+
+type SdkVersion = `${string}-${string}-${string}`
+
+
+// Api Types
+interface ApiHeaders {
+  'x-project-id': ProjectId,
+  'x-sdk-type': SdkType,
+  'x-sdk-version': SdkVersion
+}
+
+interface ApiWallet {
+  id: string
+  name: string
+  homepage: string
+  image_id: string
+  order: number
+  mobile_link: string | null
+  desktop_link: string | null
+  webapp_link: string | null
+  app_store: string | null
+  play_store: string | null
+  injected:
+    | {
+        namespace: string
+        injected_id: string
+      }[]
+    | null
+}
+```
