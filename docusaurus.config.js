@@ -19,7 +19,7 @@ const config = {
     {
       src: 'https://plausible.io/js/plausible.js',
       defer: true,
-      'data-domain': 'specs.walletconnect.com'
+      'data-domain': 'docs.walletconnect.com'
     }
   ],
   presets: [
