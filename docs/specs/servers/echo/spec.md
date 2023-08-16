@@ -103,4 +103,4 @@ POST <ECHO_SERVER_URL>/clients/<CLIENT_ID>
     Chat       = 1 << 3
     Push       = 1 << 4
     ```
-  - `blob`: If the payload is encrypted this is just the encrypted blob, when this is cleartext it should be base64 encoded. The blob should follow the format from of the [Push Message](https://docs.walletconnect.com/2.0/specs/clients/push/data-structures#push-message) 
+  - `blob`: If the payload is encrypted this is just the encrypted blob, when this is cleartext it should be base64 encoded. The blob should follow the format from of the [Push Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
