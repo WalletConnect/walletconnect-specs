@@ -80,19 +80,19 @@ interface ApiController {
   // Generates api headers from state values
   getApiHeaders(): ApiHeaders
 
-  // Fetch wallet image (GET /getWalletImage), update AssetControler state
+  // Fetch wallet image (GET /getWalletImage), update AssetController state
   fetchWalletImage(imageId: string): Promise<Blob>
 
-  // Fetch network image (GET /public/getAssetImage), update AssetControler state
+  // Fetch network image (GET /public/getAssetImage), update AssetController state
   fetchNetworkImage(imageId: string): Promise<Blob>
 
-  // Fetch connector image (GET /public/getAssetImage), update AssetControler state
+  // Fetch connector image (GET /public/getAssetImage), update AssetController state
   fetchConnectorImage(imageId: string): Promise<Blob>
 
-  // Fetch token image (GET /public/getAssetImage), update AssetControler state
+  // Fetch token image (GET /public/getAssetImage), update AssetController state
   fetchTokenImage(imageId: string): Promise<Blob>
 
-  // Fetch recomendedWallets (POST /getWallets), update recommended value
+  // Fetch recommendedWallets (POST /getWallets), update recommended value
   fetchRecommendedWallets(): Promise<{count: number, data: ApiWallet[]}>
 
   // Fetch wallets (POST /getWallets), update wallets, count, page values
@@ -103,7 +103,7 @@ interface ApiController {
 }
 ```
 
-## AssetControler
+## AssetController
 ```ts
 interface State {
   walletImages: Record<string, string>
@@ -112,7 +112,7 @@ interface State {
   tokenImages: Record<string, string>
 }
 
-interface AssetControler {
+interface AssetController {
   state: State
 
   // Subscribe to all state changes
@@ -235,7 +235,7 @@ interface ModalController {
   // Subscribe to specific state key change
   subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
 
-  // Open modal, set open value, optionaly set initial view (update RouterController)
+  // Open modal, set open value, optionally set initial view (update RouterController)
   open(options?: { view: string }): void
 
   // Close modal, set open value
