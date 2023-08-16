@@ -1,0 +1,101 @@
+# Core package
+
+Principal purpose of core package is to define and expose controllers (singletons) that keep track of their reactive state and expose actions that allow updating on it.
+
+Secondary purpose of this package is to expose shared utilities related to "core logic".
+
+## AccountController
+
+```ts
+interface State {
+  isConnected: boolean
+  caipAddress?: CaipAddress
+  address?: string
+  balance?: string
+  balanceSymbol?: string
+  profileName?: string
+  profileImage?: string
+}
+
+interface AccountController {
+  state: State
+
+  // Subscribe to all state changes
+  subscribe: (callback: (newState: State): void): void
+
+  // Subscribe to specific state key change
+  subscribeKey: (key: string, callback: (newState: State): void): void
+
+  // Set isConnected value
+  setIsConnected(isConnected: State['isConnected']): void
+
+  // Set caipAddress, address values
+  setCaipAddress(caipAddress: State['caipAddress']): void
+
+  // Set balance, balanceSymbol values
+  setBalance(
+    balance: State['balance'], 
+    balanceSymbol: State['balanceSymbol']
+  ): void
+
+  // Set profileName
+  setProfileName(profileName: State['profileName']): void
+
+  // Set profileImage
+  setProfileImage(profileImage: State['profileImage']): void
+
+  // Reset account state to default
+  resetAccount(): void
+}
+```
+
+## ApiController
+
+```ts
+interface State {
+  projectId: ProjectId
+  sdkVersion: SdkVersion
+  page: number
+  count: number
+  recommended: ApiWallet[]
+  wallets: ApiWallet[]
+  search: ApiWallet[]
+}
+
+interface ApiController {
+  state: State,
+
+  // Subscribe to all state changes
+  subscribe: (callback: (newState: State): void): void
+
+  // Subscribe to specific state key change
+  subscribeKey: (key: string, callback: (newState: State): void): void
+
+  // Set projectId value
+  setProjectId(projectId: State['projectId']): void
+
+  // Set sdkVersion value
+  setSdkVersion(sdkVersion: State['sdkVersion']): void
+
+  // Generates api headers from state values
+  getApiHeaders(): ApiHeaders
+
+  // Fetch wallet image (GET /getWalletImage), update AssetControler state
+  fetchWalletImage(imageId: string): Promise<Blob>
+
+  // Fetch network image (GET /public/getAssetImage), update AssetControler state
+  fetchNetworkImage(imageId: string): Promise<Blob>
+
+  // Fetch connector image (GET /public/getAssetImage), update AssetControler state
+  fetchConnectorImage(imageId: string): Promise<Blob>
+
+  // Fetch recomendedWallets (POST /getWallets), update recommended value
+  fetchRecommendedWallets(): Promise<{count: number, data: ApiWallet[]}>
+
+  // Fetch wallets (POST /getWallets), update wallets, count, page values
+  fetchWallets(page: number): Promise<{count: number, data: ApiWallet[]}>
+
+  // Search wallets (POST /getWallets), update search value
+  searchWallets(search: string): Promise<{count: number, data: ApiWallet[]}>
+}
+```
