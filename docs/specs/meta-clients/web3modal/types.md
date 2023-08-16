@@ -17,7 +17,7 @@ type ProjectId = string
 
 type SdkType = 'wcm' | 'w3m'
 
-type SdkVersion = `${string}-${string}-${string}`
+type SdkVersion = `${string}-${string}-${string}` // react-wagmi-3.0.0
 
 // Connector Types
 type ConnectorType = 'EXTERNAL' | 'WALLET_CONNECT' | 'INJECTED'
