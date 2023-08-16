@@ -92,7 +92,7 @@ Used to publish a notification message to a peer through notify topic. Response 
 
 Used to inform the peer to close and delete a notify subscription through notify topic. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
 
-Note: If the Notify Server is offline when the delete request is sent, the relay will retain the message the mailbox. The TTL is set such that when the Notify Server comes back online the delete request will be received. The message expiration is equal to the expiration of the subscription itself. Notify clients should assume deletion is successful as long as the relay ACKs the message. The delete response is for informational purposes and does not need to be received.
+Note: If the Notify Server is offline when the delete request is sent, the relay will retain the message in the mailbox. The TTL is set such that when Notify Server comes back online, the delete request will be received. The message expiration is equal to the expiration of the subscription itself. Notify clients should assume deletion is successful as long as the relay ACKs the message. The delete response is for informational purposes and does not need to be received.
 
 **Request**
 
