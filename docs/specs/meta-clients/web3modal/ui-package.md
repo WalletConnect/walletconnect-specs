@@ -1,4 +1,4 @@
-# Ui Package
+# UI Package
 
 Principal purpose of ui package is to host individual and reusable ui components (even outside of web3modal codebases).
 
