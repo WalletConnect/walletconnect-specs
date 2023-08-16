@@ -7,9 +7,6 @@ class Web3Wallet {
   
   // establish pairing from URI (BOTH)
   public abstract pair(params: { uri: string }): Promise<void>;
-
-  // for responder to set supported and special namespaces
-  public abstract setNamespaceConfig(params: NamespaceConfig): Promise<void>;
   
    // approve a session proposal (SIGN)
   public abstract approveSession(params: {
@@ -73,7 +70,7 @@ class Web3Wallet {
   // query all pending auth requests (AUTH)
   public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
   
-  // register device token for Echo server (BOTH)
+  // register device token for Push server (BOTH)
   public abstract registerDeviceToken(token: string): Promise<void>;
 
   // ---------- Events ----------------------------------------------- //

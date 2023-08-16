@@ -38,7 +38,7 @@ Let's use the account `eip155:1:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` and 
 * Chain ID = 1
 * Nonce = bb0b6514e8a5e817
 * Issued At = 2022-12-09T15:29:36.509Z
-* Resources = ["did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq"]
+* Resources = `["did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq"]`
 
 Formatted Message (CAIP-122)
 
@@ -88,7 +88,7 @@ When two clients are using a peer to peer API for some requests they need to ver
 
 Now that we have generated, authorized and registered Identity Keys we can use them for authentication for different purposes:
 - [Chat Authentication](../../clients/chat/chat-authentication.md)
-- [Push Authentication](../../clients/push/push-authentication.md)
+- [Notify Authentication](../../clients/notify/notify-authentication.md)
 - [Chat Invite Keys registration](../../clients/chat/invite-keys.md)
 
 ## Unregistration 
