@@ -46,12 +46,11 @@ abstract class Client {
   public abstract decryptMessage(params: { topic: string, encryptedMessage: string }): Promise<NotifyMessage>;
   
   // registers a blockchain account with an identity key if not yet registered on this client
-  // if enableSync is true then register sync keys
+  // additionally register sync keys
   // returns the public identity key.
   public abstract register(params: {
         account: string, 
         onSign: (message: string) => Cacao.Signature,
-        enableSync: boolean
   }): Promise<string>;
 
   // ---------- Events ----------------------------------------------- //
