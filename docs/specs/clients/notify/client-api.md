@@ -18,7 +18,6 @@ abstract class Client {
         metadata: Metadata,
         account: string,
         scope: string[],
-        onSign: (message: string) => Cacao.Signature
   }): Promise<boolean>;
 
   // update notify subscription
@@ -44,13 +43,15 @@ abstract class Client {
   public abstract deleteNotifyMessage(params: { id: number }): Promise<void>;
   
   // decrypt notify subscription message
-  public abstract decryptMessage(topic: string, encryptedMessage: string): Promise<NotifyMessage>;
+  public abstract decryptMessage(params: { topic: string, encryptedMessage: string }): Promise<NotifyMessage>;
   
-  // Enable Sync by registering sync keys
-  public abstract enableSync({
+  // registers a blockchain account with an identity key if not yet registered on this client
+  // additionally register sync keys
+  // returns the public identity key.
+  public abstract register(params: {
         account: string, 
-        onSign: (message: string) => Cacao.Signature
-  }): Promise<void>;
+        onSign: (message: string) => Cacao.Signature,
+  }): Promise<string>;
 
   // ---------- Events ----------------------------------------------- //
 
