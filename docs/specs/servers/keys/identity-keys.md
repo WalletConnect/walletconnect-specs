@@ -21,6 +21,7 @@ Template Message (CAIP-122)
 ${domain} wants you to sign in with your ${namespace-name} account:
 ${address}
 
+
 URI: ${uri}
 Version: ${version}
 Chain ID: ${chain-id}
@@ -45,6 +46,7 @@ Formatted Message (CAIP-122)
 ```md
 keys.walletconnect.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
 
 URI: https://keys.walletconnect.com
 Version: 1
