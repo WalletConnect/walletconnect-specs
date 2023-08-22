@@ -67,7 +67,7 @@ Resources:
     "iat": "2022-03-10T17:09:21.481+03:00",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
-    "domain": "walletconnect.com",
+    "domain": "keys.walletconnect.com",
     "version": "1",
     "resources": [
       "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq,
