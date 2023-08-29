@@ -15,6 +15,7 @@ interface State {
   balanceSymbol?: string
   profileName?: string
   profileImage?: string
+  addressExplorerUrl?: string
 }
 
 interface AccountController {
@@ -44,6 +45,9 @@ interface AccountController {
   // Set profileImage
   setProfileImage(profileImage: State['profileImage']): void
 
+  // Set blockchain explorer url for address
+  setAddressExplorerUrl(explorerUrl: AccountControllerState['addressExplorerUrl']): void
+
   // Reset account state to default
   resetAccount(): void
 }
@@ -53,7 +57,6 @@ interface AccountController {
 
 ```ts
 interface State {
-  projectId: ProjectId
   sdkVersion: SdkVersion
   page: number
   count: number
@@ -70,9 +73,6 @@ interface ApiController {
 
   // Subscribe to specific state key change
   subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
-
-  // Set projectId value
-  setProjectId(projectId: State['projectId']): void
 
   // Set sdkVersion value
   setSdkVersion(sdkVersion: State['sdkVersion']): void
@@ -150,6 +150,7 @@ interface State {
   wcUri?: string
   wcPromise?: Promise<void>
   wcPairingExpiry?: number
+  wcError?: boolean
   wcLinking?: {
     href: string
     name: string
@@ -188,6 +189,9 @@ interface ConnectionController {
 
   // Set wcLinking value
   setWcLinking(wcLinking: State['wcLinking']): void
+
+  // Set wcError
+  setWcError(wcError: State['wcError']): void
 
   // Use _client to disconnect
   disconnect(): Promise<void>
@@ -353,5 +357,40 @@ interface SnackController {
 
   // Hide snack, update open value
   hide(): void
+}
+```
+
+## BlockchainApiController
+```ts
+interface BlockchainApiController {
+  fetchIdentity({ caipChainId: string, address: string }): Promise<{ avatar: string, name: string } | undefined>
+}
+```
+
+## OptionsController
+```ts
+interface State {
+  projectId: ProjectId
+  includeWalletIds?: string[]
+  excludeWalletIds?: string[]
+}
+
+interface OptionsController {
+  state: State
+
+  // Subscribe to all state changes
+  subscribe: (callback: (newState: State): void): unsubscribe()
+
+  // Subscribe to specific state key change
+  subscribeKey: (key: string, callback: (newState: State): void): unsubscribe()
+
+  // Set projectId value
+  setProjectId(projectId: State['projectId']): void
+
+  // Set includeWalletIds value
+  setIncludeWalletIds(includeWalletIds: State['includeWalletIds']): void
+
+  // Set excludeWalletIds value
+  setExcludeWalletIds(excludeWalletIds: State['excludeWalletIds']): void
 }
 ```

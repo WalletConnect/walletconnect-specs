@@ -17,19 +17,20 @@ interface Headers {
 
 ## Methods
 
-### POST `/getWallets`
+### GET `/getWallets`
 Returns total count and wallet data, based on provided body inputs. See [types](./types.md).
 
 ```ts
 interface Request {
   headers: Headers
-  body: {
-    page: number
-    entries: number
-    search?: string
-    include?: string[]
-    exclude?: string[]
-  }
+}
+
+interface UrlQueryParams {
+  page: string // eg. 1
+  entries: string // eg. 100
+  search?: string // eg. MetaMa...
+  include?: string // eg. id1,id2,id3
+  exclude?: string // eg. id1,id2,id3 
 }
 
 interface Response {
