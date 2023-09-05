@@ -40,7 +40,7 @@ Signed by: client identity key
 - aud - did:key of an identity key. Allows for the resolution of the attached blockchain account.
 - sub - did:key of the public key used for key agreement on the Notify topic 
 - app - dapp's domain URL
-- subs - subscriptions
+- subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity 
 
@@ -51,6 +51,7 @@ Signed by: Notify Server identity
 - aud - blockchain account that notify subscription is associated with (did:pkh)
 - sub - hash of the matching subscription payload
 - app - dapp's domain URL
+- subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity key
 
