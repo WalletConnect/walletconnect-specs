@@ -2,62 +2,55 @@
 
 Identity Keys are used to verify Blockchain Account ownership and validating peer to peer requests are legitimate without requiring the wallet user to sign every message with their blockchain private key.
 
-## Short Description
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U AS Wallet
+    participant C AS Client
+    participant I AS Keys Server
 
-These are randomly generated ed25519 key pairs that are only present one per client. The Wallet user signs a CAIP-122 message to generate a CACAO that authorizes the client's identity key to sign messages on the behalf of the Blockchain Account.
+    activate C
+    Note over C: Generate Identity Key
+    Note over C: Generate CAIP-122 msg
+    C->>+U: Sign CAIP-122 msg
+    U->>-C: Signature
+    C->>+I: Register CACAO
+    I-->>-C: ACK
+    deactivate C
+```
+
+## Keys
+
+Identity Keys are randomly generated ed25519 key pairs that are unique per client/device per blockchain account.
+
+If the wallet user uses multiple devices, each device SHOULD use a different identity key.
+
+If the wallet user has multiple blockchain accounts, each account MAY use a separate identity key.
 
 ## Key Authorization
 
-Client only generates a single identity key per blockchain account per client. The wallet user uses multiple blockchain accounts with a single client by authorizing one respective identity key for each. Additionally the wallet can use multiple clients with the same blockchain account by authorizing a new identity key on a new client.
+Identity Keys are authorized by a blockchain account by the wallet user signing a [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) message with includes the public key of the Identity Key as the URI.
 
-Identity Keys are ed25519 key pairs generated internally and the client will expose a CAIP-122 message which includes the public key of the Identity Key pair in the Resources in the form of a did-key.
+This results in a CACAO that authorizes the client's Identity Key to sign messages on the behalf of the blockchain account.
 
+For example:
 
-### Message Format
-
-Template Message (CAIP-122)
-
-```md
-${domain} wants you to sign in with your ${namespace-name} account:
-${address}
-
-
-URI: ${uri}
-Version: ${version}
-Chain ID: ${chain-id}
-Nonce: ${nonce}
-Issued At: ${issued-at}
 ```
-
-Let's use the account `eip155:1:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` and identity key  use the following fields:
-
-* Domain = keys.walletconnect.com
-* Namespace Name = Ethereum
-* Address = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-* URI = https://keys.walletconnect.com
-* Version = 1
-* Chain ID = 1
-* Nonce = bb0b6514e8a5e817
-* Issued At = 2022-12-09T15:29:36.509Z
-* Resources = `["did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq"]`
-
-Formatted Message (CAIP-122)
-
-```md
-keys.walletconnect.com wants you to sign in with your Ethereum account:
+app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
+TODO: statement
 
-URI: https://keys.walletconnect.com
+URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
 Chain ID: 1
 Nonce: bb0b6514e8a5e817
 Issued At: 2022-12-09T15:29:36.509Z
-Resources:
-- did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 ```
 
 ### CACAO Format
+
+The CACAO is a standard JSON representation of a signed CAIP-122 message. For example:
 
 ```
 {
@@ -65,15 +58,13 @@ Resources:
     "t": "eip4361"
   },
   "p": {
-    "aud": "https://keys.walletconnect.com",
+    "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2022-03-10T17:09:21.481+03:00",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
-    "domain": "keys.walletconnect.com",
+    "domain": "app.example.com",
     "version": "1",
-    "resources": [
-      "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq,
-    ],
+    "resources": [],
   },
   "s": {
     "s": "5ccb134ad3d874cbb40a32b399549cd32c953dc5dc87dc64624a3e3dc0684d7d4833043dd7e9f4a6894853f8dc555f97bc7e3c7dd3fcc66409eb982bff3a44671b",
@@ -86,22 +77,139 @@ Resources:
 
 When two clients are using a peer to peer API for some requests they need to verify each others Identity Keys. Therefore we use the Keys Server to index these keys privately and the counter-party can validate that the key would be used for the corresponding account in the WalletConnect identities.
 
-## Authentication
+`POST /identity`
 
-Now that we have generated, authorized and registered Identity Keys we can use them for authentication for different purposes:
-- [Chat Authentication](../../clients/chat/chat-authentication.md)
+### Body
+
+```jsonc
+{
+  "cacao": Cacao
+}
+```
+
+### Example
+
+`POST https://keys.walletconnect.com/identity`
+
+#### Body
+```jsonc
+{
+  "cacao": {
+    "h": { ... },
+    "p": { ... },
+    "s": { ... }
+  }
+}
+```
+
+## Resolve Identity Key
+
+Used to get a CACAO matching an Identity Key.
+
 - [Notify Authentication](../../clients/notify/notify-authentication.md)
-- [Chat Invite Keys registration](../../clients/chat/invite-keys.md)
+- [Chat Authentication](../../clients/chat/chat-authentication.md)
 
-## Unregistration 
+`GET /identity`
 
-In order to unregister an Identity Key did-jwt needs to be created and sent to designated [API endpoint](./keys-server-api.md#remove-identity-key)
+### Query Params
 
-When we are unregistering an Identity Key we must use the following mandatory fields in the jwt:
+```jsonc
+{
+  "publicKey": string,
+}
+```
 
-* iat - timestamp when jwt was issued 
-* exp - timestamp when jwt must expire
-* iss - public identity key in form of did:key
+### ResolveIdentityKeyResponse
+```jsonc
+{
+  "cacao": Cacao
+}
+```
+
+### Response
+
+```jsonc
+{
+  "status": String,
+  "error": ResponseError?,
+  "value": ResolveIdentityKeyResponse?
+}
+```
+
+### Example
+
+`GET https://keys.walletconnect.com/identity?publicKey=z6MkkKzGDpQv4mR8Gkamt1Wbsrz4mFjjQpAgDFGE919vH7Ts`
+
+#### Success Response
+```jsonc
+{
+  "status": "SUCCESS",
+  "error": null,
+  "value": {
+    "cacao": {
+      "h": { ... },
+      "p": { ... },
+      "s": { ... }
+    }
+  }
+}
+```
+
+#### Failure Response 
+```jsonc
+{
+  "status": "FAILURE",
+  "error": {
+    "name": "Identity key not found",
+    "message": "Cannot find Identity key with specified identifier z6MkkKzGDpQv4mR8Gkamt1Wbsrz4mFjjQpAgDFGE919vH7Ts"
+  },
+  "value": null
+}
+```
+
+
+## Remove Identity Key
+
+Used to remove an Identity Key from the server
+
+`DELETE /identity`
+
+### Body
+
+```jsonc
+{
+  "idAuth": string
+}
+```
+
+#### IdAuth
+
+The `idAuth` is a JWT signed by the Identity Key with the following claims:
+
+* iat - timestamp when JWT was issued 
+* exp - timestamp when JWT must expire
+* iss - public Identity Key in form of did:key
 * aud - key server URL used for registering
 * pkh - corresponding blockchain account (did:pkh)
 * act - description of action intent. Must be equal to "unregister_identity"
+
+### Example
+
+`DELETE https://keys.walletconnect.com/identity`
+
+#### Body
+```jsonc
+{
+  "idAuth": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtoQk5tQXZ0VDNxeW5YekVCcmlSa2o4TWJoTURxMUs1aFhpY1BTSlZTWnBzOSIsImF1ZCI6Imh0dHA6Ly8xMC4wLjIuMjo4MDgwIiwiaWF0IjoxNjc3MTg4NzU1MjUwLCJleHAiOjE2Nzk3ODA3NTUyNTAsInBraCI6ImRpZDpwa2g6ZWlwMTU1OjE6MHhiYjU0NjZkODcyZGQxN2Y4MDRkMjYwNDVhMWVkMDk3ZWQ4NDM2MmI3In0.cTqEuxARCPwewx4PqhUiG8BkerqGX18icRhMJr9PPQW8fFTqKgjV7D2vzjKcxAEUWY2BL4b2998V0jEASSEIAQ"
+}
+```
+
+## Data structures
+
+### ResponseError
+```jsonc
+{
+  "name": String,
+  "message": String
+}  
+```
