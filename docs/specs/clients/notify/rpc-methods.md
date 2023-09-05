@@ -1,33 +1,88 @@
 # RPC Methods
 
-This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
+All methods follow the [JSON-RPC 2.0 spec](https://www.jsonrpc.org/specification).
 
-## Definitions
-
-- **Nullables:** Fields flagged as `Optional` can be omitted from the payload.
-- Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
-
-```jsonc
-// Success
-result: true
-
-// Failure
-error: {
-  "code": number,
-  "message": string
-}
-```
+All methods contain an "auth" field in the `params` (for request) or `result` (for response) which is a signed JWT. JWTs are specified in the [authentication](./notify-authentication.md) document.
 
 ## Methods
 
-### wc_notifySubscribe
+### wc_notifyWatchSubscriptions
 
-Used to subscribe notify subscription to a peer through subscribe topic. Response is expected on the response topic
+Used to get the list of subscriptions for an account, and watch for updates.
 
 **Request**
 
 ```jsonc
-// wc_notifySubscribe params
+{
+  "watchSubscriptionsAuth": string
+}
+
+| IRN     |          |
+| ------- | -------- | 
+| TTL     | 30       |
+| Tag     | 4010     |
+```
+
+Topic: hash of key agreement public key from [Notify Server Authentication](./notify-server-authentication.md)
+
+Message uses type 1 envelope with the client's persistant private key
+
+**Response**
+
+```jsonc
+{
+  "responseAuth": string
+}
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 4011     |
+```
+
+Topic: hash of symmetric key derivation of client's persistant private key and key agreement public key from [Notify Server Authentication](./notify-server-authentication.md)
+
+### wc_notifySubscriptionsChanged
+
+Used to indicate a change to subscriptions has occurred.
+
+**Request**
+
+```jsonc
+{
+  "subscriptionsChangedAuth": string
+}
+
+| IRN     |          |
+| ------- | -------- | 
+| TTL     | 300      |
+| Tag     | 4012     |
+```
+
+Topic: same as wc_notifyWatchSubscriptions response
+
+**Response**
+
+```jsonc
+{
+  "responseAuth": string
+}
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 4013     |
+```
+
+Topic: same as wc_notifyWatchSubscriptions response
+
+### wc_notifySubscribe
+
+Used to subscribe notify subscription to a peer through subscribe topic. Response is expected on the response topic.
+
+**Request**
+
+```jsonc
 {
   "subscriptionAuth": string
 }
@@ -38,10 +93,11 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 | Tag     | 4000     |
 ```
 
+Topic: notify topic
+
 **Response**
 
 ```jsonc
-// Success resu0t
 {
   "responseAuth": string
 }
@@ -52,18 +108,15 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 | Tag     | 4001     |
 ```
 
+Topic: notify topic
+
 ### wc_notifyMessage
 
 Used to publish a notification message to a peer through notify topic. Response is expected on the same topic.
 
-- Success response is equivalent to notify message acknowledgement.
-- Error response is equivalent to notify message failed to decrypt.
-
-
 **Request**
 
 ```jsonc
-// wc_notifyMessage params
 {
   "messageAuth": string
 }
@@ -74,10 +127,11 @@ Used to publish a notification message to a peer through notify topic. Response 
 | Tag     | 4002     |
 ```
 
+Topic: notify topic
+
 **Response**
 
 ```jsonc
-// Success result
 {
   "receiptAuth": string
 }
@@ -88,37 +142,7 @@ Used to publish a notification message to a peer through notify topic. Response 
 | Tag     | 4003     |
 ```
 
-### wc_notifyDelete
-
-Used to inform the peer to close and delete a notify subscription through notify topic. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
-
-Note: If the Notify Server is offline when the delete request is sent, the relay will retain the message in the mailbox. The TTL is set such that when Notify Server comes back online, the delete request will be received. The message expiration is equal to the expiration of the subscription itself. Notify clients should assume deletion is successful as long as the relay ACKs the message. The delete response is for informational purposes and does not need to be received.
-
-**Request**
-
-```jsonc
-// wc_notifyDelete params
-{
-  "deleteAuth": string 
-}
-| IRN     |          |
-| ------- | -------- |
-| TTL     | 2592000  |
-| Tag     | 4004     |
-```
-
-**Response**
-
-```jsonc
-{
-  "responseAuth": string
-}
-true
-| IRN     |          |
-| ------- | -------- |
-| TTL     | 2592000  |
-| Tag     | 4005     |
-```
+Topic: notify topic
 
 ### wc_notifyUpdate
 
@@ -129,9 +153,8 @@ Used to update a notify subscription with a new notify subscription, replacing a
 **Request**
 
 ```jsonc
-// wc_notifyUpdate params
 {
-  "updateAuth": string // new subscription
+  "updateAuth": string
 }
 
 | IRN     |          |
@@ -140,10 +163,11 @@ Used to update a notify subscription with a new notify subscription, replacing a
 | Tag     | 4008     |
 ```
 
+Topic: notify topic
+
 **Response**
 
 ```jsonc
-// Success result
 {
   "responseAuth": string
 }
@@ -153,3 +177,39 @@ Used to update a notify subscription with a new notify subscription, replacing a
 | TTL     | 2592000  |
 | Tag     | 4009     |
 ```
+
+Topic: notify topic
+
+### wc_notifyDelete
+
+Used to inform the peer to close and delete a notify subscription through notify topic. The reason field should be a human-readable message defined by the SDK consumer to be shown on the peer's side.
+
+**Request**
+
+```jsonc
+{
+  "deleteAuth": string 
+}
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 2592000  |
+| Tag     | 4004     |
+```
+
+Topic: notify topic
+
+**Response**
+
+```jsonc
+{
+  "responseAuth": string
+}
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 2592000  |
+| Tag     | 4005     |
+```
+
+Topic: notify topic

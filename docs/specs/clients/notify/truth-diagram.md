@@ -2,7 +2,9 @@
 
 This is used for all CRUD actions including:
 
-- List subscriptions (including notification symkey)
+- Get subscriptions (including notification symkey)
+  - If limited access, only give for domain
+  - If unlimited access, give all subscriptions
 - Create subscription
 - Update subscription
 - Delete subscription
