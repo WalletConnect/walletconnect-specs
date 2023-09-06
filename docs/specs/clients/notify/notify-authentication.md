@@ -53,7 +53,7 @@ Signed by: Notify Server identity key
 
 ## wc_notifySubscriptionsChanged response
 
-- act - description of action intent. Must be equal to "notify_receipt"
+- act - description of action intent. Must be equal to "notify_subscriptions_changed_response"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp identity key
