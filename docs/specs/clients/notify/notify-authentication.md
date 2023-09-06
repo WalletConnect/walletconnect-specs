@@ -47,7 +47,7 @@ Signed by: Notify Server identity
 - act - description of action intent. Must be equal to "notify_subscriptions_changed"
 - iss - did:key of Notify Server identity key
 - aud - did:pkh blockchain account that notify subscription is associated with
-- sbs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity key
 
