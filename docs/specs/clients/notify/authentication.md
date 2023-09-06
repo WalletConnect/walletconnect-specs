@@ -28,7 +28,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of Notify Server authentication key
-- sub - blockchain account that this request is associated with (did:pkh)
+- sub - did:pkh of blockchain account that this request is associated with
 
 ## wc_notifyWatchSubscriptions response
 
@@ -42,7 +42,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 - act - description of action intent. Must be equal to "notify_subscriptions_changed"
 - iss - did:key of Notify Server authentication key
-- aud - did:pkh blockchain account that notify subscription is associated with
+- aud - did:pkh of blockchain account that notify subscription is associated with
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 ## wc_notifySubscriptionsChanged response
@@ -99,7 +99,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
-- sub - blockchain account that this notify subscription is associated with (did:pkh)
+- sub - did:pkh of blockchain account that this notify subscription is associated with
 - scp - scope of notification types authorized by the user
 - app - dapp's domain URL
 
