@@ -60,6 +60,7 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2022-03-10T17:09:21.481+03:00",
+    "statement" : "TODO",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
