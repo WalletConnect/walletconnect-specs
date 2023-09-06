@@ -39,5 +39,10 @@ Core API consolidates several core modules that are shared between all other hig
       description: "Verify API is an attestation mechanism to verify the domain origin of a published message. The client will hash the contents of the encrypted envelope and attest with the verify enclave to register its attestation in the verify server for peers to compare with incoming messages from the Relay..",
       url: `/2.0/specs/clients/core/verify`
     },
+    {
+      name: "Identity API",
+      description: "Identity API exposes methods for managing Identity Keys",
+      url: `/2.0/specs/clients/core/identity`
+    },
   ]}
 />

@@ -111,8 +111,8 @@ When two clients are using a peer to peer API for some requests they need to ver
 
 Used to get a CACAO matching an Identity Key.
 
-- [Notify Authentication](../../clients/notify/authentication.md)
-- [Chat Authentication](../../clients/chat/chat-authentication.md)
+- [Notify Authentication](../../notify/authentication.md)
+- [Chat Authentication](../../chat/chat-authentication.md)
 
 `GET /identity`
 

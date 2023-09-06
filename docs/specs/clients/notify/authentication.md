@@ -8,7 +8,7 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - iat - timestamp when JWT was issued
 - exp - timestamp when JWT must expire. Must be equal to specific TTL defined in each payload, plus the iat value
 
-"iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../../servers/keys/identity-keys).
+"iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../core/identity/identity-keys.md).
 
 "iss - did:key of dapp authentication key" indicates JWTs sent by the Notify Server and are verified by clients with authentication key from [Dapp Authentication](./dapp-authentication.md).
 
