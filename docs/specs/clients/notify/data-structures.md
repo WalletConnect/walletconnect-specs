@@ -69,7 +69,7 @@ NotifyServerSubscription[]
 {
   topic: string, // dApp subscription topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
   account: Account, // CAIP-10 account
-  scopes: string[], // Array of notification types enabled for this subscription
+  scope: string[], // Array of notification types enabled for this subscription
   symKey: string, // Symetric key used for notification topic. sha256 to get notify topic
   expiry: number, // Unix timestamp of expiration
 }
