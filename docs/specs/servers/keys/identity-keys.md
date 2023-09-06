@@ -4,19 +4,19 @@ Identity Keys are used to verify Blockchain Account ownership and validating pee
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    participant U AS Wallet
-    participant C AS Client
-    participant I AS Keys Server
+  autonumber
+  participant U AS Wallet
+  participant C AS Client
+  participant I AS Keys Server
 
-    activate C
-    Note over C: Generate Identity Key
-    Note over C: Generate CAIP-122 msg
-    C->>+U: Request to sign CAIP-122 msg
-    U->>-C: Signature
-    C->>+I: Register CACAO
-    I-->>-C: ACK
-    deactivate C
+  activate C
+  Note over C: Generate Identity Key
+  Note over C: Generate CAIP-122 msg
+  C->>+U: Request to sign CAIP-122 msg
+  U->>-C: Signature
+  C->>+I: Register CACAO
+  I-->>-C: ACK
+  deactivate C
 ```
 
 ## Keys
@@ -107,7 +107,7 @@ When two clients are using a peer to peer API for some requests they need to ver
 
 Used to get a CACAO matching an Identity Key.
 
-- [Notify Authentication](../../clients/notify/notify-authentication.md)
+- [Notify Authentication](../../clients/notify/authentication.md)
 - [Chat Authentication](../../clients/chat/chat-authentication.md)
 
 `GET /identity`
