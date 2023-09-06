@@ -180,7 +180,7 @@ sequenceDiagram
 
 ## Detailed request & response pattern
 
-This is used by `wc_notifyWatchSubscribe` and `wc_notifySubscribe`
+This is used by `wc_notifyWatchSubscriptions` and `wc_notifySubscribe`
 
 ```mermaid
 sequenceDiagram
