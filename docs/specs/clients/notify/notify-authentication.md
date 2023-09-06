@@ -37,8 +37,8 @@ Signed by: client identity key
 - act - description of action intent. Must be equal to "notify_watch_subscriptions_response"
 - iss - did:key of Notify Server identity key
 - aud - did:key of client identity key
-- sub - did:key of the public key used for key agreement on the Notify topic 
-- subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- sub - did:key of the public key used for key agreement on the Notify topic
+- sbs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity 
 
@@ -47,8 +47,7 @@ Signed by: Notify Server identity
 - act - description of action intent. Must be equal to "notify_subscriptions_changed"
 - iss - did:key of Notify Server identity key
 - aud - did:pkh blockchain account that notify subscription is associated with
-- sub - hash of the matching subscription payload
-- subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- sbs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity key
 
@@ -58,7 +57,6 @@ Signed by: Notify Server identity key
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp identity key
-- sub - hash of the stringified notify message object received
 
 Signed by: client identity key
 
