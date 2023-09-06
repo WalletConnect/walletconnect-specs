@@ -29,7 +29,6 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - blockchain account that this request is associated with (did:pkh)
-- app - dapp's domain URL
 
 Signed by: client identity key
 
@@ -39,7 +38,6 @@ Signed by: client identity key
 - iss - did:key of an identity key. Allows for the resolution of which Notify Server was used.
 - aud - did:key of an identity key. Allows for the resolution of the attached blockchain account.
 - sub - did:key of the public key used for key agreement on the Notify topic 
-- app - dapp's domain URL
 - subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity 
@@ -50,7 +48,6 @@ Signed by: Notify Server identity
 - iss - did:key of an identity key. Enables to resolve associated Notify Server used.
 - aud - blockchain account that notify subscription is associated with (did:pkh)
 - sub - hash of the matching subscription payload
-- app - dapp's domain URL
 - subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity key
@@ -61,7 +58,6 @@ Signed by: Notify Server identity key
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - hash of the stringified notify message object received
-- app - dapp's domain URL
 
 Signed by: client identity key
 
