@@ -38,7 +38,7 @@ Signed by: client identity key
 - iss - did:key of Notify Server identity key
 - aud - did:key of client identity key
 - sub - did:key of the public key used for key agreement on the Notify topic
-- sbs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 Signed by: Notify Server identity 
 
