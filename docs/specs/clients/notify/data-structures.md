@@ -68,6 +68,7 @@ NotifyServerSubscription[]
 ```typescript
 {
   topic: string, // dApp subscription topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
+  dappUrl: String // dApp url that the subscription refers to
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
   symKey: string, // Symetric key used for notification topic. sha256 to get notify topic
