@@ -44,7 +44,7 @@ did:web:notify.walletconnect.com -> https://notify.walletconnect.com/.well-known
     "did:web:notify.walletconnect.com#key-0"
   ],
   "authentication": [
-    "did:web:exnotify.walletconnectample.com#key-1"
+    "did:web:notify.walletconnect.com#key-1"
   ],
 }
 ```
