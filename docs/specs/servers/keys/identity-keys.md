@@ -48,6 +48,10 @@ Nonce: bb0b6514e8a5e817
 Issued At: 2022-12-09T15:29:36.509Z
 ```
 
+### Domain Authorization
+
+The statement will determine what domains the Identity Key is authorized to control via limited (only this domain) or UNLIMITED access (all domains).
+
 ### CACAO Format
 
 The CACAO is a standard JSON representation of a signed CAIP-122 message. For example:
