@@ -25,9 +25,9 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 ## wc_notifyWatchSubscriptions request
 
 - act - description of action intent. Must be equal to "notify_watch_subscriptions"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
+- aud - did:key of Notify Server identity key
 - sub - blockchain account that this request is associated with (did:pkh)
 
 Signed by: client identity key
@@ -35,8 +35,8 @@ Signed by: client identity key
 ## wc_notifyWatchSubscriptions response
 
 - act - description of action intent. Must be equal to "notify_watch_subscriptions_response"
-- iss - did:key of an identity key. Allows for the resolution of which Notify Server was used.
-- aud - did:key of an identity key. Allows for the resolution of the attached blockchain account.
+- iss - did:key of Notify Server identity key
+- aud - did:key of client identity key
 - sub - did:key of the public key used for key agreement on the Notify topic 
 - subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
@@ -45,8 +45,8 @@ Signed by: Notify Server identity
 ## wc_notifySubscriptionsChanged request
 
 - act - description of action intent. Must be equal to "notify_subscriptions_changed"
-- iss - did:key of an identity key. Enables to resolve associated Notify Server used.
-- aud - blockchain account that notify subscription is associated with (did:pkh)
+- iss - did:key of Notify Server identity key
+- aud - did:pkh blockchain account that notify subscription is associated with
 - sub - hash of the matching subscription payload
 - subs - [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
@@ -55,9 +55,9 @@ Signed by: Notify Server identity key
 ## wc_notifySubscriptionsChanged response
 
 - act - description of action intent. Must be equal to "notify_receipt"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
+- aud - did:key of dapp identity key
 - sub - hash of the stringified notify message object received
 
 Signed by: client identity key
@@ -65,10 +65,10 @@ Signed by: client identity key
 ## wc_notifySubscribe request
 
 - act - description of action intent. Must be equal to "notify_subscription"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
-- sub - blockchain account that this notify subscription is associated with (did:pkh)
+- aud - did:key of dapp identity key
+- sub - did:pkh of blockchain account that this notify subscription is associated with
 - scp - scope of notification types authorized by the user
 - app - dapp's domain URL
 
@@ -77,8 +77,8 @@ Signed by: client identity key
 ## wc_notifySubscribe response
 
 - act - description of action intent. Must be equal to "notify_subscription_response"
-- iss - did:key of an identity key. Allows for the resolution of which Notify Server was used.
-- aud - did:key of an identity key. Allows for the resolution of the attached blockchain account.
+- iss - did:key of Notify Server identity key
+- aud - did:key of client identity key
 - sub - did:key of the public key used for key agreement on the Notify topic 
 - app - dapp's domain URL
 
@@ -87,8 +87,8 @@ Signed by: dapp identity key
 ## wc_notifyMessage request
 
 - act - description of action intent. Must be equal to "notify_message"
-- iss - did:key of an identity key. Enables to resolve associated Dapp domain used.
-- aud - blockchain account that notify subscription is associated with (did:pkh)
+- iss - did:key of dapp identity key
+- aud - did:pkh of blockchain account that notify subscription is associated with
 - sub - hash of the matching subscription payload
 - app - dapp's domain URL
 - msg - message object including the following parameters:
@@ -103,9 +103,9 @@ Signed by: dapp identity key
 ## wc_notifyMessage response
 
 - act - description of action intent. Must be equal to "notify_receipt"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
+- aud - did:key of dapp identity key
 - sub - hash of the stringified notify message object received
 - app - dapp's domain URL
 
@@ -114,9 +114,9 @@ Signed by: client identity key
 ## wc_notifyUpdate request
 
 - act - description of action intent. Must be equal to "notify_update"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
+- aud - did:key of dapp identity key
 - sub - blockchain account that this notify subscription is associated with (did:pkh)
 - scp - scope of notification types authorized by the user
 - app - dapp's domain URL
@@ -126,8 +126,8 @@ Signed by: client identity key
 ## wc_notifyUpdate response
 
 - act - description of action intent. Must be equal to "notify_update_response"
-- iss - did:key of an identity key. Enables to resolve associated Dapp domain used.
-- aud - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of dapp identity key
+- aud - did:key of client identity key
 - sub - hash of the new subscription payload
 - app - dapp's domain URL
 
@@ -136,9 +136,9 @@ Signed by: dapp identity key
 ## wc_notifyDelete request
 
 - act - description of action intent. Must be equal to "notify_delete"
-- iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
+- aud - did:key of dapp identity key
 - sub - reason for deleting the subscription
 - app - dapp's domain URL
 
@@ -147,8 +147,8 @@ Signed by: client identity key
 ## wc_notifyDelete response
 
 - act - description of action intent. Must be equal to "notify_delete_response"
-- iss - did:key of an identity key. Enables to resolve associated Dapp domain used.
-- aud - did:key of an identity key. Enables to resolve attached blockchain account.
+- iss - did:key of dapp identity key
+- aud - did:key of client identity key
 - sub - hash of the existing subscription payload
 - app - dapp's domain URL
 
