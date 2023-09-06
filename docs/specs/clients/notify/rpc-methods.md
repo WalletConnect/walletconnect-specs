@@ -195,13 +195,13 @@ sequenceDiagram
   %% Request
   activate U
   U->>+W: User subscribes to dapp
+  W->>+A: Wallet fetches publicKeyX from the did:web document
+  A->>-W: publicKeyX
   Note over W: Generate publicKeyY
   Note over W: S = deriveSymmetric(privateKeyY, publicKeyX)
   Note over W: resTopic = sha256(S)
   W->>+R: subscribe(resTopic)
   R-->>-W: ACK
-  W->>+A: Wallet fetches publicKeyX from the did:web document
-  A->>-W: publicKeyX
   Note over W: reqTopic = sha256(publicKeyX)
   Note over W: notify_subscribe = signJwt(params, identityKey)
   W->>R: notify_subscribe + publicKeyY ON reqTopic
