@@ -97,7 +97,7 @@ sequenceDiagram
 
     %% Subscribe Topic
     activate A
-    A->>+N: Create did.json
+    A->>+N: Call /subscribe-topic 
     Note over N: Generate privateKeyX
     Note over N: Generate identityKey
     N->>+D: Store privateKeyX, identityKey
