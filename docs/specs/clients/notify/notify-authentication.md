@@ -7,7 +7,6 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - act - description of action intent. Must be equal to specific value defined in each payload
 - iat - timestamp when JWT was issued
 - exp - timestamp when JWT must expire. Must be equal to specific TTL defined in each payload, plus the iat value
-- ksu - key server for identity key verification
 
 "Signed by: client identity key" indicates payloads sent by clients and are authenticated by the Notify Server with [Identity Keys](../../servers/keys/identity-keys).
 
@@ -27,6 +26,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 - act - description of action intent. Must be equal to "notify_watch_subscriptions"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - blockchain account that this request is associated with (did:pkh)
 
@@ -56,6 +56,7 @@ Signed by: Notify Server identity key
 
 - act - description of action intent. Must be equal to "notify_receipt"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - hash of the stringified notify message object received
 
@@ -65,6 +66,7 @@ Signed by: client identity key
 
 - act - description of action intent. Must be equal to "notify_subscription"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - blockchain account that this notify subscription is associated with (did:pkh)
 - scp - scope of notification types authorized by the user
@@ -102,6 +104,7 @@ Signed by: dapp identity key
 
 - act - description of action intent. Must be equal to "notify_receipt"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - hash of the stringified notify message object received
 - app - dapp's domain URL
@@ -112,6 +115,7 @@ Signed by: client identity key
 
 - act - description of action intent. Must be equal to "notify_update"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - blockchain account that this notify subscription is associated with (did:pkh)
 - scp - scope of notification types authorized by the user
@@ -133,6 +137,7 @@ Signed by: dapp identity key
 
 - act - description of action intent. Must be equal to "notify_delete"
 - iss - did:key of an identity key. Enables to resolve attached blockchain account.
+- ksu - key server for identity key verification
 - aud - did:key of an identity key. Enables to resolve associated Dapp domain used.
 - sub - reason for deleting the subscription
 - app - dapp's domain URL
