@@ -1,4 +1,4 @@
-# Notify Authentication
+# Authentication
 
 In this document we will describe the authentication payloads for all [RPC methods](./rpc-methods.md).
 
@@ -8,11 +8,11 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - iat - timestamp when JWT was issued
 - exp - timestamp when JWT must expire. Must be equal to specific TTL defined in each payload, plus the iat value
 
-"Signed by: client identity key" indicates payloads sent by clients and are authenticated by the Notify Server with [Identity Keys](../../servers/keys/identity-keys).
+"iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../../servers/keys/identity-keys).
 
-"Signed by: dapp identity key" indicates payloads sent by the Notify Server and are authenitcated by clients with [Dapp Authentication](./dapp-authentication.md).
+"iss - did:key of dapp authentication key" indicates JWTs sent by the Notify Server and are verified by clients with authentication key from [Dapp Authentication](./dapp-authentication.md).
 
-"Signed by: Notify Server identity key" indicates payloads sent by the Notify Server and are authenitcated by clients with [Notify Server Authentication](./notify-server-authentication.md).
+"iss - did:key of Notify Server authentication key" indicates JWTs sent by the Notify Server and are verified by clients with authentication key from [Notify Server Authentication](./notify-server-authentication.md).
 
 ## JWT TTLs & Expired JWT handling
 
@@ -27,65 +27,53 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - description of action intent. Must be equal to "notify_watch_subscriptions"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of Notify Server identity key
+- aud - did:key of Notify Server authentication key
 - sub - blockchain account that this request is associated with (did:pkh)
-
-Signed by: client identity key
 
 ## wc_notifyWatchSubscriptions response
 
 - act - description of action intent. Must be equal to "notify_watch_subscriptions_response"
-- iss - did:key of Notify Server identity key
+- iss - did:key of Notify Server authentication key
 - aud - did:key of client identity key
 - sub - did:key of the public key used for key agreement on the Notify topic
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
-Signed by: Notify Server identity 
-
 ## wc_notifySubscriptionsChanged request
 
 - act - description of action intent. Must be equal to "notify_subscriptions_changed"
-- iss - did:key of Notify Server identity key
+- iss - did:key of Notify Server authentication key
 - aud - did:pkh blockchain account that notify subscription is associated with
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
-
-Signed by: Notify Server identity key
 
 ## wc_notifySubscriptionsChanged response
 
 - act - description of action intent. Must be equal to "notify_subscriptions_changed_response"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp identity key
-
-Signed by: client identity key
+- aud - did:key of dapp authentication key
 
 ## wc_notifySubscribe request
 
 - act - description of action intent. Must be equal to "notify_subscription"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp identity key
+- aud - did:key of dapp authentication key
 - sub - did:pkh of blockchain account that this notify subscription is associated with
 - scp - scope of notification types authorized by the user
 - app - dapp's domain URL
 
-Signed by: client identity key
-
 ## wc_notifySubscribe response
 
 - act - description of action intent. Must be equal to "notify_subscription_response"
-- iss - did:key of Notify Server identity key
+- iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 - sub - did:key of the public key used for key agreement on the Notify topic 
 - app - dapp's domain URL
 
-Signed by: dapp identity key
-
 ## wc_notifyMessage request
 
 - act - description of action intent. Must be equal to "notify_message"
-- iss - did:key of dapp identity key
+- iss - did:key of dapp authentication key
 - aud - did:pkh of blockchain account that notify subscription is associated with
 - sub - hash of the matching subscription payload
 - app - dapp's domain URL
@@ -96,58 +84,46 @@ Signed by: dapp identity key
     - URL -  redirect URL for call-to-action related to notification
     - type - notification type which matches the scope of notify subscription
 
-Signed by: dapp identity key
-
 ## wc_notifyMessage response
 
 - act - description of action intent. Must be equal to "notify_receipt"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp identity key
+- aud - did:key of dapp authentication key
 - sub - hash of the stringified notify message object received
 - app - dapp's domain URL
-
-Signed by: client identity key
 
 ## wc_notifyUpdate request
 
 - act - description of action intent. Must be equal to "notify_update"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp identity key
+- aud - did:key of dapp authentication key
 - sub - blockchain account that this notify subscription is associated with (did:pkh)
 - scp - scope of notification types authorized by the user
 - app - dapp's domain URL
 
-Signed by: client identity key
-
 ## wc_notifyUpdate response
 
 - act - description of action intent. Must be equal to "notify_update_response"
-- iss - did:key of dapp identity key
+- iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 - sub - hash of the new subscription payload
 - app - dapp's domain URL
-
-Signed by: dapp identity key
 
 ## wc_notifyDelete request
 
 - act - description of action intent. Must be equal to "notify_delete"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp identity key
+- aud - did:key of dapp authentication key
 - sub - reason for deleting the subscription
 - app - dapp's domain URL
-
-Signed by: client identity key
 
 ## wc_notifyDelete response
 
 - act - description of action intent. Must be equal to "notify_delete_response"
-- iss - did:key of dapp identity key
+- iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 - sub - hash of the existing subscription payload
 - app - dapp's domain URL
-
-Signed by: dapp identity key

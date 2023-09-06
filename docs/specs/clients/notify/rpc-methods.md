@@ -2,7 +2,7 @@
 
 Methods can be called after the client [registers an Identity Key](../../servers/keys/identity-keys.md#key-registration).
 
-All methods contain an "auth" field in the `params` (for request) or `result` (for response) which is a signed JWT. JWTs are specified in the [authentication](./notify-authentication.md) document.
+All methods contain an "auth" field in the `params` (for request) or `result` (for response) which is a signed JWT. JWTs are specified in the [authentication](./authentication.md) document.
 
 All methods follow the [JSON-RPC 2.0 spec](https://www.jsonrpc.org/specification).
 
