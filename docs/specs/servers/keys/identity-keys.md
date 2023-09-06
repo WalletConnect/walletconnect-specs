@@ -12,7 +12,7 @@ sequenceDiagram
     activate C
     Note over C: Generate Identity Key
     Note over C: Generate CAIP-122 msg
-    C->>+U: Sign CAIP-122 msg
+    C->>+U: Request to sign CAIP-122 msg
     U->>-C: Signature
     C->>+I: Register CACAO
     I-->>-C: ACK
