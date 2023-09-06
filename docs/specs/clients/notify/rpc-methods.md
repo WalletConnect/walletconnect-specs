@@ -156,10 +156,9 @@ sequenceDiagram
   autonumber
   participant U AS Wallet
   participant W AS SDK
-  participant I AS Identity Server
+  participant R as Relay
   participant N AS Notify
   participant D as Notify DB
-  participant A as dApp
 
   activate U
   U->>+W: User opens app
