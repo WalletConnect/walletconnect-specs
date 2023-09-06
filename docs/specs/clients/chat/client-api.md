@@ -11,17 +11,18 @@ abstract class Client {
     keyserverUrl?: string; //optional. If value not supplied default to keys.walletconnect.com
   }): Promise<void>;
 
-  // - registers a blockchain account with an identity key if not yet registered on this client
-  // - registers invite key if not yet registered on this client and starts listening on invites if private is false
-  // - onSign(message) promise for signing CAIP-122 message to verify blockchain account ownership
+  // exposed IdentityClient.register method
+  // registers invite key if not yet registered on this client and starts listening on invites if private is false
   // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
     private?: boolean;
+    domain: string,
+    isLimited?: boolean,
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
-  // - unregisters a blockchain account with previously registered identity key 
+  // exposed IdentityClient.unregister method
   // - must not unregister invite key but must stop listening for invites
   public abstract unregister(params: {
     account: string;

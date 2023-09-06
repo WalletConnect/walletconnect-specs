@@ -57,13 +57,17 @@ abstract class Client {
     encryptedMessage: string,
   }): Promise<NotifyMessage>;
   
-  // registers a blockchain account with an identity key if not yet registered on this client
-  // additionally register sync keys
-  // returns the public identity key.
+  // exposed IdentityClient.register method
+  // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
-    account: string, 
-    onSign: (message: string) => Cacao.Signature,
+    account: string;
+    private?: boolean;
+    domain: string,
+    isLimited?: boolean,
+    onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
+
+  //TODO: Do we need unregister method in NotifyClient?
 
   // ---------- Events ----------------------------------------------- //
 
