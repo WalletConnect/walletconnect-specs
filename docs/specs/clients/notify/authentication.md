@@ -35,6 +35,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - description of action intent. Must be equal to "notify_watch_subscriptions_response"
 - iss - did:key of Notify Server authentication key
 - aud - did:key of client identity key
+- sub - did:pkh of blockchain account that this request is associated with
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 ## wc_notifySubscriptionsChanged request
