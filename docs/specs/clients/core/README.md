@@ -41,7 +41,7 @@ Core API consolidates several core modules that are shared between all other hig
     },
     {
       name: "Identity API",
-      description: "Identity API exposes methods for managing Identity Keys",
+      description: "Identity API exposes methods for registering and un-registering Identity Keys on the keychain, that will be used by other protocols (Namely Chat and Notify). Those keys represent an identity of a blockchain account on a specific device.",
       url: `/2.0/specs/clients/core/identity`
     },
   ]}
