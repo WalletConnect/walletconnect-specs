@@ -67,11 +67,10 @@ NotifyServerSubscription[]
 `NotifyServerSubscription`:
 ```typescript
 {
-  topic: string, // dApp subscription topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
   dappUrl: string, // dApp url that the subscription refers to
+  symKey: string, // Symetric key used for notify topic. sha256 to get notify topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
-  symKey: string, // Symetric key used for notification topic. sha256 to get notify topic
   expiry: number, // Unix timestamp of expiration
 }
 ```
