@@ -10,7 +10,7 @@ abstract class IdentityClient {
     account: string;
     private?: boolean;
     domain: string,
-    isLimited?: boolean,
+    statement: string,
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 

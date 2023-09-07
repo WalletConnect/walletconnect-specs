@@ -67,7 +67,6 @@ abstract class Client {
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
-  //TODO: Do we need unregister method in NotifyClient?
 
   // ---------- Events ----------------------------------------------- //
 

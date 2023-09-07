@@ -45,7 +45,7 @@ Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-1
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at identity.walletconnect.com.
+I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at keys.walletconnect.com.
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
@@ -53,7 +53,7 @@ Chain ID: 1
 Nonce: bb0b6514e8a5e817
 Issued At: 2022-12-09T15:29:36.509Z
 Resources:
-- https://identity.walletconnect.com
+- https://keys.walletconnect.com
 ```
 
 #### Unlimited access
@@ -64,7 +64,7 @@ Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-1
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this WALLET to send and receive messages on my behalf for ALL domains and manage my identity at identity.walletconnect.com.
+I further authorize this WALLET to send and receive messages on my behalf for ALL domains and manage my identity at keys.walletconnect.com.
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
@@ -72,7 +72,7 @@ Chain ID: 1
 Nonce: bb0b6514e8a5e817
 Issued At: 2022-12-09T15:29:36.509Z
 Resources:
-- https://identity.walletconnect.com
+- https://keys.walletconnect.com
 ```
 
 ### CACAO Format
@@ -87,12 +87,12 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2022-03-10T17:09:21.481+03:00",
-    "statement" : "I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at identity.walletconnect.com.",
+    "statement" : "I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at keys.walletconnect.com.",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
     "version": "1",
-    "resources": ["https://identity.walletconnect.com"],
+    "resources": ["https://keys.walletconnect.com"],
   },
   "s": {
     "s": "5ccb134ad3d874cbb40a32b399549cd32c953dc5dc87dc64624a3e3dc0684d7d4833043dd7e9f4a6894853f8dc555f97bc7e3c7dd3fcc66409eb982bff3a44671b",
