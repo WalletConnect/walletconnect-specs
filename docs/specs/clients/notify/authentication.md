@@ -52,6 +52,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of Notify Server authentication key
+- sub - did:pkh of blockchain account that this request is associated with
 
 ## wc_notifySubscribe request
 
