@@ -49,7 +49,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - description of action intent. Must be equal to "notify_subscriptions_changed_response"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
-- aud - did:key of dapp authentication key
+- aud - did:key of Notify Server authentication key
 
 ## wc_notifySubscribe request
 
