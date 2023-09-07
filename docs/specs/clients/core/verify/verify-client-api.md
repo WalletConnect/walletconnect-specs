@@ -27,6 +27,6 @@ interface Verify Client {
   public abstract register(params: { attestationId: string }): Promise<void>;
 
   // resolve attestation from the Verify Server
-  public abstract resolve(params: { attestationId: string, verifyUrl?: string }): Promise<string>;
+  public abstract resolve(params: { attestationId: string, verifyUrl?: string }): Promise<{ origin: string, isScam: boolean | undefined }>;
 }
 ```
