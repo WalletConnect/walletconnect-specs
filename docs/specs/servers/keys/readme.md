@@ -2,4 +2,4 @@
 
 ## Description
 
-Keys Server indexes [Identity Keys](./identity-keys.md) and [Chat Invite Keys](./chat-invite-keys.md).
+Keys Server indexes [Identity Keys](../../clients/core/identity/identity-keys.md) and [Chat Invite Keys](./chat-invite-keys.md).
