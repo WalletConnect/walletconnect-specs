@@ -8,7 +8,6 @@ abstract class IdentityClient {
   // returns the public identity key. Method should throw if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
-    private?: boolean;
     domain: string,
     statement: string,
     resources: [string]
