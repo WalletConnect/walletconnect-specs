@@ -42,9 +42,9 @@ Notes:
 - Each client will call `wc_notifyWatchSubscriptions` separately with separate persistent keys kY
 - Recommended: persist kY to avoid multiple unnecessary response topics
 - `subs` contains the full subscription state, not delta or transactional differences
-- `wc_notifyWatchSubscription` response and `wc_notifySubscriptionsChanged` request messages expires after 5 minutes to reduce mailbox load and these updates are ephemeral anyway
+- `wc_notifyWatchSubscriptions` response and `wc_notifySubscriptionsChanged` request messages expires after 5 minutes to reduce mailbox load and these updates are ephemeral anyway
   - If client goes offline for 5 minutes it must call `wc_notifyWatchSubscriptions` again to continue receiving updates
-- Notify server will no longer send updates after 1 day of not calling `wc_notifyWatchSubscription`
+- Notify server will no longer send updates after 1 day of not calling `wc_notifyWatchSubscriptions`
   - Client must call `wc_notifyWatchSubscriptions` at least once a day to continue receiving updates
 
 ### wc_notifyWatchSubscriptions
