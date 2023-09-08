@@ -11,6 +11,7 @@ abstract class IdentityClient {
     private?: boolean;
     domain: string,
     statement: string,
+    resources: [string]
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
