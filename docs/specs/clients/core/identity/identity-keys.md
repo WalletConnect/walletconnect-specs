@@ -33,24 +33,47 @@ Identity Keys are authorized by a blockchain account by the wallet user signing 
 
 This results in a CACAO that authorizes the client's Identity Key to sign messages on the behalf of the blockchain account.
 
-For example:
+### Domain Authorization
+
+The statement will determine what domains the Identity Key is authorized to control via limited (only this domain) or unlimited access (all domains).
+
+#### Limited access
+
+Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) for limited access:
 
 ```
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-TODO: statement
+I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at keys.walletconnect.com.
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
 Chain ID: 1
 Nonce: bb0b6514e8a5e817
 Issued At: 2022-12-09T15:29:36.509Z
+Resources:
+- https://keys.walletconnect.com
 ```
 
-### Domain Authorization
+#### Unlimited access
 
-The statement will determine what domains the Identity Key is authorized to control via limited (only this domain) or UNLIMITED access (all domains).
+Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) for unlimited access:
+
+```
+app.example.com wants you to sign in with your Ethereum account:
+0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+I further authorize this WALLET to send and receive messages on my behalf for ALL domains and manage my identity at keys.walletconnect.com.
+
+URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
+Version: 1
+Chain ID: 1
+Nonce: bb0b6514e8a5e817
+Issued At: 2022-12-09T15:29:36.509Z
+Resources:
+- https://keys.walletconnect.com
+```
 
 ### CACAO Format
 
@@ -64,12 +87,12 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2022-03-10T17:09:21.481+03:00",
-    "statement" : "TODO",
+    "statement" : "I further authorize this DAPP to send and receive messages on my behalf for this domain and manage my identity at keys.walletconnect.com.",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
     "version": "1",
-    "resources": [],
+    "resources": ["https://keys.walletconnect.com"],
   },
   "s": {
     "s": "5ccb134ad3d874cbb40a32b399549cd32c953dc5dc87dc64624a3e3dc0684d7d4833043dd7e9f4a6894853f8dc555f97bc7e3c7dd3fcc66409eb982bff3a44671b",
@@ -111,8 +134,8 @@ When two clients are using a peer to peer API for some requests they need to ver
 
 Used to get a CACAO matching an Identity Key.
 
-- [Notify Authentication](../../clients/notify/authentication.md)
-- [Chat Authentication](../../clients/chat/chat-authentication.md)
+- [Notify Authentication](../../notify/authentication.md)
+- [Chat Authentication](../../chat/chat-authentication.md)
 
 `GET /identity`
 
