@@ -64,9 +64,9 @@ Used to get the list of subscriptions for an account, and watch for updates.
 | Tag     | 4010     |
 ```
 
-Topic: hash of key agreement public key from [Notify Server Authentication](./notify-server-authentication.md)
+Topic: hash of key agreement public key from [Notify Server Authentication](./notify-server-authentication.md).
 
-Message uses type 1 envelope with the client's persistant private key
+Message uses type 1 envelope with the client's persistant private key.
 
 **Response**
 
@@ -81,7 +81,7 @@ Message uses type 1 envelope with the client's persistant private key
 | Tag     | 4011     |
 ```
 
-Topic: hash of symmetric key derivation of client's persistant private key and key agreement public key from [Notify Server Authentication](./notify-server-authentication.md)
+Topic: hash of symmetric key derivation of client's persistant private key and key agreement public key from [Notify Server Authentication](./notify-server-authentication.md).
 
 ### wc_notifySubscriptionsChanged
 
@@ -100,7 +100,7 @@ Used to indicate a change to subscriptions has occurred.
 | Tag     | 4012     |
 ```
 
-Topic: same as wc_notifyWatchSubscriptions response
+Topic: same as wc_notifyWatchSubscriptions response.
 
 **Response**
 
@@ -115,7 +115,7 @@ Topic: same as wc_notifyWatchSubscriptions response
 | Tag     | 4013     |
 ```
 
-Topic: same as wc_notifyWatchSubscriptions response
+Topic: same as wc_notifyWatchSubscriptions response.
 
 ## wc_notifySubscribe
 
@@ -134,7 +134,9 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 | Tag     | 4000     |
 ```
 
-Topic: notify topic
+Topic: hash of key agreement public key from [Notify Server Authentication](./notify-server-authentication.md).
+
+Message uses type 1 envelope with the client's persistant private key.
 
 **Response**
 
@@ -149,7 +151,7 @@ Topic: notify topic
 | Tag     | 4001     |
 ```
 
-Topic: notify topic
+Topic: hash of symmetric key derivation of client's persistant private key and key agreement public key from [Notify Server Authentication](./notify-server-authentication.md).
 
 ```mermaid
 sequenceDiagram
@@ -253,7 +255,7 @@ Used to publish a notification message to a peer through notify topic. Response 
 | Tag     | 4002     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
 
 **Response**
 
@@ -268,7 +270,7 @@ Topic: notify topic
 | Tag     | 4003     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
 
 ## wc_notifyUpdate
 
@@ -289,7 +291,7 @@ Used to update a notify subscription with a new notify subscription, replacing a
 | Tag     | 4008     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
 
 **Response**
 
@@ -304,7 +306,7 @@ Topic: notify topic
 | Tag     | 4009     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
 
 ## wc_notifyDelete
 
@@ -323,7 +325,7 @@ Used to inform the peer to close and delete a notify subscription through notify
 | Tag     | 4004     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
 
 **Response**
 
@@ -338,4 +340,4 @@ Topic: notify topic
 | Tag     | 4005     |
 ```
 
-Topic: notify topic
+Topic: notify topic.
