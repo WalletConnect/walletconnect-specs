@@ -1,6 +1,6 @@
 # RPC Methods
 
-Methods can be called after the client [registers an Identity Key](../../servers/keys/identity-keys.md#key-registration).
+Methods can be called after the client [registers an Identity Key](../../clients/core/identity/identity-keys.md#key-registration).
 
 All methods contain an "auth" field in the `params` (for request) or `result` (for response) which is a signed JWT. JWTs are specified in the [authentication](./authentication.md) document.
 
