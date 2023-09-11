@@ -64,7 +64,7 @@ Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-1
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this WALLET to send and receive messages on my behalf for ALL domains and manage my identity at keys.walletconnect.com.
+I further authorize this WALLET to send and receive messages on my behalf for ALL domains using my WalletConnect identity.
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
