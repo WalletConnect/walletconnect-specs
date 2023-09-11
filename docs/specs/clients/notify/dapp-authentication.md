@@ -39,7 +39,6 @@ did:web:app.example.com -> https://app.example.com/.well-known/did.json
         "x": "0-e2i2_Ua1S5HbTYnVB0lj2Z2ytXu2-tYmDFf8f5NjU"
       }
     },
-
   ],
   "keyAgreement": [
     "did:web:app.example.com#wc-notify-subscribe-key"
