@@ -60,7 +60,7 @@ Used to get the list of subscriptions for an account, and watch for updates.
 
 | IRN     |          |
 | ------- | -------- | 
-| TTL     | 30       |
+| TTL     | 300      |
 | Tag     | 4010     |
 ```
 
