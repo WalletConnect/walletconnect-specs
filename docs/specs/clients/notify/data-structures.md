@@ -20,11 +20,11 @@
 
 ```jsonc
 {
-  "title": string,
-  "body": string,
-  "icon": string,
-  "url": string,
-  "type": string
+  "title": string, // short message used in the title of the notification
+  "body": string, // long messages ued in the body of the notification
+  "icon": string, // image URL used to display with the notification
+  "url": string, // redirect URL for call-to-action related to notification
+  "type": string, // notification type which matches the scope of notify subscription
 }
 ```
 
@@ -39,25 +39,6 @@
 }
 ```
 
-## Notify Type
-
-```jsonc
-{
-  "name": string,
-  "description": string
-}
-```
-
-## Notify Available Types
-
-```jsonc
-{
-  "version": number,
-  "lastModified": Int64,
-  "types": NotifyType[]
-}
-```
-
 ## Notify Server Subscriptions
 
 ```jsonc
@@ -67,7 +48,7 @@ NotifyServerSubscription[]
 `NotifyServerSubscription`:
 ```typescript
 {
-  dappUrl: string, // dApp url that the subscription refers to
+  appDomain: string, // dApp url that the subscription refers to
   symKey: string, // Symetric key used for notify topic. sha256 to get notify topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription

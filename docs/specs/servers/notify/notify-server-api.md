@@ -74,7 +74,7 @@ Body:
 
 ```typescript
 {
-  "dappUrl": string,
+  "appDomain": string,
 }
 ``` 
 
@@ -82,8 +82,8 @@ Response:
 
 ```typescript
 {
-  "subscribeTopicPublicKey": string, // key agreement
-  "identityPublicKey": string, // authentication
+  "subscribeKey": string,
+  "authenticationKey": string,
 }
 ```
 

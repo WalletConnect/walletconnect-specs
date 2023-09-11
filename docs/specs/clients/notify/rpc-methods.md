@@ -59,7 +59,7 @@ Used to get the list of subscriptions for an account, and watch for updates.
 }
 
 | IRN     |          |
-| ------- | -------- | 
+| ------- | -------- |
 | TTL     | 300      |
 | Tag     | 4010     |
 ```
@@ -95,7 +95,7 @@ Used to indicate a change to subscriptions has occurred.
 }
 
 | IRN     |          |
-| ------- | -------- | 
+| ------- | -------- |
 | TTL     | 300      |
 | Tag     | 4012     |
 ```
@@ -129,8 +129,8 @@ Used to subscribe notify subscription to a peer through subscribe topic. Respons
 }
 
 | IRN     |          |
-| ------- | -------- | 
-| TTL     | 30       |
+| ------- | -------- |
+| TTL     | 300      |
 | Tag     | 4000     |
 ```
 
@@ -261,7 +261,7 @@ Topic: notify topic.
 
 ```jsonc
 {
-  "receiptAuth": string
+  "responseAuth": string
 }
 
 | IRN     |          |
@@ -286,7 +286,7 @@ Used to update a notify subscription with a new notify subscription, replacing a
 }
 
 | IRN     |          |
-| ------- | -------- | 
+| ------- | -------- |
 | TTL     | 300      |
 | Tag     | 4008     |
 ```

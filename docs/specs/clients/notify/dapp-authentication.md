@@ -10,7 +10,7 @@ This should be available as a `did.json` document under the `.well-known` path f
 Here is an example for the two public keys being exposed:
 
 ```jsonc
-did:web:example.com -> https://example.com/.well-known/did.json
+did:web:app.example.com -> https://app.example.com/.well-known/did.json
 
 // did.json
 {
@@ -18,22 +18,21 @@ did:web:example.com -> https://example.com/.well-known/did.json
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/suites/jws-2020/v1"
   ],
-  "id": "did:web:example.com",
+  "id": "did:web:app.example.com",
   "verificationMethod": [
     {
-      "id": "did:web:example.com#key-0",
+      "id": "did:web:app.example.com#wc-notify-subscribe-key",
       "type": "JsonWebKey2020",
-      "controller": "did:web:example.com",
+      "controller": "did:web:app.example.com",
       "publicKeyJwk": {
         "kty": "OKP",
         "crv": "X25519",
         "x": "9GXjPGGvmRq9F6Ng5dQQ_s31mfhxrcNZxRGONrmH30k"
       }
-    },
-    {
-      "id": "did:web:example.com#key-1",
+    }, {
+      "id": "did:web:app.example.com#wc-notify-authentication-key",
       "type": "JsonWebKey2020",
-      "controller": "did:web:example.com",
+      "controller": "did:web:app.example.com",
       "publicKeyJwk": {
         "kty": "OKP",
         "crv": "Ed25519",
@@ -43,10 +42,10 @@ did:web:example.com -> https://example.com/.well-known/did.json
 
   ],
   "keyAgreement": [
-    "did:web:example.com#key-0"
+    "did:web:app.example.com#wc-notify-subscribe-key"
   ],
   "authentication": [
-    "did:web:example.com#key-1"
+    "did:web:app.example.com#wc-notify-authentication-key"
   ],
 }
 ```
