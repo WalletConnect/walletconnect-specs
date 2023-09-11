@@ -15,7 +15,6 @@ abstract class Client {
   
   // send notify subscription
   public abstract subscribe(params: { 
-    metadata: Metadata,
     account: string,
     scope: string[],
   }): Promise<boolean>;
