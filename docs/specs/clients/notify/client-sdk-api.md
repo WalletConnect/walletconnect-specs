@@ -70,6 +70,9 @@ abstract class Client {
 
   // ---------- Events ----------------------------------------------- //
 
+  // for updates from watch subscriptions
+  public abstract on("notify_subscriptions_changed", (result: Record<string, NotifySubscription> => {}) :void;
+
   // for wallet to listen for notify subscription created
   public abstract on("notify_subscription", (result: NotifySubscription | Error) => {}): void;
   
