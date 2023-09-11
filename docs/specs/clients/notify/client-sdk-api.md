@@ -15,9 +15,8 @@ abstract class Client {
   
   // send notify subscription
   public abstract subscribe(params: { 
-    dappUrl: string,
+    appDomain: string,
     account: string,
-    scope: string[],
   }): Promise<boolean>;
 
   // update notify subscription
@@ -28,7 +27,7 @@ abstract class Client {
 
   // query notification types available for a dapp domain
   public abstract getNotificationTypes(params: {
-    domain: string,
+    appDomain: string,
   }): Promise<NotifyAvailableTypes>
 
   // query all active subscriptions
