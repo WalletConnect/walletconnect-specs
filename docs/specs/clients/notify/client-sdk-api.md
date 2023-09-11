@@ -15,6 +15,7 @@ abstract class Client {
   
   // send notify subscription
   public abstract subscribe(params: { 
+    dappUrl: string,
     account: string,
     scope: string[],
   }): Promise<boolean>;
