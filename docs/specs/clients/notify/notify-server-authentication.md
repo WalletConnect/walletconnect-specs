@@ -19,7 +19,7 @@ did:web:notify.walletconnect.com -> https://notify.walletconnect.com/.well-known
   "id": "did:web:notify.walletconnect.com",
   "verificationMethod": [
     {
-      "id": "did:web:notify.walletconnect.com#key-0",
+      "id": "did:web:notify.walletconnect.com#wc-notify-subscribe-key",
       "type": "JsonWebKey2020",
       "controller": "did:web:notify.walletconnect.com",
       "publicKeyJwk": {
@@ -27,9 +27,8 @@ did:web:notify.walletconnect.com -> https://notify.walletconnect.com/.well-known
         "crv": "X25519",
         "x": "9GXjPGGvmRq9F6Ng5dQQ_s31mfhxrcNZxRGONrmH30k"
       }
-    },
-    {
-      "id": "did:web:notify.walletconnect.com#key-1",
+    }, {
+      "id": "did:web:notify.walletconnect.com#wc-notify-authentication-key",
       "type": "JsonWebKey2020",
       "controller": "did:web:notify.walletconnect.com",
       "publicKeyJwk": {
@@ -38,13 +37,12 @@ did:web:notify.walletconnect.com -> https://notify.walletconnect.com/.well-known
         "x": "0-e2i2_Ua1S5HbTYnVB0lj2Z2ytXu2-tYmDFf8f5NjU"
       }
     },
-
   ],
   "keyAgreement": [
-    "did:web:notify.walletconnect.com#key-0"
+    "did:web:notify.walletconnect.com#wc-notify-subscribe-key"
   ],
   "authentication": [
-    "did:web:notify.walletconnect.com#key-1"
+    "did:web:notify.walletconnect.com#wc-notify-authentication-key"
   ],
 }
 ```
