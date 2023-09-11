@@ -287,7 +287,7 @@ Used to update a notify subscription with a new notify subscription, replacing a
 
 | IRN     |          |
 | ------- | -------- | 
-| TTL     | 30       |
+| TTL     | 300      |
 | Tag     | 4008     |
 ```
 
