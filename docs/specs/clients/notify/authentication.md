@@ -62,7 +62,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
-- scp - scope: array of notification types authorized by the user
+- scp - space-delimited scope of notification types authorized by the user e.g. `promotional alerts`
 
 ## wc_notifySubscribe response
 
@@ -90,7 +90,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
-- scp - scope: array of notification types authorized by the user
+- scp - space-delimited scope of notification types authorized by the user e.g. `promotional alerts`
 
 ## wc_notifyUpdate response
 
