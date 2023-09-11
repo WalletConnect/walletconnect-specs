@@ -88,7 +88,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 ## wc_notifyMessage response
 
-- act - description of action intent. Must be equal to "notify_receipt"
+- act - description of action intent. Must be equal to "notify_message_response"
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
