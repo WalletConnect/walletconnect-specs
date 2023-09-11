@@ -12,8 +12,6 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - aud - did:key. Value defined specifically in each payload
 - sub - did:pkh of blockchain account that this request is associated with
   - Example: `did:pkh:eip155:1:0x1234...`
-- app - did:web of app domain that this request is associated with 
-  - Example: `did:web:app.example.com`
 
 Depending on the message, different keys are used for `iss`:
 - "iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../core/identity/identity-keys.md).
@@ -63,18 +61,24 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
 - scp - space-delimited scope of notification types authorized by the user e.g. `promotional alerts`
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 
 ## wc_notifySubscribe response
 
 - act - `notify_subscription_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 
 ## wc_notifyMessage request
 
 - act - `notify_message`
 - iss - did:key of dapp authentication key
 - aud - did:pkh of blockchain account that notify subscription is associated with
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 - msg - [Notify Message](./data-structures.md#notify-message)
 
 ## wc_notifyMessage response
@@ -83,6 +87,8 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 
 ## wc_notifyUpdate request
 
@@ -90,6 +96,8 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 - scp - space-delimited scope of notification types authorized by the user e.g. `promotional alerts`
 
 ## wc_notifyUpdate response
@@ -97,6 +105,8 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - `notify_update_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 
 ## wc_notifyDelete request
 
@@ -104,9 +114,13 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
 
 ## wc_notifyDelete response
 
 - act - `notify_delete_response``
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
