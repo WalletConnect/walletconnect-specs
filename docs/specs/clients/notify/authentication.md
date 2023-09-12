@@ -8,8 +8,6 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - iat - timestamp when JWT was issued
 - exp - timestamp when JWT must expire. Must be equal to specific TTL defined in each payload, plus the iat value
 - iss - did:key. Value defined specifically in each payload
-- ksu - URL of keyserver to verify client identity keys
-- aud - did:key. Value defined specifically in each payload
 - sub - did:pkh of blockchain account that this request is associated with
   - Example: `did:pkh:eip155:1:0x1234...`
 
@@ -69,6 +67,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - `notify_subscription_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
+- sub - public key for DH negotation
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 
@@ -76,7 +75,6 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 - act - `notify_message`
 - iss - did:key of dapp authentication key
-- aud - did:pkh of blockchain account that notify subscription is associated with
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - msg - [Notify Message](./data-structures.md#notify-message)
