@@ -169,12 +169,9 @@ sequenceDiagram
   W->>+N: notify_subscribe + publicKeyY ON reqTopic
   Note over N: Generate P
   N->>+D: Store P @ domain,account
-  Note over N,D: Error if sub already exists.
   D-->>-N: ACK
-  Note over N: response = signJwt(P, identityKey)
+  Note over N: response = signJwt(identityKey)
   N->>-W: response ON resTopic
-  W->>+R: subscribe(sha256(P))
-  R-->>-W: ACK
   W->>-U: UI updates
   deactivate U
 ```
@@ -232,8 +229,6 @@ sequenceDiagram
   deactivate N
   W-->>R: ACK
   deactivate R
-  W->>+R: subscribe(sha256(P))
-  R-->>-W: ACK
   W->>-U: UI updates
   deactivate U
 ```
