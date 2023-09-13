@@ -74,7 +74,7 @@ Body:
 
 ```typescript
 {
-  "dappUrl": string,
+  "appDomain": string,
 }
 ``` 
 
@@ -82,10 +82,31 @@ Response:
 
 ```typescript
 {
-  "subscribeTopicPublicKey": string, // key agreement
-  "identityPublicKey": string, // authentication
+  "subscribeKey": string,
+  "authenticationKey": string,
 }
-``` 
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant R as Relay
+    participant N AS Notify
+    participant D as Notify DB
+    participant A as dApp
+
+    %% Subscribe Topic
+    activate A
+    A->>+N: Call /subscribe-topic 
+    Note over N: Generate privateKeyX
+    Note over N: Generate identityKey
+    N->>+D: Store privateKeyX, identityKey
+    D-->>-N: ACK
+    N->>+R: subscribe(sha256(publicKeyX))
+    R-->>-N: ACK
+    N->>-A: did.json { publicKeyX, identityKey }
+    deactivate A
+```
 
 ## Register Webhook
 

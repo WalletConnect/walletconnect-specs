@@ -1,5 +1,5 @@
-# Keys Server Overview
+# Keys Server
 
 ## Description
 
-Keys Server indexes Chat invite keys for discoverability and also verifies identity key ownership 
+Keys Server indexes [Identity Keys](../../clients/core/identity/identity-keys.md) and [Chat Invite Keys](./chat-invite-keys.md).
