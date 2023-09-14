@@ -30,7 +30,8 @@ interface UrlQueryParams {
   entries: string // eg. 100
   search?: string // eg. MetaMa...
   include?: string // eg. id1,id2,id3
-  exclude?: string // eg. id1,id2,id3 
+  exclude?: string // eg. id1,id2,id3
+  platform?: 'ios' | 'android'
 }
 
 interface Response {
