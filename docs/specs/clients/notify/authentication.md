@@ -67,7 +67,6 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - act - `notify_subscription_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
-- sub - public key for DH negotation
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 
