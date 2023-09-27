@@ -66,6 +66,9 @@ abstract class Client {
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
+  // deletes all subscriptions, decouples client from the registered account and pauses watchSubscription requests
+  public abstract logOut(): Promise<Void>;
+
 
   // ---------- Events ----------------------------------------------- //
 
