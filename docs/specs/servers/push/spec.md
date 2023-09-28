@@ -73,11 +73,11 @@ Request body:
   token: string,
 
   // See below
-  always_encrypted?: boolean,
+  always_raw?: boolean,
 }
 ```
 
-- `always_encrypted` - enables always sending of raw encrypted notifications
+- `always_raw` - enables always sending of raw notifications
   - When this is set to `true`, the pushed notification will always be the value from `payload.raw` from Send Notifications below.
   - When this is set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used.
 
