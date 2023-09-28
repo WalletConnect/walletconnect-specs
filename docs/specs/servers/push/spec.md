@@ -78,8 +78,8 @@ Request body:
 ```
 
 - `always_raw` - enables always sending of raw notifications
-  - When this is set to `true`, the pushed notification will always be the value from `payload.raw` from Send Notifications below.
-  - When this is set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used.
+  - When this is set to `true`, the pushed notification will always be the value from `payload.raw` from Send Notifications below. The notification will contain `topic` and `message` fields.
+  - When this is set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
 
 ### Unregister Client
 
@@ -90,6 +90,8 @@ DELETE <PUSH_SERVER_URL>/clients/<CLIENT_ID>
 - `CLIENT_ID`: The Client's ID from the Relay pairing.
 
 ### Send Notification
+
+This API is called by the relay.
 
 ```
 POST <PUSH_SERVER_URL>/clients/<CLIENT_ID>
