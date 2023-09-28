@@ -61,7 +61,8 @@ POST <PUSH_SERVER_URL>/clients
 {
     "client_id": <CLIENT_ID>,
     "type": <TYPE>,
-    "token": <DEVICE_TOKEN>
+    "token": <DEVICE_TOKEN>,
+		"is_decrypted": <BOOLEAN> //optional
 }
 ```
 
@@ -69,6 +70,7 @@ POST <PUSH_SERVER_URL>/clients
 - `TYPE`: The push service to use e.g. APNS, FCM. This will be validated against the supported types on the Push
   Server's side.
 - `DEVICE_TOKEN`: The device's token for the push service e.g. FCM, APNS.
+- `IS_DECRYPTED`: Defines when to send non-encrypted or encrypted content(Encrypted_Sign, Encrypted_Auth)
 
 ### Unregister Client
 
@@ -102,5 +104,7 @@ POST <PUSH_SERVER_URL>/clients/<CLIENT_ID>
     Auth       = 1 << 2
     Chat       = 1 << 3
     Notify     = 1 << 4
+    Encrypted_Sign = 1100 / 1108 (session_propose / session_request)
+    Encrypted_Auth = 3000 (auth_request)  
     ```
   - `blob`: If the payload is encrypted this is just the encrypted blob, when this is cleartext it should be base64 encoded. The blob should follow the format from of the [Notify Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
