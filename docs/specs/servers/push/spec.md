@@ -78,8 +78,8 @@ Request body:
 ```
 
 - `always_raw` - enables always sending of raw notifications
-  - When this is set to `true`, the push notification will be `topic` and `message` from Send Notifications below.
-  - When this is set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
+  - When set to `true`, the push notification will be `topic` and `message` from Send Notifications below.
+  - When set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
 
 ### Unregister Client
 
