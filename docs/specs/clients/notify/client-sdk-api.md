@@ -67,9 +67,10 @@ abstract class Client {
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
-  // exposed IdentityClient.unregister method
-  // unregister identity key for given account. Removes aforementioned identity key from local storage. Unregisters device from Push Server
-  // removes any logic to perodically call `wc_notifyWatchSubscriptions`
+  // "Logs out" this client from any notifications for the specified account. This involves:
+  // - Stops periodically calling `wc_notifyWatchSubscriptions` and unsubscribes from all related relay topics
+  // - Unregisters the client from Push Server
+  // - Unregisters the Identity Key and removes it from local storage
   public abstract unregister(params: {
     account: string;
   }): Promise<Void>;
