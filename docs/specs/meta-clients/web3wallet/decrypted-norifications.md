@@ -1,6 +1,6 @@
 # Decrypted Notification
 
-The below class introduces the general way of handling decprytped notifications received by a wallet. The implementation details differs on each platform.
+The below class introduces the general way of handling decrypted notifications received by a wallet. The implementation details differs on each platform.
 
 ```typescript
 abstract class DecryptedNotification {
