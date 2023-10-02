@@ -77,8 +77,8 @@ Request body:
 }
 ```
 
-- `always_raw` - enables always sending of raw notifications
-  - When set to `true`, the push notification will be `topic` and `message` from Send Notifications below.
+- `always_raw` - forces sending raw notifications
+  - When set to `true`, the push notification will be `topic` and `message` as per [Send Notifications](#send-notification) section.
   - When set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
 
 ### Unregister Client
@@ -91,7 +91,7 @@ DELETE <PUSH_SERVER_URL>/clients/<CLIENT_ID>
 
 ### Send Notification
 
-This API is called by the relay.
+This endpoint is called by the relay.
 
 ```
 POST <PUSH_SERVER_URL>/clients/<CLIENT_ID>
@@ -130,7 +130,7 @@ Request body:
   }
 ```
 
-- `flags`: an integer value that uses bitmasks to encode information about the payload for the SDKs, the flags are below
+- `flags`: An integer value that uses bitmasks to encode information about the payload for the SDKs, the flags are below
   ```
   Encrypted  = 1 << 0
   Sign       = 1 << 1
