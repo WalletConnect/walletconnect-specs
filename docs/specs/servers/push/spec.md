@@ -78,7 +78,7 @@ Request body:
 ```
 
 - `always_raw` - enables always sending of raw notifications
-  - When this is set to `true`, the pushed notification will always be the value from `payload.raw` from Send Notifications below. The notification will contain `topic` and `message` fields.
+  - When this is set to `true`, the push notification will be `topic` and `message` from Send Notifications below.
   - When this is set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
 
 ### Unregister Client
@@ -106,16 +106,21 @@ Headers:
 Request body:
 ```typescript
 {
+  // Topic of the message. This is used by the SDKs to decrypt encrypted payloads on the client side
+  topic: string,
+
+  // The relay message.
+  message: string,
+
+  // ==== Legacy Fields ====
+
   // Message ID for deduplication purposes
-  // Note: When `payload.raw` is set, `sha264(payload.raw)` should be used as the Message ID instead
+  // Note: When `message` is provided, `sha264(message)` should be used as the Message ID instead
   id: string,
 
   payload: {
-    // Topic of the message. This is used by the SDKs to decrypt encrypted payloads on the client side
+    // Same as `topic` above
     topic: string,
-
-    // Raw message sent on the topic
-    raw: string,
 
     // See below
     flags: number,
@@ -133,4 +138,4 @@ Request body:
   Chat       = 1 << 3
   Notify     = 1 << 4
   ```
-- `blob`: If the payload is encrypted this is just the encrypted blob, when this is cleartext it should be base64 encoded. The blob should follow the format from of the [Notify Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
+- `blob`: If the flags specify encrypted, then this is just the relay message. If not encrypted, this is cleartext and should follow the format from of the [Notify Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
