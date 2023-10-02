@@ -57,6 +57,7 @@ abstract class Client {
   }): Promise<NotifyMessage>;
   
   // exposed IdentityClient.register method
+  // registers device in Push Server
   // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
@@ -66,8 +67,12 @@ abstract class Client {
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
-  // Unsubscribes from all subscription topics related to the most recently registered account, decouples the client from the registered account, and pauses watchSubscription requests.
-  public abstract unregister(): Promise<Void>;
+  // exposed IdentityClient.unregister method
+  // unregister identity key for given account. Removes aforementioned identity key from local storage. Unregisters device from Push Server
+  // removes any logic to perodically call `wc_notifyWatchSubscriptions`
+  public abstract unregister(params: {
+    account: string;
+  }): Promise<Void>;
 
 
   // ---------- Events ----------------------------------------------- //
