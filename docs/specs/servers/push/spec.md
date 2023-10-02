@@ -114,8 +114,8 @@ Request body:
 
   // ==== Legacy Fields ====
 
-  // Message ID for deduplication purposes
-  // Note: When `message` is provided, `sha264(message)` should be used as the Message ID instead
+  // Unique ID for deduplication purposes
+  // Note: When `message` is provided, `sha264(message)` should be used to deduplicate instead
   id: string,
 
   payload: {
