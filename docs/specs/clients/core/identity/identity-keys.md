@@ -45,7 +45,7 @@ URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
 Chain ID: 1
 Nonce: bb0b6514e8a5e817
-Issued At: 2022-12-09T15:29:36.509Z
+Issued At: 2023-09-01T15:29:36.509Z
 Resources:
 - https://keys.walletconnect.com
 ```
@@ -61,7 +61,7 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   },
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
-    "iat": "2022-03-10T17:09:21.481+03:00",
+    "iat": "2023-09-01T17:09:21.481+03:00",
     "statement" : "I further authorize this app to send and receive messages on my behalf using my WalletConnect identity. Read more at walletconnect.com/identity",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
