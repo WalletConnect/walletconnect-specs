@@ -71,7 +71,7 @@ class Web3Wallet {
   public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
   
   // register device token for Push server (BOTH)
-  public abstract registerDeviceToken(token: string, enableAlwaysDecrypted: boolean?): Promise<void>;
+  public abstract registerDeviceToken(token: string, enableAlwaysDecrypted?: boolean = false): Promise<void>;
 
   // ---------- Events ----------------------------------------------- //
 
