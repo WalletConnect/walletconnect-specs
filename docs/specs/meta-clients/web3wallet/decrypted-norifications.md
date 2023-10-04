@@ -15,8 +15,7 @@ type Message = {
     id: string,
     jsonrpc: string, 
     method: string, 
-    params: string, //Sign(proposal, request) params, Auth request params, Notify params
-}
+    params: string,
 
 type Notification = {
     title: string,
@@ -25,3 +24,9 @@ type Notification = {
     url: string,
     type: string,
 }
+```
+
+Clients can expect receiving the following tags:
+- Sign: `SESSION_PROPOSE(1100)`, `SESSION_REQUEST(1108)`
+- Auth: `AUTH_REQUEST(3000)`
+- Notify: `NOTIFY_MESSAGE(4002)`
