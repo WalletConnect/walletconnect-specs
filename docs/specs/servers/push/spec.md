@@ -77,9 +77,12 @@ Request body:
 }
 ```
 
-- `always_raw` - forces sending raw notifications
-  - When set to `true`, the push notification will be `topic` and `message` as per [Send Notifications](#send-notification) section.
-  - When set to `false` or not present, the legacy behavior of conditionally sending (depending on `payload.flags`) encrypted or cleartext push notifications from `payload.blob` is used. The notification will contain `topic`, `flags`, and `blob` fields.
+- `always_raw` - forces sending raw notifications, defaults to `false`
+  - When set to `true`, the push notification will contain, as custom data, `topic`, `tag`, and `message` from the request payload in [Send Notifications](#send-notification) section.
+  - When set to `false`, cleartext notifications will be sent for certain messages based on `tag`, but all other messages follow the same behavior as `always_raw=true` and will be sent encrypted. Cleartext messages:
+    - Sign API `wc_sessionPropose` (tag: 1100) and `wc_sessionRequest` (tag: 1108)
+      - title: Signature required
+      - body: You have a message to sign
 
 ### Unregister Client
 
@@ -109,13 +112,15 @@ Request body:
   // Topic of the message. This is used by the SDKs to decrypt encrypted payloads on the client side
   topic: string,
 
+  // Tag of the message.
+  tag: string,
+
   // The relay message.
   message: string,
 
-  // ==== Legacy Fields ====
+  // ==== Deprecated fields ====
 
   // Unique ID for deduplication purposes
-  // Note: When `message` is provided, `sha264(message)` should be used to deduplicate instead
   id: string,
 
   payload: {
