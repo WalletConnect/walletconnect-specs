@@ -1,4 +1,4 @@
-# Decrypted Notification
+# Decrypted Notifications
 
 The below class introduces the general way of handling decrypted notifications received by a wallet. The implementation details differs on each platform.
 
@@ -16,6 +16,7 @@ type Message = {
     jsonrpc: string, 
     method: string, 
     params: string,
+}
 
 type Notification = {
     title: string,
@@ -26,7 +27,7 @@ type Notification = {
 }
 ```
 
-Clients can expect receiving the following tags:
-- Sign: `SESSION_PROPOSE(1100)`, `SESSION_REQUEST(1108)`
-- Auth: `AUTH_REQUEST(3000)`
-- Notify: `NOTIFY_MESSAGE(4002)`
+Clients will be pushed all messages sent on the topic, so the client should filter these by the message's `method` and only display push notifications for the following methods:
+- Sign: `wc_sessionPropose` (1100), `wc_sessionRequest` (1108)
+- Auth: `wc_authRequest` (3000)
+- Notify: `wc_notifyMessage` (4002)
