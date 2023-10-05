@@ -62,7 +62,6 @@ abstract class Client {
     account: string;
     private?: boolean;
     domain: string,
-    isLimited?: boolean,
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
