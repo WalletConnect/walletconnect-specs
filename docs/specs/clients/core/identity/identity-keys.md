@@ -33,44 +33,19 @@ Identity Keys are authorized by a blockchain account by the wallet user signing 
 
 This results in a CACAO that authorizes the client's Identity Key to sign messages on the behalf of the blockchain account.
 
-### Domain Authorization
-
-The statement will determine what domains the Identity Key is authorized to control via limited (only this domain) or unlimited access (all domains).
-
-#### Limited access
-
-Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) for limited access:
+Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md):
 
 ```
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this DAPP to send and receive messages on my behalf for this domain using my WalletConnect identity.
+I further authorize this app to send and receive messages on my behalf using my WalletConnect identity. Read more at https://walletconnect.com/identity
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
 Chain ID: 1
 Nonce: bb0b6514e8a5e817
-Issued At: 2022-12-09T15:29:36.509Z
-Resources:
-- https://keys.walletconnect.com
-```
-
-#### Unlimited access
-
-Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) for unlimited access:
-
-```
-app.example.com wants you to sign in with your Ethereum account:
-0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-
-I further authorize this WALLET to send and receive messages on my behalf for ALL domains using my WalletConnect identity.
-
-URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
-Version: 1
-Chain ID: 1
-Nonce: bb0b6514e8a5e817
-Issued At: 2022-12-09T15:29:36.509Z
+Issued At: 2023-09-01T15:29:36.509Z
 Resources:
 - https://keys.walletconnect.com
 ```
@@ -86,8 +61,8 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   },
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
-    "iat": "2022-03-10T17:09:21.481+03:00",
-    "statement" : "I further authorize this DAPP to send and receive messages on my behalf for this domain using my WalletConnect identity.",
+    "iat": "2023-09-01T17:09:21.481+03:00",
+    "statement" : "I further authorize this app to send and receive messages on my behalf using my WalletConnect identity. Read more at https://walletconnect.com/identity",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
