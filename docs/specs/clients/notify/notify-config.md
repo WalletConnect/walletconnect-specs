@@ -8,7 +8,7 @@ The file should include the following information:
 - name - name of your app
 - description - description of your app
 - icons - array of icons to use. Different icons may be in different formats
-- types - array of available notification types with `name` and `description` schema
+- types - array of available `NotificationType`s
 
 For example:
 
@@ -23,16 +23,20 @@ https://app.example.com/.well-known/wc-notify-config.json
   "icons": ["https://i.imgur.com/q9QDRXc.png"],
   "types": [
     {
-      "name": "promotional",
+      "id": "promotional",
+      "name": "Promotional",
       "description": "Get notified when new features or products are launched"
     }, {
-      "name": "transactional",
+      "id": "transactional",
+      "name": "Transactional",
       "description": "Get notified when new on-chain transactions target your account"
     }, {
-      "name": "private",
+      "id": "private",
+      "name": "Private",
       "description": "Get notified when new updates or offers are sent privately to your account"
     }, {
-      "name": "alerts",
+      "id": "alerts",
+      "name": "Alerts",
       "description": "Get notified when urgent action is required from your account"
     }
   ]
@@ -41,17 +45,19 @@ https://app.example.com/.well-known/wc-notify-config.json
 
 ## Notification Types
 
-Not every message is the same and not every wallet user wants to receive every possible notification that a dapp targets their wallet account.
+Not every message is the same and not every wallet user wants to receive every possible notification that a dapp targets their wallet account. Notification Types define a scope of messages that the user authorizes the dapp to notify the user related to their wallet account.
 
-Notification Types define a scope of messages that the user authorizes the dapp to notify the user related to their wallet account.
-
-### Definitions
-
-A notification type includes a name and a description.
-
-A notification type name is a machine-readable lowercase string and not internationalized which matches the following regex: `[\w-/]{3,32}`.
-
-A notification type description is a human-readable case-sensitive string and not internationalized which matches the following regex: `[\w\s.]{3,100}`.
+A notification type has 3 fields:
+```typescript
+type NotificationType = {
+  // Non-changing ID used to keep track of which notification types are currently subscribed to. Can contain lowercase letters and underscores and must match the regex /^[a-z_]{2,32}$/
+  id: string,
+  // Human-readable name of the notification type
+  name: string,
+  // Human-readalbe description of what type of notifications this entails
+  description: string,
+}
+```
 
 ### Subscription Scope
 
@@ -59,10 +65,10 @@ A Notify Subscription will include a claim labelled `scp` with a string value in
 
 For example:
 
-```jsonc
+```typescript
 // did-jwt
 {
-  ...otherClaims
+  // .. other claims
   "scp": "promotional private alerts"
 }
 ```
@@ -71,12 +77,12 @@ For example:
 
 A Notify Message will include a parameter called `type` in the message payload which indicates the notification type is being delivered to the wallet user
 
-```jsonc
+```typescript
 {
-  "title": string,
-  "body": string,
-  "icon": string,
-  "url": string,
-  "type": string // <--- notification type
+  title: string,
+  body: string,
+  icon: string,
+  url: string,
+  type: string // <--- notification type ID
 }
 ```
