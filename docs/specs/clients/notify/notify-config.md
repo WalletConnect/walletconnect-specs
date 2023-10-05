@@ -50,7 +50,7 @@ Not every message is the same and not every wallet user wants to receive every p
 A notification type has 3 fields:
 ```typescript
 type NotificationType = {
-  // Non-changing ID used to keep track of which notification types are currently subscribed to. Can contain lowercase letters and underscores and must match the regex /^[a-z_]{2,32}$/
+  // Non-changing ID used to keep track of which notification types are currently subscribed to. Can contain lowercase letters and underscores and must match the regex /^[a-z0-9_-]{2,32}$/
   id: string,
   // Human-readable name of the notification type
   name: string,
