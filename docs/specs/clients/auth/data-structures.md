@@ -136,7 +136,6 @@ Verify Context is appended to Auth Requests to provide metadata that was constru
   "verified": {
     "origin": string,
     "validation": "UNKNOWN" | "VALID" | "INVALID",
-    "verifyUrl": string
   }
 }
 ```
