@@ -10,7 +10,6 @@ Metadata is a set of parameters used to identify each participant in a pairing w
   "description": string,
   "url": string,
   "icons": [string],
-  "verifyUrl": string, // Optional
   "redirect": { // Optional
     "native": string, // Optional
     "universal": string, // Optional
