@@ -20,6 +20,8 @@
 
 ```typescript
 {
+  // Unique ID for the message
+  id: string,
   // Notification type which matches the scope of notify subscription
   type: string,
   // Short message used in the title of the notification
