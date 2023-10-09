@@ -27,7 +27,7 @@ type Notification = {
 }
 ```
 
-Clients will be pushed all messages sent on the topic, so the client should filter these by the message's `method` and only display push notifications for the following methods:
+Clients will be pushed all messages sent on the topic, so the client should filter these by the message's `tag` and only display push notifications for the following methods:
 - Sign: `wc_sessionPropose` (1100), `wc_sessionRequest` (1108)
 - Auth: `wc_authRequest` (3000)
 - Notify: `wc_notifyMessage` (4002)
