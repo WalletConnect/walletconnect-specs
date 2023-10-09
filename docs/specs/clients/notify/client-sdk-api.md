@@ -32,7 +32,7 @@ abstract class Client {
 
   // query all active subscriptions
   public abstract getActiveSubscriptions(params: {
-    account?: string,
+    account: string,
   }): Promise<Record<string, NotifySubscription>>;
 
   // get all messages for a subscription
