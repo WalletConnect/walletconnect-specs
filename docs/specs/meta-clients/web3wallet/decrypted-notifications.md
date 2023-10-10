@@ -19,11 +19,11 @@ type Message = {
 }
 
 type Notification = {
+    type: string,
     title: string,
     body: string,
     icon: string,
     url: string,
-    type: string,
 }
 ```
 
