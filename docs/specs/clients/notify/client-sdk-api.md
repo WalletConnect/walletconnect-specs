@@ -1,4 +1,4 @@
-# Client API
+# Client SDK API
 
 :::caution
 
@@ -15,45 +15,61 @@ abstract class Client {
   
   // send notify subscription
   public abstract subscribe(params: { 
-        metadata: Metadata,
-        account: string,
-        scope: string[],
+    appDomain: string,
+    account: string,
   }): Promise<boolean>;
 
   // update notify subscription
-  public abstract update(params: { topic: string, scope: string[] }): Promise<boolean>;
+  public abstract update(params: {
+    topic: string,
+    scope: string[],
+  }): Promise<boolean>;
 
   // query notification types available for a dapp domain
   public abstract getNotificationTypes(params: {
-      domain: string,
+    appDomain: string,
   }): Promise<NotifyAvailableTypes>
 
   // query all active subscriptions
   public abstract getActiveSubscriptions(params: {
-    account?: string
+    account?: string,
   }): Promise<Record<string, NotifySubscription>>;
 
   // get all messages for a subscription
-  public abstract getMessageHistory(params: { topic: string }): Promise<Record<number, NotifyMessageRecord>>
+  public abstract getMessageHistory(params: {
+    topic: string,
+  }): Promise<Record<number, NotifyMessageRecord>>
 
   // delete active subscription
-  public abstract deleteSubscription(params: { topic: string }): Promise<void>;
+  public abstract deleteSubscription(params: {
+    topic: string,
+  }): Promise<void>;
   
   // delete notify message
-  public abstract deleteNotifyMessage(params: { id: number }): Promise<void>;
+  public abstract deleteNotifyMessage(params: {
+    id: number,
+  }): Promise<void>;
   
   // decrypt notify subscription message
-  public abstract decryptMessage(params: { topic: string, encryptedMessage: string }): Promise<NotifyMessage>;
+  public abstract decryptMessage(params: {
+    topic: string,
+    encryptedMessage: string,
+  }): Promise<NotifyMessage>;
   
-  // registers a blockchain account with an identity key if not yet registered on this client
-  // additionally register sync keys
-  // returns the public identity key.
+  // exposed IdentityClient.register method
+  // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
-        account: string, 
-        onSign: (message: string) => Cacao.Signature,
+    account: string;
+    private?: boolean;
+    domain: string,
+    onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
 
+
   // ---------- Events ----------------------------------------------- //
+
+  // for updates from watch subscriptions
+  public abstract on("notify_subscriptions_changed", (result: Record<string, NotifySubscription>) => {}): void;
 
   // for wallet to listen for notify subscription created
   public abstract on("notify_subscription", (result: NotifySubscription | Error) => {}): void;
