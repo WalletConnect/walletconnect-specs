@@ -30,12 +30,30 @@ interface UrlQueryParams {
   entries: string // eg. 100
   search?: string // eg. MetaMa...
   include?: string // eg. id1,id2,id3
-  exclude?: string // eg. id1,id2,id3 
+  exclude?: string // eg. id1,id2,id3
+  platform?: 'ios' | 'android'
 }
 
 interface Response {
   count: number
-  data: ApiWallets[]
+  data: Array<{
+    id: string
+    name: string
+    homepage: string
+    image_id: string
+    order: number
+    mobile_link: string | null
+    desktop_link: string | null
+    webapp_link: string | null
+    app_store: string | null
+    play_store: string | null
+    injected:
+      | {
+          namespace: string
+          injected_id: string
+        }[]
+      | null
+  }>
 }
 ```
 
