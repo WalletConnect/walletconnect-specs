@@ -113,7 +113,7 @@ Request body:
   topic: string,
 
   // Tag of the message.
-  tag: string,
+  tag: number,
 
   // The relay message.
   message: string,
