@@ -1,8 +1,19 @@
 # Notify Configuration
 
-In order to enable notify, dapps must expose a static json file named `wc-notify-config.json` in their `.well-known` path under their domain URL.
+## Cloud configuration
 
-The file should include the following information:
+```
+GET https://explorer-api.walletconnect.com/w3i/v1/notify-config?projectId=<project-id>&app_domain=<app-domain>
+```
+
+- projectId - project ID of the project requesting the config
+- app_domain - domain of the notify app the config is being requested for (e.g. app.example.com)
+
+## Decentralized configuration (currently unused)
+
+Dapps expose a static json file named `wc-notify-config.json` in their `.well-known` path under their domain URL.
+
+The file includes the following information:
 
 - schemaVersion - schema version number, should always be 1
 - name - name of your app
