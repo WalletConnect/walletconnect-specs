@@ -32,7 +32,7 @@ abstract class Client {
 
   // query all active subscriptions
   public abstract getActiveSubscriptions(params: {
-    account?: string,
+    account: string,
   }): Promise<Record<string, NotifySubscription>>;
 
   // get all messages for a subscription
@@ -57,6 +57,7 @@ abstract class Client {
   }): Promise<NotifyMessage>;
   
   // exposed IdentityClient.register method
+  // registers device in Push Server
   // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
@@ -64,6 +65,15 @@ abstract class Client {
     domain: string,
     onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
+
+  // "Logs out" this client from any notifications for the specified account. This involves:
+  // - Stops periodically calling `wc_notifyWatchSubscriptions` and unsubscribes from all related relay topics
+  // - Unregisters the client from Push Server
+  // - Unregisters the Identity Key and removes it from local storage
+  // This is not to be confused with `deleteSubscription()` method
+  public abstract unregister(params: {
+    account: string;
+  }): Promise<Void>;
 
 
   // ---------- Events ----------------------------------------------- //
