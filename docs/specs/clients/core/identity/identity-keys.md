@@ -52,12 +52,13 @@ The important components from this message are as follows:
 - `domain` - `app.example.com`
 - `address` - `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`
 - `Identity Key public key` - `z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq`
+- `statement` - `I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity`
 
 ## Authorization levels
 
-In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their identity.
+In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their identity. The `statement` decides the authorization level.
 
-## Limited
+## Limited statement
 
 Limited authorization allows the app to only access messages for `domain`.
 
@@ -65,7 +66,7 @@ Limited authorization allows the app to only access messages for `domain`.
 I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity
 ```
 
-## Unlimited
+## Unlimited statement
 
 Unlimited authorization allows the app to access messages, regardless of `domain`.
 
