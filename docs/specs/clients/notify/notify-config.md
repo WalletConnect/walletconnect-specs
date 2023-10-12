@@ -3,11 +3,11 @@
 ## Cloud configuration
 
 ```
-GET https://explorer-api.walletconnect.com/w3i/v1/notify-config?projectId=<project-id>&app_domain=<app-domain>
+GET https://explorer-api.walletconnect.com/w3i/v1/notify-config?projectId=<project-id>&appDomain=<app-domain>
 ```
 
 - projectId - project ID of the project requesting the config
-- app_domain - domain of the notify app the config is being requested for (e.g. app.example.com)
+- appDomain - domain of the notify app the config is being requested for (e.g. app.example.com)
 
 ## Decentralized configuration (currently unused)
 
