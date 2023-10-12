@@ -1,6 +1,6 @@
 # Identity Keys
 
-Identity Keys are used to verify Blockchain Account ownership and validating peer to peer requests are legitimate without requiring the wallet user to sign every message with their blockchain private key.
+Identity Keys are used to verify blockchain account ownership and validating peer to peer requests are legitimate without requiring the wallet user to sign every message with their blockchain private key. By the blockchain account signing a CAIP-122 message that includes the Identity Key's public key, it authorizes the Identity Key to sign messages on behalf of the blockchain account.
 
 ```mermaid
 sequenceDiagram
@@ -31,15 +31,13 @@ If the wallet user has multiple blockchain accounts, each account MAY use a sepa
 
 Identity Keys are authorized by a blockchain account by the wallet user signing a [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) message with includes the public key of the Identity Key as the URI.
 
-This results in a CACAO that authorizes the client's Identity Key to sign messages on the behalf of the blockchain account.
-
-Example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md):
+Below is an example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-122.md) message authorizing the Identity Key with the `z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq` public key.
 
 ```
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this app to send and receive messages on my behalf using my WalletConnect identity. Read more at https://walletconnect.com/identity
+I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
@@ -50,7 +48,32 @@ Resources:
 - https://keys.walletconnect.com
 ```
 
-### CACAO Format
+The important components from this message are as follows:
+- `domain` - `app.example.com`
+- `address` - `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`
+- `Identity Key public key` - `z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq`
+
+## Authorization levels
+
+In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their identity.
+
+## Limited
+
+Limited authorization allows the app to only access messages for `domain`.
+
+```text
+I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity
+```
+
+## Unlimited
+
+Unlimited authorization allows the app to access messages, regardless of `domain`.
+
+```text
+I further authorize this app to send and receive messages on my behalf for ALL domains using my WalletConnect identity. Read more at https://walletconnect.com/identity
+```
+
+## CACAO Format
 
 The CACAO is a standard JSON representation of a signed CAIP-122 message. For example:
 
@@ -62,7 +85,7 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2023-09-01T17:09:21.481+03:00",
-    "statement" : "I further authorize this app to send and receive messages on my behalf using my WalletConnect identity. Read more at https://walletconnect.com/identity",
+    "statement" : "I further authorize this app to send and receive messages on my behalf for ALL domains using my WalletConnect identity. Read more at https://walletconnect.com/identity",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
