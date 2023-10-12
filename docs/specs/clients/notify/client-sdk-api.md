@@ -71,6 +71,7 @@ abstract class Client {
   // - Stops periodically calling `wc_notifyWatchSubscriptions` and unsubscribes from all related relay topics
   // - Unregisters the client from Push Server
   // - Unregisters the Identity Key and removes it from local storage
+  // This is not to be confused with `deleteSubscription()` method
   public abstract unregister(params: {
     account: string;
   }): Promise<Void>;
