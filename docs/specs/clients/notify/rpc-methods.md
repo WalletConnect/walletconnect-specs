@@ -44,12 +44,14 @@ Notes:
 - `subs` contains the full subscription state, not delta or transactional differences
 - `wc_notifyWatchSubscriptions` response and `wc_notifySubscriptionsChanged` request messages expires after 5 minutes to reduce mailbox load and these updates are ephemeral anyway
   - If client goes offline for 5 minutes it must call `wc_notifyWatchSubscriptions` again to continue receiving updates
-- Notify server will no longer send updates after 1 day of not calling `wc_notifyWatchSubscriptions`
+- Notify server has an update timeout and will no longer send updates after 1 day of not calling `wc_notifyWatchSubscriptions`
   - Client must call `wc_notifyWatchSubscriptions` at least once a day to continue receiving updates
 
 ### wc_notifyWatchSubscriptions
 
-Used to get the list of subscriptions for an account, and watch for updates.
+Watches for updates to subscriptions for an account. Each update will result in a `wc_notifySubscriptionsChanged` request to the client. Calling this will also immediately trigger a `wc_notifySubscriptionsChanged` with the current subscription state.
+
+If the same `watchSubscriptionsAuth.iss` is used as a previous request, the `wc_notifySubscriptionsChanged` update timeout will be reset. It is recommended that you re-use the same `iss` and client persistent private key for the same account on the same device.
 
 **Request**
 
