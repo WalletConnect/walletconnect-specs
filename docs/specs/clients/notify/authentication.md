@@ -30,7 +30,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of Notify Server authentication key
-- app - did:web of app domain to watch, or `null` for all domains
+- app - did:web of app domain to watch, or `null` to watch all domains
   - Example: `did:web:app.example.com`
 
 ## wc_notifyWatchSubscriptions response
