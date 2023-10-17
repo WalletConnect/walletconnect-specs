@@ -39,8 +39,7 @@ sequenceDiagram
 ```
 
 Notes:
-- Each client will call `wc_notifyWatchSubscriptions` separately with separate persistent keys kY
-- Recommended: persist kY to avoid multiple unnecessary response topics
+- Each client will call `wc_notifyWatchSubscriptions` to receive subscription updates for a blockchain account
 - `subs` contains the full subscription state, not delta or transactional differences
 - `wc_notifyWatchSubscriptions` response and `wc_notifySubscriptionsChanged` request messages expires after 5 minutes to reduce mailbox load and these updates are ephemeral anyway
   - If client goes offline for 5 minutes it must call `wc_notifyWatchSubscriptions` again to continue receiving updates
@@ -51,7 +50,7 @@ Notes:
 
 Watches for updates to subscriptions for an account. Each update will result in a `wc_notifySubscriptionsChanged` request to the client. Calling this will also immediately trigger a `wc_notifySubscriptionsChanged` with the current subscription state.
 
-If the same `watchSubscriptionsAuth.iss` is used as a previous request, the `wc_notifySubscriptionsChanged` update timeout will be reset. It is recommended that you re-use the same `iss` and client persistent private key for the same account on the same device.
+If the same `watchSubscriptionsAuth.iss` is used as a previous request, the `wc_notifySubscriptionsChanged` update timeout will be reset (and if the Notify Server subscribe topic key changed, an updated response symkey & topic is used). It is recommended that clients re-use the same `iss` and client persistent private key (`kY`) for the same account on the same device to avoid abandoned topics and improve performance. If watching multiple accounts at the same time is desired, then separate `iss` and client persistent keys (`kY`) must be used for each account otherwise it will either update an existing update timeout, or result in multiple accounts receiving updates on the same topic.
 
 **Request**
 
