@@ -50,9 +50,9 @@ Notes:
 
 Watches for updates to subscriptions for an account. Each update will result in a `wc_notifySubscriptionsChanged` request to the client. Calling this will also immediately trigger a `wc_notifySubscriptionsChanged` with the current subscription state.
 
-Calling this method will create a "watcher" on the Notify Server for the given account and `iss`. A symkey and topic is derived from `kY` (which is specified under Response below) and saved for future updates. This deriveed topic is used to send the method response, and to future updates to an account's subscriptions. Updates will stop and the watcher removed after the watcher timeout, which is 1 day.
+Calling this method will create a "watcher" on the Notify Server for the given account and `iss`. A symkey and topic is derived from `kY` (which is specified under Response below) and saved for future updates. This derived topic is used to send the method response, and future updates to an account's subscriptions are also sent. Updates will stop and the watcher removed after the watcher timeout, which is 1 day.
 
-If this method is called again with the same `iss`, it will update the watcher with the new account, reset the watcher timeout, and re-derive the symkey/topic from the current `kY` and Notify Keys. Clients should re-use the same `iss` and `kY` for the same account on the same device to avoid abandoned topics and improve performance. If watching multiple accounts at the same time is desired, then separate `iss` and `kY` must be used for each account otherwise it will either update the account being watched (if `iss` is the same), or result in receiving updates for multiple accounts on the same topic (if `kY` is the same).
+If this method is called again with the same `iss`, it will update the watcher with the new account, reset the watcher timeout, and re-derive the symkey/topic from the current `kY` and Notify Keys. Clients should re-use the same `iss` and `kY` for the same account on the same device to avoid abandoned topics and improve performance. To watch multiple accounts at the same time, separate `iss` and `kY` must be used for each account otherwise it will either update the account being watched (if `iss` is the same), or result in receiving updates for multiple accounts on the same topic (if `kY` is the same).
 
 **Request**
 
