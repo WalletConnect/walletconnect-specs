@@ -18,13 +18,18 @@
 
 ## Notify Message
 
-```jsonc
+```typescript
 {
-  "title": string, // short message used in the title of the notification
-  "body": string, // long messages ued in the body of the notification
-  "icon": string, // image URL used to display with the notification
-  "url": string, // redirect URL for call-to-action related to notification
-  "type": string, // notification type which matches the scope of notify subscription
+  // Notification type which matches the scope of notify subscription
+  type: string,
+  // Short message used in the title of the notification
+  title: string,
+  // Long messages used in the body of the notification
+  body: string,
+  // Image URL used to display with the notification. If null, the app's icon from Notify Config is used instead
+  icon: string | null,
+  // Redirect URL for call-to-action related to notification
+  url: string | null,
 }
 ```
 
