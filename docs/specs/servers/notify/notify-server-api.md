@@ -4,24 +4,25 @@
 
 All endpoints expect an `Authorization` header in the form `Authorization: Bearer <notify_api_secret>` using the notify_api_secret associated with a project ID. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_api_secret`.
 
-## Notify
+## Send Notifications
 
-Send notifications to accounts.
+Send 1 or more notifications to accounts. Notifications handled itempotently are deduplicated by `notificationId`.
 
-`POST /v1/notify`
-
-Body:
+`POST /v1/<project-id>/notify`
 
 ```typescript
-[{
-  idempotencyKey?: string | null,
+type Body = [{
+  // Idempotency key and ID to track status
+  notificationId?: string | null,
   notification: {
+    // The notification type ID found in [Notify Config](../../clients/notify/notify-config.md)
     type: string,
     title: string,
     body: string,
     icon?: string | null,
     url?: string | null,
   },
+  // The accounts to send this notification to
   accounts: AccountId[],
 }]
 ```
@@ -31,25 +32,40 @@ Body:
 type AccountId = string
 ```
 
-Response:
-
-TODO change to respond with list of created notification UUIDs
-TODO separate endpoint to get the status of a notifcation UUID
-
 ```typescript
-{
-  "sent": AccountId[], // notifications sent to subscribers
-  "failed": Failed[], // notifications not sent because there was a failure in delivering
-  "notFound": AccountId[], // notifications not sent becuase those accounts were not subscribers
+type Response = {
+  // IDs for the sent notifications returned in the same order as the body. If a `notificationId` wasn't specified in the request, one will be generated.
+  notifications: string[],
 }
 ```
 
-Failed:
+## Notification Status
+
+Get the curent status of a sent notification.
+
+`GET /v1/<project-id>/notification/<notification-id>`
 
 ```typescript
-{
-  "account": AccountId,
-  "reason": string,
+type Response = {
+  status: {
+    [AccountId]: Status,
+  },
+}
+```
+
+```typescript
+// The status of the notification. Client must be forwards-compatible with new statuses.
+type Status = 
+  // Notifications currently queued to be published
+  "queued" |
+  // Notifications successfully published to subscribers
+  "published" |
+  // Notifications not published becuase those accounts were not subscribers
+  "not-subscribed" |
+  // Notifications not published becuase while those accounts were subscribers, they were not subscribed to the sent notification type
+  "wrong-scope" |
+  // Notifications not published because the account's rate limit was hit
+  "rate-limited"
 }
 ```
 
@@ -57,19 +73,17 @@ Failed:
 
 Get the list of all accounts currently subscribed to this app.
 
-`GET /v1/subscribers`
-
-Response:
+`GET /v1/<project-id>/subscribers`
 
 ```typescript
-AccountId[]
+type Response = AccountId[]
 ```
 
 ## Webhooks
 
 Webhooks can be registered so your app can receive an HTTP request whenver an account subscribes or unsubscribes to notifications.
 
-### Webhook request
+### Webhook Request
 
 `POST <URL>`
 
@@ -86,30 +100,32 @@ type WebhookPayload = {
   webhookId: string,
   // Unique ID of the event to deduplicate requests that were retried
   idempotencyKey: string,
+  // Which event happened
   event: Event,
+  // The account that triggered the event
   account: AccountId,
+  // The new set of notification types of the account's subscription
+  scope: string[],
 }
 
-type Event = "subscribed" | "unsubscribed";
+type Event = "subscribed" | "updated" | "unsubscribed";
 ```
 
 URL must return a 2xx status code, or the webhook request will be retried for 7 days with exponential backoff. Response body is ignored.
 
-The payload 
-
 ### Register Webhook
 
-Register a webhook that will be invoked when accounts are subscribed or unsubscribed.
+Register a webhook that will be invoked when accounts subscribe to notifications, update their notification subscription, or unsubscribe.
 
-`POST /v1/webhooks`
+Each project is limited to a maximum of 5 webhooks.
 
-Body: `Webhook`
+`POST /v1/<project-id>/webhooks`
 
 ```typescript
-type Webhook = {
+type Body = {
   // Which events to listen for
   events: Event[],
-  // Webhook endpoint to send events to.
+  // HTTP endpoint to send Webhook Requests to
   url: string,
 }
 ```
@@ -118,7 +134,7 @@ type Webhook = {
 type Response = {
   // Webhook ID
   id: string,
-  // Shared secret for authenticating webhook requests
+  // Shared secret for authenticating Webhook Requests
   secret: string,
 }
 ```
@@ -127,17 +143,15 @@ type Response = {
 
 Get the list of registered webhooks.
 
-`GET /v1/webhooks`
+`GET /v1/<project-id>/webhooks`
 
 ```typescript
-type Response = {
-  "<webhook_id1>": WebhookResponse,
-  "<webhook_id2>": WebhookResponse,
-  ...
-}
+type Response = WebhookResponse[]
 
 type WebhookResponse = Webhook & {
-  // Shared secret for authenticating webhook requests
+  // Webhook ID
+  id: string,
+  // Shared secret for authenticating Webhook Requests
   secret: string,
 }
 ```
@@ -146,23 +160,30 @@ type WebhookResponse = Webhook & {
 
 Update a webhook.
 
-`PUT /v1/webhooks/<webhook_id>`
+`PUT /v1/<project-id>/webhooks/<webhook_id>`
 
-Body: `Webhook`
+```typescript
+type Body = {
+  // Which events to listen for
+  events: Event[],
+  // HTTP endpoint to send Webhooks Requests to
+  url: string,
+}
+```
 
 No response.
 
 ### Rotate Webhook Shared Secret
 
-Update a webhook.
+Rotates the shared secret and returns the new secret to be installed on the endpoint. The old secret will continue to sign webhooks for for 24 hours, in addition to the new one.
 
-`POST /v1/webhooks/<webhook_id>/secret`
+`POST /v1/<project-id>/webhooks/<webhook_id>/secret`
 
 No body.
 
 ```typescript
 type Response = {
-  // New shared secret for authenticating webhook requests. Old secret will continue to sign webhooks for for 24 hours.
+  // New shared secret for authenticating Webhook Requests
   secret: string,
 }
 ```
@@ -173,7 +194,7 @@ Delete a webhook.
 
 This method is idempotent. If webhook ID does not exist, the request will still be successful.
 
-`DELETE /v1/webhooks/<webhook_id>`
+`DELETE /v1/<project-id>/webhooks/<webhook_id>`
 
 No response.
 
@@ -183,7 +204,7 @@ Used to generate a subscribe topic for an app to receive subscription requests f
 
 **Note:** this method is idempotent and will always return the same key.
 
-`POST /v1/subscribe-topic`
+`POST /v1/<project-id>/subscribe-topic`
 
 ```typescript
 type Body = {
