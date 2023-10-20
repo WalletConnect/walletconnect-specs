@@ -87,7 +87,7 @@ true
 
 ### wc_pairingExtend
 
-Used to update the lifetiem of a pairing.
+Used to update the lifetime of a pairing.
 
 **Request**
 
