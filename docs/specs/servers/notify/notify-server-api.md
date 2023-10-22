@@ -76,7 +76,11 @@ Get the list of all accounts currently subscribed to this app.
 `GET /v1/<project-id>/subscribers`
 
 ```typescript
-type Response = AccountId[]
+type Response = [{
+  account: AccountId,
+  // Notification types subscribed to
+  scope: string[],
+}]
 ```
 
 ## Webhooks
