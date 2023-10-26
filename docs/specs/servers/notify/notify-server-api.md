@@ -73,8 +73,8 @@ type SentNotification = {
 type Status = 
   // Determining initial status
   "pending" |
-  // Queued to be published
-  "queued" |
+  // Accepted to be published
+  "accepted" |
   // Published successfully to subscribers
   "published" |
   // Not published becuase those accounts were not subscribers
@@ -90,19 +90,19 @@ type Status =
 ```mermaid
 stateDiagram-v2
     Pending : pending
-    Queued : queued
+    Accepted : accepted
     Published : published
     Failed : failed
     NotSubscribed : not-subscribed
     WrongScope : wrong-scope
     RateLimited : rate-limited
     [*] --> Pending
-    Pending --> Queued
+    Pending --> Accepted
     Pending --> NotSubscribed
     Pending --> WrongScope
     Pending --> RateLimited
-    Queued --> Published
-    Queued --> Failed
+    Accepted --> Published
+    Accepted --> Failed
     Published --> [*]
     Failed --> [*]
     NotSubscribed --> [*]
