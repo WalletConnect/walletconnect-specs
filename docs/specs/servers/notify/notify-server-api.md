@@ -71,16 +71,43 @@ type SentNotification = {
 ```typescript
 // The status of the notification. Client must be forwards-compatible with new statuses.
 type Status = 
-  // Notifications currently queued to be published
+  // Determining initial status
+  "pending" |
+  // Queued to be published
   "queued" |
-  // Notifications successfully published to subscribers
+  // Published successfully to subscribers
   "published" |
-  // Notifications not published becuase those accounts were not subscribers
+  // Not published becuase those accounts were not subscribers
   "not-subscribed" |
-  // Notifications not published becuase while those accounts were subscribers, they were not subscribed to the sent notification type
+  // Not published becuase while those accounts were subscribers, they were not subscribed to the sent notification type
   "wrong-scope" |
-  // Notifications not published because the account's rate limit was hit
-  "rate-limited"
+  // Not published because the account's rate limit was hit
+  "rate-limited" |
+  // Failed to publish to relay after repeated retries
+  "failed"
+```
+
+```mermaid
+stateDiagram-v2
+    Pending : pending
+    Queued : queued
+    Published : published
+    Failed : failed
+    NotSubscribed : not-subscribed
+    WrongScope : wrong-scope
+    RateLimited : rate-limited
+    [*] --> Pending
+    Pending --> Queued
+    Pending --> NotSubscribed
+    Pending --> WrongScope
+    Pending --> RateLimited
+    Queued --> Published
+    Queued --> Failed
+    Published --> [*]
+    Failed --> [*]
+    NotSubscribed --> [*]
+    WrongScope --> [*]
+    RateLimited --> [*]
 ```
 
 You can also get the status per-account:
@@ -169,15 +196,29 @@ type WebhookPayload = {
   webhookId: string,
   // Unique ID of the event to deduplicate requests that were retried
   idempotencyKey: string,
-  // Which event happened
-  event: Event,
+} & ({
+  event: "subscriber-subscribed" | "subscriber-updated",
   // The account that triggered the event
   account: AccountId,
   // The new set of notification types of the account's subscription
   scope: string[],
-}
-
-type Event = "subscribed" | "updated" | "unsubscribed";
+} | {
+  event: "subscriber-unsubscribed",
+  // The account that triggered the event
+  account: AccountId,
+} | {
+  // TODO wip
+  event: "notification-sent",
+  // The notification that was sent
+  notification: string,
+} & {
+  // TODO wip
+  event: "notification-delivered",
+  // The ID of the notification that was sent
+  notification: string,
+  // The account that the notification was delivered to
+  account: AccountId,
+})
 ```
 
 URL must return a 2xx status code, or the webhook request will be retried for 7 days with exponential backoff. Response body is ignored.
