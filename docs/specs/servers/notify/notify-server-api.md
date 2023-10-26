@@ -12,14 +12,18 @@ Send 1 or more notifications to accounts. Notifications handled itempotently are
 
 ```typescript
 type Body = [{
-  // Idempotency key and ID to track status
+  // Idempotency key and ID to track status. Max 255 characters.
   notificationId?: string | null,
   notification: {
     // The notification type ID found in [Notify Config](../../clients/notify/notify-config.md)
-    type: string,
+    type: Uuid,
+    // The title of the notification. Max 64 characters.
     title: string,
+    // The body of the notification. Max 255 characters.
     body: string,
+    // URL for the icon of the notification. Max 255 characters.
     icon?: string | null,
+    // URL for the notification. Max 255 characters.
     url?: string | null,
   },
   // The accounts to send this notification to. If null or undefined, all accounts subscribed to the notification type will be sent the notification.
@@ -41,14 +45,25 @@ type Response = {
 
 ## Notification Status
 
-Get the curent status of a sent notification.
+Get a sent notification and the number of accounts with each status.
 
 `GET /v1/<project-id>/notification/<notification-id>`
 
 ```typescript
-type Response = {
-  status: {
-    [AccountId]: Status,
+type Response = SentNotification
+```
+
+```typescript
+type SentNotification = {
+  id: string,
+  sentAt: timestamp,
+  type: Uuid,
+  title: string,
+  body: string,
+  icon: string | null,
+  url: string | null,
+  statuses: {
+    [status: Status]: number,
   },
 }
 ```
@@ -66,6 +81,49 @@ type Status =
   "wrong-scope" |
   // Notifications not published because the account's rate limit was hit
   "rate-limited"
+```
+
+You can also get the status per-account:
+
+`GET /v1/<project-id>/notification/<notification-id>/account`
+
+- `?limit=number` - Maximum number of entries to return, default 10, max 1000
+- `?starting_after=AccountId` - AccountId of the last account
+
+```typescript
+type Response = {
+  hasMore: boolean,
+  data: {
+    account: AccountId,
+    status: Status,
+  }[],
+}
+```
+
+You can also get the notification status for a specific account.
+
+`GET /v1/<project-id>/notification/<notification-id>/account/<account-id>`
+
+```typescript
+type Response = {
+  status: Status,
+}
+```
+
+## Notification History
+
+Get notification history, starting with the most recently sent notifications.
+
+`GET /v1/<project-id>/notification`
+
+- `?type=<notification-type>[,<notification-type>]` - Only return notifications with one of these notification types
+- `?limit=number` - Maximum number of entries to return, default 10, maximum 100
+- `?starting_after=string` - ID of the last notification
+
+```typescript
+type Response = {
+  hasMore: boolean,
+  data: SentNotification[],
 }
 ```
 
@@ -75,15 +133,17 @@ Get the list of all accounts currently subscribed to this app.
 
 `GET /v1/<project-id>/subscribers`
 
-Query params:
-- Only return subscribers that are subscribed to 1 or more notification types: `?scope=<notification-type>[,<notification-type>]`
+- `?scope=<notification-type>[,<notification-type>]` - Only return subscribers that are subscribed to 1 or more of these notification types
+- `?limit=number` - Maximum number of entries to return, default 10, max 1000
+- `?starting_after=AccountId` - AccountId of the last subscriber
 
 ```typescript
 type Response = {
-  subscribers: {
+  hasMore: boolean,
+  data: {
     account: AccountId,
     // Notification types subscribed to
-    scope: string[],
+    scope: Uuid[],
   }[],
 }
 ```
@@ -94,7 +154,7 @@ Webhooks can be registered so your app can receive an HTTP request whenver an ac
 
 ### Webhook Request
 
-`POST <URL>`
+`POST <url>`
 
 ```typescript
 type Body = {
