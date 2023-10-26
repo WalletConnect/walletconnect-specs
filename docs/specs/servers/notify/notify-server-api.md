@@ -229,7 +229,7 @@ type Response = {
 
 Update a webhook.
 
-`PUT /v1/<project-id>/webhooks/<webhook_id>`
+`PUT /v1/<project-id>/webhooks/<webhook-id>`
 
 ```typescript
 type Body = {
@@ -246,7 +246,7 @@ No response.
 
 Rotates the shared secret and returns the new secret to be installed on the endpoint. The old secret will continue to sign webhooks for for 24 hours, in addition to the new one.
 
-`POST /v1/<project-id>/webhooks/<webhook_id>/secret`
+`POST /v1/<project-id>/webhooks/<webhook-id>/secret`
 
 No body.
 
@@ -263,7 +263,7 @@ Delete a webhook.
 
 This method is idempotent. If webhook ID does not exist, the request will still be successful.
 
-`DELETE /v1/<project-id>/webhooks/<webhook_id>`
+`DELETE /v1/<project-id>/webhooks/<webhook-id>`
 
 No response.
 
