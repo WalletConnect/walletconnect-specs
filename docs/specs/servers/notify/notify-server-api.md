@@ -22,8 +22,8 @@ type Body = [{
     icon?: string | null,
     url?: string | null,
   },
-  // The accounts to send this notification to
-  accounts: AccountId[],
+  // The accounts to send this notification to. If null or undefined, all accounts subscribed to the notification type will be sent the notification.
+  accounts?: AccountId[] | null,
 }]
 ```
 
@@ -75,12 +75,17 @@ Get the list of all accounts currently subscribed to this app.
 
 `GET /v1/<project-id>/subscribers`
 
+Query params:
+- Only return subscribers that are subscribed to 1 or more notification types: `?scope=<notification-type>[,<notification-type>]`
+
 ```typescript
-type Response = [{
-  account: AccountId,
-  // Notification types subscribed to
-  scope: string[],
-}]
+type Response = {
+  subscribers: {
+    account: AccountId,
+    // Notification types subscribed to
+    scope: string[],
+  }[],
+}
 ```
 
 ## Webhooks
@@ -150,13 +155,13 @@ Get the list of registered webhooks.
 `GET /v1/<project-id>/webhooks`
 
 ```typescript
-type Response = WebhookResponse[]
-
-type WebhookResponse = Webhook & {
-  // Webhook ID
-  id: string,
-  // Shared secret for authenticating Webhook Requests
-  secret: string,
+type Response = {
+  webhooks: (Webhook & {
+    // Webhook ID
+    id: string,
+    // Shared secret for authenticating Webhook Requests
+    secret: string,
+  })[],
 }
 ```
 
