@@ -54,7 +54,7 @@ NotifyServerSubscription[]
 ```typescript
 {
   appDomain: string, // App domain that the subscription refers to
-  appAuthenticationKey: string, // Authentication key used for authenticating topic JWTs and setting JWT aud field
+  appAuthenticationKey: string, // did:key of Notify Server authentication key
   symKey: string, // Symetric key used for notify topic. sha256 to get notify topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
