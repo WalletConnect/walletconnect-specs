@@ -82,7 +82,9 @@ Response:
 
 ```typescript
 {
+  // Hex encoded x25519 public key
   "subscribeKey": string,
+  // Hex encoded ed25519 public key
   "authenticationKey": string,
 }
 ```
