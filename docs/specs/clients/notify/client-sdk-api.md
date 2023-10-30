@@ -56,9 +56,10 @@ abstract class Client {
     encryptedMessage: string,
   }): Promise<NotifyMessage>;
   
-  // exposed IdentityClient.register method
-  // registers device in Push Server
-  // returns the public identity key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
+  // "Logs in" this client to notifications for the specified account. This involves:
+  // - Generating, signing, saving to local stroage, and registering an Identity Key, if one didn't already exist in local storage
+  // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
+  // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
     private?: boolean;
@@ -69,7 +70,6 @@ abstract class Client {
 
   // "Logs out" this client from any notifications for the specified account. This involves:
   // - Stops periodically calling `wc_notifyWatchSubscriptions` and unsubscribes from all related relay topics
-  // - Unregisters the client from Push Server
   // - Unregisters the Identity Key and removes it from local storage
   // This is not to be confused with `deleteSubscription()` method
   public abstract unregister(params: {
