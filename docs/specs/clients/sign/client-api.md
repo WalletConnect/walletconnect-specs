@@ -9,7 +9,7 @@ abstract class Client {
     metadata?: AppMetadata;
   }): Promise<void>;
 
-  // for proposer to create a session 
+  // for proposer to create a session
   public abstract connect(params: {
     requiredNamespaces: Map<string, ProposalNamespace>;
     relays?: RelayProtocolOptions[];
@@ -74,6 +74,24 @@ abstract class Client {
     reason: Reason;
   }): Promise<void>;
 
+  // ---------- Wallet Authentication Methods ----------------------------------------------- //
+
+  // for proposer to create an authenticated pairing
+  public abstract authenticate(params: {
+    chains:[],
+    pairingTopic?: string;
+  }): Promise<{ uri: string }>;
+
+
+   // respond to wallet authentication request
+  public abstract respondSessionAuthenticated(params: RespondParams, iss: string): Promise<boolean>;
+
+  // query all pending authentication requests
+  public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
+
+  // format payload to message string
+  public abstract formatAuthMessage(payload: PayloadParams, iss: string): Promise<string>;
+
 
   // ---------- Events ----------------------------------------------- //
 
@@ -88,5 +106,13 @@ abstract class Client {
 
   // subscribe to session delete
   public abstract on("session_delete", (sessionDelete: { id: number, topic: string }) => {}): void;
+
+  // ---------- Wallet Authentication Events ----------------------------------------------- //
+
+  // wallets to subscribe to session authenticated
+  public abstract on("session_authenticated", (sessionAuthenticated: SessionAuthenticated) => {}): void;
+
+  // apps to subscribe to session authenticated response
+  public abstract on("session_authenticated_response", (response: Response) => {}): void;
 }
 ```
