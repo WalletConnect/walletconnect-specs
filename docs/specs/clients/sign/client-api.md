@@ -76,7 +76,7 @@ abstract class Client {
 
   // ---------- Wallet Authentication Methods ----------------------------------------------- //
 
-  // for proposer to create an authenticated pairing
+  // for proposer to request wallet authentication
   public abstract authenticate(params: {
     chains:[],
     pairingTopic?: string;
