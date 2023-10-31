@@ -208,15 +208,15 @@ Namespace Config is set within the setNamespaceConfig method that is a part of t
 interface RequestParams {
   chains: string[];
   domain: string;
-  aud: string;
   nonce: string;
+  aud?: string;
   type?: string;
   nbf?: string;
   exp?: string;
   statement?: string;
   requestId?: string;
   resources?: string[];
-  pairingTopic;
+  pairingTopic?: string;
 }
 ```
 
