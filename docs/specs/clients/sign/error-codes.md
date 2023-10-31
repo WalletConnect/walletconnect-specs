@@ -1,6 +1,6 @@
 # Error Codes
 
-## INVALID
+### INVALID
 
 ```sh
 case .invalidMethod: return 1001
@@ -10,7 +10,7 @@ case .invalidExtendRequest: return 1004
 case .invalidSessionSettleRequest: return 1005
 ```
 
-## UNAUTHORIZED
+### UNAUTHORIZED
 
 ```sh
 case .unauthorizedMethod: return 3001
@@ -20,13 +20,13 @@ case .unauthorizedExtendRequest: return 3004
 case .unauthorizedChain: return 3005
 ```
 
-## EIP-1193
+### EIP-1193
 
 ```sh
 case .userRejectedRequest return 4001
 ```
 
-## REJECTED (CAIP-25)
+### REJECTED (CAIP-25)
 
 ```sh
 case .userRejected return 5000
@@ -41,21 +41,41 @@ case .unsupportedAccounts: return 5103
 case .unsupportedNamespaceKey: return 5104
 ```
 
-## REASON
+### REASON
 
 ```sh
 case .userDisconnected: return 6000
 ```
 
-## FAILURE
+### FAILURE
 
 ```sh
 case .sessionSettlementFailed: return 7000
 case .noSessionForTopic: return 7001
 ```
 
-## SESSION REQUEST
+### SESSION REQUEST
 
 ```sh
 case .sessionRequestExpired: return 8000
+```
+
+## Wallet Authentication Error Codes
+
+### VALIDATION
+
+```sh
+case .malformedResponseParams return 11001
+case .malformedRequestParams return 11002
+case .messageCompromised return 11003
+case .signatureVerificationFailed return 11004
+case .requestExpired: return 11005
+case .missingIssuer return 11006
+```
+
+### REJECTED
+
+```sh
+case .userRejectedRequest return 12001
+case .userDisconnected: return 12002
 ```
