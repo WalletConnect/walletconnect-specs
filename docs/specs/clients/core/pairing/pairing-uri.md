@@ -16,7 +16,7 @@
 ### Required
 
 - `symKey` (STRING) = symmetric key used for pairing encryption
-- `methods` (STRING) = comma separated array of inner arrays of methods. Inner arrays are populated by a single client registering the methods.
+- `methods` (STRING) = comma separated array of inner arrays of methods. Inner arrays are populated with methods registered by a single client.
 - `relay-protocol` (STRING) = protocol name used for relay
 
 ### Optional
