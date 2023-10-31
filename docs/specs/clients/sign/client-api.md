@@ -78,9 +78,18 @@ abstract class Client {
 
   // for proposer to request wallet authentication
   public abstract authenticate(params: {
-    chains:[],
+    chains: string[];
+    domain: string;
+    nonce: string;
+    aud?: string;
+    type?: string;
+    nbf?: string;
+    exp?: string;
+    statement?: string;
+    requestId?: string;
+    resources?: string[];
     pairingTopic?: string;
-  }): Promise<{ uri: string }>;
+}): Promise<{ uri: string }>;
 
 
    // respond to wallet authentication request
