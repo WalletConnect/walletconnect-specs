@@ -93,7 +93,7 @@ abstract class Client {
 
 
    // respond to wallet authentication request
-  public abstract respondSessionAuthenticated(params: RespondParams, iss: string): Promise<boolean>;
+  public abstract respondSessionAuthenticated(params: RespondParams, iss: string): Promise<void>;
 
   // query all pending authentication requests
   public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
