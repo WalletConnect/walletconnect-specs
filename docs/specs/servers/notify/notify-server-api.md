@@ -43,6 +43,29 @@ type Response = {
 }
 ```
 
+### v0 endpoint
+
+`POST /<project-id>/notify`
+
+```typescript
+type Body = {
+  notification: {
+    // The notification type ID found in [Notify Config](../../clients/notify/notify-config.md)
+    type: Uuid,
+    // The title of the notification. Max 64 characters.
+    title: string,
+    // The body of the notification. Max 255 characters.
+    body: string,
+    // URL for the icon of the notification. Max 255 characters.
+    icon?: string | null,
+    // URL for the notification. Max 255 characters.
+    url?: string | null,
+  },
+  // The accounts to send this notification to
+  accounts?: AccountId[],
+}
+```
+
 ## Notification Status
 
 Get a sent notification and the number of accounts with each status.
@@ -71,18 +94,10 @@ type SentNotification = {
 ```typescript
 // The status of the notification. Client must be forwards-compatible with new statuses.
 type Status = 
-  // Determining initial status
-  "pending" |
-  // Accepted to be published
-  "accepted" |
+  // Queued to be published
+  "queued" |
   // Published successfully to subscribers
   "published" |
-  // Not published becuase those accounts were not subscribers
-  "not-subscribed" |
-  // Not published becuase while those accounts were subscribers, they were not subscribed to the sent notification type
-  "wrong-scope" |
-  // Not published because the account's rate limit was hit
-  "rate-limited" |
   // Failed to publish to relay after repeated retries
   "failed"
 ```
