@@ -56,7 +56,7 @@ The important components from this message are as follows:
 
 ## Authorization levels
 
-In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their account. The `statement` decides the authorization level.
+In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their notifications. The `statement` decides the authorization level.
 
 ## Limited statement
 
