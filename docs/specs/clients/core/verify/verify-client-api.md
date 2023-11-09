@@ -21,10 +21,10 @@ The Verify Server only needs to map an attestation id to an origin which will be
 ```typescript
 interface Verify Client {
   // initializes the client 
-  public abstract init(params: { verifyUrl?: string }): Promise<void>;
+  public abstract init(params: { verifyServers?: string[] }): Promise<void>;
   
   // register attestation on the Verify Server
-  public abstract register(params: { attestationId: string }): Promise<void>;
+  public abstract register(params: { attestationId: string, verifyUrl?: string }): Promise<void>;
 
   // resolve attestation from the Verify Server
   public abstract resolve(params: { attestationId: string, verifyUrl?: string }): Promise<string>;
