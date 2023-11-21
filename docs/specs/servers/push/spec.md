@@ -79,7 +79,7 @@ Request body:
 
 - `always_raw` - forces sending raw notifications, defaults to `false`
   - When set to `true`, the push notification will contain, as custom data, `topic`, `tag`, and `message` from the request payload in [Send Notifications](#send-notification) section.
-  - When set to `false`, cleartext notifications will be sent for certain messages based on `tag`, but all other messages follow the same behavior as `always_raw=true` and will be sent encrypted. Cleartext messages:
+  - When set to `false`, cleartext notifications will be sent for certain messages based on `tag`, but all other messages will contain, as custom data, `payload.topic` and `payload.blob` from the request payload in [Send Notifications](#send-notification) section. Cleartext messages:
     - Sign API `wc_sessionPropose` (tag: 1100) and `wc_sessionRequest` (tag: 1108)
       - title: Signature required
       - body: You have a message to sign
