@@ -10,6 +10,7 @@ abstract class DecryptedNotification {
 
 type NotifyMessage = {
     id: string,
+    type: string,
     title: string,
     body: string,
     icon: string,
