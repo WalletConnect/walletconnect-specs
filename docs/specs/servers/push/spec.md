@@ -118,7 +118,7 @@ Request body:
   // The relay message.
   message: string,
 
-  // ==== Deprecated fields ====
+  // ==== Legacy fields ====
 
   // Unique ID for deduplication purposes
   id: string,
