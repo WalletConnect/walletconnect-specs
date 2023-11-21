@@ -143,4 +143,4 @@ Request body:
   Chat       = 1 << 3
   Notify     = 1 << 4
   ```
-- `blob`: If the flags specify encrypted, then this is just the relay message. If not encrypted, this is cleartext and should follow the format from of the [Notify Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
+- `blob`: If the flags specify encrypted, then this is just the relay message. If not encrypted, this is base64 encoded cleartext and should follow the format from of the [Notify Message](https://specs.walletconnect.com/2.0/specs/clients/notify/data-structures#notify-message)
