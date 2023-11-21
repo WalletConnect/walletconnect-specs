@@ -5,13 +5,13 @@ The below class introduces the general way of handling decrypted notifications n
 ```typescript
 abstract class DecryptedNotification {
     // decrypt encrypted request
-    public decryptMessage(params: { topic: string, encryptedMessage: string }): Promise<Message>;
+    public decryptMessage(params: { topic: string, encryptedMessage: string }): Promise<RpcRequest>;
 
     // get notification metadata for a given request
     public getMetadata(params: { topic: string }): Promise<Metadata>;
 }
 
-type Message = {
+type RpcRequest = {
     id: string,
     jsonrpc: string,
     method: string,
@@ -23,7 +23,6 @@ type Metadata = {
     description: string,
     url: string,
     icons: string[],
-    url: string,
 }
 ```
 
