@@ -61,7 +61,7 @@ abstract class Client {
   // Generates and stores an identity key, indexed via the following key
   // account-domain-isLimited
   // Generates and returns SIWE message for said identity key
-  public abstract getSiweMessage(params: {
+  public abstract formatSiweMessage(params: {
     account: string;
     domain: string,
     isLimited?: boolean,
