@@ -11,6 +11,7 @@ abstract class Client {
   // ---------- Methods ----------------------------------------------- //
 
   // initializes the client with persisted storage and a network connection
+  // Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
   public abstract init(): Promise<void>;
   
   // send notify subscription
@@ -56,17 +57,32 @@ abstract class Client {
     encryptedMessage: string,
   }): Promise<NotifyMessage>;
   
+  // Generates and stores an identity key, indexed via the following key
+  // account-domain-isLimited
+  // Generates and returns SIWE message for said identity key
+  public abstract getSiweMessage(params: {
+    account: string;
+    domain: string,
+    isLimited?: boolean,
+  }): string;
+  
   // "Logs in" this client to notifications for the specified account. This involves:
-  // - Generating, signing, saving to local stroage, and registering an Identity Key, if one didn't already exist in local storage
+  // - Retrieve the generated identity key via account-domain-isLimited key
+  // - Verifies signature by reconstructing formatted message 
+  // - Once verified, registers the identity key on the keyserver
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
   // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
     account: string;
-    private?: boolean;
+    signature: string;
     domain: string,
     isLimited?: boolean,
-    onSign: (message: string) => Promise<Cacao.Signature>
   }): Promise<string>;
+  
+  // Returns true if account has a valid and up to date subscription, false otherwise
+  public abstract isRegistered(params: {
+    account: string
+  }): boolean
 
   // "Logs out" this client from any notifications for the specified account. This involves:
   // - Stops periodically calling `wc_notifyWatchSubscriptions` and unsubscribes from all related relay topics
