@@ -79,7 +79,7 @@ abstract class Client {
     isLimited?: boolean,
   }): Promise<string>;
   
-  // Returns true if account has a valid and up to date subscription, false otherwise
+  // Returns true if account has a valid and up to date registration, false otherwise
   public abstract isRegistered(params: {
     account: string
   }): boolean
