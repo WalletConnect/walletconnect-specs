@@ -11,7 +11,8 @@ abstract class Client {
   // ---------- Methods ----------------------------------------------- //
 
   // initializes the client with persisted storage and a network connection
-  // Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
+  // Calls `wc_notifyWatchSubscriptions` for all previously registered accounts,
+  // watches for future subscription updates, and subscribes to all notification topics
   public abstract init(): Promise<void>;
   
   // send notify subscription
