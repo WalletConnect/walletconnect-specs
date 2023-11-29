@@ -71,7 +71,7 @@ I further authorize this app to send me notifications. Read more at https://wall
 Unlimited authorization allows the app to access messages, regardless of `domain`.
 
 ```text
-I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications
+I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications-all-apps
 ```
 
 ## CACAO Format
@@ -86,7 +86,7 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2023-09-01T17:09:21.481+03:00",
-    "statement" : "I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications",
+    "statement" : "I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications-all-apps",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",
