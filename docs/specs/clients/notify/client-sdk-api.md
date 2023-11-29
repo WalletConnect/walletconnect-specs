@@ -72,6 +72,7 @@ abstract class Client {
   
   // "Logs in" this client to notifications for the specified account. This involves:
   // - Verifies signature by reconstructing formatted message using provided payload
+  // - Expected payload comes from prepareRegistration
   // - Once verified, registers the identity key on the keyserver
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
   // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
