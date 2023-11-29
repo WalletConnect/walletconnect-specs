@@ -63,11 +63,11 @@ abstract class Client {
   public abstract prepareRegistration(params: {
     account: string;
     domain: string,
-	// Defaulted to false if not passed
+    // Defaulted to false if not passed
     allApps?: boolean,
   }): {
-	registerParams: NotifyRegistrationParams,
-	message: string
+    registerParams: NotifyRegistrationParams,
+    message: string
   };
   
   // "Logs in" this client to notifications for the specified account. This involves:
@@ -77,7 +77,7 @@ abstract class Client {
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
   // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
-	registerParams: NotifyRegistrationParams,
+    registerParams: NotifyRegistrationParams,
     signature: string;
   }): Promise<string>;
   
