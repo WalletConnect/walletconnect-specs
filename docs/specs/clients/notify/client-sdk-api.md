@@ -59,16 +59,16 @@ abstract class Client {
   }): Promise<NotifyMessage>;
   
   // Generates and stores an identity key, indexed via the following key
-  // account-domain-isLimited
+  // account-domain-allApps
   // Generates and returns SIWE message for said identity key
-  public abstract formatSiweMessage(params: {
+  public abstract prepareRegistration(params: {
     account: string;
     domain: string,
-    isLimited?: boolean,
+    allApps?: boolean,
   }): string;
   
   // "Logs in" this client to notifications for the specified account. This involves:
-  // - Retrieve the generated identity key via account-domain-isLimited key
+  // - Retrieve the generated identity key via account-domain-allApps key
   // - Verifies signature by reconstructing formatted message 
   // - Once verified, registers the identity key on the keyserver
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
@@ -77,7 +77,7 @@ abstract class Client {
     account: string;
     signature: string;
     domain: string,
-    isLimited?: boolean,
+    allApps?: boolean,
   }): Promise<string>;
   
   // Returns true if account has a valid and up to date registration, false otherwise
