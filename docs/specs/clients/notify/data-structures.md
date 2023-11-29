@@ -61,3 +61,13 @@ NotifyServerSubscription[]
   expiry: number, // Unix timestamp of expiration
 }
 ```
+
+## Notify Registration Params
+`NotifyRegistrationParams`
+```typescript
+{
+  payload: Cacao.Payload,
+  privateIdentityKey: string,
+}
+
+```

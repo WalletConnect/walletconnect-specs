@@ -58,26 +58,26 @@ abstract class Client {
     encryptedMessage: string,
   }): Promise<NotifyMessage>;
   
-  // Generates and stores an identity key, indexed via the following key
-  // account-domain-allApps
-  // Generates and returns SIWE message for said identity key
+  // Generates and returns SIWE message along with
+  // Cacao Payload with identity key
   public abstract prepareRegistration(params: {
     account: string;
     domain: string,
+	// Defaulted to false if not passed
     allApps?: boolean,
-  }): string;
+  }): {
+	registerParams: NotifyRegistrationParams,
+	message: string
+  };
   
   // "Logs in" this client to notifications for the specified account. This involves:
-  // - Retrieve the generated identity key via account-domain-allApps key
-  // - Verifies signature by reconstructing formatted message 
+  // - Verifies signature by reconstructing formatted message using provided payload
   // - Once verified, registers the identity key on the keyserver
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
   // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
   public abstract register(params: {
-    account: string;
+	registerParams: NotifyRegistrationParams,
     signature: string;
-    domain: string,
-    allApps?: boolean,
   }): Promise<string>;
   
   // Returns true if account has a valid and up to date registration, false otherwise
