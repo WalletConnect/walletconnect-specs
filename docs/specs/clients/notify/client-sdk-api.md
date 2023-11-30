@@ -37,26 +37,26 @@ abstract class Client {
     account: string,
   }): Promise<Record<string, NotifySubscription>>;
 
-  // get all messages for a subscription
-  public abstract getMessageHistory(params: {
+  // get all notifications for a subscription
+  public abstract getNotificationHistory(params: {
     topic: string,
-  }): Promise<Record<number, NotifyMessageRecord>>
+  }): Promise<Record<number, NotifyNotificationRecord>>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
     topic: string,
   }): Promise<void>;
   
-  // delete notify message
-  public abstract deleteNotifyMessage(params: {
+  // delete notification
+  public abstract deleteNotification(params: {
     id: number,
   }): Promise<void>;
   
   // decrypt notify subscription message
-  public abstract decryptMessage(params: {
+  public abstract decryptNotification(params: {
     topic: string,
     encryptedMessage: string,
-  }): Promise<NotifyMessage>;
+  }): Promise<NotifyNotification>;
   
   // Generates and returns SIWE message along with
   // Cacao Payload with identity key
@@ -103,8 +103,8 @@ abstract class Client {
   // for wallet to listen for notify subscription created
   public abstract on("notify_subscription", (result: NotifySubscription | Error) => {}): void;
   
-  //  for wallet to listen on notify messages
-  public abstract on("notify_message", (message: NotifyMessageRecord, metadata: Metadata) => {}): void;
+  //  for wallet to listen on notify notification
+  public abstract on("notify_notification", (message: NotifyNotificationRecord, metadata: Metadata) => {}): void;
   
   // for wallet to listen for result of notify subscription update
   public abstract on("notify_update", (result: NotifySubscription | Error) => {}): void;

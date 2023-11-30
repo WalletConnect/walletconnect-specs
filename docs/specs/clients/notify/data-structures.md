@@ -16,7 +16,7 @@
 }
 ```
 
-## Notify Message
+## Notify Notification
 
 ```typescript
 {
@@ -33,14 +33,14 @@
 }
 ```
 
-## Notify Message Record
+## Notify Notification Record
 
 ```jsonc
 {
   "id": string,
   "topic": string,
   "publishedAt": Int64,
-  "message": NotifyMessage
+  "message": NotifyNotification
 }
 ```
 
