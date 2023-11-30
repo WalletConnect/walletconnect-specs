@@ -75,7 +75,7 @@ abstract class Client {
   // - Expected payload comes from prepareRegistration
   // - Once verified, registers the identity key on the keyserver
   // - Calls `wc_notifyWatchSubscriptions`, watches for future subscription updates, and subscribes to all notification topics
-  // Returns the Identity Key public key. Method should throw 'signatureRejected' if any errors comes from onSign promise. 
+  // Returns the Identity Key public key. 
   public abstract register(params: {
     registerParams: NotifyRegistrationParams,
     signature: string;
