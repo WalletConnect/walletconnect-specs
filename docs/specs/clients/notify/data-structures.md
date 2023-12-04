@@ -16,7 +16,7 @@
 }
 ```
 
-## Notify Message
+## Notify Notification
 
 ```typescript
 {
@@ -33,14 +33,14 @@
 }
 ```
 
-## Notify Message Record
+## Notify Notification Record
 
 ```jsonc
 {
   "id": string,
   "topic": string,
   "publishedAt": Int64,
-  "message": NotifyMessage
+  "message": NotifyNotification
 }
 ```
 
@@ -60,4 +60,14 @@ NotifyServerSubscription[]
   scope: string[], // Array of notification types enabled for this subscription
   expiry: number, // Unix timestamp of expiration
 }
+```
+
+## Notify Registration Params
+`NotifyRegistrationParams`
+```typescript
+{
+  payload: Cacao.Payload,
+  privateIdentityKey: string,
+}
+
 ```
