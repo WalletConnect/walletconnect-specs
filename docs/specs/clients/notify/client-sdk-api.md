@@ -65,10 +65,10 @@ abstract class Client {
     domain: string,
     // Defaulted to false if not passed
     allApps?: boolean,
-  }): {
+  }): Promise<{
     registerParams: NotifyRegistrationParams,
     message: string
-  };
+  }>;
   
   // "Logs in" this client to notifications for the specified account. This involves:
   // - Verifies signature by reconstructing formatted message using provided payload
