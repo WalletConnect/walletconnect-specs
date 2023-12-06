@@ -32,7 +32,7 @@ Client authentication is described with a did-jwt using the following claims:
 
 `iss` - did:key of client id key. 
 
-`aud` - relay server url
+`aud` - relay server URL
 
 `sub` - random session identifier
 
