@@ -10,6 +10,8 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - iss - did:key. Value defined specifically in each payload
 - sub - did:pkh of blockchain account that this request is associated with
   - Example: `did:pkh:eip155:1:0x1234...`
+- mjv - major version of the API level being used as a string, currently `"1"`
+- sdk - SDK and version, for Notify Server this is always `notify-server-1`. For example: `js-2.10.5`
 
 Depending on the message, different keys are used for `iss`:
 - "iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../core/identity/identity-keys.md).
@@ -71,6 +73,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - aud - did:key of client identity key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
+- sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 ## wc_notifyMessage request
 
