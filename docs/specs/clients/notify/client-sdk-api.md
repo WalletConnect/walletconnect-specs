@@ -83,7 +83,9 @@ abstract class Client {
   
   // Returns true if account has a valid and up to date registration, false otherwise
   public abstract isRegistered(params: {
-    account: string
+    account: string,
+    allApps: boolean,
+    domain: string
   }): boolean
 
   // "Logs out" this client from any notifications for the specified account. This involves:
