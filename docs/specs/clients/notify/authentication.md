@@ -11,7 +11,7 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - sub - did:pkh of blockchain account that this request is associated with
   - Example: `did:pkh:eip155:1:0x1234...`
 - mjv - major version of the API level being used as a string, currently `"1"`
-- sdk - SDK and version, for Notify Server this is always `notify-server-1`. For example: `js-2.10.5`
+- sdk - SDK and version, for example: `js-2.10.5`
 
 Depending on the message, different keys are used for `iss`:
 - "iss - did:key of client identity key" indicates JWTs sent by clients and are verified by the Notify Server with [Identity Keys](../core/identity/identity-keys.md).
