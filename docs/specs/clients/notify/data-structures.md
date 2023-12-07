@@ -20,6 +20,10 @@
 
 ```typescript
 {
+  // ID of the notification
+  id: string,
+  // Timestamp when the notification was sent
+  sent_at: string,
   // Notification type which matches the scope of notify subscription
   type: string,
   // Short message used in the title of the notification
@@ -30,6 +34,8 @@
   icon: string,
   // Redirect URL for call-to-action related to notification. If empty, do not redirect
   url: string,
+  // If the notification was read or not
+  read: boolean,
 }
 ```
 
