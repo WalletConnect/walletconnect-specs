@@ -78,7 +78,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- msg - [Notify Message](./data-structures.md#notify-message)
+- msg - [Notify Notification](./data-structures.md#notify-notification)
 
 ## wc_notifyMessage response
 
@@ -118,8 +118,81 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 ## wc_notifyDelete response
 
-- act - `notify_delete_response``
+- act - `notify_delete_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
+
+## wc_notifyGetNotifications request
+
+Paginated list of notifications with the most recent first.
+
+- act - `notify_get_notifications`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- lmt - the max number of notifications to return. Default value is 10, maximum value is 100.
+- aft - the notification ID to start returning messages after. Null to start with the most recent notification
+
+## wc_notifyGetNotifications response
+
+- act - `notify_get_notifications_response`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
+- nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
+- mre - true if there are more notifications, false otherwise
+
+## wc_notifyGetNotification request
+
+Paginated list of notifications with the most recent first.
+
+- act - `notify_get_notification`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- id - the notification ID to retrieve
+
+## wc_notifyGetNotification response
+
+- act - `notify_get_notification_response`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
+- nfn - [Notify Notifications](./data-structures.md#notify-notification)
+
+## wc_notifyNotificationChanged request
+
+- act - `notify_notification_changed`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
+- nfn - array of [Notify Notification](./data-structures.md#notify-notification)
+
+## wc_notifyNotificationChanged response
+
+- act - `notify_notification_changed_response`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- aud - did:key of Notify Server authentication key
+
+## wc_notifyReadNotification request
+
+Paginated list of notifications with the most recent first.
+
+- act - `notify_read_notification`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- id - the notification ID to retrieve
+
+## wc_notifyReadNotification response
+
+- act - `notify_read_notification_response`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
