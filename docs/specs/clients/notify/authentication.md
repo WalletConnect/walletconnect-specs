@@ -124,7 +124,9 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 
-## wc_notifyGetNotifications request
+## `wc_notifyGetNotifications`
+
+### Request
 
 Paginated list of notifications with the most recent first.
 
@@ -137,7 +139,19 @@ Paginated list of notifications with the most recent first.
 - lmt - the max number of notifications to return. Default value is 10, maximum value is 100.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
 
-## wc_notifyGetNotifications response
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4014         |
+| Topic   | notify topic |
+
+### Response
 
 - act - `notify_get_notifications_response`
 - iss - did:key of client identity key
@@ -145,7 +159,21 @@ Paginated list of notifications with the most recent first.
 - nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
 - mre - true if there are more notifications, false otherwise
 
-## wc_notifyGetNotification request
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4015         |
+| Topic   | notify topic |
+
+## `wc_notifyGetNotification`
+
+### Request
 
 Paginated list of notifications with the most recent first.
 
@@ -157,21 +185,59 @@ Paginated list of notifications with the most recent first.
   - Example: `did:web:app.example.com`
 - id - the notification ID to retrieve
 
-## wc_notifyGetNotification response
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4016         |
+| Topic   | notify topic |
+
+### Response
 
 - act - `notify_get_notification_response`
 - iss - did:key of client identity key
 - aud - did:key of Notify Server authentication key
 - nfn - [Notify Notifications](./data-structures.md#notify-notification)
 
-## wc_notifyNotificationChanged request
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4017         |
+| Topic   | notify topic |
+
+## `wc_notifyNotificationChanged`
+
+### Request
 
 - act - `notify_notification_changed`
 - iss - did:key of client identity key
 - aud - did:key of Notify Server authentication key
 - nfn - array of [Notify Notification](./data-structures.md#notify-notification)
 
-## wc_notifyNotificationChanged response
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4018         |
+| Topic   | notify topic |
+
+### Response
 
 - act - `notify_notification_changed_response`
 - iss - did:key of client identity key
@@ -179,9 +245,23 @@ Paginated list of notifications with the most recent first.
 - aud - did:key of dapp authentication key
 - aud - did:key of Notify Server authentication key
 
-## wc_notifyReadNotification request
+```typescript
+{
+  auth: string,
+}
+```
 
-Paginated list of notifications with the most recent first.
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4019         |
+| Topic   | notify topic |
+
+## `wc_notifyReadNotification`
+
+Marks a notification as read.
+
+### Request
 
 - act - `notify_read_notification`
 - iss - did:key of client identity key
@@ -191,8 +271,42 @@ Paginated list of notifications with the most recent first.
   - Example: `did:web:app.example.com`
 - id - the notification ID to retrieve
 
-## wc_notifyReadNotification response
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4020         |
+| Topic   | notify topic |
+
+### Response
 
 - act - `notify_read_notification_response`
 - iss - did:key of client identity key
 - aud - did:key of Notify Server authentication key
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4020         |
+| Topic   | notify topic |
+
+## Noop
+
+Noop message sent by the Notify Server after subscription creation to mark a topic as long-lived.
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4050         |
+| Topic   | notify topic |
