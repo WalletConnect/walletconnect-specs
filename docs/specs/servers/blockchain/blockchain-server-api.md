@@ -10,6 +10,8 @@ Email wallet users can register a profile name e.g. `coolname.connect.id` and us
 
 Server API exposes forward lookup for the `name.connect.id` -> `0x` address with chain IDs and reverse lookup for the `0x` -> `name.connect.id`.
 
+Users can also update the name data including avatar, bio and bind addresses.
+
 ### Name lookup
 
 Used to lookup address for the name.
@@ -110,6 +112,55 @@ Used to lookup for suggestions for the new name by returning 3 unique usernames.
 ```
 
 * `suggestions` - suggested profile names.
+
+### Register the name
+
+Used to register account name.
+
+`POST /v1/profile/account/{name}`
+
+* `name` - is the name to register e.g. `coolname.connect.id`
+
+#### Request body:
+
+The POST request body should be in JSON format with the folowing structure:
+
+```typescript
+{
+    "message": string,
+    "coin_type": string,
+    "signature": string,
+    "address":string,
+}
+```
+
+* `message` - JSON serialized string that should contain the following fields:
+    * `name` - is the name to register or update.
+        * Alphabetic characters (A-Z a-z), numeric characters (0-9), the minus sign (-) and the period (.)
+        * Max 255 characters length.
+    * `coin_type` - Coin type by [SLIP-44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md).
+        Only the Ethereum `60` is now supported.
+    * `chain_id` - The corresponding coin_type chain id.
+    * `address` - address that bind to the account name.
+        * Max 100 characters length.
+    * `attributes` - (Optional) key value object of the name attributes:
+        * `avatar` - (Optional) avatar url.
+        * `bio` - (Optional) account profile self description.
+    * `timestamp` - current unixtime timestamp. The signature is valid for 10 seconds.
+* `coin_type` - Coin type by [SLIP-44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md).
+    Only the Ethereum `60` is now supported.
+* `signature` - Ethereum signature for the signed `message` to check the address ownership.
+* `address` - address that bind to the account name, should be the same as in `message.address`.
+        * Max 100 characters length.
+
+#### Success response codes:
+
+* `200 Ok` - account name is registered.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - signature verifying error.
 
 ## Generators
 
