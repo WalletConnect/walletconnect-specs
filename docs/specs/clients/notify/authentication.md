@@ -304,13 +304,13 @@ Marks a notification as read.
 | Tag     | 4021         |
 | Topic   | notify topic |
 
-## `wc_notifyCountUnreadNotifications`
+## `wc_notifyGetUnreadNotificationsCount`
 
 Returns a count of how many notifications are unread. Useful to implement unread notification counters, without needing to go through `O(n)` round trips of pages to count the total client-side.
 
 ### Request
 
-- act - `notify_count_unread_notifications`
+- act - `notify_get_unread_notifications_count`
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
@@ -331,7 +331,7 @@ Returns a count of how many notifications are unread. Useful to implement unread
 
 ### Response
 
-- act - `notify_count_unread_notifications_response`
+- act - `notify_get_unread_notifications_count_response`
 - iss - did:key of client identity key
 - aud - did:key of Notify Server authentication key
 
