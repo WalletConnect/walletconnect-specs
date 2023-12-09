@@ -126,9 +126,9 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 ## `wc_notifyGetNotifications`
 
-### Request
+Paginated list of notifications with the most recent first. Unread notifications may be dispersed throughout the list and on subsequent pages.
 
-Paginated list of notifications with the most recent first.
+### Request
 
 - act - `notify_get_notifications`
 - iss - did:key of client identity key
@@ -136,7 +136,7 @@ Paginated list of notifications with the most recent first.
 - aud - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- lmt - the max number of notifications to return. Default value is 10, maximum value is 100.
+- lmt - the max number of notifications to return. Default value is 10, maximum value is 50.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
 
 ```typescript
@@ -157,7 +157,8 @@ Paginated list of notifications with the most recent first.
 - iss - did:key of client identity key
 - aud - did:key of Notify Server authentication key
 - nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
-- mre - true if there are more notifications, false otherwise
+- mre - true if there are more pages, false otherwise
+- mur - true if there are more unread notifications on following pages, false otherwise
 
 ```typescript
 {
@@ -173,9 +174,9 @@ Paginated list of notifications with the most recent first.
 
 ## `wc_notifyGetNotification`
 
-### Request
+Get one notification by ID. Useful for URL links where you need to retrieve a specific notification and display it without needing to go through `O(n)` round trips of pages to find the notification client-side.
 
-Paginated list of notifications with the most recent first.
+### Request
 
 - act - `notify_get_notification`
 - iss - did:key of client identity key
@@ -217,6 +218,8 @@ Paginated list of notifications with the most recent first.
 | Topic   | notify topic |
 
 ## `wc_notifyNotificationChanged`
+
+Emitted by the Notify Server when a notification changed state. For example if its read status changed.
 
 ### Request
 
@@ -298,12 +301,57 @@ Marks a notification as read.
 | IRN     |              |
 | ------- | ------------ |
 | TTL     | 300          |
-| Tag     | 4020         |
+| Tag     | 4021         |
+| Topic   | notify topic |
+
+## `wc_notifyCountUnreadNotifications`
+
+Returns a count of how many notifications are unread. Useful to implement unread notification counters, without needing to go through `O(n)` round trips of pages to count the total client-side.
+
+### Request
+
+- act - `notify_count_unread_notifications`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4022         |
+| Topic   | notify topic |
+
+### Response
+
+- act - `notify_count_unread_notifications_response`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4023         |
 | Topic   | notify topic |
 
 ## Noop
 
-Noop message sent by the Notify Server after subscription creation to mark a topic as long-lived.
+Noop message sent by the Notify Server after subscription creation to mark a topic as long-lived so the relay does not destroy it. Clients should ignore this message.
+
+Content is empty string.
 
 | IRN     |              |
 | ------- | ------------ |
