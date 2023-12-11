@@ -109,6 +109,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - aud - did:key of client identity key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
+- sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
 
 ## wc_notifyDelete request
 
@@ -126,3 +127,4 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - aud - did:key of client identity key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
+- sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
