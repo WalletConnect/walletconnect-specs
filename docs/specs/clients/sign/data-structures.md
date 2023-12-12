@@ -52,6 +52,12 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
       "events": [string]
     }
   },
+  "specialNamespaces": {
+    "<namespace_name>" : {
+      "methods": [string],
+      "events": [string]
+    }
+  }
 }
 ```
 
@@ -142,6 +148,12 @@ Settlement is sent by the responder after approval and it's broadcasted right af
       "events": [string]
     }
   },
+  "specialNamespaces": {
+    "<namespace_name>" : {
+      "methods": [string],
+      "events": [string]
+    }
+  },
   "sessionProperties": {
     "property": string
   },
@@ -159,6 +171,27 @@ Verify Context is appended to Session Proposals and Session Requests to provide 
     "origin": string,
     "validation": "UNKNOWN" | "VALID" | "INVALID",
     "verifyUrl": string
+  }
+}
+```
+
+## Namespace Config
+Namespace Config is set within the setNamespaceConfig method that is a part of the Sign client. It defines Special and Supported Namespaces and must be called after initialization of the SDK and before approve session method.
+```jsonc
+{
+   "supportedNamespaces": {
+    "<namespace_name>": {
+      "chains": [string],
+      "methods": [string],
+      "events": [string],
+      "accounts": [string]
+    }
+  },
+  "specialNamespaces": {
+    "<namespace_name>" : {
+      "methods": [string],
+      "events": [string]
+    }
   }
 }
 ```
