@@ -22,7 +22,7 @@ Hedera documentation can be found at [docs.hedera.com](https://docs.hedera.com/h
 - [`hedera_signAndExecuteTransaction`](#hedera_signandexecutetransaction)
 - [`hedera_signTransaction`](#hedera_signtransaction)
 - [`hedera_executeTransaction`](#hedera_executetransaction)
-- [`hedera_signAndExecuteQuery`](#hedera_executetransaction)
+- [`hedera_signAndExecuteQuery`](#hedera_signandexecutequery)
 - [`hedera_signMessage`](#hedera_signmessage)
 - [`hedera_getNodeAddresses`](#hedera_getnodeaddresses)
 
