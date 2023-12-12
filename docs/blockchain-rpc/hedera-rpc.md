@@ -4,103 +4,114 @@ description: Hedera JSON-RPC Methods
 
 # Hedera
 
-The following JSON-RPC methods are for native integration into Hedera with the [Hedera™ Hashgraph JavaScript SDK](https://github.com/hashgraph/hedera-sdk-js). Hedera also has an open-source project implementing the [Ethereum JSON-RPC standard](https://docs.hedera.com/hedera/core-concepts/smart-contracts/json-rpc-relay) which is not covered in this documentation.
+The following JSON-RPC methods offer native integration into Hedera utilizing the [Hedera APIs](https://hashgraph.github.io/hedera-protobufs/) and the [Hedera SDKs](https://docs.hedera.com/hedera/sdks-and-apis/sdks).
+
+Hedera documentation can be found at [docs.hedera.com](https://docs.hedera.com/hedera/). There are a number of specific resources referenced in muliple methods below.
+
+ - The Hedera network structure is summarized by [Mainnet Nodes](https://docs.hedera.com/hedera/networks/mainnet/mainnet-nodes)
+ - The full list of Hedera functionality is described by the protobuf definitions: [Hedera Functionality](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality)
+ - The `signerAccountId` is utilized in the methods below is specified by [HIP-30](https://hips.hedera.com/hip/hip-30)
+ - A Hedera Transaction ID is composed of the account id that pays for a transaction and the valid start timestamp in nanoseconds: [Hedera Transaction ID](https://docs.hedera.com/hedera/sdks-and-apis/sdks/transactions/transaction-id)
+ - There are pre-processing validation response codes returned by the network: [ResponseCodeEnum](https://github.com/hashgraph/hedera-protobufs/blob/f36e05bd6bf3f572707ca9bb338f5ad6421a4241/services/response_code.proto#L32)
+
+
+ _Hedera has a separate open-source project implementing parts of the [Ethereum JSON-RPC standard](https://docs.hedera.com/hedera/core-concepts/smart-contracts/json-rpc-relay) which is not covered in this documentation._
 
 ## Methods
 
 - [`hedera_signAndExecuteTransaction`](#hedera_signandexecutetransaction)
-- [`hedera_signAndReturnTransaction`](#hedera_signandreturntransaction)
+- [`hedera_signTransaction`](#hedera_signtransaction)
+- [`hedera_executeTransaction`](#hedera_executetransaction)
+- [`hedera_signAndExecuteQuery`](#hedera_signandexecutequery)
 - [`hedera_signMessage`](#hedera_signmessage)
+- [`hedera_getNodeAddresses`](#hedera_getnodeaddresses)
 
-## hedera_signAndExecuteTransaction
+## hedera\_signAndExecuteTransaction
 
-The `hedera_signAndExecuteTransaction` method is a generic method for sending a transaction that has been converted to bytes to the wallet for signing and execution. The dApp can therefore construct any type of Hedera transaction with the [`hedera-sdk-js` library](https://github.com/hashgraph/hedera-sdk-js)
+The `hedera_signAndExecuteTransaction` method is a generic method for executing a transaction on the Hedera network. A dApp can begin by constructing a transaction with one of the Hedera SDKs or by constructing the raw protobuf messages and may select one or more consensus nodes that are authorized to execute the transaction.
+
+The dApp then constructs a list of valid transaction bytes that differ only in the node account id and serializes the list, for example by using the `toBytes()` method of an SDK. Finally, the dApp base64 encodes the resulting bytes. This final base64 encoded string of bytes is sent as a method param titled `transactionList` to the wallet.
+
+Wallets and SDKs must take special care to verify that each transaction in the list differs only in the node that is authorized to submit the transaction and does NOT differ in intent before submitting to an end user for approval and ultimately signing.
+
 
 ### Parameters
 
     1. `Object` - signAndExecuteTransaction parameters
-      1.1 `transaction` : `Object` - transaction parameters
-        1.1.1 `type` : `String` - The Hedera function name (*1)
-        1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string.
-
-\*1. The full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/develop/src/RequestType.js) from the Hedera SDK.
-
-\*2. Transactions generated with the Hedera SDK can be converted to bytes with the [`toBytes` method](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/transaction/Transaction.js#L1015).
+      1.1 `signerAccountId` : `Object` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `transactionList` : `Object` - base64 encoded string of TransactionList bytes
 
 ### Returns
 
     1. `Object` - Result of transaction submission to Hedera network
-      1.1. `response` : `Object` - Response from Hedera network from transaction submission
-        1.1.1. `nodeId` : `String` - The Hedera node the transaction was submitted to
-        1.1.2. `transactionHash` : `String` - The hash of the transaction
-        1.1.3. `transactionId` : `String` - Tranasction ID, which included the payer Account ID and the consensus timestamp
-      1.2 `receipt` : `TransactionReceipt Object` - Details of the completed transaction (*1)
+      1.1. `nodeId` : `String` - The Hedera node the transaction was submitted to
+      1.1. `transactionHash` : `String` - The hash of the transaction
+      1.1. `transactionId` : `String` - Transaction ID, which includes the payer account id and the valid start timestamp
 
-\*1. See [here](https://docs.hedera.com/hedera/sdks-and-apis/hedera-api/miscellaneous/transactionreceipt) for a detailed description of `TransactionReceipt` properties
+### Error
+
+In certain conditions, the Hedera network with return a response that signifies a pre-processing validation error, for example, when the transaction has expired. In these cases, wallets will return an error with the following format:
+
+    1. `Object` - Result of transaction submission to Hedera network
+      1.1. `code` : 9000 - the reserved Wallet Connect error code for unknown or errors not related to the Wallet Connect protocol
+      1.1. `message` : `String` - A human readable string describing the nature of the failure
+      1.1. `data` : `Number` - An integer representing the ResponseCodeEnum value returned from the Hedera Node, which indicates the reason for the failure
+
 
 ### Example
 
 #### Request
-
 ```json
 {
   "id": 1,
   "jsonrpc": "2.0",
   "method": "hedera_signAndExecuteTransaction",
   "params": {
-    "transaction": {
-      "type": "CryptoTransfer",
-      "bytes": "Co8BKowBCocBChoKDAjchKWmBhDW..."
-    }
+    "signerAccountId": "hedera:testnet:0.0.12345",
+    "transactionList": "Co8BKowBCocBChoKDAjchKWmBhDW..."
   }
 }
 ```
 
 #### Result
-
 ```json
 {
   "id": 1,
   "jsonrpc": "2.0",
   "result": {
-    "response": {
-      "nodeId": "0.0.3",
-      "transactionHash": "252b8fd...",
-      "transactionId": "0.0.12345678@1689281510.675369303"
-    },
-    "receipt": {
-      "status": {
-        "_code": 22
-      },
-      "accountId": null
-      // ...Truncated -- see note about TransactionReceipt above
-    }
+    "nodeId": "0.0.3",
+    "transactionHash": "252b8fd...",
+    "transactionId": "0.0.12345678@1689281510.675369303"
   }
 }
 ```
 
-## hedera_signAndReturnTransaction
+#### Error
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "error": {
+    "code": 9000,
+    "message": "The transaction failed with precheck code...",
+    "data": 6
+  }
+}
+```
+## hedera\_signTransaction
 
-The `hedera_signAndReturnTransaction` method is similar to the `hedera_signAndExecuteTransaction` except that instead of the wallet signing and submitting the
-transaction to the Hedera network, the wallet just signs the transaction and returns the signed transaction to the dApp for further handling.
+The `hedera_signTransaction` signs a TransactionBody and returns a SignatureMap to the caller.
 
 ### Parameters
 
-    1. `Object` - signAndExecuteTransaction parameters
-      1.1 `transaction` : `Object` - transaction parameters
-        1.1.1 `type` : `String` - The Hedera function name (*1)
-        1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string
-
-\*1. The full list of functions can be found [here](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality), and are available via the [`RequestType` class](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/RequestType.js) from the Hedera SDK.
-
-\*2. Transactions generated with the Hedera SDK can be converted to bytes with the [`toBytes` method](https://github.com/hashgraph/hedera-sdk-js/blob/50d7f76ffd1fd797a029192fab08b035720998b9/src/transaction/Transaction.js#L1015).
+    1. `Object` - signTransaction parameters
+      1.1 `signerAccountId` : `Object` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `transactionBody` : `Object` - TransactionBody 
 
 ### Returns
 
-    1. `Object` - signAndExecuteTransaction parameters
-      1.1 `transaction` : `Object` - transaction parameters
-        1.1.1 `type` : `String` - The Hedera function name (*1)
-        1.1.2 `bytes` : `String` - Transaction that has been converted to bytes array (*2) and encoded as a base64 string
+    1. `Object` - signTransaction parameters
+      1.1 `signatureMap` : `Object` - base64 encoded SignatureMap object
 
 ### Example
 
@@ -110,12 +121,10 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
 {
   "id": 1,
   "jsonrpc": "2.0",
-  "method": "hedera_signAndExecuteTransaction",
+  "method": "hedera_signTransaction",
   "params": {
-    "transaction": {
-      "type": "CryptoTransfer",
-      "bytes": "Co8BKowBCocBChoKDAjchKWmBhDW..."
-    }
+    "signerAccountId": "hedera:testnet:0.0.12345",
+    "transactionBody": "Co8BKowBCocBChoKDAjchKWmBhDW..."
   }
 }
 ```
@@ -127,27 +136,31 @@ transaction to the Hedera network, the wallet just signs the transaction and ret
   "id": 1,
   "jsonrpc": "2.0",
   "result": {
-    "transaction": {
-      "type": "CryptoTransfer",
-      "bytes": "VGhpcyBpcyBqdXN0IHNvbWUgc3R1..."
-    }
+    "signatureMap": "VGhpcyBpcyBqdXN0IHNvbWUgc3R1..."
   }
 }
 ```
 
-## hedera_signMessage
+## hedera\_signMessage
 
-The `hedera_signMessage` method is used to pass arbitrary data to the wallet to be signed with the user's private key. The resulting signed message is then passed back to the dApp.
+This method accepts a plain text string value as input. If approved by the user, the controller UTF-8 encodes this message prepended with "\x19Hedera Signed Message:\n" plus the length of the message and signs the resulting bytes in the same manner as HAPI transactions are signed. The resulting signature(s) is transmitted back to the user encoded in a SignatureMap structure. The pseudo code for computing the signature is as follows:
+
+```javascript
+
+<Ed25519 or ECDSA Key>.sign("\x19Hedera Signed Message:\n" + len(message) + message)
+```
+
 
 ### Parameters
 
     1. `Object` - signMessage parameters
-      1.1 `message` : `string` - base64 encoded string of arbitrary data
+      1.1 `signerAccountId` : `Object` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `message` : `string`
 
 ### Returns
 
     1. `Object` - signMessage result
-      1.1 `signature` : `string` - base64 encoded string of signed message bytes array
+      1.1 `signatureMap` : `string` - base64 encoded SignatureMap
 
 ### Example
 
@@ -159,6 +172,7 @@ The `hedera_signMessage` method is used to pass arbitrary data to the wallet to 
   "jsonrpc": "2.0",
   "method": "hedera_signMessage",
   "params": {
+    "signerAccountId": "hedera:testnet:0.0.12345"
     "message": "Co8BKowBCocBChoKDAjchKWmBhDW..."
   }
 }
@@ -171,7 +185,7 @@ The `hedera_signMessage` method is used to pass arbitrary data to the wallet to 
   "id": 1,
   "jsonrpc": "2.0",
   "result": {
-    "signature": "CAAQABjMrxoYABIGCAAQABgHGIDIr..."
+    "signatureMap": "CAAQABjMrxoYABIGCAAQABgHGIDIr..."
   }
 }
 ```
