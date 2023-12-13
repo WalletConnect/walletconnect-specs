@@ -141,6 +141,87 @@ The `hedera_signTransaction` signs a TransactionBody and returns a SignatureMap 
 }
 ```
 
+## hedera\_executeTransaction
+
+When a dApp only requires the services of the controller to act as a relay to the Hedera network for submitting an already signed transaction, it can use the `hedera_executeTransaction` method.
+
+### Parameters
+
+    1. `Object` - signMessage parameters
+      1.1 `transactionList` : `String` base64 encoded TransactionList
+
+### Returns
+
+    1. `Object` - Result of transaction submission to Hedera network
+      1.1. `nodeId` : `String` - The Hedera node the transaction was submitted to
+      1.1. `transactionHash` : `String` - The hash of the transaction
+      1.1. `transactionId` : `String` - Transaction ID, which includes the payer account id and the valid start timestamp
+
+### Error
+
+In certain conditions, the Hedera network with return a response that signifies a pre-processing validation error, for example, when the transaction has expired. In these cases, wallets will return an error with the following format:
+
+    1. `Object` - Result of transaction submission to Hedera network
+      1.1. `code` : 9000 - the reserved Wallet Connect error code for unknown or errors not related to the Wallet Connect protocol
+      1.1. `message` : `String` - A human readable string describing the nature of the failure
+      1.1. `data` : `Number` - An integer representing the ResponseCodeEnum value returned from the Hedera Node, which indicates the reason for the failure
+
+### Example
+
+#### Request
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "hedera_executeTransaction",
+  "params": {
+    "transactionList": "Co8BKowBCocBChoKDAjchKWmBhDW..."
+  }
+}
+```
+#### Result
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "nodeId": "0.0.3",
+    "transactionHash": "252b8fd...",
+    "transactionId": "0.0.12345678@1689281510.675369303"
+  }
+}
+```
+
+#### Error
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "error": {
+    "code": 9000,
+    "message": "The transaction failed with precheck code...",
+    "data": 6
+  }
+}
+```
+## hedera\_signAndExecuteQuery
+
+This method provides functionality to perform a query on a Hedera consensus node. Many Queries against consensus nodes have a transaction fee [Learn more about Queries](https://docs.hedera.com/hedera/sdks-and-apis/sdks/queries)
+Most request that do not change network state can be performed against a [Mirror Node](https://docs.hedera.com/hedera/core-concepts/mirror-nodes) and for many use cases calling a mirror node endpoint is the recommended approach.
+
+### Parameters
+
+    1. `Object` - signMessage parameters
+      1.1 `signerAccountId` : `Object` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.1 `query` : `String` base64 encoded Query
+
+### Returns
+
+    1. `Object` - Result of Query to Hedera consensus node
+      1.1. `response` : `String` - base64 encoding of Hedera API response
+
+
 ## hedera\_signMessage
 
 This method accepts a plain text string value as input. If approved by the user, the controller UTF-8 encodes this message prepended with "\x19Hedera Signed Message:\n" plus the length of the message and signs the resulting bytes in the same manner as HAPI transactions are signed. The resulting signature(s) is transmitted back to the user encoded in a SignatureMap structure. The pseudo code for computing the signature is as follows:
@@ -186,6 +267,39 @@ This method accepts a plain text string value as input. If approved by the user,
   "jsonrpc": "2.0",
   "result": {
     "signatureMap": "CAAQABjMrxoYABIGCAAQABgHGIDIr..."
+  }
+}
+```
+
+## hedera\_getNodeAddresses
+
+While constructing a transaction for transmission to a controller, a dApp needs to choose which Hedera Network node shall receive the transaction prior to signing (this is a requirement of the Hedera API Protocol). While a dApp can easily obtain a list of potential Hedera Nodes, a controller may not have an all-inclusive list nor a path to the node’s gRPC endpoint. The hedera_getNodeAddresses method allows a dApp to request a list of node wallet addresses known to the controller. The controller should only include nodes in this list that it is willing and able to submit transactions to at the time of the request.
+
+### Returns
+
+    1. `Object` - signMessage result
+      1.1 `nodes` : `Array` - an array of strings <shard>.<realm>.<num>-<optional-checksum> format identifying an Hedera Address
+
+### Example
+
+#### Request
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "hedera_getNodeAddresses",
+}
+```
+
+#### Result
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "nodes": ["hedera:testnet:0.0.3", "hedera:testnet:0.0.4"]
   }
 }
 ```
