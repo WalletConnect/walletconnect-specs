@@ -6,10 +6,13 @@ description: Hedera JSON-RPC Methods
 
 The following JSON-RPC methods offer native integration into Hedera utilizing the [Hedera APIs](https://hashgraph.github.io/hedera-protobufs/) and the [Hedera SDKs](https://docs.hedera.com/hedera/sdks-and-apis/sdks).
 
-Hedera documentation can be found at [docs.hedera.com](https://docs.hedera.com/hedera/). There are a number of specific resources referenced in muliple methods below.
+Hedera documentation can be found at [docs.hedera.com](https://docs.hedera.com/hedera/).
+
+The following resources provide specific information referenced in the methods below. 
 
  - The Hedera network structure is summarized by [Mainnet Nodes](https://docs.hedera.com/hedera/networks/mainnet/mainnet-nodes)
  - The full list of Hedera functionality is described by the protobuf definitions: [Hedera Functionality](https://hashgraph.github.io/hedera-protobufs/#proto.HederaFunctionality)
+ - Further details about these methods can be found in the accompanying Hedera Improvement Proposal: [HIP-820](https://hips.hedera.com/hip/hip-820)
  - The `signerAccountId` utilized in the methods below is specified by [HIP-30](https://hips.hedera.com/hip/hip-30)
  - A Hedera Transaction ID is composed of the account id that pays for a transaction and the valid start timestamp in nanoseconds: [Hedera Transaction ID](https://docs.hedera.com/hedera/sdks-and-apis/sdks/transactions/transaction-id)
  - There are pre-processing validation response codes returned by the network: [ResponseCodeEnum](https://github.com/hashgraph/hedera-protobufs/blob/f36e05bd6bf3f572707ca9bb338f5ad6421a4241/services/response_code.proto#L32)
@@ -38,15 +41,15 @@ Wallets and SDKs must take special care to verify that each transaction in the l
 ### Parameters
 
     1. `Object` - signAndExecuteTransaction parameters
-      1.1 `signerAccountId` : `Object` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
-      1.2 `transactionList` : `Object` - base64 encoded string of TransactionList bytes
+      1.1. `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2. `transactionList` : `String` - base64 encoded string of TransactionList bytes
 
 ### Returns
 
     1. `Object` - Result of transaction submission to Hedera network
       1.1. `nodeId` : `String` - The Hedera node the transaction was submitted to
-      1.1. `transactionHash` : `String` - The hash of the transaction
-      1.1. `transactionId` : `String` - Transaction ID, which includes the payer account id and the valid start timestamp
+      1.2. `transactionHash` : `String` - The hash of the transaction
+      1.3. `transactionId` : `String` - Transaction ID, which includes the payer account id and the valid start timestamp
 
 ### Error
 
@@ -54,8 +57,8 @@ In certain conditions, the Hedera network with return a response that signifies 
 
     1. `Object` - Result of transaction submission to Hedera network
       1.1. `code` : 9000 - the reserved Wallet Connect error code for unknown or errors not related to the Wallet Connect protocol
-      1.1. `message` : `String` - A human readable string describing the nature of the failure
-      1.1. `data` : `Number` - An integer representing the ResponseCodeEnum value returned from the Hedera Node, which indicates the reason for the failure
+      1.2. `message` : `String` - A human readable string describing the nature of the failure
+      1.3. `data` : `Number` - An integer representing the ResponseCodeEnum value returned from the Hedera Node, which indicates the reason for the failure
 
 
 ### Example
@@ -100,23 +103,22 @@ In certain conditions, the Hedera network with return a response that signifies 
 ```
 ## hedera\_signTransaction
 
-The `hedera_signTransaction` signs a TransactionBody and returns a SignatureMap to the caller.
+The `hedera_signTransaction` signs a `TransactionBody` and returns a `SignatureMap` to the caller.
 
 ### Parameters
 
     1. `Object` - signTransaction parameters
-      1.1 `signerAccountId` : `Object` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
-      1.2 `transactionBody` : `Object` - TransactionBody 
+      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `transactionBody` : `String` - base64 encoded string representation of TransactionBody 
 
 ### Returns
 
     1. `Object` - signTransaction parameters
-      1.1 `signatureMap` : `Object` - base64 encoded SignatureMap object
+      1.1 `signatureMap` : `String` - base64 encoded string of SignatureMap
 
 ### Example
 
 #### Request
-
 ```json
 {
   "id": 1,
@@ -128,9 +130,7 @@ The `hedera_signTransaction` signs a TransactionBody and returns a SignatureMap 
   }
 }
 ```
-
 #### Result
-
 ```json
 {
   "id": 1,
@@ -140,7 +140,6 @@ The `hedera_signTransaction` signs a TransactionBody and returns a SignatureMap 
   }
 }
 ```
-
 ## hedera\_executeTransaction
 
 When a dApp only requires the services of the controller to act as a relay to the Hedera network for submitting an already signed transaction, it can use the `hedera_executeTransaction` method.
@@ -169,7 +168,6 @@ In certain conditions, the Hedera network with return a response that signifies 
 ### Example
 
 #### Request
-
 ```json
 {
   "id": 1,
@@ -213,8 +211,8 @@ Most request that do not change network state can be performed against a [Mirror
 ### Parameters
 
     1. `Object` - signMessage parameters
-      1.1 `signerAccountId` : `Object` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
-      1.1 `query` : `String` base64 encoded Query
+      1.1 `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `query` : `String` base64 encoded Query
 
 ### Returns
 
@@ -224,24 +222,23 @@ Most request that do not change network state can be performed against a [Mirror
 
 ## hedera\_signMessage
 
-This method accepts a plain text string value as input. If approved by the user, the controller UTF-8 encodes this message prepended with "\x19Hedera Signed Message:\n" plus the length of the message and signs the resulting bytes in the same manner as HAPI transactions are signed. The resulting signature(s) is transmitted back to the user encoded in a SignatureMap structure. The pseudo code for computing the signature is as follows:
+This method accepts a plain text string value as input. If approved by the user, the controller UTF-8 encodes this message prepended with "\x19Hedera Signed Message:\n" plus the length of the message and signs the resulting bytes in the same manner as HAPI transactions are signed. The resulting signature(s) are transmitted back to the user encoded in a SignatureMap structure. The pseudo code for computing the signature is as follows:
 
 ```javascript
 
 <Ed25519 or ECDSA Key>.sign("\x19Hedera Signed Message:\n" + len(message) + message)
 ```
 
-
 ### Parameters
 
     1. `Object` - signMessage parameters
-      1.1 `signerAccountId` : `Object` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
-      1.2 `message` : `string`
+      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.2 `message` : `String`
 
 ### Returns
 
     1. `Object` - signMessage result
-      1.1 `signatureMap` : `string` - base64 encoded SignatureMap
+      1.1 `signatureMap` : `String` - base64 encoded SignatureMap
 
 ### Example
 
