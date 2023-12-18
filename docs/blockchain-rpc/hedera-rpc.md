@@ -35,7 +35,7 @@ The `hedera_signAndExecuteTransaction` method is a generic method for executing 
 
 The dApp then constructs a list of valid transaction bytes that differ only in the node account id and serializes the list, for example by using the `toBytes()` method of an SDK. Finally, the dApp base64 encodes the resulting bytes. This final base64 encoded string of bytes is sent as a method param titled `transactionList` to the wallet.
 
-Wallets and SDKs must take special care to verify that each transaction in the list differs only in the node that is authorized to submit the transaction and does NOT differ in intent before submitting to an end user for approval and ultimately signing.
+Wallets and SDKs must take special care to deserialize the list of transactions and validate that each transaction in the list differs only in the node authorized to receive the transaction and does NOT differ in intent before submitting to an end user for approval and ultimately signing.
 
 
 ### Parameters
