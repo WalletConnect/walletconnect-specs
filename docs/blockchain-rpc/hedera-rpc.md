@@ -41,7 +41,8 @@ Wallets and SDKs must take special care to deserialize the list of transactions 
 ### Parameters
 
     1. `Object` - signAndExecuteTransaction parameters
-      1.1. `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.1. `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num><-optional-checksum>`
+  ```
       1.2. `transactionList` : `String` - base64 encoded string of TransactionList bytes
 
 ### Returns
@@ -108,7 +109,7 @@ The `hedera_signTransaction` signs a `TransactionBody` and returns a `SignatureM
 ### Parameters
 
     1. `Object` - signTransaction parameters
-      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num><-optional-checksum>`
       1.2 `transactionBody` : `String` - base64 encoded string representation of TransactionBody 
 
 ### Returns
@@ -211,7 +212,7 @@ Most request that do not change network state can be performed against a [Mirror
 ### Parameters
 
     1. `Object` - signMessage parameters
-      1.1 `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.1 `signerAccountId` : `String` - Hedera account id in the format `<network>:<shard>.<realm>.<num><-optional-checksum>`
       1.2 `query` : `String` base64 encoded Query
 
 ### Returns
@@ -232,7 +233,7 @@ This method accepts a plain text string value as input. If approved by the user,
 ### Parameters
 
     1. `Object` - signMessage parameters
-      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num>-<optional-checksum>`
+      1.1 `signerAccountId` : `String` - hedera account id in the format `<network>:<shard>.<realm>.<num><-optional-checksum>`
       1.2 `message` : `String`
 
 ### Returns
