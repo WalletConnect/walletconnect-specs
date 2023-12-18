@@ -202,7 +202,7 @@ Namespace Config is set within the setNamespaceConfig method that is a part of t
 
 ## Wallet Authentication Data Structures
 
-## misc
+### Miscellaneous
 
 ```typescript
 interface Participant {
@@ -235,6 +235,7 @@ interface RequestParams {
   requestId?: string;
   resources?: string[];
   pairingTopic?: string;
+  methods?: string[];
 }
 ```
 
