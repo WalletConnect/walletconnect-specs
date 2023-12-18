@@ -84,7 +84,8 @@ abstract class Client {
   // Returns true if account has a valid and up to date registration, false otherwise
   public abstract isRegistered(params: {
     account: string,
-    allApps: boolean,
+    // Defaulted to false if not passed
+    allApps?: boolean,
     domain: string
   }): boolean
 
