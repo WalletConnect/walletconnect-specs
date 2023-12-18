@@ -77,29 +77,46 @@ abstract class Client {
   // ---------- Wallet Authentication Methods ----------------------------------------------- //
 
   // for proposer to request wallet authentication
-  public abstract authenticate(params: {
+  public abstract sessionAuthenticate(params: {
     chains: string[];
     domain: string;
     nonce: string;
-    aud?: string;
-    type?: string;
+    aud: string;
+    type?: CacaoHeader["t"];
     nbf?: string;
     exp?: string;
     statement?: string;
     requestId?: string;
     resources?: string[];
+    expiry?: number;
     pairingTopic?: string;
-}): Promise<{ uri: string }>;
+    methods?: string[];
+  }): Promise<{
+      uri: string,
+      response: Promise<{
+        auths?: Cacao[];
+        session: SessionTypes.Struct;
+      }>
+    }>;
 
 
    // respond to wallet authentication request
-  public abstract respondSessionAuthenticated(params: RespondParams, iss: string): Promise<void>;
+
+  public abstract approveSessionAuthenticated(params: {
+    id: number;
+    auths: Cacao[];
+  }): Promise<void>;
+
+  public abstract rejectSessionAuthenticated(params: {
+    id: number;
+    reason: Reason;
+  }): Promise<void>;
 
   // query all pending authentication requests
   public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
 
   // format payload to message string
-  public abstract formatAuthMessage(payload: PayloadParams, iss: string): Promise<string>;
+  public abstract formatAuthMessage(authPayload: PayloadParams, iss: string): Promise<string>;
 
 
   // ---------- Events ----------------------------------------------- //
@@ -119,9 +136,6 @@ abstract class Client {
   // ---------- Wallet Authentication Events ----------------------------------------------- //
 
   // wallets to subscribe to session authenticated
-  public abstract on("session_authenticated", (sessionAuthenticated: SessionAuthenticated) => {}): void;
-
-  // apps to subscribe to session authenticated response
-  public abstract on("session_authenticated_response", (response: Response) => {}): void;
+  public abstract on("session_authenticate", (sessionAuthenticateRequest: SessionAuthenticateRequest) => {}): void;
 }
 ```

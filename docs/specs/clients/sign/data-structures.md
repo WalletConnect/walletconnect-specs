@@ -202,6 +202,24 @@ Namespace Config is set within the setNamespaceConfig method that is a part of t
 
 ## Wallet Authentication Data Structures
 
+## misc
+
+```typescript
+interface Participant {
+  publicKey: string;
+  metadata: Metadata;
+}
+
+interface SessionAuthenticateRequest {
+  id: number;
+  topic: string;
+  params: {
+    requester: Participant;
+    authPayload: PayloadParams;
+  };
+}
+```
+
 ### Request Params
 
 ```typescript
@@ -250,7 +268,12 @@ interface PayloadParams {
 ### Response
 
 ```typescript
-type Response = Cacao | ErrorResponse;
+interface SessionAuthenticateResponseParams {
+  responder: Participant;
+  cacaos: Cacao[];
+}
+
+type Response = SessionAuthenticateResponseParams | ErrorResponse;
 ```
 
 ### Pending Request
@@ -258,8 +281,10 @@ type Response = Cacao | ErrorResponse;
 ```typescript
 interface PendingRequest {
   id: number;
-  pairingTopic: String;
-  payloadParams: PayloadParams;
+  pairingTopic: string;
+  requester: Participant;
+  authPayload: PayloadParams;
+  verifyContext: Verify.Context;;
 }
 ```
 
@@ -315,7 +340,7 @@ interface Cacao {
 // signatures is an array of signed CACAOs for each requested chain
 interface ResultResponse {
   id: number;
-  signatures: CacaoSignature[];
+  auths: Cacao[];
 }
 ```
 
