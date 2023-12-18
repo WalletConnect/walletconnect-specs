@@ -275,7 +275,7 @@ While constructing a transaction for transmission to a controller, a dApp needs 
 ### Returns
 
     1. `Object` - signMessage result
-      1.1 `nodes` : `Array` - an array of strings in trimmed `<shard>.<realm>.<num>-<optional-checksum>` format each identifying a node by its Hedera Address
+      1.1 `nodes` : `Array` - an array of strings in `<shard>.<realm>.<num><-optional-checksum>` format, each identifying a node by its Hedera Address
 
 ### Example
 
