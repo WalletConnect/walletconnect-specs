@@ -53,7 +53,7 @@ Wallets and SDKs must take special care to deserialize the list of transactions 
 
 ### Error
 
-In certain conditions, the Hedera network with return a response that signifies a pre-processing validation error, for example, when the transaction has expired. In these cases, wallets will return an error with the following format:
+In certain conditions, the Hedera network will return a response that signifies a pre-processing validation error, for example, when the transaction has expired. In these cases, wallets will return an error with the following format:
 
     1. `Object` - Result of transaction submission to Hedera network
       1.1. `code` : 9000 - the reserved Wallet Connect error code for unknown or errors not related to the Wallet Connect protocol
