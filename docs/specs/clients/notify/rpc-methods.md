@@ -54,6 +54,8 @@ Calling this method will create a "watcher" on the Notify Server for the given a
 
 If this method is called again with the same `iss`, it will update the watcher with the new account and `app`, reset the watcher timeout, and re-derive the symkey/topic from the current `kY` and Notify Keys. Clients should re-use the same `iss` and `kY` for the same account on the same device to avoid abandoned topics and improve performance. To watch multiple accounts at the same time, separate `iss` and `kY` must be used for each account otherwise it will either update the account and `app` being watched (if `iss` is the same), or result in receiving updates for multiple accounts on the same topic (if `kY` is the same).
 
+Watchers will only be notified of changes from _other_ clients. I.e. if a subscription change is made by `iss`, then as a response to that `iss`'s request the latest subscriptions will be provided. But it will not receive a `wc_notifySubscriptionsChanged` request.
+
 **Request**
 
 ```jsonc
