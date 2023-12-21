@@ -208,7 +208,7 @@ Get one notification by ID. Useful for URL links where you need to retrieve a sp
 - act - `notify_get_notification_response`
 - iss - did:key of client identity key
 - aud - did:key of dapp authentication key
-- nfn - [Notify Notifications](./data-structures.md#notify-notification)
+- nfn - [Notify Notification](./data-structures.md#notify-notification)
 
 ```typescript
 {
@@ -276,7 +276,7 @@ Marks a notification as read.
 - aud - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- id - the notification ID to retrieve
+- ids - array of notification IDs to mark as read, max 1000 items
 
 ```typescript
 {
