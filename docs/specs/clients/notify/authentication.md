@@ -338,6 +338,7 @@ Returns a count of how many notifications are unread. Useful to implement unread
 - act - `notify_get_unread_notifications_count_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
+- cnt - number of unread notifications
 
 ```typescript
 {
