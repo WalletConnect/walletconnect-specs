@@ -56,9 +56,9 @@ abstract class Client {
   }): Promise<NotifyNotificationRecord>
 
   // mark notification as read
-  public abstract readNotification(params: {
+  public abstract markNotificationsAsRead(params: {
     topic: string,
-    id: string,
+    ids: string[],
   }): Promise<NotifyNotificationRecord>
 
   // returns how many notifications are unread
