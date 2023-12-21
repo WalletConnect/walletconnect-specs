@@ -203,7 +203,7 @@ Get one notification by ID. Useful for URL links where you need to retrieve a sp
 
 - act - `notify_get_notification_response`
 - iss - did:key of client identity key
-- aud - did:key of Notify Server authentication key
+- aud - did:key of dapp authentication key
 - nfn - [Notify Notifications](./data-structures.md#notify-notification)
 
 ```typescript
@@ -225,8 +225,8 @@ Emitted by the Notify Server when a notification changed state. For example if i
 ### Request
 
 - act - `notify_notification_changed`
-- iss - did:key of client identity key
-- aud - did:key of Notify Server authentication key
+- iss - did:key of dapp authentication key
+- aud - did:key of client identity key
 - nfn - array of [Notify Notification](./data-structures.md#notify-notification)
 
 ```typescript
@@ -247,7 +247,6 @@ Emitted by the Notify Server when a notification changed state. For example if i
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
-- aud - did:key of Notify Server authentication key
 
 ```typescript
 {
@@ -290,8 +289,8 @@ Marks a notification as read.
 ### Response
 
 - act - `notify_read_notification_response`
-- iss - did:key of client identity key
-- aud - did:key of Notify Server authentication key
+- iss - did:key of dapp authentication key
+- aud - did:key of client identity key
 
 ```typescript
 {
@@ -333,8 +332,8 @@ Returns a count of how many notifications are unread. Useful to implement unread
 ### Response
 
 - act - `notify_get_unread_notifications_count_response`
-- iss - did:key of client identity key
-- aud - did:key of Notify Server authentication key
+- iss - did:key of dapp authentication key
+- aud - did:key of client identity key
 
 ```typescript
 {
