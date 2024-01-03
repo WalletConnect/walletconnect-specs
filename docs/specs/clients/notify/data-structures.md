@@ -9,9 +9,18 @@
   "relay": {
     "protocol": string,
     "data": string
-  },  
+  },
   "metadata": Metadata,
-  "scope": Record<string, {description: string, enabled: boolean}>,
+  "scope": Record<string, {
+	"description": string, 
+	"enabled": boolean,
+	"name": string,
+	"imageUrls": {
+	  "sm": string,
+	  "md": string,
+	  "lg": string,
+	}
+  }>,
   "expiry": number,
 }
 ```
