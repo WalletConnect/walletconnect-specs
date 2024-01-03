@@ -12,15 +12,15 @@
   },
   "metadata": Metadata,
   "scope": Record<string, {
-	"description": string, 
-	"id": string
-	"enabled": boolean,
-	"name": string,
-	"imageUrls": {
-	  "sm": string,
-	  "md": string,
-	  "lg": string,
-	}
+    "description": string, 
+    "id": string
+    "enabled": boolean,
+    "name": string,
+    "imageUrls": {
+      "sm": string,
+      "md": string,
+      "lg": string,
+    }
   }>,
   "expiry": number,
 }
