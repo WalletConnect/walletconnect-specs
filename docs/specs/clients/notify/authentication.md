@@ -141,7 +141,7 @@ Paginated list of notifications with the most recent first. Unread notifications
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - urf - unread first
-- lmt - the max number of notifications to return. Default value is 10, maximum value is 50.
+- lmt - the max number of notifications to return. Maximum value is 50.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
 
 ```typescript
