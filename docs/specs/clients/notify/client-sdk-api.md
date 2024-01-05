@@ -42,11 +42,13 @@ abstract class Client {
     topic: string,
     // Default 10, max 50
     limit?: number,
-    starting_after?: string,
+    startingAfter?: string,
+    // Default false
+    unreadFirst?: string,
   }): Promise<{
     notifications: Record<number, NotifyNotificationRecord>,
-    has_more: boolean,
-    has_more_unread: boolean,
+    hasMore: boolean,
+    hasMoreUnread: boolean,
   }>
 
   // get notification by ID
