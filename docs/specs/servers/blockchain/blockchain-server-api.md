@@ -110,3 +110,52 @@ Used to lookup for suggestions for the new name by returning 3 unique usernames.
 ```
 
 * `suggestions` - suggested profile names.
+
+## Generators
+
+### Pay SDK URL
+
+This endpoint is used to generate the On Ramp Pay SDK URL.
+
+`POST /v1/generators/onrampurl?projectID={projectID}`
+
+* `projectID` - is the project identifier
+
+#### Request body:
+
+The POST request body should be in JSON format with the following structure:
+
+```typescript
+{
+    "destinationWallets": object[],
+    "partnerUserId": string,
+    "defaultNetwork": (optional) string,
+    "presetCryptoAmount": (optional) number,
+    "presetFiatAmount": (optional) number,
+    "defaultExperience": (optional) "send" | "buy",
+    "handlingRequestedUrls": (optional) bool
+}
+```
+
+* `destinationWallets` - array of objects which define blockchain types (blockchains) and destination addresses (address):
+
+    * `address` - destination address where the purchased tokens will be sent.
+    * `blockchains` - (Optional) list of string blockchains enabled for the associated address.
+    * `assets` - (Optional) list of string assets enabled for the associated address.
+    * `supportedNetworks` - (Optional) list of strings with restricted networks available for the associated assets.
+
+* `partnerUserId` - unique ID representing the client app user. Must be less than 50 chars.
+* `defaultNetwork` - (Optional) default network that should be selected when multiple networks are present.
+* `presetCryptoAmount` - (Optional) preset crypto amount value.
+* `presetFiatAmount` - (Optional) preset fiat amount value (for USD, CAD, GBP, EUR only). Ignored if `presetCryptoAmount` is set.
+* `defaultExperience` - (Optional) default visual experience: either transfer funds from Coinbase `send` or buy assets `buy`.
+* `handlingRequestedUrls` - (Optional) prevents the widget from opening URLs directly.
+
+#### Success response body:
+
+* `url` - generated URL for the On Ramp Pay SDK.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - projectID verification error.
