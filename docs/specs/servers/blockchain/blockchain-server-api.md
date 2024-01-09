@@ -138,14 +138,12 @@ The POST request body should be in JSON format with the following structure:
 ```
 
 * `destinationWallets` - array of objects which define blockchain types (blockchains) and destination addresses (address):
-
     * `address` - destination address where the purchased tokens will be sent.
     * `blockchains` - (Optional) list of string blockchains enabled for the associated address.
     * `assets` - (Optional) list of string assets enabled for the associated address.
     * `supportedNetworks` - (Optional) list of strings with restricted networks available for the associated assets.
-
 * `partnerUserId` - unique ID representing the client app user. Must be less than 50 chars.
-* `defaultNetwork` - (Optional) default network that should be selected when multiple networks are present.
+* `defaultNetwork` - (Optional) default network as [CAIP10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) that should be selected when multiple networks are present e.g. `EIP155:1` for Ethereum.
 * `presetCryptoAmount` - (Optional) preset crypto amount value.
 * `presetFiatAmount` - (Optional) preset fiat amount value (for USD, CAD, GBP, EUR only). Ignored if `presetCryptoAmount` is set.
 * `defaultExperience` - (Optional) default visual experience: either transfer funds from Coinbase `send` or buy assets `buy`.
