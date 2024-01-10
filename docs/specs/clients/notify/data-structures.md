@@ -22,8 +22,8 @@
 {
   // ID of the notification
   id: string,
-  // Timestamp when the notification was sent
-  sent_at: string,
+  // Unix ms timestamp when the notification was sent
+  sent_at: number,
   // Notification type which matches the scope of notify subscription
   type: string,
   // Short message used in the title of the notification
