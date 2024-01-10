@@ -177,6 +177,51 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 | Tag     | 4015         |
 | Topic   | notify topic |
 
+## `wc_notifyGetNotification`
+
+Get one notification by ID. Useful for URL links where you need to retrieve a specific notification and display it without needing to go through `O(n)` round trips of pages to find the notification client-side.
+
+### Request
+
+- act - `notify_get_notification`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- id - the notification ID to retrieve
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4016         |
+| Topic   | notify topic |
+
+### Response
+
+- act - `notify_get_notification_response`
+- iss - did:key of client identity key
+- aud - did:key of dapp authentication key
+- nfn - [Notify Notification](./data-structures.md#notify-notification)
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4017         |
+| Topic   | notify topic |
+
 ## `wc_notifyNotificationChanged`
 
 Emitted by the Notify Server when a notification changed state. For example if its read status changed.
