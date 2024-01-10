@@ -130,7 +130,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 ## `wc_notifyGetNotifications`
 
-Paginated list of notifications with the most recent first. Unread notifications may be dispersed throughout the list and on subsequent pages.
+Paginated list of notifications with the most recently sent first. Unread notifications may be dispersed throughout the list and on subsequent pages.
 
 ### Request
 

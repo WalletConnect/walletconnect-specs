@@ -37,7 +37,7 @@ abstract class Client {
     account: string,
   }): Promise<Record<string, NotifySubscription>>;
 
-  // get all notifications for a subscription
+  // Get a paginated list of notifications with the most recently sent first.
   public abstract getNotificationHistory(params: {
     topic: string,
     // Default 10, max 50
@@ -46,7 +46,7 @@ abstract class Client {
     // Default false
     unreadFirst?: string,
   }): Promise<{
-    notifications: Record<number, NotifyNotificationRecord>,
+    notifications: NotifyNotificationRecord[],
     hasMore: boolean,
     hasMoreUnread: boolean,
   }>
