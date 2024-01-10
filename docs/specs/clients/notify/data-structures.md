@@ -34,8 +34,6 @@
   icon: string,
   // Redirect URL for call-to-action related to notification. If empty, do not redirect
   url: string,
-  // If the notification was read or not
-  read: boolean,
 }
 ```
 
