@@ -140,7 +140,6 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 - aud - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- urf - unread first
 - lmt - the max number of notifications to return. Maximum value is 50.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
 
@@ -163,7 +162,6 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 - aud - did:key of Notify Server authentication key
 - nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
 - mre - true if there are more pages, false otherwise
-- mur - true if there are more unread notifications on following pages, false otherwise
 
 ```typescript
 {
