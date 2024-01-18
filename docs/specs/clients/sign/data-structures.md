@@ -86,7 +86,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
     }
   },
   "pairingTopic": string,
-  "expiry": number, // OPTIONAL timespamp in seconds
+  "expiryTimestamp": number, // OPTIONAL timespamp in seconds
 }
 ```
 
