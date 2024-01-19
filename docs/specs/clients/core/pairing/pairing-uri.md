@@ -22,7 +22,7 @@
 ### Optional
 
 - `relay-data` (STRING) = hex data payload used for relay
-- `expiryTimestamp` (UINT) = unix timestamp in seconds - after the timestamp the pairing session is considered expired, should be generated 5 minutes in the future
+- `expiryTimestamp` (UINT) = unix timestamp in seconds - after the timestamp the pairing is considered expired, should be generated 5 minutes in the future
 
 ## Example
 
