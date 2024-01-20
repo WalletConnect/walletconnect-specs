@@ -107,7 +107,7 @@ Used to settle a session over topic B.
       "events": [string]
     }
   }
-  "expiry": Int64, // seconds
+  "expiry": Int64, // milliseconds
 }
 
 | IRN     |          |
