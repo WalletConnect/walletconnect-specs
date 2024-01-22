@@ -9,9 +9,9 @@
   "relay": {
     "protocol": string,
     "data": string
-  },  
+  },
   "metadata": Metadata,
-  "scope": Record<string, {description: string, enabled: boolean}>,
+  "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
 }
 ```
@@ -75,3 +75,20 @@ NotifyServerSubscription[]
 }
 
 ```
+
+## Notify Notification Type
+`NotifyNotificationType`
+```typescript
+{
+  "description": string, 
+  "id": string,
+  "enabled": boolean,
+  "name": string,
+  "imageUrls": {
+    "sm": string,
+    "md": string,
+    "lg": string,
+  }
+}
+```
+

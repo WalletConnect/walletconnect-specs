@@ -1,0 +1,6 @@
+### Background Service
+
+Each platform is responsible for handling decrypted notifications in background services received by a wallet where the implementation details differ on each platforms. The background service decides based on tag the type of notification to handle.
+
+- [Notify Notifications](docs/specs/clients/notify/decrypted-notifications.md)
+- [Web3Wallet Notifications](docs/specs/meta-clients/web3wallet/decrypted-notifications.md)
