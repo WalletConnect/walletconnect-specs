@@ -37,7 +37,7 @@ Below is an example [CAIP-122](https://github.com/ChainAgnostic/CAIPs/blob/main/
 app.example.com wants you to sign in with your Ethereum account:
 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
 
-I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity
+I further authorize this app to send me notifications. Read more at https://walletconnect.com/notifications
 
 URI: did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq
 Version: 1
@@ -52,18 +52,18 @@ The important components from this message are as follows:
 - `domain` - `app.example.com`
 - `address` - `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`
 - `Identity Key public key` - `z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq`
-- `statement` - `I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity`
+- `statement` - `I further authorize this app to send me notifications. Read more at https://walletconnect.com/notifications`
 
 ## Authorization levels
 
-In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their identity. The `statement` decides the authorization level.
+In the above example, "limited authorization" was used. Various forms of authorization are supported to enable various use cases, and to ensure that the user ultimately decides what permission an app has over their notifications. The `statement` decides the authorization level.
 
 ## Limited statement
 
 Limited authorization allows the app to only access messages for `domain`.
 
 ```text
-I further authorize this app to send and receive messages on my behalf for THIS domain using my WalletConnect identity. Read more at https://walletconnect.com/identity
+I further authorize this app to send me notifications. Read more at https://walletconnect.com/notifications
 ```
 
 ## Unlimited statement
@@ -71,7 +71,7 @@ I further authorize this app to send and receive messages on my behalf for THIS 
 Unlimited authorization allows the app to access messages, regardless of `domain`.
 
 ```text
-I further authorize this app to send and receive messages on my behalf for ALL domains using my WalletConnect identity. Read more at https://walletconnect.com/identity
+I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications-all-apps
 ```
 
 ## CACAO Format
@@ -86,7 +86,7 @@ The CACAO is a standard JSON representation of a signed CAIP-122 message. For ex
   "p": {
     "aud": "did:key:z6MkqJ6qV18zBazggzhGMHNgadEQGbX9RceEH3j2G6kNTbKq",
     "iat": "2023-09-01T17:09:21.481+03:00",
-    "statement" : "I further authorize this app to send and receive messages on my behalf for ALL domains using my WalletConnect identity. Read more at https://walletconnect.com/identity",
+    "statement" : "I further authorize this app to view and manage my notifications for ALL apps. Read more at https://walletconnect.com/notifications-all-apps",
     "iss": "did:pkh:eip155:1:0xBAc675C310721717Cd4A37F6cbeA1F081b1C2a07",
     "nonce": "bb0b6514e8a5e817",
     "domain": "app.example.com",

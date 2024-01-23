@@ -9,14 +9,14 @@
   "relay": {
     "protocol": string,
     "data": string
-  },  
+  },
   "metadata": Metadata,
-  "scope": Record<string, {description: string, enabled: boolean}>,
+  "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
 }
 ```
 
-## Notify Message
+## Notify Notification
 
 ```typescript
 {
@@ -33,14 +33,14 @@
 }
 ```
 
-## Notify Message Record
+## Notify Notification Record
 
 ```jsonc
 {
   "id": string,
   "topic": string,
   "publishedAt": Int64,
-  "message": NotifyMessage
+  "message": NotifyNotification
 }
 ```
 
@@ -61,3 +61,30 @@ NotifyServerSubscription[]
   expiry: number, // Unix timestamp of expiration
 }
 ```
+
+## Notify Registration Params
+`NotifyRegistrationParams`
+```typescript
+{
+  payload: Cacao.Payload,
+  privateIdentityKey: string,
+}
+
+```
+
+## Notify Notification Type
+`NotifyNotificationType`
+```typescript
+{
+  "description": string, 
+  "id": string,
+  "enabled": boolean,
+  "name": string,
+  "imageUrls": {
+    "sm": string,
+    "md": string,
+    "lg": string,
+  }
+}
+```
+
