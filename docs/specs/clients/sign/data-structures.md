@@ -160,6 +160,7 @@ Settlement is sent by the responder after approval and it's broadcasted right af
     "property": string
   },
   "expiry": Int64, // seconds
+  "sessionProperties": [string, string] //optional
 }
 ```
 
