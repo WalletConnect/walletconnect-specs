@@ -59,9 +59,9 @@ interface Response {
 }
 ```
 
-### GET `/getWalletImage/:wallet_id`
+### GET `/getWalletImage/:image_id`
 
-Returns image logo for requested `wallet_id`. See [types](./types.md).
+Returns image logo for requested `image_id`. See [types](./types.md).
 
 ```ts
 interface Request {
