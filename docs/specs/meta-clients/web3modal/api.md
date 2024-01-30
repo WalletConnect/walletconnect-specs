@@ -33,6 +33,7 @@ interface UrlQueryParams {
   search?: string; // eg. MetaMa...
   include?: string; // eg. id1,id2,id3
   exclude?: string; // eg. id1,id2,id3
+  chains?: string; // eg. eip155:1,solana:4sGjMW1sUnHzSxGspuhpqLDx6wiyjNtZ
   platform?: "ios" | "android";
 }
 
