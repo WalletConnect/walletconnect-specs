@@ -40,6 +40,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of Notify Server authentication key
 - aud - did:key of client identity key
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- seq - sequence number of subscription list
 
 ## wc_notifySubscriptionsChanged request
 
@@ -47,6 +48,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of Notify Server authentication key
 - aud - did:key of client identity key
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- seq - sequence number of subscription list
 
 ## wc_notifySubscriptionsChanged response
 
@@ -73,6 +75,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- seq - sequence number of subscription list
 
 ## wc_notifyMessage request
 
@@ -109,6 +112,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- seq - sequence number of subscription list
 
 ## wc_notifyDelete request
 
@@ -127,3 +131,4 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+- seq - sequence number of subscription list
