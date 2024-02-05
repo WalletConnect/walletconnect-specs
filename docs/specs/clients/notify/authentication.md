@@ -177,16 +177,16 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 | Tag     | 4015         |
 | Topic   | notify topic |
 
-## `wc_notifyNotificationChanged`
+## `wc_notifyNotificationsChanged`
 
 Emitted by the Notify Server when a notification changed state. For example if its read status changed.
 
 ### Request
 
-- act - `notify_notification_changed`
+- act - `notify_notifications_changed`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
-- nfs - array of [Notify Notification](./data-structures.md#notify-notification)
+- nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
 
 ```typescript
 {
@@ -197,12 +197,12 @@ Emitted by the Notify Server when a notification changed state. For example if i
 | IRN     |              |
 | ------- | ------------ |
 | TTL     | 300          |
-| Tag     | 4018         |
+| Tag     | 4016         |
 | Topic   | notify topic |
 
 ### Response
 
-- act - `notify_notification_changed_response`
+- act - `notify_notifications_changed_response`
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
@@ -216,10 +216,10 @@ Emitted by the Notify Server when a notification changed state. For example if i
 | IRN     |              |
 | ------- | ------------ |
 | TTL     | 300          |
-| Tag     | 4019         |
+| Tag     | 4017         |
 | Topic   | notify topic |
 
-## `wc_notifyReadNotification`
+## `wc_notifyReadNotifications`
 
 Marks a notification as read.
 
@@ -247,7 +247,7 @@ Marks a notification as read.
 
 ### Response
 
-- act - `notify_read_notification_response`
+- act - `notify_read_notifications_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 
