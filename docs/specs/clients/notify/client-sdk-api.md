@@ -48,23 +48,6 @@ abstract class Client {
     hasMore: boolean,
   }>
 
-  // get notification by ID
-  public abstract getNotification(params: {
-    topic: string,
-    id: string,
-  }): Promise<NotifyNotificationRecord>
-
-  // mark notification as read
-  public abstract markNotificationsAsRead(params: {
-    topic: string,
-    ids: string[],
-  }): Promise<NotifyNotificationRecord>
-
-  // returns how many notifications are unread
-  public abstract getUnreadNotificationsCount(params: {
-    topic: string,
-  }): Promise<number>
-
   // delete active subscription
   public abstract deleteSubscription(params: {
     topic: string,
@@ -126,9 +109,6 @@ abstract class Client {
 
   // for wallet to listen on notify notification
   public abstract on("notify_notification", (notification: NotifyNotificationRecord, metadata: Metadata) => {}): void;
-
-  // Listen for when an existing notification has been changed
-  public abstract on("notify_notification_changed", (notification: NotifyNotificationRecord, metadata: Metadata) => {}): void;
 
   // for wallet to listen for result of notify subscription update
   public abstract on("notify_update", (result: NotifySubscription | Error) => {}): void;
