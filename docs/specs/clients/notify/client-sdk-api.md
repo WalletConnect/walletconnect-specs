@@ -57,7 +57,7 @@ abstract class Client {
   public abstract markNotificationsAsRead(params: {
     topic: string,
     notificationIds: string[],
-	all?: boolean
+    all?: boolean
   }): Promise<NotifyNotificationRecord>
 
   // delete active subscription
