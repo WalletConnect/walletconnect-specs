@@ -52,12 +52,9 @@ abstract class Client {
   }>
 
   // mark notification as read
-  // if `all` is marked as true, 
-  // the array of IDs is ignored and all notifications are marked as read
   public abstract markNotificationsAsRead(params: {
     topic: string,
     notificationIds: string[],
-    all?: boolean
   }): Promise<NotifyNotificationRecord>
 
   // delete active subscription
