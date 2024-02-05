@@ -51,6 +51,12 @@ abstract class Client {
     hasMoreUnread: boolean,
   }>
 
+  // get notification by ID
+  public abstract getNotification(params: {
+    topic: string,
+    id: string,
+  }): Promise<NotifyNotificationRecord>
+
   // delete active subscription
   public abstract deleteSubscription(params: {
     topic: string,
