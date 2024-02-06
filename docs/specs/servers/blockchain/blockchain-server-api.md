@@ -117,9 +117,7 @@ Used to lookup for suggestions for the new name by returning 3 unique usernames.
 
 Used to register account name.
 
-`POST /v1/profile/account/{name}`
-
-* `name` - is the name to register e.g. `coolname.connect.id`
+`POST /v1/profile/account`
 
 #### Request body:
 
@@ -135,27 +133,21 @@ The POST request body should be in JSON format with the folowing structure:
 ```
 
 * `message` - JSON serialized string that should contain the following fields:
-    * `name` - is the name to register or update.
+    * `name` - The name to register e.g. `coolname.connect.id`.
         * Alphabetic characters (A-Z a-z), numeric characters (0-9), the minus sign (-) and the period (.)
-        * Max 255 characters length.
-    * `coin_type` - Coin type by [SLIP-44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md).
-        Only the Ethereum `60` is now supported.
-    * `chain_id` - The corresponding coin_type chain id.
-    * `address` - address that bind to the account name.
-        * Max 100 characters length.
+        * 255 characters length limit.
     * `attributes` - (Optional) key value object of the name attributes:
         * `avatar` - (Optional) avatar url.
         * `bio` - (Optional) account profile self description.
     * `timestamp` - current unixtime timestamp. The signature is valid for 10 seconds.
-* `coin_type` - Coin type by [SLIP-44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md).
-    Only the Ethereum `60` is now supported.
+* `coin_type` - Coin type according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format.
 * `signature` - Ethereum signature for the signed `message` to check the address ownership.
-* `address` - address that bind to the account name, should be the same as in `message.address`.
-        * Max 100 characters length.
+* `address` - Address that bind to the account name.
+    * 100 characters length limit.
 
 #### Success response codes:
 
-* `200 Ok` - account name is registered.
+* `200 Ok` - account name is successfully registered.
 
 #### Response error codes:
 
