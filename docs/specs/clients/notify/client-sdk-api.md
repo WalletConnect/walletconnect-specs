@@ -54,7 +54,7 @@ abstract class Client {
   // mark notification as read
   // returns true if operation was a success. 
   // For now, `read` can only be true. 
-  public abstract updateNotificationReadState(params: {
+  public abstract updateNotificationsReadState(params: {
     topic: string,
     notificationIds: string[],
 	read?: true
