@@ -57,7 +57,7 @@ abstract class Client {
   public abstract updateNotificationsReadState(params: {
     topic: string,
     notificationIds: string[],
-	read?: true
+    read?: true
   }): Promise<boolean>
 
   // delete active subscription
