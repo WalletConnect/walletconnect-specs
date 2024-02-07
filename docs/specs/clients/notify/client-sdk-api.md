@@ -52,10 +52,13 @@ abstract class Client {
   }>
 
   // mark notification as read
-  public abstract markNotificationsAsRead(params: {
+  // returns true if operation was a success. 
+  // For now, `read` can only be true. 
+  public abstract updateNotificationReadState(params: {
     topic: string,
     notificationIds: string[],
-  }): Promise<NotifyNotificationRecord>
+	read?: true
+  }): Promise<boolean>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
