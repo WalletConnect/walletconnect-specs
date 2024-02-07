@@ -217,6 +217,7 @@ interface SessionAuthenticateRequest {
   params: {
     requester: Participant;
     authPayload: PayloadParams;
+    expiryTimestamp: number;
   };
 }
 ```
@@ -286,6 +287,7 @@ interface PendingRequest {
   pairingTopic: string;
   requester: Participant;
   authPayload: PayloadParams;
+  expiryTimestamp: number;
   verifyContext: Verify.Context;;
 }
 ```
