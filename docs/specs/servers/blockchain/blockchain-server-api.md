@@ -37,11 +37,10 @@ Used to lookup address for the name.
 * `name` - registered account name.
 * `registered` - unix time stamp of the name registration.
 * `updated` - unix time stamp  of the last name data update.
-* `addresses` - list of objects with name addresses data:
-    * `blockchain` - blockchain of the address. e.g. `eip155` for the Ethereum.
-    * `chain_id` - chain ID of the address. Can be NULL for the mainnet.
-    * `address` - address according to the blockchain format.
-    * `created` - unix time stamp when the address was added.
+* `addresses` - registered addresses for the name:
+    * `coin type` - map where the key is the [ENSIP-11](https://alpha-docs.ens.domains/ensip/11) coin type:
+        * `address` - address according to the blockchain format.
+        * `created` - unix time stamp when the address was added.
 * `attributes` - key value object of the name attributes:
     * `avatar` - (Optional) avatar url.
     * `bio` - (Optional) account profile self description.
@@ -61,11 +60,9 @@ Lookup registered account name for the address in all chains:
 
 Or the lookup for account name by the address in a specified chain:
 
-`GET /v1/profile/reverse/{blockchain}/{address}`
+`GET /v1/profile/reverse/{coin_type}/{address}`
 
-* `blockchain` - the blockchain name where lookup for the registered address and name.
-* The list of currenlty supported blockchains:
-    * `eip155` - Ethereum mainnet
+* `coin_type` - [ENSIP-11](https://alpha-docs.ens.domains/ensip/11) coin type for the registered address and name.
 * `address` - is the address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
 
 #### Success response body:
@@ -83,11 +80,10 @@ Or the lookup for account name by the address in a specified chain:
 * `name` - registered account name.
 * `registered` - unix time stamp of the name registration.
 * `updated` - unix time stamp  of the last name data update.
-* `addresses` - list of objects with name addresses data:
-    * `blockchain` - blockchain of the address. e.g. `eip155` for the Ethereum.
-    * `chain_id` - chain ID of the address. Can be NULL for the mainnet.
-    * `address` - address according to the blockchain format.
-    * `created` - unix time stamp when the address was added.
+* `addresses` - registered addresses for the name:
+    * `coin_type` - map where the key is the [ENSIP-11](https://alpha-docs.ens.domains/ensip/11) coin type:
+        * `address` - address according to the blockchain format.
+        * `created` - unix time stamp when the address was added.
 * `attributes` - key value object of the name attributes:
     * `avatar` - (Optional) avatar url.
     * `bio` - (Optional) account profile self description.
