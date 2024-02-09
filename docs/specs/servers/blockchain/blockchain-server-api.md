@@ -154,6 +154,45 @@ The POST request body should be in JSON format with the folowing structure:
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - signature verifying error.
 
+### Updating name attributes
+
+Used to update name attributes.
+
+`POST /v1/profile/account/{name}/attributes`
+
+* `name` - is the registered name. eg. `coolname.wc.ink`
+
+#### Request body:
+
+The POST request body should be in JSON format with the folowing structure:
+
+```typescript
+{
+    "message": string,
+    "coin_type": string,
+    "signature": string,
+    "address":string,
+}
+```
+
+* `message` - JSON serialized string that should contain the following fields:
+    * `attributes` - key value object of the name attributes:
+        * `avatar` - (Optional) avatar url.
+        * `bio` - (Optional) account profile self description.
+    * `timestamp` - current unixtime timestamp. The signature is valid for 10 seconds.
+* `coin_type` - Coin type according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format.
+* `signature` - Ethereum signature for the signed `message` to check the address ownership.
+* `address` - Ownership address of the name.
+
+#### Success response codes:
+
+* `200 Ok` - name attributes are successfully updated.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - signature verification or name address ownership error.
+
 ## Generators
 
 ### Pay SDK URL
