@@ -189,6 +189,47 @@ The POST request body should be in JSON format with the folowing structure:
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - signature verification or name address ownership error.
 
+### Updating name addresses
+
+Used to update or add name addresses.
+
+`POST /v1/profile/account/{name}/address`
+
+* `name` - is the registered name. eg. `coolname.wc.ink`
+
+#### Request body:
+
+The POST request body should be in JSON format with the folowing structure:
+
+```typescript
+{
+    "message": string,
+    "coin_type": string,
+    "signature": string,
+    "address":string,
+}
+```
+
+* `message` - JSON serialized string that should contain the following fields:
+    * `coin_type` - coin type of the new address according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format.
+    * `address` - new address to bind to the account name for the `coin_type`.
+    * `timestamp` - current unixtime timestamp. The signature is valid for 10 seconds.
+* `coin_type` - coin type according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format.
+* `signature` - Ethereum signature for the signed `message` to check the address ownership.
+* `address` - ownership address of the name.
+
+According to the [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution)
+only one address per `coin_type` is supported. If an address is already assigned for the `coin_type` that address will be updated.
+
+#### Success response codes:
+
+* `200 Ok` - name addresses are successfully updated.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - signature verification or name address ownership error.
+
 ## Generators
 
 ### Pay SDK URL
