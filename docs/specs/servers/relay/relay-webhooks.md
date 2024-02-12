@@ -2,7 +2,7 @@
 
 Webhooks are used to delegate to third-party services with higher availability to watch both incoming and outgoing messages authorized by the client.
 
-Clients will be subscribed to different topics and they can register a watch webhook with a corresponding service url and webhook url to also receive messages matching these topics.
+Clients will be subscribed to different topics and they can register a watch webhook with a corresponding service URL and webhook URL to also receive messages matching these topics.
 
 Clients can register webhooks directly through JSON-RPC both with HTTP or WebSocket API and they can also unregister these webhooks independently if these services are unavailable.
 
