@@ -11,7 +11,7 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 - **topic** - (hex string - 32 bytes) a target topic for the message to be subscribed by the receiver.
 - **message** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic.
 - **ttl** - (uint32 - 4 bytes) a storage duration for the message to be cached server-side in **seconds** (aka time-to-live).
-- **tag** - (uint32 - 4 bytes) a label that identifies what type of message is sent based on the rpc method used.
+- **tag** - (uint32 - 4 bytes) a label that identifies what type of message is sent based on the RPC method used.
 - **id** - (hex string - 32 bytes) a unique identifier for each subscription targeting a topic.
 
 
@@ -284,7 +284,8 @@ Used to batch acknowledge receipt of messages from a subscribed client
 // Receipt
 {
   "topic": string,
-  "messageId": string
+  // Relay RPC message ID provided in the webhook event payload
+  "messageId": number
 }
 
 // Request (service->relay)
@@ -293,6 +294,7 @@ Used to batch acknowledge receipt of messages from a subscribed client
   "jsonrpc": "2.0",
   "method": "irn_batchReceive",
   "params" : {
+    // Max 500
     "receipts": Receipt[]
   }
 }
@@ -321,10 +323,10 @@ Watch events will be triggered for both incoming and outgoing messages but will 
    "aud": string, // relayUrl
    "sub": string, // serviceUrl
    "whu": string, // webhookUrl
-   "iat": string, // issued at
-   "exp": string, // expiry (max = 30 days)
-   "tag": [1000, 1001, 1010, 1011] // array of tags
-   "sts": ["accepted", "queued", "delivered"] // array of status
+   "iat": number, // issued at
+   "exp": number, // expiry (max = 30 days)
+   "tag": [1000, 1001, 1010, 1011], // array of tags
+   "sts": ["accepted", "queued", "delivered"], // array of status
 }
 
 // Request (service->relay)
@@ -333,7 +335,7 @@ Watch events will be triggered for both incoming and outgoing messages but will 
   "jsonrpc": "2.0",
   "method": "irn_watchRegister",
   "params" : {
-    "registerAuth": string // jwt with RegisterAuth payload
+    "registerAuth": string // JWT with RegisterAuth payload
   }
 }
 
@@ -366,6 +368,7 @@ Body:
   "whu": string, // webhook url
   "iat": string, // issued at
   "evt": {       // published message event
+    "messageId": number, // Relay RPC message ID which can be used for calling irn_batchReceive
     "status": string, // either "accepted", "queued" or "delivered"
     "topic": string,
     "message": string,
@@ -376,15 +379,16 @@ Body:
 
 
 {
-    "eventAuth": string[], // jwt with EventAuth payload
+    // Max length 1
+    "eventAuth": string[], // JWT with EventAuth payload
 }
 ```
 
 Response:
 
-```sh
-200
-```
+Response payload is ignored by relay, but SHOULD be a 204 or other 2xx status code.
+
+5xx responses are retried by the relay with exponential backoff for at least 24 hours. 4xx responses are considered successful delivery and will not be retried.
 
 ### Unregister Watch (Webhook)
 
@@ -397,6 +401,7 @@ Used to unregister an active watch webhook corresponding to a webhookId.
    "iss": string, // clientId
    "aud": string, // relayUrl
    "sub": string, // serviceUrl
+   "typ": string, // either "subscriber" or "publisher"
    "whu": string, // webhookUrl
    "iat": string, // issued at
 }
