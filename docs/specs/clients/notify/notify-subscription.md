@@ -2,7 +2,7 @@
 
 A Notify subscription is an agreement between a dapp and a wallet to receive future notifications.
 
-A Wallet user will be able to authorize a dapp by sending an authenticated payload with a corresponding identity key and dapp URL as described by [Notify authentication](./notify-authentication.md)
+A Wallet user will be able to authorize a dapp by sending an authenticated payload with a corresponding identity key and dapp URL as described by [Authentication](./authentication.md)
 
 In order to create subscription a wallet is subscribed by the wallet and sent to the dapp using the Subscribe protocol which is described below.
 ## User Flow
