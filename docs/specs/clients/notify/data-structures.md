@@ -9,51 +9,82 @@
   "relay": {
     "protocol": string,
     "data": string
-  },  
+  },
   "metadata": Metadata,
-  "scope": Record<string, {description: string, enabled: boolean}>,
+  "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
 }
 ```
 
-## Notify Message
+## Notify Notification
 
-```jsonc
+```typescript
 {
-  "title": string,
-  "body": string,
-  "icon": string,
-  "url": string,
-  "type": string
+  // Notification type which matches the scope of notify subscription
+  type: string,
+  // Short message used in the title of the notification
+  title: string,
+  // Long messages used in the body of the notification
+  body: string,
+  // Image URL used to display with the notification. If empty, the app's icon from Notify Config is used instead
+  icon: string,
+  // Redirect URL for call-to-action related to notification. If empty, do not redirect
+  url: string,
 }
 ```
 
-## Notify Message Record
+## Notify Notification Record
 
 ```jsonc
 {
   "id": string,
   "topic": string,
   "publishedAt": Int64,
-  "message": NotifyMessage
+  "message": NotifyNotification
 }
 ```
 
-## Notify Type
+## Notify Server Subscriptions
 
 ```jsonc
+NotifyServerSubscription[]
+```
+
+`NotifyServerSubscription`:
+```typescript
 {
+  appDomain: string, // App domain that the subscription refers to
+  appAuthenticationKey: string, // did:key encoded ed25519 app authentication key
+  symKey: string, // Symetric key used for notify topic. sha256 to get notify topic to manage the subscription and call wc_notifySubscriptionUpdate and wc_notifySubscriptionDelete
+  account: Account, // CAIP-10 account
+  scope: string[], // Array of notification types enabled for this subscription
+  expiry: number, // Unix timestamp of expiration
+}
+```
+
+## Notify Registration Params
+`NotifyRegistrationParams`
+```typescript
+{
+  payload: Cacao.Payload,
+  privateIdentityKey: string,
+}
+
+```
+
+## Notify Notification Type
+`NotifyNotificationType`
+```typescript
+{
+  "description": string, 
+  "id": string,
+  "enabled": boolean,
   "name": string,
-  "description": string
+  "imageUrls": {
+    "sm": string,
+    "md": string,
+    "lg": string,
+  }
 }
 ```
 
-## Notify Available Types
-
-```jsonc
-{
-  "version": number,
-  "lastModified": Int64,
-  "types": NotifyType[]
-}
-```
