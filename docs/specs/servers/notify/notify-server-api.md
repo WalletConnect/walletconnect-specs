@@ -2,7 +2,7 @@
 
 ## Authentication
 
-All endpoints expect an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project ID. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_subscribe_topic_private_key`.
+All endpoints expect an `Authorization` header in the form `Authorization: Bearer <project_secret>` using the project secret associated with a project ID. The secret used should be the one that was generated automatically when configuring notify - with the name `notify_api_secret`.
 
 ## Notify
 
@@ -74,7 +74,7 @@ Body:
 
 ```typescript
 {
-  "dappUrl": string,
+  "appDomain": string,
 }
 ``` 
 
@@ -82,10 +82,33 @@ Response:
 
 ```typescript
 {
-  "subscribeTopicPublicKey": string, // key agreement
-  "identityPublicKey": string, // authentication
+  // Hex encoded x25519 public key
+  "subscribeKey": string,
+  // Hex encoded ed25519 public key
+  "authenticationKey": string,
 }
-``` 
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant R as Relay
+    participant N AS Notify
+    participant D as Notify DB
+    participant A as dApp
+
+    %% Subscribe Topic
+    activate A
+    A->>+N: Call /subscribe-topic 
+    Note over N: Generate privateKeyX
+    Note over N: Generate identityKey
+    N->>+D: Store privateKeyX, identityKey
+    D-->>-N: ACK
+    N->>+R: subscribe(sha256(publicKeyX))
+    R-->>-N: ACK
+    N->>-A: did.json { publicKeyX, identityKey }
+    deactivate A
+```
 
 ## Register Webhook
 
