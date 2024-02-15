@@ -12,7 +12,7 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 - **message** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic.
 - **ttl** - (uint32 - 4 bytes) a storage duration for the message to be cached server-side in **seconds** (aka time-to-live).
 - **tag** - (uint32 - 4 bytes) a label that identifies what type of message is sent based on the RPC method used.
-- **id** - (hex string - 32 bytes) a unique identifier for each subscription targeting a topic.
+- **id** - 19 digit unique identifier. We suggest a 13 digit epoch timestamp plus 6 digit entropy
 
 
 ## Methods
