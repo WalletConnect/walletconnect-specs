@@ -319,10 +319,10 @@ Watch events will be triggered for both incoming and outgoing messages but will 
 {
    "act": string, // action (must be "irn_watchRegister")
    "typ": string, // either "subscriber" or "publisher"
-   "iss": string, // clientId (matches "typ")
+   "iss": string, // clientId of the watched client
    "aud": string, // relayUrl
-   "sub": string, // serviceUrl
-   "whu": string, // webhookUrl
+   "sub": string, // serviceUrl - the URL of the service receiving the request (e.g. https://api.example.com)
+   "whu": string, // webhookUrl - the URL of the webhook (e.g. https://api.example.com/v1/relay-webhook) (max 256 characters)
    "iat": number, // issued at
    "exp": number, // expiry (max = 30 days)
    "tag": [1000, 1001, 1010, 1011], // array of tags
