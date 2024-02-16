@@ -2,7 +2,7 @@
 
 Webhooks is a mechanism to register HTTP watch webhooks that get triggered when a relay client ("the watched client") is involved with a published message. The conditions for these watch events can be filtered by various factors. The presence of a webhook registration does not affect the delivery of the message in any way and only observes the message flow. See the diagram below for an explanation on the specific types of watch events that can be triggered.
 
-The relay will guarantee delivery of these watch webhooks up to the TTL of the published message. However, because HTTP services are intended to be highly available, the retry period is capped at 259,200 seconds (3 days). The relay will use exponential backoff to retry delivering watch events in case the target service is unavailable. The delivery will be retried if there is an HTTP error, or 5xx class of errors. 4xx status codes are considered successful delivery and will not be retried.
+The relay will guarantee delivery of these watch webhooks up to the TTL of the published message. However, because HTTP services are intended to be highly available, the retry period is capped at 259,200 seconds (3 days). The relay will use exponential backoff to retry delivering watch events in case the target service is unavailable. The delivery will be retried if there is an HTTP error, or 5xx status code. 4xx status codes are considered successful delivery and will not be retried.
 
 Watch events are signed by the relay's asymmetric keypair. The public key can be obtained with the `/public-key` endpoint, and is also returned in the response of the `irn_watchRegister` request. There is not currently a procedure to rotate this key and it can be assumed that it is relatively fixed.
 
