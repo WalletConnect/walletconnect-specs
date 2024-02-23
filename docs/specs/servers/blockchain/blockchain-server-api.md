@@ -276,3 +276,37 @@ The POST request body should be in JSON format with the following structure:
 
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
+
+## Account 
+
+### Balance
+
+Used to lookup address asset balances
+
+`GET /v1/account/{address}/balance`
+
+#### Path parameters
+
+* `address` - is the address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
+
+#### Query parameters
+
+* `currency` - currency to calculate the assets value. e.g. `USD`
+* `chain` - (Optional) filter assets by CAIP-10 chain id.
+
+#### Success response body:
+
+* `positions` - list of address positions with the following attributes:
+    * `name` - asset name. e.g. `Ethereum`
+    * `symbol` - native asset or ERC-20 symbol. e.g. `ETH`
+    * `chainId` - CAIP-10 chain id. e.g. `eip155:1`
+    * `value` - asset value in currency calculated from the request argument.
+    * `price` - asset price in currency calculated from the request argument.
+    * `quantity` - asset quantity object:
+        * `decimals` - decimal number precision of the quantity.
+        * `numeric` - numeric representation of the asset quantity.
+    * `iconUrl` - URL of the asset icon.
+
+#### Response error codes:
+
+* `400 Bad request` - wrong requested arguments format.
