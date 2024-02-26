@@ -331,3 +331,61 @@ Used to lookup fungible assets balances
 
 * `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
+## SWAP
+
+Endpoints to make SWAP transactions
+
+### List of tokens available for SWAP
+
+`GET /v1/swap/tokens`
+
+#### Path parameters
+
+* `projectId` - is the project identifier
+* `chainId` - filter by chain. CAIP-10 format.
+
+#### Success response body:
+
+* `tokens` - list of objects which define available tokens:
+    * `name` - token name.
+    * `symbol` - token symbol.
+    * `address` - contract address of token.
+    * `chainId` - ID of chain in CAIP-10 format.
+    * `decimals` - decimals for amount supported by a given token.
+    * `iconUrl` - URL of the token icon.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - projectID verification error.
+
+### Requesting SWAP quotes
+
+`GET /v1/swap/quotes`
+
+#### Path parameters
+
+* `projectId` - is the project identifier.
+* `amount` - amount of tokens to be swapped.
+* `fromChainId` - ID of sending chain.
+* `fromAddress` - source address.
+* `toChainId` - ID of destination chain.
+* `toAddress` - destination address.
+
+#### Success response body:
+
+* `quotes` - list of objects which define available swap quotes
+    * `id` - quote ID to be used for swap request.
+    * `fromAmount` - amount of token being sent on sending chain.
+    * `fromChainId` - ID of sending chain.
+    * `fromToken` - object metadata of sending token same as from `List of tokens available for SWAP`.
+    * `fromAddress` - source address.
+    * `toAmount` - amount of token to be received on the destination chain.
+    * `toChainId` - ID of destination chain.
+    * `toToken` - object metadata of receiving token same as from `List of tokens available for SWAP`.
+    * `toAddress` - destination address.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - projectID verification error.
