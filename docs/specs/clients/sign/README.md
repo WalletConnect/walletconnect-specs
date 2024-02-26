@@ -38,7 +38,7 @@ Sign API's wallet authentication is a one-click passwordless authentication prov
 
 ### Goals
 
-A user can login or sign-in into any website or application with their blockchain account.
+A user can login into any website or application with their blockchain account.
 
 An app does not need to maintain a persisted connection with the wallet once authenticated.
 
