@@ -393,27 +393,24 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 
 **Request**
 
-```jsonc
-// wc_sessionAuthenticated params
+```ts
+// wc_sessionAuthenticated payload params
 {
-  "requester": {
-    "publicKey": string,
-    "metadata": Metadata
-  },
-  "payloadParams": PayloadParams,
-  "expiry": number // optional
+  "requester": Participant;
+  "authPayload": PayloadParams;
+  "expiryTimestamp": number;
 }
 
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 3600    |
 | Tag     | 1116     |
 
 ```
 
 **Response**
 
-```jsonc
+```ts
 // Success result (array of signed CACAOs)
 [{
   "h": CacaoHeader,
@@ -423,6 +420,6 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 
 | IRN     |          |
 | ------- | -------- |
-| TTL     | 86400    |
+| TTL     | 3600    |
 | Tag     | 1117     |
 ```

@@ -75,10 +75,6 @@ An example of a payload from `session_authenticate`:
                     },
                     "p": {
                         "type": "caip122",
-                        "chains": [
-                            "eip155:1",
-                            "eip155:2"
-                        ],
                         "aud": "aud",
                         "domain": "localhost",
                         "version": "1",
