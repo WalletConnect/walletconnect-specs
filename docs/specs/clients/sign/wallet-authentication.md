@@ -158,4 +158,4 @@ Only `eip155:1` is to be approved for the session. Then, the recap containing th
 
 After the recap is updated, we can `base64` encode it, add `urn:recap:` prefix and replace the old one in the `resources` array. Now the message is ready for users approval & signing.
 
-Now, the wallet & the application, after it receives the response can establish authenticated session on the same chains, methods & accounts.
+Now, the wallet & the application, after it receives the response can establish authenticated session with the same chains, methods & accounts.
