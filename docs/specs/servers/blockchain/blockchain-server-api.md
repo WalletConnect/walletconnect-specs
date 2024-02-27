@@ -277,13 +277,13 @@ The POST request body should be in JSON format with the following structure:
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
 
-## SWAP
+## Convertation
 
-Endpoints to make SWAP transactions
+Endpoints to make token convertation transactions
 
-### List of tokens available for SWAP
+### List of tokens available for convertation
 
-`GET /v1/swap/tokens`
+`GET /v1/convert/tokens`
 
 #### Path parameters
 
@@ -305,14 +305,14 @@ Endpoints to make SWAP transactions
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
 
-### Requesting SWAP quotes
+### Requesting convertation quotes
 
-`GET /v1/swap/quotes`
+`GET /v1/convert/quotes`
 
 #### Path parameters
 
 * `projectId` - is the project identifier.
-* `amount` - amount of tokens to be swapped.
+* `amount` - amount of tokens to be converted related to the decimals of the token.
 * `fromChainId` - ID of sending chain.
 * `fromAddress` - source address.
 * `toChainId` - ID of destination chain.
@@ -320,15 +320,15 @@ Endpoints to make SWAP transactions
 
 #### Success response body:
 
-* `quotes` - list of objects which define available swap quotes
-    * `id` - quote ID to be used for swap request.
+* `quotes` - list of objects which define available convertation quotes
+    * `id` - quote ID to be used for convert request.
     * `fromAmount` - amount of token being sent on sending chain.
     * `fromChainId` - ID of sending chain.
-    * `fromToken` - object metadata of sending token same as from `List of tokens available for SWAP`.
+    * `fromToken` - object metadata of sending token same as from `List of tokens available for convertation`.
     * `fromAddress` - source address.
     * `toAmount` - amount of token to be received on the destination chain.
     * `toChainId` - ID of destination chain.
-    * `toToken` - object metadata of receiving token same as from `List of tokens available for SWAP`.
+    * `toToken` - object metadata of receiving token same as from `List of tokens available for convertation`.
     * `toAddress` - destination address.
 
 #### Response error codes:
