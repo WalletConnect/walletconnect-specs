@@ -276,3 +276,141 @@ The POST request body should be in JSON format with the following structure:
 
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
+
+## Convertation
+
+Endpoints to make token convertation transactions
+
+### List of tokens available for convertation
+
+`GET /v1/convert/tokens`
+
+#### Path parameters
+
+* `projectId` - is the project identifier
+* `chainId` - filter by chain. CAIP-10 format.
+
+#### Success response body:
+
+* `tokens` - list of objects which define available tokens:
+    * `name` - token name.
+    * `symbol` - token symbol.
+    * `address` - contract address of token.
+    * `chainId` - ID of chain in CAIP-10 format.
+    * `decimals` - decimals for amount supported by a given token.
+    * `iconUrl` - URL of the token icon.
+    * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - projectID verification error.
+
+### Requesting convertation quotes
+
+`GET /v1/convert/quotes`
+
+#### Path parameters
+
+* `projectId` - is the project identifier.
+* `amount` - amount of tokens to be converted related to the decimals of the token.
+* `fromChainId` - ID of sending chain.
+* `fromAddress` - source address.
+* `toChainId` - ID of destination chain.
+* `toAddress` - destination address.
+
+#### Success response body:
+
+* `quotes` - list of objects which define available convertation quotes
+    * `id` - quote ID to be used for convert request.
+    * `fromAmount` - amount of token being sent on sending chain.
+    * `fromChainId` - ID of sending chain.
+    * `fromToken` - object metadata of sending token same as from `List of tokens available for convertation`.
+    * `fromAddress` - source address.
+    * `toAmount` - amount of token to be received on the destination chain.
+    * `toChainId` - ID of destination chain.
+    * `toToken` - object metadata of receiving token same as from `List of tokens available for convertation`.
+    * `toAddress` - destination address.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - projectID verification error.
+
+### Requesting approve calldata
+
+Generate approve calldata for allow transaction to perform a convert.
+
+This step should be skipped if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612).
+In this case `permit` parameter in `Requesting calldata to convert` should be used to provide the approval signature.
+
+`POST /v1/convert/build-approve`
+
+####  Path parameters
+
+* `projectId` - is the project identifier.
+
+####  Request body
+
+The POST request body should be in JSON format with the folowing structure:
+
+* `fromChainId` - ID of sending chain.
+* `fromAddress` - (Optional) For cross chain converts. Asset source address.
+* `toChainId` - (Optional) For cross chain converts. ID of destination chain.
+* `toAddress` - Asset destination address.
+* `amount` - Amount of tokens to be converted related to the decimals of the token.
+
+#### Success response body:
+
+* `tx` - Transaction object
+    * `from` - (Optional) Source.
+    * `to` - Destination.
+    * `data` - Transaction data.
+    * `value` - Amount of tokens to be converted related to the decimals of the token.
+    * `eip155` - (Optional) For EVM converts only
+        * `gasPrice` - Current gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `401 Unauthorized` - ProjectID verification error.
+
+### Requesting calldata to convert
+
+Generate calldata for convert transaction.
+
+`POST /v1/convert/build-transaction`
+
+####  Path parameters
+
+* `projectId` - is the project identifier.
+
+####  Request body
+
+The POST request body should be in JSON format with the folowing structure:
+
+* `fromChainId` - ID of sending chain.
+* `fromAddress` - Asset source address.
+* `toChainId` - (Optional) For cross chain converts. ID of destination chain.
+* `toAddress` - Asset destination address.
+* `userAddress` - Caller address.
+* `amount` - Amount of tokens to be converted related to the decimals of the token.
+* `eip155`- (Optional) For EVM converts only
+    * `slippage` - Slippage number. Max. 50
+    * `permit` - (Optional) [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gassless approve.
+
+#### Success response body:
+
+* `tx` - Transaction object
+    * `from` - Source.
+    * `to` - Destination.
+    * `data` - Transaction data.
+    * `value` - Amount of tokens to be converted related to the decimals of the token.
+    * `eip155` - (Optional) For EVM converts only
+        * `gas` - Gas amount to be used.
+        * `gasPrice` - Current gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `401 Unauthorized` - ProjectID verification error.
