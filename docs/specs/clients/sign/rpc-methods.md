@@ -363,7 +363,7 @@ error: {
 
 ### Methods
 
-#### wc_sessionAuthenticated
+#### wc_sessionAuthenticate
 
 Used to request authentication signature to a peer through topic P. Response is expected on topic R with shared symKey.
 
@@ -394,7 +394,7 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 **Request**
 
 ```ts
-// wc_sessionAuthenticated payload params
+// wc_sessionAuthenticate payload params
 {
   "requester": Participant;
   "authPayload": PayloadParams;

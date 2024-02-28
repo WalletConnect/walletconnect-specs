@@ -1,6 +1,6 @@
 import Table from '../../../components/Table';
 
-# Session Authenticate Events
+# Session Authenticated Events
 
 ## Events
 
