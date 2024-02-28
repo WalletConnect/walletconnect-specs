@@ -259,6 +259,7 @@ interface PayloadParams {
   aud: string;
   version: string;
   nonce: string;
+  iat: string;
   nbf?: string;
   exp?: string;
   statement?: string;
