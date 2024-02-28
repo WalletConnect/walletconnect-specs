@@ -59,8 +59,9 @@ If signature is valid, then user is authenticated.
 
 ## Capabilities
 
-Applications can request consent from users to perform actions on their behalf. These actions are included in the authentication request in the form of ReCaps.
-WalletConnect's implementation follows closely the [ERC-5573 specs](https://eips.ethereum.org/EIPS/eip-5573). ReCaps are also used as a form of handshake to establish Sign session.
+Applications can request consent from users to perform actions on their behalf. These actions are included in the authentication request in the form of ReCaps,
+a compact encoding for authorization statements.
+WalletConnect's implementation follows closely the [ERC-5573 specs](https://eips.ethereum.org/EIPS/eip-5573). ReCaps are also used to include additional fine-grained authorization information along with the WalletConnect's handshake that establishes a Sign session.
 
 ### Overview
 
@@ -88,7 +89,7 @@ The recap in the message
 - urn:recap:eyJhdHQiOnsiZWlwMTU1Ijp7InJlcXVlc3QvZXRoX3NpZ25UeXBlZERhdGFfdjQiOlt7fV0sInJlcXVlc3QvcGVyc29uYWxfc2lnbiI6W3t9XX19fQ==
 ```
 
-after removing the prefix (`urn:recap:`) and decoding would result in
+after removing the prefix (`urn:recap:`), Base64-decoding the string would result in the JSON object:
 
 ```
 {
@@ -122,14 +123,14 @@ Nonce: 1
 Issued At: 2024-02-19T09:29:21.394Z
 Resources:
 - urn:recap:eyJhdHQiOnsiZWlwMTU1Ijp7InJlcXVlc3QvZXRoX3NpZ25UeXBlZERhdGFfdjQiOlt7fV0sInJlcXVlc3QvcGVyc29uYWxfc2lnbiI6W3t9XX19fQ==
-- https://example.com
+- https://example.com/storage/0x3613699A6c5D8BC97a08805876c8005543125F09
 - urn:recap:eyJhdHQiOnsiZWlwMTU1Ijp7InB1c2gvbWVzc2FnZXMiOlt7fV0sInB1c2gvbm90aWZpY2F0aW9uIjpbe31dfX19
 - urn:recap:eyJhdHQiOnsiZWlwMTU1Ijp7InJlY2VpdmUvbWVzc2FnZXMiOlt7fV0sInJlY2VpdmUvbm90aWZpY2F0aW9uIjpbe31dfX19
 ```
 
 ### Authenticated sessions
 
-As mentioned above, applications utilize ReCaps to request consent from users to establish authenticated session to be able to send additional requests for the approved methods & chains to the users' wallets
+As mentioned above, applications utilize ReCaps to request additional permissions or capabilities from users, beyond what the basic capabilities (chains, accounts, methods) that get negotiated in a WalletConnect connection between application and a wallet.
 
 Each authentication request includes an array of requested `chains`. Users can choose to approve all or part of the chains depending on their wallet support.
 If only subset of the requested chains is supported by the wallet e.g.
