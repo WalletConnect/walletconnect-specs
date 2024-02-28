@@ -102,12 +102,12 @@ abstract class Client {
 
    // respond to wallet authentication request
 
-  public abstract approveAuthenticate(params: {
+  public abstract approveSessionAuthenticate(params: {
     id: number;
     auths: Cacao[];
   }): Promise<void>;
 
-  public abstract rejectAuthenticate(params: {
+  public abstract rejectSessionAuthenticate(params: {
     id: number;
     reason: Reason;
   }): Promise<void>;
