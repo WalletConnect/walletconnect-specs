@@ -81,7 +81,7 @@ abstract class Client {
     chains: string[];
     domain: string;
     nonce: string;
-    aud: string;
+    uri: string;
     type?: CacaoHeader["t"];
     nbf?: string;
     exp?: string;
