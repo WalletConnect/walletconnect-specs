@@ -133,7 +133,10 @@ Resources:
 As mentioned above, applications utilize ReCaps to request additional permissions or capabilities from users, beyond what the basic capabilities (chains, accounts, methods) that get negotiated in a WalletConnect connection between application and a wallet.
 
 Each authentication request includes an array of requested `chains`. Users can choose to approve all or part of the chains depending on their wallet support.
-If only subset of the requested chains is supported by the wallet e.g.
+
+#### Scenario A
+
+Only subset of the requested chains is supported by the wallet e.g.
 
 ```
 requested: ['eip155:1', 'eip155:2']
@@ -159,4 +162,38 @@ Only `eip155:1` is to be approved for the session. Then, the recap containing th
 
 After the recap is updated, we can `base64` encode it, add `urn:recap:` prefix and replace the old one in the `resources` array. Now the message is ready for users approval & signing.
 
-Now, the wallet & the application, after it receives the response can establish authenticated session with the same chains, methods & accounts.
+This signals that the wallet supports chain `eip155:1`, is authenticated and can receive requests for that chain. The application (requesting authentication) should receive ONE signed CACAO.
+
+#### Scenario B
+
+When multiple chains are supported wants to authenticate all of them
+
+```
+requested: ['eip155:1', 'eip155:2', 'eip155:3']
+supported: ['eip155:1', 'eip155:2', 'eip155:3']
+```
+
+the wallet should update the recap and list all of their supported chains
+
+```
+{
+   "att":{
+      "eip155":{
+         "request/eth_signTypedData_v4":[{
+            chains: ['eip155:1', 'eip155:2', 'eip155:3']
+         }],
+         "request/personal_sign":[{
+            chains: ['eip155:1', 'eip155:2', 'eip155:3']
+         }]
+      }
+   }
+}
+```
+
+Now the wallet can sign the messages (one for each chain) and respond to the request.
+
+#### Scenario C
+
+When apps receive single signed CACAO that includes multiple chains in its recaps, it can be considered approval for establishing a session and sending requests to all included chains but authentication is guaranteed only for the signed chain.
+
+Now, the wallet & the application, after it receives the signed CACAO(s) response can establish authenticated session with the same chains, methods & accounts.
