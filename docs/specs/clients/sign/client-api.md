@@ -77,7 +77,7 @@ abstract class Client {
   // ---------- Wallet Authentication Methods ----------------------------------------------- //
 
   // for proposer to request wallet authentication
-  public abstract sessionAuthenticate(params: {
+  public abstract authenticate(params: {
     chains: string[];
     domain: string;
     nonce: string;
@@ -102,12 +102,12 @@ abstract class Client {
 
    // respond to wallet authentication request
 
-  public abstract approveSessionAuthenticated(params: {
+  public abstract approveAuthenticate(params: {
     id: number;
     auths: Cacao[];
   }): Promise<void>;
 
-  public abstract rejectSessionAuthenticated(params: {
+  public abstract rejectAuthenticate(params: {
     id: number;
     reason: Reason;
   }): Promise<void>;
@@ -135,7 +135,7 @@ abstract class Client {
 
   // ---------- Wallet Authentication Events ----------------------------------------------- //
 
-  // wallets to subscribe to session authenticated
+  // wallets to subscribe to session authenticate
   public abstract on("session_authenticate", (sessionAuthenticateRequest: SessionAuthenticateRequest) => {}): void;
 }
 ```
