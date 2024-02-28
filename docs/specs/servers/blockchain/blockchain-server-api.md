@@ -391,3 +391,41 @@ Endpoints to make token convertation transactions
 
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
+
+### Requesting calldata to convert
+
+`POST /v1/convert/build-transaction`
+
+####  Path parameters
+
+* `projectId` - is the project identifier.
+
+####  Request body
+
+The POST request body should be in JSON format with the folowing structure:
+
+* `fromChainId` - ID of sending chain.
+* `fromAddress` - Asset source address.
+* `toChainId` - (Optional) For cross chain converts. ID of destination chain.
+* `toAddress` - Asset destination address.
+* `userAddress` - Caller address.
+* `amount` - Amount of tokens to be converted related to the decimals of the token.
+* `eip155`- (Optional) For EVM converts only
+    * `slippage` - Slippage number. Max. 50
+    * `permit` - (Optional) [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gassless approve.
+
+#### Success response body:
+
+* `tx` - Transaction object
+    * `from` - Source.
+    * `to` - Destination.
+    * `data` - Transaction data.
+    * `value` - Amount of tokens to be converted related to the decimals of the token.
+    * `eip155` - (Optional) For EVM converts only
+        * `gas` - Gas amount to be used.
+        * `gasPrice` - Current gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `401 Unauthorized` - ProjectID verification error.
