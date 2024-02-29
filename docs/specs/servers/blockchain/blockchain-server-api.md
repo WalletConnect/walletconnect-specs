@@ -296,12 +296,12 @@ Used to lookup address asset balances
 
 #### Success response body:
 
-* `positions` - list of address positions with the following attributes:
+* `balances` - list of address balances with the following attributes:
     * `name` - asset name. e.g. `Ethereum`
     * `symbol` - native asset or ERC-20 symbol. e.g. `ETH`
     * `chainId` - CAIP-10 chain id. e.g. `eip155:1`
     * `value` - asset value in currency calculated from the request argument.
-    * `price` - asset price in currency calculated from the request argument.
+    * `price` - price of a single unit of the asset in currency calculated from the request argument.
     * `quantity` - asset quantity object:
         * `decimals` - decimal number precision of the quantity.
         * `numeric` - numeric representation of the asset quantity.
