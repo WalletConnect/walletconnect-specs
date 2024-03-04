@@ -281,7 +281,7 @@ The POST request body should be in JSON format with the following structure:
 
 ### Balance
 
-Used to lookup address asset balances
+Used to lookup fungible assets balances
 
 `GET /v1/account/{address}/balance`
 
