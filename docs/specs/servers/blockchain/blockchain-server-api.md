@@ -238,7 +238,7 @@ This endpoint is used to generate the On Ramp Pay SDK URL.
 
 `POST /v1/generators/onrampurl?projectID={projectID}`
 
-* `projectID` - is the project identifier
+* `projectId` - is the project identifier
 
 #### Request body:
 
@@ -291,6 +291,7 @@ Used to lookup fungible assets balances
 
 #### Query parameters
 
+* `projectId` - the project identifier.
 * `currency` - currency to calculate the assets value. e.g. `USD`
 * `chain` - (Optional) filter assets by CAIP-10 chain id.
 
