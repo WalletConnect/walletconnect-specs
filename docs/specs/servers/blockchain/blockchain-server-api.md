@@ -292,7 +292,7 @@ Used to lookup fungible assets balances
 #### Query parameters
 
 * `projectId` - the project identifier.
-* `currency` - currency to calculate the assets value. e.g. `USD`. Supported currency:
+* `currency` - currency to calculate the assets value. e.g. `usd`. Supported currencies:
     * `btc`
     * `eth`
     * `usd`
