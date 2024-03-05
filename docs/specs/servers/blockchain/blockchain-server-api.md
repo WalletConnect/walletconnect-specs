@@ -292,8 +292,34 @@ Used to lookup fungible assets balances
 #### Query parameters
 
 * `projectId` - the project identifier.
-* `currency` - currency to calculate the assets value. e.g. `USD`
-* `chain` - (Optional) filter assets by CAIP-10 chain id.
+* `currency` - currency to calculate the assets value. e.g. `USD`. Supported currency:
+    * `btc`
+    * `eth`
+    * `usd`
+    * `eur`
+    * `gbp`
+    * `aud`
+    * `cad`
+    * `inr`
+    * `jpy`
+* `chain` - (Optional) filter assets by CAIP-10 chain id. Supported chain IDs:
+    * `eip155:1` - Ethereum
+    * `eip155:5` - Goerli
+    * `eip155:56` - BinanceSmartChain
+    * `eip155:100` - GnosisChain
+    * `eip155:250` - Fantom
+    * `eip155:328` - ZkSyncEra
+    * `eip155:137` - Polygon
+    * `eip155:10` - Optimism
+    * `eip155:8453` - Base
+    * `eip155:42220` - Celo
+    * `eip155:42161` - Arbitrum
+    * `eip155:43114` - Avalanche
+    * `eip155:59160` - Linea
+    * `eip155:81032` - Blast
+    * `eip155:8508132` - Scroll
+    * `eip155:7854577` - Zora
+    * `eip155:1313161554` - Aurora
 
 #### Success response body:
 
@@ -310,4 +336,5 @@ Used to lookup fungible assets balances
 
 #### Response error codes:
 
+* `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
