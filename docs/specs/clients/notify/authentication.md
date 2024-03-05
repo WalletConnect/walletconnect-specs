@@ -121,9 +121,68 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 
 ## wc_notifyDelete response
 
-- act - `notify_delete_response``
+- act - `notify_delete_response`
 - iss - did:key of dapp authentication key
 - aud - did:key of client identity key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - sbs - array of [Notify Server Subscriptions](./data-structures.md#notify-server-subscriptions)
+
+## `wc_notifyGetNotifications`
+
+Paginated list of notifications with the most recently sent first. Unread notifications may be dispersed throughout the list and on subsequent pages.
+
+### Request
+
+- act - `notify_get_notifications`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- lmt - the max number of notifications to return. Maximum value is 50.
+- aft - the notification ID to start returning messages after. Null to start with the most recent notification
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4014         |
+| Topic   | notify topic |
+
+### Response
+
+- act - `notify_get_notifications_response`
+- iss - did:key of client identity key
+- aud - did:key of Notify Server authentication key
+- nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
+- mre - true if there are more pages, false otherwise
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4015         |
+| Topic   | notify topic |
+
+## Noop
+
+Noop message sent by the Notify Server after subscription creation to mark a topic as long-lived so the relay does not destroy it. Clients should ignore this message.
+
+Content is empty string.
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4050         |
+| Topic   | notify topic |
