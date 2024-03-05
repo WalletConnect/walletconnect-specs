@@ -14,7 +14,7 @@ abstract class Client {
   // Calls `wc_notifyWatchSubscriptions` for all previously registered accounts,
   // watches for future subscription updates, and subscribes to all notification topics
   public abstract init(): Promise<void>;
-  
+
   // send notify subscription
   public abstract subscribe(params: { 
     appDomain: string,
@@ -37,27 +37,28 @@ abstract class Client {
     account: string,
   }): Promise<Record<string, NotifySubscription>>;
 
-  // get all notifications for a subscription
+  // Get a paginated list of notifications with the most recently sent first.
   public abstract getNotificationHistory(params: {
     topic: string,
-  }): Promise<Record<number, NotifyNotificationRecord>>
+    // Default 10, max 50
+    limit?: number,
+    startingAfter?: string,
+  }): Promise<{
+    notifications: NotifyNotificationRecord[],
+    hasMore: boolean,
+  }>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
     topic: string,
   }): Promise<void>;
-  
-  // delete notification
-  public abstract deleteNotification(params: {
-    id: number,
-  }): Promise<void>;
-  
+
   // decrypt notify subscription message
   public abstract decryptNotification(params: {
     topic: string,
     encryptedMessage: string,
   }): Promise<NotifyNotification>;
-  
+
   // Generates and returns SIWE message along with
   // Cacao Payload with identity key
   public abstract prepareRegistration(params: {
@@ -69,7 +70,7 @@ abstract class Client {
     registerParams: NotifyRegistrationParams,
     message: string
   }>;
-  
+
   // "Logs in" this client to notifications for the specified account. This involves:
   // - Verifies signature by reconstructing formatted message using provided payload
   // - Expected payload comes from prepareRegistration
@@ -80,7 +81,7 @@ abstract class Client {
     registerParams: NotifyRegistrationParams,
     signature: string;
   }): Promise<string>;
-  
+
   // Returns true if account has a valid and up to date registration, false otherwise
   public abstract isRegistered(params: {
     account: string,
@@ -105,10 +106,10 @@ abstract class Client {
 
   // for wallet to listen for notify subscription created
   public abstract on("notify_subscription", (result: NotifySubscription | Error) => {}): void;
-  
-  //  for wallet to listen on notify notification
-  public abstract on("notify_notification", (message: NotifyNotificationRecord, metadata: Metadata) => {}): void;
-  
+
+  // for wallet to listen on notify notification
+  public abstract on("notify_notification", (notification: NotifyNotificationRecord, metadata: Metadata) => {}): void;
+
   // for wallet to listen for result of notify subscription update
   public abstract on("notify_update", (result: NotifySubscription | Error) => {}): void;
 
