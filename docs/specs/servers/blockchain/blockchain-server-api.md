@@ -332,11 +332,11 @@ Used to lookup fungible assets balances
 * `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
 
-## Convertation
+## Conversion
 
-Endpoints to make token convertation transactions
+Endpoints to make convert token transactions.
 
-### List of tokens available for convertation
+### List of tokens available for conversion
 
 `GET /v1/convert/tokens`
 
@@ -361,7 +361,7 @@ Endpoints to make token convertation transactions
 * `400 Bad Request` - some parameters in request body were missed or wrong.
 * `401 Unauthorized` - projectID verification error.
 
-### Requesting convertation quotes
+### Requesting conversion quotes
 
 `GET /v1/convert/quotes`
 
@@ -376,15 +376,15 @@ Endpoints to make token convertation transactions
 
 #### Success response body:
 
-* `quotes` - list of objects which define available convertation quotes
+* `quotes` - list of objects which define available conversion quotes
     * `id` - quote ID to be used for convert request.
     * `fromAmount` - amount of token being sent on sending chain.
     * `fromChainId` - ID of sending chain.
-    * `fromToken` - object metadata of sending token same as from `List of tokens available for convertation`.
+    * `fromToken` - object metadata of sending token same as from `List of tokens available for conversion`.
     * `fromAddress` - source address.
     * `toAmount` - amount of token to be received on the destination chain.
     * `toChainId` - ID of destination chain.
-    * `toToken` - object metadata of receiving token same as from `List of tokens available for convertation`.
+    * `toToken` - object metadata of receiving token same as from `List of tokens available for conversion`.
     * `toAddress` - destination address.
 
 #### Response error codes:
