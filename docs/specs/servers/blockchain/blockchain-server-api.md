@@ -369,23 +369,19 @@ Endpoints to make convert token transactions.
 
 * `projectId` - is the project identifier.
 * `amount` - amount of tokens to be converted related to the decimals of the token.
-* `fromChainId` - ID of sending chain.
-* `fromAddress` - source address.
-* `toChainId` - ID of destination chain.
-* `toAddress` - destination address.
+* `from` - source CAIP-10 asset address.
+* `to` - destination CAIP-10 asset address.
 
 #### Success response body:
 
-* `quotes` - list of objects which define available conversion quotes
+* `quotes` - list of objects which define available conversion quotes:
     * `id` - quote ID to be used for convert request.
     * `fromAmount` - amount of token being sent on sending chain.
-    * `fromChainId` - ID of sending chain.
+    * `fromAccount` - source CAIP-10 account ID.
     * `fromToken` - object metadata of sending token same as from `List of tokens available for conversion`.
-    * `fromAddress` - source address.
     * `toAmount` - amount of token to be received on the destination chain.
-    * `toChainId` - ID of destination chain.
+    * `toAccount` - destination CAIP-10 account ID.
     * `toToken` - object metadata of receiving token same as from `List of tokens available for conversion`.
-    * `toAddress` - destination address.
 
 #### Response error codes:
 
@@ -409,10 +405,8 @@ In this case, the `permit` parameter in `Requesting calldata to convert` should 
 
 The `POST` request body should be in JSON format with the following structure:
 
-* `fromChainId` - ID of sending chain.
-* `fromAddress` - (Optional) For cross chain converts. Asset source address.
-* `toChainId` - (Optional) For cross chain converts. ID of destination chain.
-* `toAddress` - Asset destination address.
+* `from` - Source CAIP-10 asset address.
+* `to` - Destination CAIP-10 asset address.
 * `amount` - Amount of tokens to be converted related to the decimals of the token.
 
 #### Success response body:
@@ -444,10 +438,8 @@ Generate calldata for convert transaction.
 
 The `POST` request body should be in JSON format with the following structure:
 
-* `fromChainId` - ID of sending chain.
-* `fromAddress` - Asset source address.
-* `toChainId` - (Optional) For cross chain conversions. ID of destination chain.
-* `toAddress` - Asset destination address.
+* `from` - asset source CAIP-10 address.
+* `to` - asset destination CAIP-10 address.
 * `userAddress` - Caller address.
 * `amount` - Amount of tokens to be converted denominated in the decimal precision of the token.
 * `eip155`- (Optional) For EVM converts only
