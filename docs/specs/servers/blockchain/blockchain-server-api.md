@@ -369,6 +369,7 @@ Endpoints to make convert token transactions.
 
 * `projectId` - is the project identifier.
 * `amount` - amount of tokens to be converted related to the decimals of the token.
+* `userAddress` - caller address.
 * `from` - source CAIP-10 asset address.
 * `to` - destination CAIP-10 asset address.
 
@@ -405,6 +406,7 @@ In this case, the `permit` parameter in `Requesting calldata to convert` should 
 
 The `POST` request body should be in JSON format with the following structure:
 
+* `userAddress` - caller address.
 * `from` - Source CAIP-10 asset address.
 * `to` - Destination CAIP-10 asset address.
 * `amount` - Amount of tokens to be converted related to the decimals of the token.
@@ -438,9 +440,9 @@ Generate calldata for convert transaction.
 
 The `POST` request body should be in JSON format with the following structure:
 
+* `userAddress` - Caller address.
 * `from` - asset source CAIP-10 address.
 * `to` - asset destination CAIP-10 address.
-* `userAddress` - Caller address.
 * `amount` - Amount of tokens to be converted denominated in the decimal precision of the token.
 * `eip155`- (Optional) For EVM converts only
     * `slippage` - Slippage integer value. Max. 50
