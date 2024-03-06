@@ -304,7 +304,7 @@ Endpoints to make convert token transactions.
 #### Response error codes:
 
 * `400 Bad Request` - some parameters in request body were missed or wrong.
-* `401 Unauthorized` - projectID verification error.
+* `401 Unauthorized` - project ID verification error.
 
 ### Requesting conversion quotes
 
@@ -335,7 +335,7 @@ Endpoints to make convert token transactions.
 #### Response error codes:
 
 * `400 Bad Request` - some parameters in request body were missed or wrong.
-* `401 Unauthorized` - projectID verification error.
+* `401 Unauthorized` - project ID verification error.
 
 ### Requesting approve calldata
 
@@ -373,7 +373,7 @@ The `POST` request body should be in JSON format with the following structure:
 #### Response error codes:
 
 * `400 Bad Request` - Some parameters in request body were missing or wrong.
-* `401 Unauthorized` - ProjectID verification error.
+* `401 Unauthorized` - Project ID verification error.
 
 ### Requesting calldata to convert
 
@@ -413,4 +413,4 @@ The `POST` request body should be in JSON format with the following structure:
 #### Response error codes:
 
 * `400 Bad Request` - Some parameters in request body were missing or wrong.
-* `401 Unauthorized` - ProjectID verification error.
+* `401 Unauthorized` - Project ID verification error.
