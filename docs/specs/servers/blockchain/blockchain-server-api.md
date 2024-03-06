@@ -350,8 +350,7 @@ Endpoints to make convert token transactions.
 * `tokens` - list of objects which define available tokens:
     * `name` - token name.
     * `symbol` - token symbol.
-    * `address` - contract address of token.
-    * `chainId` - ID of chain in CAIP-10 format.
+    * `address` - contract address of token in CAIP-10 format.
     * `decimals` - decimals for amount supported by a given token.
     * `logoURI` - URL of the token icon.
     * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
