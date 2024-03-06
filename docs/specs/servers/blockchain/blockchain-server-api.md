@@ -353,7 +353,7 @@ Endpoints to make convert token transactions.
     * `address` - contract address of token.
     * `chainId` - ID of chain in CAIP-10 format.
     * `decimals` - decimals for amount supported by a given token.
-    * `iconUrl` - URL of the token icon.
+    * `logoURI` - URL of the token icon.
     * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
 
 #### Response error codes:
