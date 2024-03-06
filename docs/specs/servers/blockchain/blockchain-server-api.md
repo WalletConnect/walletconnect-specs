@@ -394,10 +394,10 @@ Endpoints to make token convertation transactions
 
 ### Requesting approve calldata
 
-Generate approve calldata for allow transaction to perform a convert.
+Generate approve calldata to allow a transaction to perform a conversion.
 
 This step should be skipped if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612).
-In this case `permit` parameter in `Requesting calldata to convert` should be used to provide the approval signature.
+In this case, the `permit` parameter in `Requesting calldata to convert` should be used to provide the approval signature.
 
 `POST /v1/convert/build-approve`
 
@@ -407,7 +407,7 @@ In this case `permit` parameter in `Requesting calldata to convert` should be us
 
 ####  Request body
 
-The POST request body should be in JSON format with the folowing structure:
+The `POST` request body should be in JSON format with the following structure:
 
 * `fromChainId` - ID of sending chain.
 * `fromAddress` - (Optional) For cross chain converts. Asset source address.
@@ -421,13 +421,13 @@ The POST request body should be in JSON format with the folowing structure:
     * `from` - (Optional) Source.
     * `to` - Destination.
     * `data` - Transaction data.
-    * `value` - Amount of tokens to be converted related to the decimals of the token.
-    * `eip155` - (Optional) For EVM converts only
+    * `value` - Amount of tokens to be converted, denominated in the decimal precision of the token.
+    * `eip155` - (Optional) For EVM conversions only.
         * `gasPrice` - Current gas price.
 
 #### Response error codes:
 
-* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `400 Bad Request` - Some parameters in request body were missing or wrong.
 * `401 Unauthorized` - ProjectID verification error.
 
 ### Requesting calldata to convert
@@ -442,17 +442,17 @@ Generate calldata for convert transaction.
 
 ####  Request body
 
-The POST request body should be in JSON format with the folowing structure:
+The `POST` request body should be in JSON format with the following structure:
 
 * `fromChainId` - ID of sending chain.
 * `fromAddress` - Asset source address.
-* `toChainId` - (Optional) For cross chain converts. ID of destination chain.
+* `toChainId` - (Optional) For cross chain conversions. ID of destination chain.
 * `toAddress` - Asset destination address.
 * `userAddress` - Caller address.
-* `amount` - Amount of tokens to be converted related to the decimals of the token.
+* `amount` - Amount of tokens to be converted denominated in the decimal precision of the token.
 * `eip155`- (Optional) For EVM converts only
-    * `slippage` - Slippage number. Max. 50
-    * `permit` - (Optional) [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gassless approve.
+    * `slippage` - Slippage integer value. Max. 50
+    * `permit` - (Optional) [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gasless approvals.
 
 #### Success response body:
 
@@ -460,12 +460,12 @@ The POST request body should be in JSON format with the folowing structure:
     * `from` - Source.
     * `to` - Destination.
     * `data` - Transaction data.
-    * `value` - Amount of tokens to be converted related to the decimals of the token.
+    * `value` - Amount of tokens to be converted denominated in the decimal precision of the token.
     * `eip155` - (Optional) For EVM converts only
         * `gas` - Gas amount to be used.
         * `gasPrice` - Current gas price.
 
 #### Response error codes:
 
-* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `400 Bad Request` - Some parameters in request body were missing or wrong.
 * `401 Unauthorized` - ProjectID verification error.
