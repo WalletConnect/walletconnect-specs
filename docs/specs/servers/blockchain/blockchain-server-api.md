@@ -393,16 +393,11 @@ Generate approve calldata to allow a transaction to perform a conversion.
 This step should be skipped if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612).
 In this case, the `permit` parameter in `Requesting calldata to convert` should be used to provide the approval signature.
 
-`POST /v1/convert/build-approve`
+`GET /v1/convert/build-approve`
 
 ####  Path parameters
 
 * `projectId` - is the project identifier.
-
-####  Request body
-
-The `POST` request body should be in JSON format with the following structure:
-
 * `userAddress` - caller address.
 * `from` - Source CAIP-10 asset address.
 * `to` - Destination CAIP-10 asset address.
