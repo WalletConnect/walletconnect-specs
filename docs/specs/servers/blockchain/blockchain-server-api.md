@@ -343,16 +343,16 @@ Endpoints to make convert token transactions.
 #### Path parameters
 
 * `projectId` - is the project identifier
-* `chainId` - filter by chain. CAIP-10 format.
+* `chainId` - filter by chain. CAIP-2 format. e.g. `eip155:1`
 
 #### Success response body:
 
 * `tokens` - list of objects which define available tokens:
     * `name` - token name.
     * `symbol` - token symbol.
-    * `address` - contract address of token in CAIP-10 format.
+    * `address` - contract address of the token in CAIP-10 format.
     * `decimals` - decimals for amount supported by a given token.
-    * `logoURI` - URL of the token icon.
+    * `logoUri` - URL of the token icon.
     * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
 
 #### Response error codes:
