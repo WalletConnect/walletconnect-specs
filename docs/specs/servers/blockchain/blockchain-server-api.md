@@ -367,7 +367,7 @@ Endpoints to make convert token transactions.
 #### Path parameters
 
 * `projectId` - is the project identifier.
-* `amount` - amount of tokens to be converted related to the decimals of the token.
+* `amount` - amount of tokens to be converted related to the decimals of the token. Numeric value up to 18 decimals.
 * `userAddress` - caller address.
 * `from` - source CAIP-10 asset address.
 * `to` - destination CAIP-10 asset address.
@@ -375,13 +375,11 @@ Endpoints to make convert token transactions.
 #### Success response body:
 
 * `quotes` - list of objects which define available conversion quotes:
-    * `id` - quote ID to be used for convert request.
+    * `id` - (Optional for cross chain swaps) quote ID to be used for convert request.
     * `fromAmount` - amount of token being sent on sending chain.
     * `fromAccount` - source CAIP-10 account ID.
-    * `fromToken` - object metadata of sending token same as from `List of tokens available for conversion`.
     * `toAmount` - amount of token to be received on the destination chain.
     * `toAccount` - destination CAIP-10 account ID.
-    * `toToken` - object metadata of receiving token same as from `List of tokens available for conversion`.
 
 #### Response error codes:
 
