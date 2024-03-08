@@ -424,14 +424,11 @@ Generate calldata for convert transaction.
 
 `POST /v1/convert/build-transaction`
 
-####  Path parameters
-
-* `projectId` - is the project identifier.
-
 ####  Request body
 
 The `POST` request body should be in JSON format with the following structure:
 
+* `projectId` - is the project identifier.
 * `userAddress` - Caller address.
 * `from` - asset source CAIP-10 address.
 * `to` - asset destination CAIP-10 address.
@@ -446,7 +443,7 @@ The `POST` request body should be in JSON format with the following structure:
     * `from` - Source.
     * `to` - Destination.
     * `data` - Transaction data.
-    * `value` - Amount of tokens to be converted denominated in the decimal precision of the token.
+    * `amount` - Amount of tokens to be received denominated in the decimal precision of the token.
     * `eip155` - (Optional) For EVM converts only
         * `gas` - Gas amount to be used.
         * `gasPrice` - Current gas price.
