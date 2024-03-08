@@ -334,7 +334,7 @@ Used to lookup fungible assets balances
 
 ## Conversion
 
-Endpoints to make convert token transactions.
+Endpoints to convert tokens.
 
 ### List of tokens available for conversion
 
@@ -351,7 +351,7 @@ Endpoints to make convert token transactions.
     * `name` - token name.
     * `symbol` - token symbol.
     * `address` - contract address of the token in CAIP-10 format.
-    * `decimals` - decimals for amount supported by a given token.
+    * `decimals` - number of decimals for amount supported by a given token.
     * `logoUri` - URL of the token icon.
     * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
 
@@ -429,7 +429,7 @@ Generate calldata for convert transaction.
 The `POST` request body should be in JSON format with the following structure:
 
 * `projectId` - is the project identifier.
-* `userAddress` - Caller address.
+* `userAddress` - caller address.
 * `from` - asset source CAIP-10 address.
 * `to` - asset destination CAIP-10 address.
 * `amount` - Amount of tokens to be converted denominated in the decimal precision of the token.
@@ -440,8 +440,8 @@ The `POST` request body should be in JSON format with the following structure:
 #### Success response body:
 
 * `tx` - Transaction object
-    * `from` - Source.
-    * `to` - Destination.
+    * `from` - Source address (Sender).
+    * `to` - Destination address (Smart contract to swap).
     * `data` - Transaction data.
     * `amount` - Amount of tokens to be received denominated in the decimal precision of the token.
     * `eip155` - (Optional) For EVM converts only
