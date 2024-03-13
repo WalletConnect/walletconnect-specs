@@ -133,9 +133,9 @@ const config = {
       additionalLanguages: ['swift', 'kotlin']
     },
     algolia: {
-      appId: 'KEO8ND6AUT',
-      apiKey: '5921626237dc9040afc258af25d4e77d',
-      indexName: 'walletconnect',
+      appId: 'O3QBOMGZYQ',
+      apiKey: 'fb41041932d46792c1c976f2bf7a6700',
+      indexName: 'specs-walletconnect',
       contextualSearch: true
     }
   },
