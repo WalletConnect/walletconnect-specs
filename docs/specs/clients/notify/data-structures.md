@@ -9,9 +9,9 @@
   "relay": {
     "protocol": string,
     "data": string
-  },  
+  },
   "metadata": Metadata,
-  "scope": Record<string, {description: string, enabled: boolean}>,
+  "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
   "unreadNotificationCount": number
 }
@@ -31,9 +31,30 @@
   title: string,
   // Long messages used in the body of the notification
   body: string,
+  // Image URL used to display with the notification. If null, the app's icon from Notify Config is used instead
+  icon: string | null,
+  // Redirect URL for call-to-action related to notification. If null, there is no link
+  url: string | null,
+}
+```
+
+## Notify Message
+
+```typescript
+{
+  // ID of the notification
+  id: string,
+  // Unix ms timestamp when the notification was sent
+  sent_at: number,
+  // Notification type which matches the scope of notify subscription
+  type: string,
+  // Short message used in the title of the notification
+  title: string,
+  // Long messages used in the body of the notification
+  body: string,
   // Image URL used to display with the notification. If empty, the app's icon from Notify Config is used instead
   icon: string,
-  // Redirect URL for call-to-action related to notification. If empty, do not redirect
+  // Redirect URL for call-to-action related to notification. If empty, there is no link
   url: string,
   // If the notification was read or not
   read: boolean,
@@ -79,3 +100,20 @@ NotifyServerSubscription[]
 }
 
 ```
+
+## Notify Notification Type
+`NotifyNotificationType`
+```typescript
+{
+  "description": string, 
+  "id": string,
+  "enabled": boolean,
+  "name": string,
+  "imageUrls": {
+    "sm": string,
+    "md": string,
+    "lg": string,
+  }
+}
+```
+
