@@ -30,7 +30,7 @@ abstract class Client {
   // query notification types available for a dapp domain
   public abstract getNotificationTypes(params: {
     appDomain: string,
-  }): Promise<NotifyAvailableTypes>
+  }): Promise<Record<string, NotifyNotificationType>>
 
   // query all active subscriptions
   public abstract getActiveSubscriptions(params: {

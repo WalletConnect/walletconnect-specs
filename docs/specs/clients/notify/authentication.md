@@ -80,7 +80,7 @@ A non-ideal way to avoid the race condition is for the sender to set the message
 - iss - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- msg - [Notify Notification](./data-structures.md#notify-notification)
+- msg - [Notify Message](./data-structures.md#notify-message)
 
 ## wc_notifyMessage response
 
