@@ -219,19 +219,20 @@ Emitted by the Notify Server when a notification changed state. For example if i
 | Tag     | 4017         |
 | Topic   | notify topic |
 
-## `wc_notifyReadNotifications`
+## `wc_notifyMarkNotificationsAsRead`
 
-Marks a notification as read.
+Marks notifications as read.
 
 ### Request
 
-- act - `notify_read_notifications`
+- act - `notify_mark_notifications_as_read`
 - iss - did:key of client identity key
 - ksu - key server for identity key verification
 - aud - did:key of dapp authentication key
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
-- ids - array of notification IDs to mark as read, max 1000 items
+- all - `true` to mark all notifications as read, `false` to set with `ids`
+- ids - array of notification IDs to mark as read, max 1000 items. Requires `all=false`
 
 ```typescript
 {
