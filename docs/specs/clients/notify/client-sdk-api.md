@@ -51,14 +51,17 @@ abstract class Client {
     hasMoreUnread: boolean,
   }>
 
-  // mark notification as read
-  // returns true if operation was a success. 
-  // For now, `read` can only be true. 
-  public abstract updateNotificationsReadState(params: {
+  // Mark a set of notifications as read.
+  public abstract markNotificationsAsRead(params: {
     topic: string,
+    // Max 1000 items
     notificationIds: string[],
-    read?: true
-  }): Promise<boolean>
+  }): Promise<void>
+
+  // Mark all notifications as read.
+  public abstract markAllNotificationsAsRead(params: {
+    topic: string,
+  }): Promise<void>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
