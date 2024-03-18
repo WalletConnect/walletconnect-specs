@@ -57,7 +57,7 @@
   // Redirect URL for call-to-action related to notification. If empty, there is no link
   url: string,
   // If the notification was read or not
-  read: boolean,
+  is_read: boolean,
 }
 ```
 
