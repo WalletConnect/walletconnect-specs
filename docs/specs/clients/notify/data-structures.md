@@ -13,7 +13,7 @@
   "metadata": Metadata,
   "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
-  "unreadNotificationCount": number
+  "unreadNotificationCount": number,
 }
 ```
 
@@ -89,7 +89,7 @@ NotifyServerSubscription[]
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
   expiry: number, // Unix timestamp of expiration
-  unreadNotificationCount: number
+  unreadNotificationCount: number, // Number of unread notifications
 }
 ```
 
