@@ -35,6 +35,8 @@
   icon: string | null,
   // Redirect URL for call-to-action related to notification. If null, there is no link
   url: string | null,
+  // If the notification was read or not
+  is_read: boolean,
 }
 ```
 
