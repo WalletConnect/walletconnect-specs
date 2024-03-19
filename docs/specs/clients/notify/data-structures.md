@@ -87,7 +87,7 @@ NotifyServerSubscription[]
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
   expiry: number, // Unix timestamp of expiration
-  unreadCount: number
+  unreadNotificationCount: number
 }
 ```
 
