@@ -177,48 +177,6 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 | Tag     | 4015         |
 | Topic   | notify topic |
 
-## `wc_notifyNotificationsChanged`
-
-Emitted by the Notify Server when a notification changed state. For example if its read status changed.
-
-### Request
-
-- act - `notify_notifications_changed`
-- iss - did:key of dapp authentication key
-- aud - did:key of client identity key
-- nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
-
-```typescript
-{
-  auth: string,
-}
-```
-
-| IRN     |              |
-| ------- | ------------ |
-| TTL     | 300          |
-| Tag     | 4016         |
-| Topic   | notify topic |
-
-### Response
-
-- act - `notify_notifications_changed_response`
-- iss - did:key of client identity key
-- ksu - key server for identity key verification
-- aud - did:key of dapp authentication key
-
-```typescript
-{
-  auth: string,
-}
-```
-
-| IRN     |              |
-| ------- | ------------ |
-| TTL     | 300          |
-| Tag     | 4017         |
-| Topic   | notify topic |
-
 ## `wc_notifyMarkNotificationsAsRead`
 
 Marks notifications as read.
@@ -243,7 +201,7 @@ Marks notifications as read.
 | IRN     |              |
 | ------- | ------------ |
 | TTL     | 300          |
-| Tag     | 4020         |
+| Tag     | 4016         |
 | Topic   | notify topic |
 
 ### Response
@@ -261,7 +219,7 @@ Marks notifications as read.
 | IRN     |              |
 | ------- | ------------ |
 | TTL     | 300          |
-| Tag     | 4021         |
+| Tag     | 4017         |
 | Topic   | notify topic |
 
 ## Noop
