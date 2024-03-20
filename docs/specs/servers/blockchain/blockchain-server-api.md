@@ -338,3 +338,80 @@ Used to lookup fungible assets balances
 
 * `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
+
+## Smart Accounts (Alpha)
+
+Endpoints used for smart accounts.
+
+### Create session
+
+This endpoint is used to save the session data.
+
+`POST /v1/smart_accounts/session`
+
+#### Request body:
+
+The POST request body must be in JSON format with the following structure:
+
+```typescript
+{
+    "address": string,
+    "signature": string,
+    "sessionData": {
+        "sessionDuration": number,
+        "sessionStart": number,
+        "sessionTargets": array[{
+            "targetAddress": string,
+            "targetABI": string,
+            "functionsName": array[string]
+        }],
+        "sessionLimitNative": number,
+        "sessionLimitsERC20": array[{
+            "symbol": string,
+            "contractAddress": string,
+            "limit": number
+        }],
+        "sessionLimitsERC721": array[{
+            "collectionName": string,
+            "contractAddress": string,
+            "tokenIds": array[string]
+        }],
+        "arguments": array[{
+            "operator": EQUAL | GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL | NOT_EQUAL,
+            "value": string
+        }]
+    }
+}
+```
+
+* `address` - The smart contract address.
+* `signature` - The signature for the hashed JSON representation of `Session Data object`.
+
+##### Session Data object:
+
+* `sessionDuration` - The time period that the session will remain active. Format: `ddhhmm`. When the duration is `0` the session will never end unless it is revoked.
+* `sessionStart` - An optional delay to the session start time. Format:`ddhhmm`. When the duration is `0` the session will start immediately.
+* `sessionTargets` - Array of objects that provides a list of contract addresses that the wallet can interact with within the scope of the session. If the target address is not within the list permitted by the session policy, the transaction will fail.
+    * `targetAddress` - Contract addresses that the wallet can interact with within the scope of the session.
+    * `targetABI` - The contract ABI that the wallet can send to the contract.
+    * `functionsName`- (Optional) List of functions to interact for more granularity.
+* `sessionLimitNative` - Provides a limit on the native tokens that can be used to pay for network fees. Zero for no limits.
+* `sessionLimitsERC20` - Provides a list of objects of ERC20 assets that can be accessed within the session and specifies a value limit for each asset. If limit is `0` then there is no limit:
+    * `symbol` - Asset symbol.
+    * `contractAddress` - Asset contract address.
+    * `limit` - Spending limit.
+* `sessionLimitsERC721` - Provides a list of objects of `ERC721` collections that can be accessed within the session and optionally specifies any individual NFTs within the collection:
+    * `collectionName` - Collection name.
+    * `contractAddress` - The asset contract address.
+    * `tokenIds` - List of token IDs to interact with for more granularity.
+* `arguments` - Array of objects with additional arguments can be specified to implement custom logic:
+    * `operator` - Operator that can be used.
+    * `value` - The value passed into the operator.
+
+#### Success response body:
+
+* `id` - Generated unique session identifier.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missed or wrong.
