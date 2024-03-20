@@ -142,7 +142,7 @@ Paginated list of notifications with the most recently sent first. Unread notifi
   - Example: `did:web:app.example.com`
 - lmt - the max number of notifications to return. Maximum value is 50.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
-- urf - unread first
+- urf - order unread notifications before read notifications regardless of time and paginate from there
 
 ```typescript
 {
