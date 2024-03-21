@@ -20,6 +20,7 @@ Body:
     "icon": string,
     "url": string,
     "type": string,
+    "data": string,
   },
   "accounts": Account[],
 }

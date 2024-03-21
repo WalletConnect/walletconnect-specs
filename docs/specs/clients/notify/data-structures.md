@@ -34,6 +34,8 @@
   icon: string | null,
   // Redirect URL for call-to-action related to notification. If null, there is no link
   url: string | null,
+  // Arbitrary custom data set by the sender of the notification
+  data: string | null,
 }
 ```
 
@@ -55,6 +57,8 @@
   icon: string,
   // Redirect URL for call-to-action related to notification. If empty, there is no link
   url: string,
+  // Arbitrary custom data set by the sender of the notification
+  data: string | null,
 }
 ```
 
