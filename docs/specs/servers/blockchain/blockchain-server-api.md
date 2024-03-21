@@ -292,16 +292,8 @@ Used to lookup fungible assets balances
 #### Query parameters
 
 * `projectId` - the project identifier.
-* `currency` - currency to calculate the assets value. e.g. `usd`. Supported currencies:
-    * `btc`
-    * `eth`
-    * `usd`
-    * `eur`
-    * `gbp`
-    * `aud`
-    * `cad`
-    * `inr`
-    * `jpy`
+* `currency` - currency to calculate the assets value. e.g. `usd`.
+    * Supported currencies: `btc`, `eth`, `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`.
 * `chain` - (Optional) filter assets by CAIP-10 chain id. Supported chain IDs:
     * `eip155:1` - Ethereum
     * `eip155:5` - Goerli
@@ -327,7 +319,8 @@ Used to lookup fungible assets balances
     * `name` - asset name. e.g. `Ethereum`
     * `symbol` - native asset or ERC-20 symbol. e.g. `ETH`
     * `chainId` - CAIP-10 chain id. e.g. `eip155:1`
-    * `value` - asset value in currency calculated from the request argument.
+    * `address` - (Optional) token contract address. The address is null for the native token.
+    * `value` - (Optional) asset value in currency calculated from the request argument.
     * `price` - price of a single unit of the asset in currency calculated from the request argument.
     * `quantity` - asset quantity object:
         * `decimals` - decimal number precision of the quantity.
