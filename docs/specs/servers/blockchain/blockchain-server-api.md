@@ -316,10 +316,12 @@ Used to lookup fungible assets balances
 #### Success response body:
 
 * `balances` - list of address balances with the following attributes:
-    * `name` - asset name. e.g. `Ethereum`
-    * `symbol` - native asset or ERC-20 symbol. e.g. `ETH`
-    * `chainId` - CAIP-10 chain id. e.g. `eip155:1`
-    * `address` - (Optional) token contract address. The address is null for the native token.
+    * `name` - asset name. e.g. `Ethereum`.
+    * `symbol` - native asset or ERC-20 symbol. e.g. `ETH`.
+    * `chainId` - CAIP-10 chain id. e.g. `eip155:1`.
+    * `implementations` - List of objects for token implementations:
+        * `address` - token contract address in CAIP-10 format.
+        * `decimals` - decimal number precision of the quantity.
     * `value` - (Optional) asset value in currency calculated from the request argument.
     * `price` - price of a single unit of the asset in currency calculated from the request argument.
     * `quantity` - asset quantity object:
