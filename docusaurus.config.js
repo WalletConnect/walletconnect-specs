@@ -134,7 +134,7 @@ const config = {
     },
     algolia: {
       appId: 'O3QBOMGZYQ',
-      apiKey: 'fb41041932d46792c1c976f2bf7a6700',
+      apiKey: 'bbc3d1cf09dcdc00486f6abb9b276826',
       indexName: 'specs-walletconnect',
       contextualSearch: true
     }
