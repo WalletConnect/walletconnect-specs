@@ -43,8 +43,8 @@ abstract class Client {
     // Default 10, max 50
     limit?: number,
     startingAfter?: string,
-    // Default false
-    unreadFirst?: string,
+    // Default true
+    unreadFirst?: boolean,
   }): Promise<{
     notifications: NotifyNotificationRecord[],
     hasMore: boolean,
