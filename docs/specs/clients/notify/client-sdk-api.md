@@ -43,10 +43,25 @@ abstract class Client {
     // Default 10, max 50
     limit?: number,
     startingAfter?: string,
+    // Default true
+    unreadFirst?: boolean,
   }): Promise<{
     notifications: NotifyNotificationRecord[],
     hasMore: boolean,
+    hasMoreUnread: boolean,
   }>
+
+  // Mark a set of notifications as read.
+  public abstract markNotificationsAsRead(params: {
+    topic: string,
+    // Max 1000 items
+    notificationIds: string[],
+  }): Promise<void>
+
+  // Mark all notifications as read.
+  public abstract markAllNotificationsAsRead(params: {
+    topic: string,
+  }): Promise<void>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
@@ -109,6 +124,9 @@ abstract class Client {
 
   // for wallet to listen on notify notification
   public abstract on("notify_notification", (notification: NotifyNotificationRecord, metadata: Metadata) => {}): void;
+
+  // Listen for when an existing notification has been changed
+  public abstract on("notify_notifications_changed", (notifications: Record<string, { read: boolean }>) => {}): void;
 
   // for wallet to listen for result of notify subscription update
   public abstract on("notify_update", (result: NotifySubscription | Error) => {}): void;
