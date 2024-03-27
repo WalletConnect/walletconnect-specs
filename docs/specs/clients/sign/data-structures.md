@@ -1,8 +1,10 @@
 # Data Structures
 
+## Sign Data Structures
+
 In this document we define data structures and definitions used in the v2.0-rc protocol
 
-## Relay
+### Relay
 
 Relay is defined by the transport protocol used for the two clients to publish and subscribe messages between each other.
 
@@ -13,7 +15,7 @@ Relay is defined by the transport protocol used for the two clients to publish a
 }
 ```
 
-## Session
+### Session
 
 Session is a topic encrypted by a symmetric key derived using a key agreement established after an approved proposal and it has a controller participant that can update its accounts, methods, events and expiry.
 
@@ -61,7 +63,7 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
 }
 ```
 
-## Proposal
+### Proposal
 
 Proposal is sent by the proposer client to be approved or rejected by the responder who is assumed to be the controller of the resulting session and will respond with its public key to derive the future topic and symKey.
 
@@ -89,7 +91,7 @@ Proposal is sent by the proposer client to be approved or rejected by the respon
 }
 ```
 
-## Response
+### Response
 
 Response is sent by the responder client and can either be an approval or rejection to the proposal made and if approved will be followed by a settlement request on the new topic derived from the hashed symmetric key from the key agreement
 
@@ -113,7 +115,7 @@ Response is sent by the responder client and can either be an approval or reject
 }
 ```
 
-## Settlement
+### Settlement
 
 Settlement is sent by the responder after approval and it's broadcasted right after the response on the new topic derived from the hashed symmetric key from the key agreement
 
@@ -162,7 +164,7 @@ Settlement is sent by the responder after approval and it's broadcasted right af
 }
 ```
 
-## Verify Context
+### Verify Context
 
 Verify Context is appended to Session Proposals and Session Requests to provide metadata that was constructed internally by the client that is relevant to the specific proposal or request
 
@@ -176,8 +178,10 @@ Verify Context is appended to Session Proposals and Session Requests to provide 
 }
 ```
 
-## Namespace Config
+### Namespace Config
+
 Namespace Config is set within the setNamespaceConfig method that is a part of the Sign client. It defines Special and Supported Namespaces and must be called after initialization of the SDK and before approve session method.
+
 ```jsonc
 {
    "supportedNamespaces": {
@@ -194,5 +198,164 @@ Namespace Config is set within the setNamespaceConfig method that is a part of t
       "events": [string]
     }
   }
+}
+```
+
+## Wallet Authentication Data Structures
+
+### Miscellaneous
+
+```typescript
+interface Participant {
+  publicKey: string;
+  metadata: Metadata;
+}
+
+interface SessionAuthenticateRequest {
+  id: number;
+  topic: string;
+  params: {
+    requester: Participant;
+    authPayload: PayloadParams;
+    expiryTimestamp: number;
+  };
+}
+```
+
+### Request Params
+
+```typescript
+interface RequestParams {
+  chains: string[];
+  domain: string;
+  nonce: string;
+  aud?: string;
+  type?: string;
+  nbf?: string;
+  exp?: string;
+  statement?: string;
+  requestId?: string;
+  resources?: string[];
+  pairingTopic?: string;
+  methods?: string[];
+}
+```
+
+### Respond Params
+
+```typescript
+type RespondParams = ResultResponse | ErrorResponse;
+```
+
+### Payload Params (partial Cacao)
+
+Used for requester to authenticate wallet
+
+```typescript
+interface PayloadParams {
+  type: string; // same as Cacao Header type (t)
+  chains: string[];
+  domain: string;
+  aud: string;
+  version: string;
+  nonce: string;
+  iat: string;
+  nbf?: string;
+  exp?: string;
+  statement?: string;
+  requestId?: string;
+  resources?: string[];
+}
+```
+
+### Response
+
+```typescript
+interface SessionAuthenticateResponseParams {
+  responder: Participant;
+  cacaos: Cacao[];
+}
+
+type Response = SessionAuthenticateResponseParams | ErrorResponse;
+```
+
+### Pending Request
+
+```typescript
+interface PendingRequest {
+  id: number;
+  pairingTopic: string;
+  requester: Participant;
+  authPayload: PayloadParams;
+  expiryTimestamp: number;
+  verifyContext: Verify.Context;;
+}
+```
+
+### Cacao Header ([CAIP-74](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md))
+
+```typescript
+interface CacaoHeader {
+  t: string;
+}
+```
+
+### Cacao Payload ([CAIP-74](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md))
+
+```typescript
+interface CacaoPayload {
+  iss: string;
+  domain: string;
+  aud: string;
+  version: string;
+  nonce: string;
+  iat: string;
+  nbf?: string;
+  exp?: string;
+  statement?: string;
+  requestId?: string;
+  resources?: string[];
+}
+```
+
+### Cacao Signature ([CAIP-74](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md))
+
+```typescript
+interface CacaoSignature {
+  t: string;
+  s: string;
+  m?: string;
+}
+```
+
+### Cacao ([CAIP-74](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md))
+
+```typescript
+interface Cacao {
+  h: CacaoHeader;
+  p: CacaoPayload;
+  s: CacaoSignature;
+}
+```
+
+### Result Response
+
+```typescript
+// signatures is an array of signed CACAOs for each requested chain
+interface ResultResponse {
+  id: number;
+  auths: Cacao[];
+}
+```
+
+### Error Response
+
+```typescript
+interface ErrorResponse {
+  id: number;
+  error: {
+    code: number;
+    message: string;
+  };
 }
 ```
