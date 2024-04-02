@@ -190,7 +190,7 @@ Marks notifications as read.
 - app - did:web of app domain that this request is associated with 
   - Example: `did:web:app.example.com`
 - all - `true` to mark all notifications as read, `false` to set with `ids`
-- ids - array of notification IDs to mark as read, max 1000 items. Requires `all=false`
+- ids - array of notification IDs to mark as read, max 1000 items. Requires `all=false` or else must not be set
 
 ```typescript
 {
