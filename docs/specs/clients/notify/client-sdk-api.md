@@ -125,9 +125,6 @@ abstract class Client {
   // for wallet to listen on notify notification
   public abstract on("notify_notification", (notification: NotifyNotificationRecord, metadata: Metadata) => {}): void;
 
-  // Listen for when an existing notification has been changed
-  public abstract on("notify_notifications_changed", (notifications: Record<string, { read: boolean }>) => {}): void;
-
   // for wallet to listen for result of notify subscription update
   public abstract on("notify_update", (result: NotifySubscription | Error) => {}): void;
 
