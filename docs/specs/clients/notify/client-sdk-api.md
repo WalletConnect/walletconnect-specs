@@ -43,10 +43,25 @@ abstract class Client {
     // Default 10, max 50
     limit?: number,
     startingAfter?: string,
+    // Default true
+    unreadFirst?: boolean,
   }): Promise<{
     notifications: NotifyNotificationRecord[],
     hasMore: boolean,
+    hasMoreUnread: boolean,
   }>
+
+  // Mark a set of notifications as read.
+  public abstract markNotificationsAsRead(params: {
+    topic: string,
+    // Max 1000 items
+    notificationIds: string[],
+  }): Promise<void>
+
+  // Mark all notifications as read.
+  public abstract markAllNotificationsAsRead(params: {
+    topic: string,
+  }): Promise<void>
 
   // delete active subscription
   public abstract deleteSubscription(params: {
