@@ -142,6 +142,7 @@ Paginated list of notifications with the most recently sent first. Unread notifi
   - Example: `did:web:app.example.com`
 - lmt - the max number of notifications to return. Maximum value is 50.
 - aft - the notification ID to start returning messages after. Null to start with the most recent notification
+- urf - order unread notifications before read notifications regardless of time and paginate from there
 
 ```typescript
 {
@@ -162,6 +163,7 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 - aud - did:key of Notify Server authentication key
 - nfs - array of [Notify Notifications](./data-structures.md#notify-notification)
 - mre - true if there are more pages, false otherwise
+- mur - true if there are more unread notifications on following pages, false otherwise
 
 ```typescript
 {
@@ -173,6 +175,51 @@ Paginated list of notifications with the most recently sent first. Unread notifi
 | ------- | ------------ |
 | TTL     | 300          |
 | Tag     | 4015         |
+| Topic   | notify topic |
+
+## `wc_notifyMarkNotificationsAsRead`
+
+Marks notifications as read.
+
+### Request
+
+- act - `notify_mark_notifications_as_read`
+- iss - did:key of client identity key
+- ksu - key server for identity key verification
+- aud - did:key of dapp authentication key
+- app - did:web of app domain that this request is associated with 
+  - Example: `did:web:app.example.com`
+- all - `true` to mark all notifications as read, `false` to set with `ids`
+- ids - array of notification IDs to mark as read, max 1000 items. Requires `all=false` or else must not be set
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4016         |
+| Topic   | notify topic |
+
+### Response
+
+- act - `notify_read_notifications_response`
+- iss - did:key of dapp authentication key
+- aud - did:key of client identity key
+
+```typescript
+{
+  auth: string,
+}
+```
+
+| IRN     |              |
+| ------- | ------------ |
+| TTL     | 300          |
+| Tag     | 4017         |
 | Topic   | notify topic |
 
 ## Noop

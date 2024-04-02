@@ -13,6 +13,7 @@
   "metadata": Metadata,
   "scope": Record<string, NotifyNotificationType>,
   "expiry": number,
+  "unreadNotificationCount": number,
 }
 ```
 
@@ -34,6 +35,8 @@
   icon: string | null,
   // Redirect URL for call-to-action related to notification. If null, there is no link
   url: string | null,
+  // If the notification was read or not
+  is_read: boolean,
 }
 ```
 
@@ -55,6 +58,8 @@
   icon: string,
   // Redirect URL for call-to-action related to notification. If empty, there is no link
   url: string,
+  // If the notification was read or not
+  is_read: boolean,
 }
 ```
 
@@ -84,6 +89,7 @@ NotifyServerSubscription[]
   account: Account, // CAIP-10 account
   scope: string[], // Array of notification types enabled for this subscription
   expiry: number, // Unix timestamp of expiration
+  unreadNotificationCount: number, // Number of unread notifications
 }
 ```
 
