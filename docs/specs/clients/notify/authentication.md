@@ -10,7 +10,7 @@ All of the authentication payloads are DID JWTs and share the following claims:
 - iss - did:key. Value defined specifically in each payload
 - sub - did:pkh of blockchain account that this request is associated with
   - Example: `did:pkh:eip155:1:0x1234...`
-- mjv - major version of the API level being used as a string, currently `"1"`. Max length 16 characters.
+- mjv - Major version of the API level being used as a string, currently `"1"`. Max length 16 characters.
 - sdk - Only set by SDK-sent message. Arbitrary-format platform and version of the SDK being used. E.g. `js-1.5.1`. Max length 16 characters
 
 Depending on the message, different keys are used for `iss`:
