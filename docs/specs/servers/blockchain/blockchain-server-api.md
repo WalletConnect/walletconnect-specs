@@ -331,3 +331,124 @@ Used to lookup fungible assets balances
 
 * `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
+
+## Conversion
+
+Endpoints to convert tokens.
+
+### List of tokens available for conversion
+
+`GET /v1/convert/tokens`
+
+#### Path parameters
+
+* `projectId` - is the project identifier
+* `chainId` - filter by chain. CAIP-2 format. e.g. `eip155:1`
+
+#### Success response body:
+
+* `tokens` - list of objects which define available tokens:
+    * `name` - token name.
+    * `symbol` - token symbol.
+    * `address` - contract address of the token in CAIP-10 format.
+    * `decimals` - number of decimals for amount supported by a given token.
+    * `logoUri` - URL of the token icon.
+    * `eip2612` - (Optional for ERC-20 tokens) value is `true` if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612)
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - project ID verification error.
+
+### Requesting conversion quotes
+
+`GET /v1/convert/quotes`
+
+#### Path parameters
+
+* `projectId` - is the project identifier.
+* `amount` - amount of tokens to be converted related to the decimals of the token. Numeric value up to 18 decimals.
+* `userAddress` - caller address.
+* `from` - source CAIP-10 asset address.
+* `to` - destination CAIP-10 asset address.
+
+#### Success response body:
+
+* `quotes` - list of objects which define available conversion quotes:
+    * `id` - (Optional for cross chain swaps) quote ID to be used for convert request.
+    * `fromAmount` - amount of token being sent on sending chain.
+    * `fromAccount` - source CAIP-10 account ID.
+    * `toAmount` - amount of token to be received on the destination chain.
+    * `toAccount` - destination CAIP-10 account ID.
+
+#### Response error codes:
+
+* `400 Bad Request` - some parameters in request body were missed or wrong.
+* `401 Unauthorized` - project ID verification error.
+
+### Requesting approve calldata
+
+Generate approve calldata to allow a transaction to perform a conversion.
+
+This step should be skipped if the token supports [eip-2612](https://eips.ethereum.org/EIPS/eip-2612).
+In this case, the `permit` parameter in `Requesting calldata to convert` should be used to provide the approval signature.
+
+`GET /v1/convert/build-approve`
+
+####  Path parameters
+
+* `projectId` - is the project identifier.
+* `userAddress` - caller address.
+* `from` - Source CAIP-10 asset address.
+* `to` - Destination CAIP-10 asset address.
+* `amount` - Amount of tokens to be converted related to the decimals of the token.
+
+#### Success response body:
+
+* `tx` - Transaction object
+    * `from` - (Optional) Source.
+    * `to` - Destination.
+    * `data` - Transaction data.
+    * `value` - Amount of tokens to be converted, denominated in the decimal precision of the token.
+    * `eip155` - (Optional) For EVM conversions only.
+        * `gasPrice` - Current gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missing or wrong.
+* `401 Unauthorized` - Project ID verification error.
+
+### Requesting calldata to convert
+
+Generate calldata for convert transaction.
+
+`POST /v1/convert/build-transaction`
+
+####  Request body
+
+The `POST` request body should be in JSON format with the following structure:
+
+* `projectId` - is the project identifier.
+* `userAddress` - caller address.
+* `from` - asset source CAIP-10 address.
+* `to` - asset destination CAIP-10 address.
+* `amount` - Amount of tokens to be converted denominated in the decimal precision of the token.
+* `eip155`- (Optional) For EVM converts only
+    * `slippage` - Slippage integer value. Max. 50
+    * `permit` - (Optional) [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) gasless approvals.
+
+#### Success response body:
+
+* `tx` - Transaction object
+    * `from` - Source address (Sender).
+    * `to` - Destination address (Smart contract to swap).
+    * `data` - Transaction data.
+    * `amount` - Amount of tokens to be received denominated in the decimal precision of the token.
+    * `eip155` - (Optional) For EVM converts only
+        * `gas` - Gas amount to be used.
+        * `gasPrice` - Current gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missing or wrong.
+* `401 Unauthorized` - Project ID verification error.
