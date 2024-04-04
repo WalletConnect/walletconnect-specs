@@ -124,7 +124,7 @@ Or the lookup for account name by the address in a specified chain:
 
 Used to lookup for suggestions for the new name by returning 3 unique usernames.
 
-`GET /v1/profile/suggestion/:name`
+`GET /v1/profile/suggestions/:name`
 
 #### Path parameters
 
