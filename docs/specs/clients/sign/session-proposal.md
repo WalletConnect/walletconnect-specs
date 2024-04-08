@@ -72,9 +72,8 @@ sequenceDiagram
   WS->>+R: subscribe to pairing topic
   Note over R: optimistic subscribe
   R-->>-WS: ACK subscribe
-  deactivate W
-  R->>+WS: receive session proposal request
-  WS->>+W: emit session_proposal
+  R->>WS: receive session proposal request
+  WS->>W: emit session_proposal
   W->>WS: approve()
   Note over WS: generate key pair Y
   Note over WS: derive session symkey (pubX, privY) and topic
@@ -104,4 +103,19 @@ sequenceDiagram
   WS->>W: session_approve
   deactivate WS
   deactivate W
+
+  activate D
+  D->>+DS: user requests signature
+  Note over DS: TODO
+```
+
+```mermaid
+stateDiagram-v2
+  SP: Session proposed
+  PR: Proposal received
+  S: Settled
+  [*] --> SP
+  SP --> PR: scans QR code
+  PR --> S
+  S --> [*]
 ```
