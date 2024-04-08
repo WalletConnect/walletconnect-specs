@@ -30,10 +30,13 @@ sequenceDiagram
 		  N->>C: REQ wc_notifySubscriptionsChanged(subs) on res topic
 		  C--xN: RES wc_notifySubscriptionsChanged({}) on res topic
 		  deactivate N
-      Note over N: 1 day after step 3 no more updates
     end
-    Note over C: 1 day after step 3 gobackto step 3
-    Note over C: After going offline gobackto step 3
+    alt offline more than 5 minutes
+      Note over C: goto step 3
+    end
+    alt haven't called step 3 in a day
+      Note over C: goto step 3
+    end
   end
   deactivate C
 ```
