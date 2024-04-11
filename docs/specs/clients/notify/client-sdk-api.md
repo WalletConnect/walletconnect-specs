@@ -1,11 +1,5 @@
 # Client SDK API
 
-:::caution
-
-Notify API is under development. Want early access? Join our [Pilot Program](https://walletconnect.com/partners)
-
-:::
-
 ```typescript
 abstract class Client {
   // ---------- Methods ----------------------------------------------- //
