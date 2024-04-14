@@ -4,6 +4,33 @@
 
 Blockchain RPC API for interacting with different blockchains can be found in a separate `Blockchain RPC` subsection.
 
+## Identity ENS lookups
+
+### ENS Name lookup
+
+Used to lookup ENS name and avatar for the Ethereum address.
+
+`GET /v1/identity/{address}?projectId={projectId}`
+
+* `address` - (Optional) Ethereum address to lookup for the ENS name and avatar.
+* `projectId` - The project identifier.
+
+#### Success response body:
+
+```typescript
+{
+    "name": string,
+    "avatar": string
+}
+```
+
+* `name` - Registered address ENS name.
+* `avatar` - URI of the avatar of presented.
+
+#### Response error codes:
+
+* `400 Bad request` - Wrong requested address format.
+
 ## Hexless account profiles API
 
 Email wallet users can register a profile name e.g. `coolname.connect.id` and use it instead of the `0x` address.
