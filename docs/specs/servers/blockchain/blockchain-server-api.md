@@ -479,3 +479,23 @@ The `POST` request body should be in JSON format with the following structure:
 
 * `400 Bad Request` - Some parameters in request body were missing or wrong.
 * `401 Unauthorized` - Project ID verification error.
+
+### Gas price
+
+`GET /v1/convert/gas-price`
+
+#### Path parameters
+
+* `projectId` - The project identifier
+* `chainId` - Chain ID in CAIP-2 format. e.g. `eip155:1`
+
+#### Success response body:
+
+* `standard` - Standard gas price.
+* `fast` - Fast gas price.
+* `instant` - Instant gas price.
+
+#### Response error codes:
+
+* `400 Bad Request` - Some parameters in request body were missed or wrong.
+* `401 Unauthorized` - Project ID verification error.
