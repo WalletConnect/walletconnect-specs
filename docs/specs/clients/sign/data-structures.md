@@ -171,7 +171,8 @@ Verify Context is appended to Session Proposals and Session Requests to provide 
   "verified": {
     "origin": string,
     "validation": "UNKNOWN" | "VALID" | "INVALID",
-    "verifyUrl": string
+    "verifyUrl": string,
+    "isScam": boolean | undefined
   }
 }
 ```
