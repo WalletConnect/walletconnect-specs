@@ -428,7 +428,7 @@ In this case, the `permit` parameter in `Requesting calldata to convert` should 
 * `userAddress` - Caller address.
 * `from` - Source CAIP-10 asset address.
 * `to` - Destination CAIP-10 asset address.
-* `amount` - Amount of tokens to be converted related to the decimals of the token.
+* `amount` - (Optional) Amount of tokens to be converted related to the decimals of the token. If not specified an infinite amount of tokens will be allowed to spend.
 
 #### Success response body:
 
