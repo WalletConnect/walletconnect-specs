@@ -2,7 +2,7 @@
 
 This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
 
-## Definitions
+### Definitions
 
 - **Nullables:** Fields flagged as `Optional` can be omitted from the payload.
 - Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
@@ -18,9 +18,9 @@ error: {
 }
 ```
 
-## Methods
+### Methods
 
-### wc_sessionPropose
+#### wc_sessionPropose
 
 Used to propose a session through topic A. Requires a success response with associated data.
 
@@ -77,7 +77,7 @@ Used to propose a session through topic A. Requires a success response with asso
 | Tag     | 1101     |
 ```
 
-### wc_sessionSettle
+#### wc_sessionSettle
 
 Used to settle a session over topic B.
 
@@ -128,7 +128,7 @@ true
 | Tag     | 1103     |
 ```
 
-### wc_sessionUpdate
+#### wc_sessionUpdate
 
 Used to update the namespaces of a session.
 
@@ -164,7 +164,7 @@ true
 | Tag     | 1105     |
 ```
 
-### wc_sessionExtend
+#### wc_sessionExtend
 
 Used to extend the lifetime of a session.
 
@@ -201,18 +201,22 @@ true
 Sends a CAIP-27 request to the peer client. The client should immediately reject the request and respond an error if the target session permissions doesn't include the requested method or chain ID.
 
 ##### Expiry
+
 Param `Expiry` is an optional Unix timestamp. Sets the time until which the responder can respond to this request. If request is expired responder should respond with a specific error code.
 
 If this parameter is not specified, the request is considered indefinite.
 
 ##### Expiry validation
+
 `Expiry` should be between `.now() + MIN_INTERVAL` and `.now() + MAX_INTERVAL` where:
+
 - `MIN_INTERVAL` is 300 (5 mins)
 - `MAX_INTERVAL` is 604800 (7 days)
 
 If expiry validation failed wallet should respond with `.sessionRequestExpired (code 8000)` error
 
 ##### TTL extension
+
 When DApp is setting `expiry` params, client should insure that Relay Publish payload method `ttl` fit `expiry` value. Otherwise request `ttl` must be increased by the required value. Check [Relay Publish payload method](../../servers/relay/relay-server-rpc.md)
 
 **Request**
@@ -337,4 +341,85 @@ true
 | ------- | -------- |
 | TTL     | 30       |
 | Tag     | 1115     |
+```
+
+## Wallet Authentication RPC Methods
+
+### Definitions
+
+- **Nullables:** Fields flagged as `Optional` can be omitted from the payload.
+- Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
+
+```jsonc
+// Success
+result: true
+
+// Failure
+error: {
+  "code": number,
+  "message": string
+}
+```
+
+### Methods
+
+#### wc_sessionAuthenticate
+
+Used to request authentication signature to a peer through topic P. Response is expected on topic R with shared symKey.
+
+Parameters for request and response are compliant with [CAIP-74](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md) (aka CACAO)
+
+- Success response is equivalent to authentication acceptance.
+- Error response is equivalent to authentication rejection.
+
+##### Expiry
+
+Param `Expiry` is an optional Unix timestamp. Sets the time until which the responder can respond to this request. If request is expired responder should respond with a specific error code.
+
+If this parameter is not specified, the request is considered indefinite.
+
+##### Expiry validation
+
+`Expiry` should be between `.now() + MIN_INTERVAL` and `.now() + MAX_INTERVAL` where:
+
+- `MIN_INTERVAL` is 300 (5 mins)
+- `MAX_INTERVAL` is 604800 (7 days)
+
+If expiry validation failed wallet should respond with `.sessionRequestExpired (code 8000)` error
+
+##### TTL extension
+
+When DApp is setting `expiry` params, client should insure that Relay Publish payload method `ttl` fit `expiry` value. Otherwise request `ttl` must be increased by the required value. Check [Relay Publish payload method](../../servers/relay/relay-server-rpc.md)
+
+**Request**
+
+```ts
+// wc_sessionAuthenticate payload params
+{
+  "requester": Participant;
+  "authPayload": PayloadParams;
+  "expiryTimestamp": number;
+}
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 3600    |
+| Tag     | 1116     |
+
+```
+
+**Response**
+
+```ts
+// Success result (array of signed CACAOs)
+[{
+  "h": CacaoHeader,
+  "p": CacaoPayload,
+  "s": CacaoSignature
+}]
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 3600    |
+| Tag     | 1117     |
 ```

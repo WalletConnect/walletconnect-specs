@@ -9,7 +9,7 @@ abstract class Client {
     metadata?: AppMetadata;
   }): Promise<void>;
 
-  // for proposer to create a session 
+  // for proposer to create a session
   public abstract connect(params: {
     requiredNamespaces: Map<string, ProposalNamespace>;
     relays?: RelayProtocolOptions[];
@@ -74,6 +74,50 @@ abstract class Client {
     reason: Reason;
   }): Promise<void>;
 
+  // ---------- Wallet Authentication Methods ----------------------------------------------- //
+
+  // for proposer to request wallet authentication
+  public abstract authenticate(params: {
+    chains: string[];
+    domain: string;
+    nonce: string;
+    uri: string;
+    type?: CacaoHeader["t"];
+    nbf?: string;
+    exp?: string;
+    statement?: string;
+    requestId?: string;
+    resources?: string[];
+    expiry?: number;
+    pairingTopic?: string;
+    methods?: string[];
+  }): Promise<{
+      uri: string,
+      response: Promise<{
+        auths?: Cacao[];
+        session: SessionTypes.Struct;
+      }>
+    }>;
+
+
+   // respond to wallet authentication request
+
+  public abstract approveSessionAuthenticate(params: {
+    id: number;
+    auths: Cacao[];
+  }): Promise<void>;
+
+  public abstract rejectSessionAuthenticate(params: {
+    id: number;
+    reason: Reason;
+  }): Promise<void>;
+
+  // query all pending authentication requests
+  public abstract getPendingAuthRequests(): Promise<Record<number, PendingRequest>>;
+
+  // format payload to message string
+  public abstract formatAuthMessage(authPayload: PayloadParams, iss: string): Promise<string>;
+
 
   // ---------- Events ----------------------------------------------- //
 
@@ -88,5 +132,10 @@ abstract class Client {
 
   // subscribe to session delete
   public abstract on("session_delete", (sessionDelete: { id: number, topic: string }) => {}): void;
+
+  // ---------- Wallet Authentication Events ----------------------------------------------- //
+
+  // wallets to subscribe to session authenticate
+  public abstract on("session_authenticate", (sessionAuthenticateRequest: SessionAuthenticateRequest) => {}): void;
 }
 ```
