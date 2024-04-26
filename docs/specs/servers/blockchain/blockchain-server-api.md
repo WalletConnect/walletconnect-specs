@@ -144,7 +144,7 @@ Used to register account name.
 
 #### Request body:
 
-The POST request body should be in JSON format with the folowing structure:
+The POST request body should be in JSON format with the following structure:
 
 ```typescript
 {
@@ -187,7 +187,7 @@ Used to update name attributes.
 
 #### Request body:
 
-The POST request body should be in JSON format with the folowing structure:
+The POST request body should be in JSON format with the following structure:
 
 ```typescript
 {
@@ -226,7 +226,7 @@ Used to update or add name addresses.
 
 #### Request body:
 
-The POST request body should be in JSON format with the folowing structure:
+The POST request body should be in JSON format with the following structure:
 
 ```typescript
 {
