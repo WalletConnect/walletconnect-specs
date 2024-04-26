@@ -202,7 +202,7 @@ Used when a server sends a subscription message to a client.
 }
 ```
 
-### Fetch Messsages
+### Fetch Messages
 
 Used when a client wants to fetch all undelivered messages matching a single topic before subscribing.
 
