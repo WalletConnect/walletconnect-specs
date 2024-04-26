@@ -133,18 +133,10 @@ const config = {
       additionalLanguages: ['swift', 'kotlin']
     },
     algolia: {
-      appId: 'KEO8ND6AUT',
-      apiKey: '5921626237dc9040afc258af25d4e77d',
-      indexName: 'walletconnect',
+      appId: 'O3QBOMGZYQ',
+      apiKey: 'bbc3d1cf09dcdc00486f6abb9b276826',
+      indexName: 'specs-walletconnect',
       contextualSearch: true
-    },
-    announcementBar: {
-      id: 'support_us',
-      content:
-        '🚨 v1.0 has been shut down. Wallets and dapps must upgrade to v2.0 immediately. <a rel="noopener noreferrer" href="/2.0/advanced/migration-from-v1.x/overview">Learn more</a>. 🚨',
-      backgroundColor: '#3182ce',
-      textColor: '#fff',
-      isCloseable: true
     }
   },
 }

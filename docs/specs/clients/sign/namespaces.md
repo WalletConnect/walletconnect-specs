@@ -34,7 +34,7 @@ The proposal namespace is what the dapp sends to the wallet and contains the cha
     },
     "solana": {
       "methods": ["solana_signTransaction", "solana_signMessage"],
-      "chains": ["solana:4sGjMW1sUnHzSxGspuhpqLDx6wiyjNtZ"],
+      "chains": ["solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"],
       "events": []
     },
     "polkadot": {
