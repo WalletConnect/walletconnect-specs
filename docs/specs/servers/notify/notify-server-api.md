@@ -37,7 +37,7 @@ Response:
 {
   "sent": Account[], // notifications sent to subscribers
   "failed": Failed[], // notifications not sent because there was a failure in delivering
-  "notFound": Account[], // notifications not sent becuase those accounts were not subscribers
+  "notFound": Account[], // notifications not sent because those accounts were not subscribers
 }
 ```
 
