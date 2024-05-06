@@ -113,7 +113,7 @@ Fetches image for public assets like network logos using well-defined CAIP ident
 
 Fetches image for connector logos using descriptive names.
 
-#### Query Parameters
+#### Route Parameters
 
 - `connector_id`: Descriptive name for the connector (e.g., `coinbase-wallet`)
 
