@@ -14,7 +14,7 @@ All API requests can now use query parameters instead of custom headers for SDK 
   - Example: `st=w3m`
 - `sv=`: SDK version
   - Options: `${framework}-${library}-${version}`
-  - Example: `react-wagmi-4.0.0`
+  - Example: `sv=react-wagmi-4.0.0`
 - `projectId=`: The project ID for tracking and analytics
   - Options: `string`
   - Example: `projectId=702e2d45...`
