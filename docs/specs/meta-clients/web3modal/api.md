@@ -67,7 +67,7 @@ Fetches wallet data based on provided query parameters.
 
 Returns the image logo for the specified wallet ID.
 
-#### Query Parameters
+#### Route Parameters
 
 - `wallet_id`: The unique identifier for the wallet
 
