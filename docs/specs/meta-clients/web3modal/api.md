@@ -79,7 +79,7 @@ Returns the image logo for the specified wallet ID.
 
 Fetches image for public assets like network logos using well-defined CAIP identifiers.
 
-#### Query Parameters
+#### Route Parameters
 
 - `asset_id`: CAIP identifier for the network (e.g., `eip155-1`)
 
