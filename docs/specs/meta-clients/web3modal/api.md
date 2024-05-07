@@ -1,7 +1,7 @@
 
-# Web3Modal API v2
+# API (v2)
 
-> For the deprecated v1 specification, see [here (TODO)](#todo).
+> For the deprecated v1 specification, see [here](./api-v1-legacy.md).
 
 ## Query Parameters
 
