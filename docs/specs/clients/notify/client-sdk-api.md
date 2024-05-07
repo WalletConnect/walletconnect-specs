@@ -67,6 +67,20 @@ abstract class Client {
     topic: string,
     encryptedMessage: string,
   }): Promise<NotifyNotification>;
+  
+
+  // Generates and returns incomplete CacaoPayload
+  // To be handled in recaps based authentication.
+  // This enables one-click-auth based authentication to
+  // also enable permissions for notify API.
+  public abstract prepareRegistrationWithRecaps(params: {
+    domain: string;
+    allApps?: boolean;
+  }): Promise<{
+    allApps: boolean;
+	cacaoPayload: CacaoPayload
+	privateIdentityKey: string
+  }>;
 
   // Generates and returns SIWE message along with
   // Cacao Payload with identity key
