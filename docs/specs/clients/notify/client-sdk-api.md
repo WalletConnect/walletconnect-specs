@@ -78,8 +78,8 @@ abstract class Client {
     allApps?: boolean;
   }): Promise<{
     allApps: boolean;
-	cacaoPayload: CacaoPayload
-	privateIdentityKey: string
+    cacaoPayload: CacaoPayload
+    privateIdentityKey: string
   }>;
 
   // Generates and returns SIWE message along with
