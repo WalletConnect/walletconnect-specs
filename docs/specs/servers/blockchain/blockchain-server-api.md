@@ -321,7 +321,7 @@ Used to lookup fungible assets balances
 * `projectId` - The project identifier.
 * `currency` - Currency to calculate the assets value. e.g. `usd`.
     * Supported currencies: `btc`, `eth`, `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`.
-* `chain` - (Optional) filter assets by CAIP-2 chain id. Supported chain IDs:
+* `chain` - (Optional) Filter assets by CAIP-2 chain id. Supported chain IDs:
     * `eip155:1` - Ethereum
     * `eip155:5` - Goerli
     * `eip155:56` - BinanceSmartChain
@@ -339,6 +339,7 @@ Used to lookup fungible assets balances
     * `eip155:8508132` - Scroll
     * `eip155:7854577` - Zora
     * `eip155:1313161554` - Aurora
+* `forceUpdate` - (Optional) Token contract address to force the latest balance update on it. `chain` must be also provided for this type of call.
 
 #### Success response body:
 
