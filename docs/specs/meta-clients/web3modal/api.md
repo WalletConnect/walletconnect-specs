@@ -1,13 +1,14 @@
-
 # API (v2)
 
 > For the deprecated v1 specification, see [here](./api-v1-legacy.md).
 
 ## Query Parameters
 
-All API requests can now use query parameters instead of custom headers for SDK details, making integration simpler and more compatible with common HTTP clients and browser caching mechanisms.
+All API requests now use query parameters instead of custom headers for SDK metadata, making integration simpler and more compatible with common HTTP clients and browser caching mechanisms.
 
 ### Mandatory Query Parameters
+
+All API endpoints expect the following mandatory query parameters:
 
 - `st=`: SDK type
   - Options: `w3m | wcm`
@@ -27,8 +28,13 @@ Fetches wallet data based on provided query parameters.
 
 #### Query Parameters
 
+**Required**
+
 - `page`: The page number of results (e.g., `1`)
 - `entries`: Number of entries per page (e.g., `100`)
+
+**Optional**
+
 - `search`: Optional search term (e.g., `MetaMask`)
 - `include`: Optional comma-separated list of wallet IDs to include
 - `exclude`: Optional comma-separated list of wallet IDs to exclude
@@ -58,6 +64,42 @@ Fetches wallet data based on provided query parameters.
           "injected_id": string
         }
       ] | null
+    }
+  ]
+}
+```
+
+### GET `/v2/ios-data`
+
+Returns a list of iOS-facing wallet data, including the public Explorer ID and iOS deep link schema.
+
+#### Response
+
+```typescript
+{
+  "count": number,
+  "data": [
+    {
+      "id": string,
+      "ios_schema": string
+    }
+  ]
+}
+```
+
+### GET `/v2/android-data`
+
+Returns a list of Android-facing wallet data, including the public Explorer ID and Android App ID.
+
+#### Response
+
+```typescript
+{
+  "count": number,
+  "data": [
+    {
+      "id": string,
+      "android_app_id": string
     }
   ]
 }
@@ -128,6 +170,3 @@ Fetches image for connector logos using descriptive names.
 #### Response
 
 - A binary image file (Blob)
-
-
-
