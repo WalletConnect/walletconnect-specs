@@ -188,3 +188,21 @@ Fetches image for known tokens using the token's ticker symbol.
 #### Response
 
 - A binary image file (Blob)
+
+### GET `/v2/public/asset-image/currency/{currency_symbol}`
+
+Fetches image for known fiat currencies using the currency's symbol.
+
+#### Route Parameters
+
+- `currency_symbol`: The currency's symbol (e.g., `USD`, `EUR`, `JPY`)
+
+#### Example API Requests
+
+- US Dollar: `GET /v2/public/asset-image/currency/USD`
+- Euro: `GET /v2/public/asset-image/currency/EUR`
+- Japanese Yen: `GET /v2/public/asset-image/currency/JPY`
+
+#### Response
+
+- A binary image file (Blob)
