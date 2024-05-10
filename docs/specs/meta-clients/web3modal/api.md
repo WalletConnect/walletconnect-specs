@@ -170,3 +170,21 @@ Fetches image for connector logos using descriptive names.
 #### Response
 
 - A binary image file (Blob)
+
+### GET `/v2/public/asset-image/token/{token_symbol}`
+
+Fetches image for known tokens using the token's ticker symbol.
+
+#### Route Parameters
+
+- `token_symbol`: The token's ticker symbol (e.g., `ETH`, `USDC`, `WBTC`)
+
+#### Example API Requests
+
+- Ethereum: `GET /v2/public/asset-image/token/ETH`
+- USD Coin: `GET /v2/public/asset-image/token/USDC`
+- Wrapped Bitcoin: `GET /v2/public/asset-image/token/WBTC`
+
+#### Response
+
+- A binary image file (Blob)
