@@ -117,7 +117,7 @@ Returns the image logo for the specified wallet ID.
 
 - A binary image file (Blob)
 
-### GET `/v2/public/asset-image/network/{asset_id}`
+### GET `/v2/asset-image/network/{asset_id}`
 
 Fetches image for public assets like network logos using well-defined CAIP identifiers.
 
@@ -127,31 +127,31 @@ Fetches image for public assets like network logos using well-defined CAIP ident
 
 #### Example API Requests
 
-- Ethereum: `GET /v2/public/asset-image/network/eip155-1`
-- Arbitrum: `GET /v2/public/asset-image/network/eip155-42161`
-- Avalanche: `GET /v2/public/asset-image/network/eip155-43114`
-- Binance Smart Chain: `GET /v2/public/asset-image/network/eip155-56`
-- Fantom: `GET /v2/public/asset-image/network/eip155-250`
-- Optimism: `GET /v2/public/asset-image/network/eip155-10`
-- Polygon: `GET /v2/public/asset-image/network/eip155-137`
-- Gnosis: `GET /v2/public/asset-image/network/eip155-100`
-- Evmos: `GET /v2/public/asset-image/network/eip155-9001`
-- ZkSync: `GET /v2/public/asset-image/network/eip155-324`
-- Filecoin: `GET /v2/public/asset-image/network/fil-314`
-- IoTeX: `GET /v2/public/asset-image/network/eip155-4689`
-- Metis: `GET /v2/public/asset-image/network/eip155-1088`
-- Moonbeam: `GET /v2/public/asset-image/network/eip155-1284`
-- Moonriver: `GET /v2/public/asset-image/network/eip155-1285`
-- Zora: `GET /v2/public/asset-image/network/eip155-7777777`
-- Celo: `GET /v2/public/asset-image/network/eip155-42220`
-- Base: `GET /v2/public/asset-image/network/eip155-8453`
-- Aurora: `GET /v2/public/asset-image/network/eip155-1313161554`
+- Ethereum: `GET /v2/asset-image/network/eip155-1`
+- Arbitrum: `GET /v2/asset-image/network/eip155-42161`
+- Avalanche: `GET /v2/asset-image/network/eip155-43114`
+- Binance Smart Chain: `GET /v2/asset-image/network/eip155-56`
+- Fantom: `GET /v2/asset-image/network/eip155-250`
+- Optimism: `GET /v2/asset-image/network/eip155-10`
+- Polygon: `GET /v2/asset-image/network/eip155-137`
+- Gnosis: `GET /v2/asset-image/network/eip155-100`
+- Evmos: `GET /v2/asset-image/network/eip155-9001`
+- ZkSync: `GET /v2/asset-image/network/eip155-324`
+- Filecoin: `GET /v2/asset-image/network/fil-314`
+- IoTeX: `GET /v2/asset-image/network/eip155-4689`
+- Metis: `GET /v2/asset-image/network/eip155-1088`
+- Moonbeam: `GET /v2/asset-image/network/eip155-1284`
+- Moonriver: `GET /v2/asset-image/network/eip155-1285`
+- Zora: `GET /v2/asset-image/network/eip155-7777777`
+- Celo: `GET /v2/asset-image/network/eip155-42220`
+- Base: `GET /v2/asset-image/network/eip155-8453`
+- Aurora: `GET /v2/asset-image/network/eip155-1313161554`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/public/asset-image/connector/{connector_id}`
+### GET `/v2/asset-image/connector/{connector_id}`
 
 Fetches image for connector logos using descriptive names.
 
@@ -161,17 +161,17 @@ Fetches image for connector logos using descriptive names.
 
 #### Example API Requests
 
-- Coinbase Wallet: `GET /v2/public/asset-image/connector/coinbase-wallet`
-- Safe: `GET /v2/public/asset-image/connector/safe`
-- Ledger: `GET /v2/public/asset-image/connector/ledger`
-- WalletConnect: `GET /v2/public/asset-image/connector/wallet-connect`
-- Injected (Generic Web3 Injected Connectors): `GET /v2/public/asset-image/connector/injected`
+- Coinbase Wallet: `GET /v2/asset-image/connector/coinbase-wallet`
+- Safe: `GET /v2/asset-image/connector/safe`
+- Ledger: `GET /v2/asset-image/connector/ledger`
+- WalletConnect: `GET /v2/asset-image/connector/wallet-connect`
+- Injected (Generic Web3 Injected Connectors): `GET /v2/asset-image/connector/injected`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/public/asset-image/token/{token_symbol}`
+### GET `/v2/asset-image/token/{token_symbol}`
 
 Fetches image for known tokens using the token's ticker symbol.
 
@@ -181,15 +181,15 @@ Fetches image for known tokens using the token's ticker symbol.
 
 #### Example API Requests
 
-- Ethereum: `GET /v2/public/asset-image/token/ETH`
-- USD Coin: `GET /v2/public/asset-image/token/USDC`
-- Wrapped Bitcoin: `GET /v2/public/asset-image/token/WBTC`
+- Ethereum: `GET /v2/asset-image/token/ETH`
+- USD Coin: `GET /v2/asset-image/token/USDC`
+- Wrapped Bitcoin: `GET /v2/asset-image/token/WBTC`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/public/asset-image/currency/{currency_symbol}`
+### GET `/v2/asset-image/currency/{currency_symbol}`
 
 Fetches image for known fiat currencies using the currency's symbol.
 
@@ -199,9 +199,9 @@ Fetches image for known fiat currencies using the currency's symbol.
 
 #### Example API Requests
 
-- US Dollar: `GET /v2/public/asset-image/currency/USD`
-- Euro: `GET /v2/public/asset-image/currency/EUR`
-- Japanese Yen: `GET /v2/public/asset-image/currency/JPY`
+- US Dollar: `GET /v2/asset-image/currency/USD`
+- Euro: `GET /v2/asset-image/currency/EUR`
+- Japanese Yen: `GET /v2/asset-image/currency/JPY`
 
 #### Response
 
