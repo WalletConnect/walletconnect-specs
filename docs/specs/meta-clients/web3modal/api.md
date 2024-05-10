@@ -206,3 +206,15 @@ Fetches image for known fiat currencies using the currency's symbol.
 #### Response
 
 - A binary image file (Blob)
+
+### GET `/v2/get-analytics-config`
+
+Fetches the analytics configuration for the project based on the mandatory `projectId=` query parameter.
+
+#### Response
+
+```typescript
+{
+  isAanlyticsEnabled: boolean,
+}
+```
