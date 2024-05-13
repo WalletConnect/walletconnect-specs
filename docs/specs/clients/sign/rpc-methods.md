@@ -61,6 +61,8 @@ Used to propose a session through topic A. Requires a success response with asso
 
 **Response**
 
+Approve
+
 ```jsonc
 // Success result
 {
@@ -75,6 +77,28 @@ Used to propose a session through topic A. Requires a success response with asso
 | ------- | -------- |
 | TTL     | 300      |
 | Tag     | 1101     |
+```
+
+Reject
+
+```jsonc
+// JsonRpc Error
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 1120     |
+```
+
+Auto Reject
+
+```jsonc
+// JsonRpc Error
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 1121     |
 ```
 
 #### wc_sessionSettle
@@ -410,6 +434,8 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 
 **Response**
 
+Approve
+
 ```ts
 // Success result (array of signed CACAOs)
 [{
@@ -422,4 +448,26 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 | ------- | -------- |
 | TTL     | 3600    |
 | Tag     | 1117     |
+```
+
+Reject
+
+```jsonc
+// JsonRpc Error
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 1118     |
+```
+
+Auto Reject
+
+```jsonc
+// JsonRpc Error
+
+| IRN     |          |
+| ------- | -------- |
+| TTL     | 300      |
+| Tag     | 1119     |
 ```
