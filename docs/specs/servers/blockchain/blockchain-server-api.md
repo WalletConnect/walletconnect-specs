@@ -310,22 +310,20 @@ The POST request body should be in JSON format with the following structure:
 
 Used to lookup fungible assets balances
 
-`POST /v1/account/{address}/balance`
+`GET /v1/account/{address}/balance`
 
 #### Path parameters
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
 
-#### Request body:
-
-The POST request body should be in JSON format with the following structure:
+#### Request arguments:
 
 ```typescript
 {
     "projectId": string,
     "currency": string,
-    "chain": (optional) string,
-    "forceUpdate": (optional) string[]
+    "chain"?: string,
+    "forceUpdate"?: string
 }
 ```
 
@@ -350,7 +348,7 @@ The POST request body should be in JSON format with the following structure:
     * `eip155:8508132` - Scroll
     * `eip155:7854577` - Zora
     * `eip155:1313161554` - Aurora
-* `forceUpdate` - (Optional) List of token contract addresses to force the latest balance update on. `chain` must be also provided for this type of call.
+* `forceUpdate` - (Optional) List of comma separated token contract addresses (CAIP-10 format) to force the latest balance update on. `chain` must be also provided for this type of call.
 
 #### Success response body:
 
