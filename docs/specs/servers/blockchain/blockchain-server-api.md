@@ -124,17 +124,23 @@ Or the lookup for account name by the address in a specified chain:
 
 Used to lookup for suggestions for the new name by returning 3 unique usernames.
 
-`GET /v1/profile/suggestion`
+`GET /v1/profile/suggestions/:name`
+
+#### Path parameters
+
+* `name` - The preffered name. Minimum 3 characters length.
 
 #### Success response body:
 
 ```jsonc
 {
-    "suggestions": string[],
+    "suggestions": object[],
 }
 ```
 
-* `suggestions` - Suggested profile names.
+* `suggestions` - List of suggestions object. The default number of suggestions is up to 5:
+  * `name` - Suggested name.
+  * `registered` - Boolean parameter that reflects is the name is already registered. By default only not registered names are returned, but this is usefull for the exact name match that is also included in the response list.
 
 ### Register the name
 
