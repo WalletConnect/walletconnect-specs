@@ -398,6 +398,7 @@ Endpoints to convert tokens.
 * `userAddress` - Caller address.
 * `from` - Source CAIP-10 asset address.
 * `to` - Destination CAIP-10 asset address.
+* `gasPrice` - (Optional) Network price per gas in wei. By default fast network gas price.
 
 #### Success response body:
 
