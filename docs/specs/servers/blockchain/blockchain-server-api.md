@@ -539,6 +539,20 @@ The `POST` request body should be in JSON format with the following structure:
 * `fast` - Fast gas price.
 * `instant` - Instant gas price.
 
+### Conversion allowance
+
+`GET /v1/convert/allowance`
+
+#### Path parameters
+
+* `projectId` - The project identifier.
+* `tokenAddress` - Token address in CAIP-10 format. e.g. `eip155:1:0x...`.
+* `userAddress` - User wallet address in CAIP-10 format. e.g. `eip155:1:0x...`.
+
+#### Success response body:
+
+* `allowance` - Conversion allowance amount.
+
 #### Response error codes:
 
 * `400 Bad Request` - Some parameters in request body were missed or wrong.
