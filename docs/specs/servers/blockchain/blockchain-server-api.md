@@ -322,12 +322,21 @@ Used to lookup fungible assets balances
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
 
-#### Query parameters
+#### Request arguments:
+
+```typescript
+{
+    "projectId": string,
+    "currency": string,
+    "chain"?: string,
+    "forceUpdate"?: string
+}
+```
 
 * `projectId` - The project identifier.
 * `currency` - Currency to calculate the assets value. e.g. `usd`.
     * Supported currencies: `btc`, `eth`, `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`.
-* `chain` - (Optional) filter assets by CAIP-2 chain id. Supported chain IDs:
+* `chain` - (Optional) Filter assets by CAIP-2 chain id. Supported chain IDs:
     * `eip155:1` - Ethereum
     * `eip155:5` - Goerli
     * `eip155:56` - BinanceSmartChain
@@ -345,6 +354,7 @@ Used to lookup fungible assets balances
     * `eip155:8508132` - Scroll
     * `eip155:7854577` - Zora
     * `eip155:1313161554` - Aurora
+* `forceUpdate` - (Optional) List of comma separated token contract addresses (CAIP-10 format) to force the latest balance update on. `chain` must be also provided for this type of call.
 
 #### Success response body:
 
