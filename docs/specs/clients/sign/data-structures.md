@@ -42,6 +42,7 @@ Session is a topic encrypted by a symmetric key derived using a key agreement es
   "controller": string,
   "namespaces": {
     "<namespace_name>" : {
+      "chains": [string], // Optional
       "accounts": [string],
       "methods": [string],
       "events": [string]
