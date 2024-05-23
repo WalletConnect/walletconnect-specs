@@ -1,8 +1,4 @@
-# Blockchain API Overview
-
-## Blockchain RPC
-
-Blockchain RPC API for interacting with different blockchains can be found in a separate `Blockchain RPC` subsection.
+# Blockchain API
 
 ## Identity ENS lookups
 
