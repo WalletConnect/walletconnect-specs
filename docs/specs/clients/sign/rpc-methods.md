@@ -120,6 +120,7 @@ Used to settle a session over topic B.
   },
   "namespaces": {
     "<namespace_name>" : {
+      "chains": [string], // Optional
       "accounts": [string],
       "methods": [string],
       "events": [string]
