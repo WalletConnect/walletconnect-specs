@@ -1,4 +1,4 @@
-# Blockchain API Server Overview
+# Blockchain API Overview
 
 ## Description
 
