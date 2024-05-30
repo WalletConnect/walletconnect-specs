@@ -105,103 +105,108 @@ Returns a list of Android-facing wallet data, including the public Explorer ID a
 }
 ```
 
-### GET `/v2/wallet-image/{wallet_id}`
+### GET `/v2/wallet-image/{size}/{wallet_id}`
 
 Returns the image logo for the specified wallet ID.
 
 #### Route Parameters
 
 - `wallet_id`: The unique identifier for the wallet
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/network/{asset_id}`
+### GET `/v2/asset-image/network/{size}/{asset_id}`
 
 Fetches image for public assets like network logos using well-defined CAIP identifiers.
 
 #### Route Parameters
 
 - `asset_id`: CAIP identifier for the network (e.g., `eip155-1`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Example API Requests
 
-- Ethereum: `GET /v2/asset-image/network/eip155-1`
-- Arbitrum: `GET /v2/asset-image/network/eip155-42161`
-- Avalanche: `GET /v2/asset-image/network/eip155-43114`
-- Binance Smart Chain: `GET /v2/asset-image/network/eip155-56`
-- Fantom: `GET /v2/asset-image/network/eip155-250`
-- Optimism: `GET /v2/asset-image/network/eip155-10`
-- Polygon: `GET /v2/asset-image/network/eip155-137`
-- Gnosis: `GET /v2/asset-image/network/eip155-100`
-- Evmos: `GET /v2/asset-image/network/eip155-9001`
-- ZkSync: `GET /v2/asset-image/network/eip155-324`
-- Filecoin: `GET /v2/asset-image/network/fil-314`
-- IoTeX: `GET /v2/asset-image/network/eip155-4689`
-- Metis: `GET /v2/asset-image/network/eip155-1088`
-- Moonbeam: `GET /v2/asset-image/network/eip155-1284`
-- Moonriver: `GET /v2/asset-image/network/eip155-1285`
-- Zora: `GET /v2/asset-image/network/eip155-7777777`
-- Celo: `GET /v2/asset-image/network/eip155-42220`
-- Base: `GET /v2/asset-image/network/eip155-8453`
-- Aurora: `GET /v2/asset-image/network/eip155-1313161554`
+- Ethereum: `GET /v2/asset-image/network/56x56/eip155-1`
+- Arbitrum: `GET /v2/asset-image/network/56x56/eip155-42161`
+- Avalanche: `GET /v2/asset-image/network/56x56/eip155-43114`
+- Binance Smart Chain: `GET /v2/asset-image/network/56x56/eip155-56`
+- Fantom: `GET /v2/asset-image/network/56x56/eip155-250`
+- Optimism: `GET /v2/asset-image/network/56x56/eip155-10`
+- Polygon: `GET /v2/asset-image/network/56x56/eip155-137`
+- Gnosis: `GET /v2/asset-image/network/56x56/eip155-100`
+- Evmos: `GET /v2/asset-image/network/56x56/eip155-9001`
+- ZkSync: `GET /v2/asset-image/network/56x56/eip155-324`
+- Filecoin: `GET /v2/asset-image/network/56x56/fil-314`
+- IoTeX: `GET /v2/asset-image/network/56x56/eip155-4689`
+- Metis: `GET /v2/asset-image/network/56x56/eip155-1088`
+- Moonbeam: `GET /v2/asset-image/network/56x56/eip155-1284`
+- Moonriver: `GET /v2/asset-image/network/56x56/eip155-1285`
+- Zora: `GET /v2/asset-image/network/56x56/eip155-7777777`
+- Celo: `GET /v2/asset-image/network/56x56/eip155-42220`
+- Base: `GET /v2/asset-image/network/56x56/eip155-8453`
+- Aurora: `GET /v2/asset-image/network/56x56/eip155-1313161554`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/connector/{connector_id}`
+### GET `/v2/asset-image/connector/{size}/{connector_id}`
 
 Fetches image for connector logos using descriptive names.
 
 #### Route Parameters
 
 - `connector_id`: Descriptive name for the connector (e.g., `coinbase-wallet`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Example API Requests
 
-- Coinbase Wallet: `GET /v2/asset-image/connector/coinbase-wallet`
-- Safe: `GET /v2/asset-image/connector/safe`
-- Ledger: `GET /v2/asset-image/connector/ledger`
-- WalletConnect: `GET /v2/asset-image/connector/wallet-connect`
-- Injected (Generic Web3 Injected Connectors): `GET /v2/asset-image/connector/injected`
+- Coinbase Wallet: `GET /v2/asset-image/connector/56x56/coinbase-wallet`
+- Safe: `GET /v2/asset-image/connector/56x56/safe`
+- Ledger: `GET /v2/asset-image/connector/56x56/ledger`
+- WalletConnect: `GET /v2/asset-image/connector/56x56/wallet-connect`
+- Injected (Generic Web3 Injected Connectors): `GET /v2/asset-image/connector/56x56/injected`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/token/{token_symbol}`
+### GET `/v2/asset-image/token/{size}/{token_symbol}`
 
 Fetches image for known tokens using the token's ticker symbol.
 
 #### Route Parameters
 
 - `token_symbol`: The token's ticker symbol (e.g., `ETH`, `USDC`, `WBTC`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Example API Requests
 
-- Ethereum: `GET /v2/asset-image/token/ETH`
-- USD Coin: `GET /v2/asset-image/token/USDC`
-- Wrapped Bitcoin: `GET /v2/asset-image/token/WBTC`
+- Ethereum: `GET /v2/asset-image/token/56x56/ETH`
+- USD Coin: `GET /v2/asset-image/token/56x56/USDC`
+- Wrapped Bitcoin: `GET /v2/asset-image/token/56x56/WBTC`
 
 #### Response
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/currency/{currency_symbol}`
+### GET `/v2/asset-image/currency/{size}/{currency_symbol}`
 
 Fetches image for known fiat currencies using the currency's symbol.
 
 #### Route Parameters
 
 - `currency_symbol`: The currency's symbol (e.g., `USD`, `EUR`, `JPY`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Example API Requests
 
-- US Dollar: `GET /v2/asset-image/currency/USD`
-- Euro: `GET /v2/asset-image/currency/EUR`
-- Japanese Yen: `GET /v2/asset-image/currency/JPY`
+- US Dollar: `GET /v2/asset-image/currency/56x56/USD`
+- Euro: `GET /v2/asset-image/currency/56x56/EUR`
+- Japanese Yen: `GET /v2/asset-image/currency/56x56/JPY`
 
 #### Response
 
@@ -218,3 +223,10 @@ Fetches the analytics configuration for the project based on the mandatory `proj
   isAnalyticsEnabled: boolean,
 }
 ```
+
+## Known Image Sizes
+
+- `56x56`
+- `80x80`
+- `112x112`
+  `160x160`
