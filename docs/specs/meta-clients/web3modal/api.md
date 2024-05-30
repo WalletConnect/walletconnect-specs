@@ -215,6 +215,6 @@ Fetches the analytics configuration for the project based on the mandatory `proj
 
 ```typescript
 {
-  isAanlyticsEnabled: boolean,
+  isAnalyticsEnabled: boolean,
 }
 ```
