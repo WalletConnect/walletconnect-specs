@@ -424,6 +424,32 @@ Used to unregister an active watch webhook corresponding to a webhookId.
 }
 ```
 
+### Batch Request
+
+Allows combining multiple requests into a single one. Used to save on round-trip latency.
+
+```jsonc
+// Request (client->server)
+{
+  "id" : "1",
+  "jsonrpc": "2.0",
+  "method": "irn_batchRequest",
+  "params" : {
+    "batch": Request[],
+    "mode": "sequence" | "concurrent"
+  }
+}
+
+// Response (server->client)
+{
+  "id" : "1",
+  "jsonrpc": "2.0",
+  "result": true
+}
+```
+
+Requests in the batch are executed either concurrently or in sequence, as specified in the `mode` parameter. Responses to each request in the batch are sent back separately and immediately after the request has been processed. Once all of the requests have been processed, the batch response is sent to the client.
+
 ## FAQ
 
 - What is a client? - Any SDK instance (Sign, Chat, Auth, Push)
