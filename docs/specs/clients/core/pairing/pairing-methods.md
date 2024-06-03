@@ -4,7 +4,7 @@
 ## 1. Peer B matches URI's list exactly
 
 ### Peer A's pairing uri:
-    uri = "...methods=[wc_sessionPropose],[wc_authRequest,wc_authBatchRequest]"
+    uri = "...methods=wc_sessionPropose,wc_authRequest,wc_authBatchRequest"
 
     
 ### Peer B's registered methods:
@@ -18,7 +18,7 @@ is valid? Yes
 ## 2. Peer B matches one inner array exactly and partially matches another inner array
 
 ### Peer A's pairing uri:
-    uri = "...methods=[wc_sessionPropose],[wc_authBatchRequest]"
+    uri = "...methods=wc_sessionPropose,wc_authBatchRequest"
 
     
 ### Peer B's registered methods:
@@ -32,7 +32,7 @@ is valid? Yes
 ## 3. Peer B contains more methods than URI's list of methods
 
 ### Peer A's pairing uri:
-    uri = "...methods=[wc_sessionPropose]"
+    uri = "...methods=wc_sessionPropose"
 
     
 ### Peer B's registered methods:
@@ -46,7 +46,7 @@ is valid? Yes
 ## 4. Peer B matches an inner array and does not partially match the other inner array
 
 ### Peer A's pairing uri:
-    uri = "...methods=[wc_sessionPropose],[wc_authRequest]"
+    uri = "...methods=wc_sessionPropose,wc_authRequest"
 
 
 ### Peer B's registered methods:
@@ -60,7 +60,7 @@ is valid? No
 ## 5. Peer B does not match any inner arrays
 
 ### Peer A's pairing uri:
-    uri = "...methods=[wc_sessionPropose],[wc_authRequest]"
+    uri = "...methods=wc_sessionPropose,wc_authRequest"
 
 
 ### Peer B's registered methods:
