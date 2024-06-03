@@ -80,7 +80,7 @@ For a properly formatted namespace, refer to the documentation [here](../../../s
     "params": {
         "id": 1675734656244887,
         "pairingTopic": "3c74583111ab5e006b03cbb0f252c667686e9fc01e675dff90aa8b18ec435feb",
-        "expiry": 1675734962,
+        "expiryTimestamp": 1675734962,
         "requiredNamespaces": {
             "eip155": {
                 "methods": [
@@ -164,7 +164,8 @@ Here's an example of a payload from a `session_request` when the request is for 
                 }
             ]
         },
-        "chainId": "eip155:5"
+        "chainId": "eip155:5",
+        "expiryTimestamp": 1675734962
     }
 }
 ```
