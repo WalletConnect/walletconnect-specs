@@ -22,7 +22,7 @@ All API endpoints expect the following mandatory query parameters:
 
 ## API Endpoints
 
-### GET `/v2/wallets`
+### `GET /v2/wallets`
 
 Fetches wallet data based on provided query parameters.
 
@@ -69,7 +69,30 @@ Fetches wallet data based on provided query parameters.
 }
 ```
 
-### GET `/v2/ios-data`
+### `POST /v2/wallets`
+
+> **Note**: The `POST` method is used as an escape hatch mechanism to bypass URL length restrictions
+> when excluding/include a large number of wallet IDs.
+>
+> It is recommended to use the simpler `GET` method whenever possible.
+
+Fetches wallet data based on the same parameters used by `GET /v2/wallets`, but provided as a JSON object, stringified to `text/plain`.
+
+#### Request Body
+
+```typescript
+{
+  "page": number,
+  "entries": number,
+  "search": string | null,
+  "include": string | null,
+  "exclude": string | null,
+  "chains": string | null,
+  "platform": string | null
+}
+```
+
+### `GET /v2/ios-data`
 
 Returns a list of iOS-facing wallet data, including the public Explorer ID and iOS deep link schema.
 
@@ -87,7 +110,7 @@ Returns a list of iOS-facing wallet data, including the public Explorer ID and i
 }
 ```
 
-### GET `/v2/android-data`
+### `GET /v2/android-data`
 
 Returns a list of Android-facing wallet data, including the public Explorer ID and Android App ID.
 
@@ -105,7 +128,7 @@ Returns a list of Android-facing wallet data, including the public Explorer ID a
 }
 ```
 
-### GET `/v2/wallet-image/{size}/{wallet_id}`
+### `GET /v2/wallet-image/{size}/{wallet_id}`
 
 Returns the image logo for the specified wallet ID.
 
@@ -118,7 +141,7 @@ Returns the image logo for the specified wallet ID.
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/network/{size}/{asset_id}`
+### `GET /v2/asset-image/network/{size}/{asset_id}`
 
 Fetches image for public assets like network logos using well-defined CAIP identifiers.
 
@@ -153,7 +176,7 @@ Fetches image for public assets like network logos using well-defined CAIP ident
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/connector/{size}/{connector_id}`
+### `GET /v2/asset-image/connector/{size}/{connector_id}`
 
 Fetches image for connector logos using descriptive names.
 
@@ -174,7 +197,7 @@ Fetches image for connector logos using descriptive names.
 
 - A binary image file (Blob)
 
-### GET `/v2/asset-image/token/{size}/{token_symbol}`
+### `GET /v2/asset-image/token/{size}/{token_symbol}`
 
 Fetches image for known tokens using the token's ticker symbol.
 
@@ -212,7 +235,7 @@ Fetches image for known fiat currencies using the currency's symbol.
 
 - A binary image file (Blob)
 
-### GET `/v2/analytics-config`
+### `GET /v2/analytics-config`
 
 Fetches the analytics configuration for the project based on the mandatory `projectId=` query parameter.
 
