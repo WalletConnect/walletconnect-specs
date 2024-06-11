@@ -10,7 +10,7 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 
 - **topic** - (hex string - 32 bytes) a target topic for the message to be subscribed by the receiver.
 - **message** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic.
-- **attachments** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic. Not included in Verify API attestation.
+- **attachments** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic. Not included in Verify API attestation. This SHOULD be a JSON object to make adding more values easy and backwards-compatible, but its value is defined at the API level.
 - **ttl** - (uint32 - 4 bytes) a storage duration for the message to be cached server-side in **seconds** (aka time-to-live).
 - **tag** - (uint32 - 4 bytes) a label that identifies what type of message is sent based on the RPC method used.
 - **id** - 19 digit unique identifier. We suggest a 13 digit epoch timestamp plus 6 digit entropy
