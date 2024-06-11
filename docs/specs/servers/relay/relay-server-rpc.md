@@ -10,6 +10,7 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 
 - **topic** - (hex string - 32 bytes) a target topic for the message to be subscribed by the receiver.
 - **message** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic.
+- **attachments** - (utf8 string - variable) a plaintext message to be relayed to any subscribers on the topic. Not included in Verify API attestation.
 - **ttl** - (uint32 - 4 bytes) a storage duration for the message to be cached server-side in **seconds** (aka time-to-live).
 - **tag** - (uint32 - 4 bytes) a label that identifies what type of message is sent based on the RPC method used.
 - **id** - 19 digit unique identifier. We suggest a 13 digit epoch timestamp plus 6 digit entropy
@@ -20,17 +21,18 @@ The following definitions are shared concepts across all JSON-RPC methods for th
 
 Used when a client publishes a message to a server.
 
-```jsonc
+```typescript
 // Request (client->server)
 {
-  "id" : "1",
-  "jsonrpc": "2.0",
-  "method": "irn_publish",
-  "params" : {
-    "topic" : string,
-    "message" : string,
-    "ttl" : seconds,
-    "tag" : number,
+  id: string,
+  jsonrpc": "2.0",
+  method: "irn_publish",
+  params: {
+    topic: string,
+    message: string,
+    attachments?: string | null,
+    ttl: seconds,
+    tag: number,
   }
 }
 
@@ -46,13 +48,14 @@ Used when a client publishes a message to a server.
 
 Used when a client publishes multiple messages to a server.
 
-```jsonc
+```typescript
 // PublishedMessage
 {
-  "topic" : string,
-  "message" : string,
-  "ttl" : seconds,
-  "tag" : number,
+  topic: string,
+  message: string,
+  attachments?: string | null,
+  ttl: seconds,
+  tag: number,
 }
 
 // Request (client->server)
@@ -188,6 +191,7 @@ Used when a server sends a subscription message to a client.
     "data" : {
       "topic": string,
       "message": string,
+      "attachments": string | null,
       "publishedAt": number,
       "tag": number
     }
@@ -372,6 +376,7 @@ Body:
     "status": string, // either "accepted", "queued" or "delivered"
     "topic": string,
     "message": string,
+    "attachments": string | null,
     "publishedAt": number,
     "tag": number
   }
