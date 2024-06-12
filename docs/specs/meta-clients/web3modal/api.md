@@ -13,9 +13,15 @@ All API endpoints expect the following mandatory query parameters:
 - `st=`: SDK type
   - Options: `w3m | wcm`
   - Example: `st=w3m`
+- `sf=`: SDK framework
+  - Options: `html | react | vue`
+  - Example: `fw=react`
+- `sa=`: SDK adapter
+  - Options: `evm-wagmi | evm-ethers | evm-ethers5`
+  - Example: `ad=evm-wagmi`
 - `sv=`: SDK version
-  - Options: `${framework}-${library}-${version}`
-  - Example: `sv=react-wagmi-4.0.0`
+  - Options: `string`
+  - Example: `sv=5.0.0`
 - `projectId=`: The project ID for tracking and analytics
   - Options: `string`
   - Example: `projectId=702e2d45...`
