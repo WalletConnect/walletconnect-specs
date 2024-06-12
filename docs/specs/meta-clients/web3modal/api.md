@@ -53,11 +53,14 @@ Fetches wallet data based on provided query parameters.
       "homepage": string,
       "image_id": string,
       "order": number,
-      "mobile_link": string | null,
       "desktop_link": string | null,
       "webapp_link": string | null,
       "app_store": string | null,
       "play_store": string | null,
+      "mobile": {
+        deep_link: string | null,
+        universal_link: string | null
+      }
       "injected": [
         {
           "namespace": string,
