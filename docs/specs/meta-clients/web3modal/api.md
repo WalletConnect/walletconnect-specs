@@ -22,24 +22,23 @@ All API endpoints expect the following mandatory query parameters:
 
 ## API Endpoints
 
-### `GET /v2/wallets`
+### `POST /v2/wallets`
 
-Fetches wallet data based on provided query parameters.
+Fetches wallet data based on following request body provided as a stringified JSON object (`Content-Type: text/plain`).
 
-#### Query Parameters
+#### Request Body
 
-**Required**
-
-- `page`: The page number of results (e.g., `1`)
-- `entries`: Number of entries per page (e.g., `100`)
-
-**Optional**
-
-- `search`: Optional search term (e.g., `MetaMask`)
-- `include`: Optional comma-separated list of wallet IDs to include
-- `exclude`: Optional comma-separated list of wallet IDs to exclude
-- `chains`: Optional comma-separated list of chain identifiers (e.g., `eip155:1`)
-- `platform`: Optional platform filter (`ios` or `android`)
+```typescript
+{
+  "page": number, // Required - The page number of results (e.g., `1`)
+  "entries": number, // Required - Number of entries per page (e.g., `100`)
+  "search": string | null, // Optional search term (e.g., `MetaMask`)
+  "include": string | null, // Optional comma-separated list of wallet IDs to include
+  "exclude": string | null, // Optional comma-separated list of wallet IDs to exclude
+  "chains": string | null, // Optional comma-separated list of chain identifiers (e.g., `eip155:1`)
+  "platform": string | null // Optional platform filter (`ios` or `android`)
+}
+```
 
 #### Response
 
@@ -69,29 +68,6 @@ Fetches wallet data based on provided query parameters.
       ] | null
     }
   ]
-}
-```
-
-### `POST /v2/wallets`
-
-> **Note**: The `POST` method is used as an escape hatch mechanism to bypass URL length restrictions
-> when excluding/include a large number of wallet IDs.
->
-> It is recommended to use the simpler `GET` method whenever possible.
-
-Fetches wallet data based on the same parameters used by `GET /v2/wallets`, but provided as a JSON object, stringified to `text/plain`.
-
-#### Request Body
-
-```typescript
-{
-  "page": number,
-  "entries": number,
-  "search": string | null,
-  "include": string | null,
-  "exclude": string | null,
-  "chains": string | null,
-  "platform": string | null
 }
 ```
 
