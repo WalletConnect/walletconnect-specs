@@ -2,7 +2,7 @@
 
 ## Sessions permissions storage
 
-### Get permissions list
+### Get permissions list for account
 
 Used to get account list of active sessions
 
@@ -15,7 +15,34 @@ Used to get account list of active sessions
 
 ```typescript
 {
-    sessions: []
+    pci: [string]
+}
+```
+
+* `pci` - List of sessions PCIs for this account.
+
+#### Response error codes:
+
+* `400 Bad request` - Wrong requested address format.
+
+### Get permission by PCI
+
+Used to get permission by PCI
+
+`GET /v1/sessions/{address}/{pci}?projectId={projectId}`
+
+* `address` - CAIP-10 address format.
+* `pci` - Permission identifier.
+* `projectId` - The project identifier.
+
+#### Success response body:
+
+```typescript
+{
+    "type": string,
+    "data": any,
+    "required": bool,
+    "onChainValidated": bool
 }
 ```
 
@@ -38,26 +65,25 @@ The POST request body should be in JSON format and following schema:
 
 ```typescript
 {
-  message: {
-    permission: {},
-    timestamp: string
-  },
-  signature: string,
+    permissions:[
+        {
+          "type": string,
+          "data": any,
+          "required": bool,
+          "onChainValidated": bool
+        }
+    ]
 }
 ```
 
-* `message` - Message that used in signature:
-    * `permission` - New permission object.
-    * `timestamp` - Current unixtime timestamp. The signature is valid for 10 seconds.
-* `signature` - Ethereum signature for the signed `message` to check the address ownership.
-
 #### Success response body:
 
-Response will contain an updated list of sessions for the address.
+Response will contain a new generated ECDSA key and PCI of the new permission.
 
 ```typescript
 {
-    sessions: []
+    key: string,
+    pci: string
 }
 ```
 
@@ -80,28 +106,17 @@ The POST request body should be in JSON format and following schema:
 
 ```typescript
 {
-  message: {
     pci: string,
-    timestamp: string
-  },
-  signature: string,
+    signature: string,
 }
 ```
 
-* `message` - Message that used in signature:
-    * `pci` - Unique permission context identifier.
-    * `timestamp` - Current unixtime timestamp. The signature is valid for 10 seconds.
-* `signature` - Ethereum signature for the signed `message` to check the address ownership.
+* `pci` - PCI to revoke.
+* `signature` - Signature signed by the key provided during the permission creation.
 
 #### Success response body:
 
-Response will contain an updated list of sessions for the address.
-
-```typescript
-{
-    sessions: []
-}
-```
+* `202 Accepted` - Successfully revoked.
 
 #### Response error codes:
 
