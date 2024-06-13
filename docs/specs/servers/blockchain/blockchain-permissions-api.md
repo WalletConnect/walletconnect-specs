@@ -91,6 +91,53 @@ Response will contain a new generated ECDSA key and PCI of the new permission.
 
 * `400 Bad request` - Wrong format in request.
 
+## Updating permissions context
+
+Updating permissions context for the certain permission idenitifier.
+
+`POST /v1/sessions/{address}/context/?projectId={projectId}`
+
+* `address` - CAIP-10 address format.
+* `projectId` - The project identifier.
+
+### Request body:
+
+The POST request body should be in JSON format and following schema:
+
+```typescript
+{
+    pci: string,
+    signature: string,
+    context: {
+      {
+        signer: {
+          type: string,
+          ids: [string]
+        },
+        expiry: number,
+        signerData: {
+          userOpBuilder: string
+        },
+        factory: string,
+        factoryData: string,
+        permissionsContext: string
+      }
+    }
+}
+```
+
+* `pci` - PCI to revoke.
+* `signature` - Signature signed by the key provided during the permission creation.
+* `context` - Permissions context object to update.
+
+#### Success response body:
+
+* `202 Accepted` - Successfully updated.
+
+#### Response error codes:
+
+* `400 Bad request` - Wrong format in request.
+
 ## Revoke permission 
 
 Revoking a permission from account sessions.
