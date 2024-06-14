@@ -172,6 +172,10 @@
     {
       "source": "2.0/web/web3modal/html/auth-api/installation",
       "destination": "/2.0/web/walletConnectModal/auth/html/installation"
+    },
+    {
+      "source": "/2.0/blockchain-rpc/:path*",
+      "destination": "https://docs.walletconnect.com/advanced/multichain/rpc-reference/:path*"
     }
   ]
 }
