@@ -9,13 +9,13 @@ Used to get account list of active sessions
 `GET /v1/sessions/{address}?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
-* `projectId` - The project identifier.
+* `projectId` - Required. The project identifier.
 
 #### Success response body:
 
 ```typescript
 {
-    pci: [string]
+    pci: string[]
 }
 ```
 
@@ -33,22 +33,22 @@ Used to get permission by PCI
 
 * `address` - CAIP-10 address format.
 * `pci` - Permission identifier.
-* `projectId` - The project identifier.
+* `projectId` - Required. The project identifier.
 
 #### Success response body:
 
 ```typescript
 {
-    "type": string,
-    "data": any,
-    "required": bool,
-    "onChainValidated": bool
+    "permissionType": string,
+    "data": string,
+    "required": boolean,
+    "onChainValidated": boolean
 }
 ```
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong requested address format.
+* `400 Bad request` - Wrong requested address format or PCI not found.
 
 ## Add a new permission 
 
@@ -57,7 +57,7 @@ Creating a new permission session for the account
 `POST /v1/sessions/{address}?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
-* `projectId` - The project identifier.
+* `projectId` - Required. The project identifier.
 
 ### Request body:
 
@@ -65,14 +65,13 @@ The POST request body should be in JSON format and following schema:
 
 ```typescript
 {
-    permissions:[
+    permission:
         {
-          "type": string,
-          "data": any,
-          "required": bool,
-          "onChainValidated": bool
+          "permissionType": string,
+          "data": string,
+          "required": boolean,
+          "onChainValidated": boolean
         }
-    ]
 }
 ```
 
@@ -98,7 +97,7 @@ Updating permissions context for the certain permission idenitifier.
 `POST /v1/sessions/{address}/context/?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
-* `projectId` - The project identifier.
+* `projectId` - Required. The project identifier.
 
 ### Request body:
 
@@ -145,7 +144,7 @@ Revoking a permission from account sessions.
 `POST /v1/sessions/{address}/revoke/?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
-* `projectId` - The project identifier.
+* `projectId` - Required. The project identifier.
 
 ### Request body:
 
