@@ -26,6 +26,14 @@ All API endpoints expect the following mandatory query parameters:
   - Options: `string`
   - Example: `projectId=702e2d45...`
 
+## Headers
+
+All API endpoints expect the following simple (i.e. non-preflight-dependent) headers:
+
+- `Accept-Encoding`
+  - Options: `gzip | br`
+  - Example: `Accept-Encoding: gzip, br`
+
 ## API Endpoints
 
 ### `POST /v2/wallets`
