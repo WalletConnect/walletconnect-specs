@@ -1,5 +1,7 @@
 # Blockchain API Sessions and Permissions
 
+This API is **unstable**, not yet production ready and can be changed at any time.
+
 ## Sessions permissions storage
 
 ### Get permissions list for account
@@ -77,14 +79,17 @@ The POST request body should be in JSON format and following schema:
 
 #### Success response body:
 
-Response will contain a new generated ECDSA key and PCI of the new permission.
+Response will contain a new generated key and PCI of the new permission.
 
 ```typescript
 {
-    key: string,
-    pci: string
+    pci: string,
+    key: string
 }
 ```
+
+* `pci` - New unique permission controller identifier.
+* `key` - Generated signing (private) ECDSA P256 key in DER, SEC1 format encoded by Base64.
 
 #### Response error codes:
 
@@ -94,7 +99,7 @@ Response will contain a new generated ECDSA key and PCI of the new permission.
 
 Updating permissions context for the certain permission idenitifier.
 
-`POST /v1/sessions/{address}/context/?projectId={projectId}`
+`POST /v1/sessions/{address}/context?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
 * `projectId` - Required. The project identifier.
@@ -110,7 +115,7 @@ The POST request body should be in JSON format and following schema:
     context: {
       {
         signer: {
-          type: string,
+          permissionType: string,
           ids: [string]
         },
         expiry: number,
@@ -126,22 +131,23 @@ The POST request body should be in JSON format and following schema:
 ```
 
 * `pci` - PCI to revoke.
-* `signature` - Signature signed by the key provided during the permission creation.
+* `signature` - Signature of canonicalized JSON `context` object signed by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
 * `context` - Permissions context object to update.
 
 #### Success response body:
 
-* `202 Accepted` - Successfully updated.
+* `200 Ok` - Successfully updated.
 
 #### Response error codes:
 
 * `400 Bad request` - Wrong format in request.
+* `401 Unauthorized` - Wrong signature.
 
 ## Revoke permission 
 
 Revoking a permission from account sessions.
 
-`POST /v1/sessions/{address}/revoke/?projectId={projectId}`
+`POST /v1/sessions/{address}/revoke?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
 * `projectId` - Required. The project identifier.
@@ -158,12 +164,13 @@ The POST request body should be in JSON format and following schema:
 ```
 
 * `pci` - PCI to revoke.
-* `signature` - Signature signed by the key provided during the permission creation.
+* `signature` - Signature of signed `pci` field by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
 
 #### Success response body:
 
-* `202 Accepted` - Successfully revoked.
+* `200 Ok` - Successfully revoked.
 
 #### Response error codes:
 
 * `400 Bad request` - Wrong format in request.
+* `401 Unauthorized` - Wrong signature.
