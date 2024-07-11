@@ -1,7 +1,5 @@
 # Blockchain API Sessions and Permissions
 
-This API is **unstable**, not yet production ready and can be changed at any time.
-
 ## Sessions permissions storage
 
 ### Get permissions list for account
@@ -106,26 +104,26 @@ Updating permissions context for the certain permission idenitifier.
 
 ### Request body:
 
-The POST request body should be in JSON format and following schema:
+The POST request body should be in JSON format and following schema based on the [ERC-7715](https://github.com/ethereum/ERCs/blob/a75e2d80698441f5da9e0fe98d38122a862aed89/ERCS/erc-7715.md#signers):
 
 ```typescript
 {
     pci: string,
     signature: string,
     context: {
-      {
-        signer: {
-          permissionType: string,
-          ids: [string]
-        },
-        expiry: number,
-        signerData: {
-          userOpBuilder: string
-        },
-        factory: string,
-        factoryData: string,
-        permissionsContext: string
-      }
+      signer: {
+        type: string,
+        data:{
+          ids: string[],
+        }
+      },
+      expiry: number,
+      signerData: {
+        userOpBuilder: string
+      },
+      factory: string,
+      factoryData: string,
+      permissionsContext: string
     }
 }
 ```
