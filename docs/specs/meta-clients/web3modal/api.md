@@ -87,7 +87,7 @@ Fetches wallet data based on following request body provided as a stringified JS
 
 ### `GET /v2/ios-data`
 
-Returns a list of iOS-facing wallet data, including the public Explorer ID and iOS deep link schema.
+Returns a list of iOS-facing wallet data, including the public Explorer ID and iOS deep link schema. This allows apps to check exhaustively what wallets are installed.
 
 #### Response
 
