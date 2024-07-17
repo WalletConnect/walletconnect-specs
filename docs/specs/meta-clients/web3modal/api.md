@@ -105,7 +105,7 @@ Returns a list of iOS-facing wallet data, including the public Explorer ID and i
 
 ### `GET /v2/android-data`
 
-Returns a list of Android-facing wallet data, including the public Explorer ID and Android App ID.
+Returns a list of Android-facing wallet data, including the public Explorer ID and Android App ID. This allows apps to check exhaustively what wallets are installed.
 
 #### Response
 
