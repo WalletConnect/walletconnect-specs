@@ -51,51 +51,84 @@ sequenceDiagram
 
   activate D
   D->>+DS: User clicks connect
+  DS->>+R: SDK connects to relay<br>Time: TLS connection
+  R-->>-DS: connected
+  DS->>+R: WebSocket upgrade<br>Time: network latency
+  R-->>-DS: complete
   Note over DS: engine.connect()
   Note over DS: pairing.create()
   Note over DS: generate pairing symkey and topic
   Note over DS: generate pairing URI<br>(symkey, topic, etc.)
-  DS->>+R: subscribe to pairing topic
-  Note over R: optimistic subscribe
-  R-->>-DS: ACK subscribe
+  DS->>+R: subscribe to pairing topic<br>Time: network latency
+  Note over R: optimistic subscribe<br>Time: 0ms
+  R-->>-DS: ACK subscribe<br>Time: network latency
   Note over DS: ret pairing.create()
   Note over DS: generate key pair X
   Note over DS: prepare session proposal<br>(public key X, required + optional namespaces)
-  DS->>+R: publish session proposal request to pairing topic
-  R-->>-DS: ACK publish
+  DS->>+R: publish session proposal request to pairing topic<br>Time: network latency
+  Note over R: IRN: get subscribers (0)
+  Note over R: IRN: get mailbox size
+  Note over R: IRN: store in mailbox
+  Note over R: Time: 3 IRN ops
+  R-->>-DS: ACK publish<br>Time: network latency
   DS-->>-D: pairing URI
   Note over D: display pairing URI to user
   D->>+W: pairing URI
 
   Note over W: user scans pairing URI
   W->>+WS: engine.pair()
-  WS->>+R: subscribe to pairing topic
-  Note over R: optimistic subscribe
-  R-->>-WS: ACK subscribe
-  R->>WS: receive session proposal request
+  WS->>+R: SDK connects to relay<br>Time: TLS connection
+  R-->>-WS: connected
+  DS->>+R: WebSocket upgrade<br>Time: network latency
+  R-->>-DS: complete
+  WS->>+R: subscribe to pairing topic<br>Time: network latency
+  Note over R: optimistic subscribe<br>Time: 0ms
+  R-->>-WS: ACK subscribe<br>Time: not critical path
+  Note over R: IRN: check subscriber count
+  Note over R: IRN: add subscription
+  Note over R: IRN: replication lag
+  Note over R: IRN: poll mailbox
+  Note over R: Time: 3 IRN ops +<br>replication lag
+  R->>WS: receive session proposal request<br>Time: network latency
   WS->>W: emit session_proposal
   W->>WS: approve()
   Note over WS: generate key pair Y
   Note over WS: derive session symkey (pubX, privY) and topic
-  WS->>+R: subscribe to session topic
-  Note over R: optimistic subscribe
-  R-->>-WS: ACK subscribe
+  WS->>+R: subscribe to session topic<br>Time: network latency
+  Note over R: optimistic subscribe<br>Time: 0ms
+  R-->>-WS: ACK subscribe<br>Time: network latency
   Note over WS: generate session settlement (public key Y)
-  Note over WS: generate pairing response (public key Y)
-  WS->>+R: publish pairing response to pairing topic
-  R-->>-WS: ACK publish
-  WS->>+R: publish session settlement request to session topic
-  R-->>-WS: ACK publish
+  Note over WS: generate session proposal response (public key Y)
+  WS->>+R: publish session proposal response to pairing topic<br>Time: network latency
+  Note over R: IRN: get subscribers (1)
+  Note over R: Realtime delivery
+  Note over R: Time: 1 IRN op +<br>2x network latency TODO
+  R-->>-WS: ACK publish<br>Time: network latency
+  WS->>+R: publish session settlement request to session topic<br>Time: network latency
+  Note over R: IRN: get subscribers (1)
+  Note over R: Realtime delivery
+  Note over R: Time: 1 IRN op +<br>2x network latency TODO
+  R-->>-WS: ACK publish<br>Time: network latency
   WS-->>W: session_connect
 
-  R->>+DS: receive pairing response
+  DS->>+R: SDK connects to relay<br>Time: TLS connection
+  R-->>-DS: connected
+  DS->>+R: WebSocket upgrade<br>Time: network latency
+  R-->>-DS: complete
+  R->>+DS: receive session proposal<br>Time: network latency
   Note over DS: derive session symkey (privX, pubY) and topic
-  DS->>+R: subscribe to session topic
-  Note over R: optimistic subscribe
-  R-->>-DS: ACK subscribe
-  R->>DS: receive session settlement request
-  DS->>+R: publish session settlement response
-  R-->>-DS: ACK publish
+  DS->>+R: subscribe to session topic<br>Time: network latency
+  Note over R: optimistic subscribe<br>Time: 0ms
+  R-->>-DS: ACK subscribe<br>Time: not critical path
+  Note over R: IRN: check subscriber count
+  Note over R: IRN: add subscription
+  Note over R: IRN: replication lag
+  Note over R: IRN: poll mailbox
+  Note over R: Time: 3 IRN ops +<br>replication lag
+  R->>DS: receive session settlement request<br>Time: network latency
+  Note over DS: TODO what is exact behavior & timing here?
+  DS->>+R: publish session settlement response<br>Time: network latency
+  R-->>-DS: ACK publish<br>Time: network latency
   DS-->>-D: connected
   deactivate D
 
