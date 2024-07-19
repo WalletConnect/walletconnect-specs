@@ -136,7 +136,7 @@ Returns the image logo for the specified wallet ID.
 
 ### `GET /v2/asset-image/network/{size}/{asset_id}`
 
-Fetches image for public assets like network logos using well-defined CAIP identifiers.
+Fetches images for network logos using well-defined CAIP identifiers.
 
 #### Route Parameters
 
