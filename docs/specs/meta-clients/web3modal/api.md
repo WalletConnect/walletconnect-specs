@@ -15,10 +15,10 @@ All API endpoints expect the following mandatory query parameters:
   - Example: `st=w3m`
 - `sf=`: SDK framework
   - Options: `html | react | vue`
-  - Example: `fw=react`
+  - Example: `sf=react`
 - `sa=`: SDK adapter
   - Options: `evm-wagmi | evm-ethers | evm-ethers5`
-  - Example: `ad=evm-wagmi`
+  - Example: `sa=evm-wagmi`
 - `sv=`: SDK version
   - Options: `string`
   - Example: `sv=5.0.0`
