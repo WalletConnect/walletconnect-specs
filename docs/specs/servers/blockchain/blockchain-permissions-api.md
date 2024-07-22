@@ -190,20 +190,24 @@ The POST request body should be in JSON format and following schema:
 
 ```typescript
 {
-	pci: String, // Permission controller identifier.
-	userOp: // ERC-4337 pseudo transaction object:
+	pci: string, // Permission controller identifier.
+	userOp: // ERC-4337 pseudo transaction object for v0.7:
   {
     sender: string, // The address of the smart contract account.
     nonce: number, // Anti-replay protection; also used as the salt for first-time account creation.
-    initCode: string, // Code used to deploy the account if not yet on-chain.
     callData: string, // Data that's passed to the sender for execution.
     callGasLimit: number, // Gas limit for execution phase.
     verificationGasLimit: number, // Gas limit for verification phase.
     preVerificationGas: number, // Gas to compensate the bundler.
-    maxFeePerGas: number, // Maximum fee per gas (similar to EIP-1559(opens in a new tab) max_fee_per_gas).
     maxPriorityFeePerGas: number, // Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas).
-    paymasterAndData: string, // Paymaster Contract address and any extra data required for verification and execution (empty for self-sponsored transaction).
-    signature: string // Signature of all `userOp` fields hashed by keccak256 and signed by the key provided during the permission creation.
+    maxFeePerGas: number, // Maximum fee per gas (similar to EIP-1559(opens in a new tab) max_fee_per_gas).
+    signature: string, // Signature of all `userOp` fields hashed by keccak256 and signed by the key provided during the permission creation.
+    factory?: string, // Factory address if deploying a new sender contract.
+    factoryData?: string, // Data call for the factory.
+    paymaster?: string, // Paymaster address
+    paymasterVerificationGasLimit?: number, // Paymaster gas limits for the verification
+    paymasterPostOpGasLimit?: number, // Paymaster operation gas limit
+    paymasterData?: string // Bytes calldata for paymaster
   }
 }
 ```
@@ -220,5 +224,5 @@ Response will contain user operation receipt.
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong format in request.
-* `401 Unauthorized` - Wrong signature.
+* `400 Bad request` - Invalid format in request.
+* `401 Unauthorized` - Invalid signature.
