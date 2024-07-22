@@ -15,15 +15,13 @@ Used to get account list of active sessions
 
 ```typescript
 {
-    pci: string[]
+    pci: string[] // List of sessions PCIs for this account
 }
 ```
 
-* `pci` - List of sessions PCIs for this account.
-
 #### Response error codes:
 
-* `400 Bad request` - Wrong requested address format.
+* `400 Bad request` - Invalid requested address format.
 
 ### Get permission by PCI
 
@@ -48,7 +46,7 @@ Used to get permission by PCI
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong requested address format or PCI not found.
+* `400 Bad request` - Invalid requested address format or PCI not found.
 
 ## Add a new permission 
 
@@ -81,17 +79,14 @@ Response will contain a new generated key and PCI of the new permission.
 
 ```typescript
 {
-    pci: string,
-    key: string
+    pci: string, // New unique permission controller identifier.
+    key: string // Public (verifying) secp256k1 key for the generated PCI key in sec1/der format encoded by base64.
 }
 ```
 
-* `pci` - New unique permission controller identifier.
-* `key` - Generated signing (private) ECDSA P256 key in DER, SEC1 format encoded by Base64.
-
 #### Response error codes:
 
-* `400 Bad request` - Wrong format in request.
+* `400 Bad request` - Invalid parameter format in request.
 
 ## Updating permissions context
 
@@ -108,8 +103,8 @@ The POST request body should be in JSON format and following schema based on the
 
 ```typescript
 {
-    pci: string,
-    signature: string,
+    pci: string, // PCI to update
+    signature: string, // Signature of canonicalized JSON `context` object signed by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
     context: {
       signer: {
         type: string,
@@ -128,18 +123,14 @@ The POST request body should be in JSON format and following schema based on the
 }
 ```
 
-* `pci` - PCI to revoke.
-* `signature` - Signature of canonicalized JSON `context` object signed by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
-* `context` - Permissions context object to update.
-
 #### Success response body:
 
 * `200 Ok` - Successfully updated.
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong format in request.
-* `401 Unauthorized` - Wrong signature.
+* `400 Bad request` - Invalid parameter format in request.
+* `401 Unauthorized` - Invalid signature.
 
 ## Revoke permission 
 
@@ -156,13 +147,10 @@ The POST request body should be in JSON format and following schema:
 
 ```typescript
 {
-    pci: string,
-    signature: string,
+    pci: string, // PCI to revoke.
+    signature: string, // Signature of signed `pci` field by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
 }
 ```
-
-* `pci` - PCI to revoke.
-* `signature` - Signature of signed `pci` field by the key provided during the permission creation. The signature must be provided as DER, SEC1 and encoded in Base64 format.
 
 #### Success response body:
 
@@ -170,5 +158,5 @@ The POST request body should be in JSON format and following schema:
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong format in request.
-* `401 Unauthorized` - Wrong signature.
+* `400 Bad request` - Invalid parameter format in request.
+* `401 Unauthorized` - Invalid signature.
