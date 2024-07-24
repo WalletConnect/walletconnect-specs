@@ -312,11 +312,12 @@ The POST request body should be in JSON format with the following structure:
 
 Used to lookup fungible assets balances
 
-`GET /v1/account/{address}/balance`
+`GET /v1/account/{address}/balance?projectId={projectId}`
 
 #### Path parameters
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
+* `projectId` - The project identifier
 
 #### Request arguments:
 
@@ -369,6 +370,61 @@ Used to lookup fungible assets balances
 #### Response error codes:
 
 * `202 Accepted` - The data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
+* `400 Bad request` - Wrong requested arguments format.
+
+### Transactions history
+
+Used to lookup transactions list for an address.
+
+`GET /v1/account/{address}/history`
+
+#### Path parameters
+
+* `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
+
+#### Query parameters:
+
+```typescript
+{
+    projectId: string,
+    currency?: string,
+    cursor?: string,
+    onramp?: string
+}
+```
+
+* `projectId` - Unique project ID.
+* `currency` - (Optional) Currency applied to prices. List of available currencies: `BTC, ETH, USD, EUR, GBP, AUD, CAD, INR,JPY`.
+* `cursor` - (Optional) Cursor for the next page of (100) results from the `next` response field.
+* `onramp` - (Optional) Onramp history from the onramp provider. List of available providers: `coinbase`.
+
+#### Success response body object:
+
+* `data` - List of transactions with the following attributes:
+    * `id` - Unique transaction identifier.
+    * `metadata` - Transaction metadata.
+        * `operationType` - Operation type.
+        * `hash` - Trnsaction hash.
+        * `minedAt` - Unixtime of when the transaction was minted.
+        * `sentFrom` - Sender address.
+        * `sentTo` - Receiver address.
+        * `status` - Status of the transaction.
+        * `nonce` - Transaction nonce.
+        * `application` - Application object:
+            * `name` - Name of the item.
+            * `iconUrl` - Icon representation of the item.
+        * `chain` - Chain ID.
+    * `transfers` - List of transfers inside of the transaction.
+        * `fungible_info` - Transaction fungible info onject.
+        * `nft_info` - Object of the NFT item if present.
+        * `direction` - The direction of the transaction.
+        * `quantity` - Quantity if the item was sent.
+        * `value` - Value of the item in requested `currency`.
+        * `price` - Price of the item in requested `currency`.
+* `next` - Cursor for the next page of (100) results.
+
+#### Response error codes:
+
 * `400 Bad request` - Wrong requested arguments format.
 
 ## Fungibles
