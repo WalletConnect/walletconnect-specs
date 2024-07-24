@@ -312,7 +312,7 @@ The POST request body should be in JSON format with the following structure:
 
 Used to lookup fungible assets balances
 
-`GET /v1/account/{address}/balance?projectID={projectID}`
+`GET /v1/account/{address}/balance?projectId={projectId}`
 
 #### Path parameters
 
@@ -382,14 +382,14 @@ Used to lookup transactions list for an address.
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
 
-#### Request arguments:
+#### Query parameters:
 
 ```typescript
 {
-    "projectId": string,
-    "currency"?: string,
-    "cursor"?: string,
-    "onramp"?: string
+    projectId: string,
+    currency?: string,
+    cursor?: string,
+    onramp?: string
 }
 ```
 
