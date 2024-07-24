@@ -165,7 +165,7 @@ The POST request body should be in JSON format with the following structure:
         * `avatar` - (Optional) avatar url.
         * `bio` - (Optional) account profile self description.
     * `timestamp` - Current unixtime timestamp. The signature is valid for 10 seconds.
-* `coin_type` - Coin type according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format.
+* `coin_type` - Coin type according to [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmchain-address-resolution) format. If not mainnet cointype `60` is provided two address records will be added: for the provided cointype and for the mainnet.
 * `signature` - Ethereum signature for the signed `message` to check the address ownership.
 * `address` - Address that bind to the account name.
     * 100 characters length limit.
