@@ -214,11 +214,11 @@ The POST request body should be in JSON format and following schema:
 
 #### Success response body:
 
-Response will contain user operation receipt.
+Response will contain user operation transaction hash.
 
 ```typescript
 {
-    userOpReceipt: string // User operation receipt data.
+    userOperationTxHash: string // User operation transaction hash
 }
 ```
 
@@ -226,3 +226,32 @@ Response will contain user operation receipt.
 
 * `400 Bad request` - Invalid format in request.
 * `401 Unauthorized` - Invalid signature.
+
+## Get the transaction receipt 
+
+Get the user operation transaction receipt based on the transaction hash from `Co-signing`
+request.
+
+`GET /v1/sessions/{address}/receipt?projectId={projectId}&userOpTxHash={hash}`
+
+* `projectId` - Required. The project identifier.
+* `userOpTxHash` - User operation transaction hash to look for the receipt.
+
+#### Success response body:
+
+Response will contain user operation transaction hash receipt object.
+
+```typescript
+{
+    receipt: object
+}
+```
+
+If the transaction is not done yet, the server will respond with the `HTTP 202` code:
+
+* `202 Accepted` - Transaction receipt is not yet available (tx is processing), please try again later.
+
+#### Response error codes:
+
+* `400 Bad request` - Wrong format in request.
+* `401 Unauthorized` - Wrong signature.
