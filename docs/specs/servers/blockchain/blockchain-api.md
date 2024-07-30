@@ -45,6 +45,10 @@ Used to lookup address for the name.
     * Case insensitive alphabetic characters (a-z), numeric characters (0-9), the minus sign (-) and the period (.).
     * Max 255 characters length.
 
+#### Query parameters:
+
+* `v` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
+
 #### Success response body:
 
 ```typescript
@@ -68,10 +72,15 @@ Used to lookup address for the name.
     * `avatar` - (Optional) avatar url.
     * `bio` - (Optional) account profile self description.
 
+#### Name was not found response:
+
+By default, or using `v=1` query parameter the response will be `HTTP 404`.
+When using `v=2` query parameter the response will be an empty array `[]`.
+
 #### Response error codes:
 
 * `400 Bad request` - Wrong requested name format.
-* `404 Not Found` - The requested name is not registered.
+* `404 Not Found` - Default or when using `v=1` query parameter: the requested name is not registered.
 
 ### Reverse name lookup
 
@@ -87,6 +96,10 @@ Or the lookup for account name by the address in a specified chain:
 
 * `coin_type` - [ENSIP-11](https://alpha-docs.ens.domains/ensip/11) coin type for the registered address and name.
 * `address` - Ihe address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
+
+#### Query parameters:
+
+* `v` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
 
 #### Success response body:
 
@@ -111,10 +124,15 @@ Or the lookup for account name by the address in a specified chain:
     * `avatar` - (Optional) avatar url.
     * `bio` - (Optional) account profile self description.
 
+#### Name was not found response:
+
+By default, or using `v=1` query parameter the response will be `HTTP 404`.
+When using `v=2` query parameter the response will be an empty array `[]`.
+
 #### Response error codes:
 
 * `400 Bad Request` - Wrong requested address format.
-* `404 Not Found` - The requested address is not registered for any name or for the specified chain.
+* `404 Not Found` - Default or when using `v=1` query parameter: the requested address is not registered for any name or for the specified chain.
 
 ### Name suggestion
 
