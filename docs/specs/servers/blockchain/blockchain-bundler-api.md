@@ -30,6 +30,7 @@ The list of currently supported bundler names:
 List of supported `method` values:
 * `wallet_getCallsStatus` - Returns the status of a call batch that was sent via `wallet_sendCalls`.
 * `wallet_showCallsStatus` - Requests that a wallet shows information about a given call bundle that was sent with `wallet_sendCalls`.
+* `eth_getUserOperationReceipt` - Get the receipt for the UserOperation.
 
 #### Success response body:
 
