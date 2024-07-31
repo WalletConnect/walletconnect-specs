@@ -47,7 +47,7 @@ Used to lookup address for the name.
 
 #### Query parameters:
 
-* `v` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
+* `apiVersion` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
 
 #### Success response body:
 
@@ -99,7 +99,7 @@ Or the lookup for account name by the address in a specified chain:
 
 #### Query parameters:
 
-* `v` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
+* `apiVersion` - (Optional) API version specification. `1` by default. Can be `2` to force using the updated API response.
 
 #### Success response body:
 
