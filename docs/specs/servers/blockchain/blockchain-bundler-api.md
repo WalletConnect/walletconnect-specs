@@ -28,11 +28,8 @@ The list of currently supported bundler names:
 ```
 
 List of supported `method` values:
-* `sendUserOperation` - Sends a user operation to the given EVM network.
-* `estimateUserOperationGas` - Estimate the gas limits for a User Operation.
-* `getUserOperationByHash` - Return a User Operation based on a User Operation hash.
-* `getUserOperationReceipt` - Return a User Operation receipt based on a User Operation hash.
-* `supportedEntryPoints` - Return the Entry Points supported by the bundler.
+* `wallet_getCallsStatus` - Returns the status of a call batch that was sent via `wallet_sendCalls`.
+* `wallet_showCallsStatus` - Requests that a wallet shows information about a given call bundle that was sent with `wallet_sendCalls`.
 
 #### Success response body:
 
