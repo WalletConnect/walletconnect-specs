@@ -74,13 +74,13 @@ Used to lookup address for the name.
 
 #### Name was not found response:
 
-By default, or using `v=1` query parameter the response will be `HTTP 404`.
-When using `v=2` query parameter the response will be an empty array `[]`.
+By default, or using `apiVersion=1` query parameter the response will be `HTTP 404`.
+When using `apiVersion=2` query parameter the response will be an empty array `[]`.
 
 #### Response error codes:
 
 * `400 Bad request` - Wrong requested name format.
-* `404 Not Found` - Default or when using `v=1` query parameter: the requested name is not registered.
+* `404 Not Found` - Default or when using `apiVersion=1` query parameter: the requested name is not registered.
 
 ### Reverse name lookup
 
@@ -126,13 +126,13 @@ Or the lookup for account name by the address in a specified chain:
 
 #### Name was not found response:
 
-By default, or using `v=1` query parameter the response will be `HTTP 404`.
-When using `v=2` query parameter the response will be an empty array `[]`.
+By default, or using `apiVersion=1` query parameter the response will be `HTTP 404`.
+When using `apiVersion=2` query parameter the response will be an empty array `[]`.
 
 #### Response error codes:
 
 * `400 Bad Request` - Wrong requested address format.
-* `404 Not Found` - Default or when using `v=1` query parameter: the requested address is not registered for any name or for the specified chain.
+* `404 Not Found` - Default or when using `apiVersion=1` query parameter: the requested address is not registered for any name or for the specified chain.
 
 ### Name suggestion
 
