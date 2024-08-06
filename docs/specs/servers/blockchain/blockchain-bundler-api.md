@@ -11,7 +11,7 @@ Used to make a JSON-RPC call to the designated bundler.
 
 * `projectId` - Required. The project identifier.
 * `chainId` - CAIP-2 chain identifier.
-* `bundlerName` - (Optional) Bundler name to use.
+* `bundlerName` - Bundler name to use.
 
 The list of currently supported bundler names: 
 * `pimlico` - [Pimlico bundler](https://docs.pimlico.io/permissionless/reference/bundler-actions/sendUserOperation).
