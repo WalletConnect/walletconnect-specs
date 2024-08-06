@@ -16,7 +16,7 @@ Used to make a JSON-RPC call to the designated bundler.
 The list of currently supported bundler names: 
 * `pimlico` - [Pimlico bundler](https://docs.pimlico.io/permissionless/reference/bundler-actions/sendUserOperation).
 
-#### Success response body:
+#### Request body:
 
 ```typescript
 {
