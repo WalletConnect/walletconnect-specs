@@ -40,7 +40,7 @@ Successfull response body will contain the following JSON-RPC structure:
 {
     id: number, // Unique identifier passed to the operation. Default is 1.
     jsonrpc: string, // JSON-RPC version. Default 2.0
-    result: object // Result object from the operation.
+    result: any // Result object from the operation.
 }
 ```
 
