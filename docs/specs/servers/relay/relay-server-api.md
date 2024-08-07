@@ -6,10 +6,10 @@ The `/` endpoint is used to establish WebSocket connections. Messages sent are J
 
 ### Query parameters
 
-- `auth` (required) - a JWT for the client
-- `projectId` (required) - the project ID
-- `request` - a base64-encoded [JSON-RPC method](./relay-server-rpc.md)
-- `ua` - a user agent string
+- `auth` (required) - A JWT for the client
+- `projectId` (required) - The project ID
+- `request` - A base64-encoded [JSON-RPC method](./relay-server-rpc.md) to be executed in-parallel with the connection being established. The JSON-RPC response is sent over the WebSocket connection to the client.
+- `ua` - A user agent string
 - `useOnCloseEvent` - unused?
 
 ## HTTP RPC
