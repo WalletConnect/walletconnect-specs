@@ -44,12 +44,12 @@ Fetches wallet data based on following request body provided as a stringified JS
 
 ```typescript
 {
-  "page": number, // Required - The page number of results (e.g., `1`)
-  "entries": number, // Required - Number of entries per page (e.g., `100`)
-  "search": string | null, // Optional search term (e.g., `MetaMask`)
+  "offset": number, // Required - The number of items to skip before returning results (e.g. `0`)
+  "limit": number, // Required - Number of items to return per request (e.g. `100`)
+  "search": string | null, // Optional search term (e.g. `MetaMask`)
   "include": string | null, // Optional comma-separated list of wallet IDs to include
   "exclude": string | null, // Optional comma-separated list of wallet IDs to exclude
-  "chains": string | null, // Optional comma-separated list of chain identifiers (e.g., `eip155:1`)
+  "chains": string | null, // Optional comma-separated list of chain identifiers (e.g. `eip155:1`)
   "platform": string | null // Optional platform filter (`ios` or `android`)
 }
 ```
