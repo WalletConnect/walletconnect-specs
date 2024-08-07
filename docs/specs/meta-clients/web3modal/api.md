@@ -14,7 +14,7 @@ All API endpoints expect the following mandatory query parameters:
   - Options: `w3m | wcm`
   - Example: `st=w3m`
 - `sf=`: SDK framework
-  - Options: `html | react | vue`
+  - Options: `html | react | vue | react-native | flutter | swift | kotlin | unity`
   - Example: `sf=react`
 - `sa=`: SDK adapter
   - Options: `evm-wagmi | evm-ethers | evm-ethers5`
