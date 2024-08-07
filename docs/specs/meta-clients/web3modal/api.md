@@ -81,6 +81,8 @@ Fetches wallet data based on following request body provided as a stringified JS
         }
       ] | null
     }
+    "rdns": string | null
+    "chains": string[]
   ]
 }
 ```
