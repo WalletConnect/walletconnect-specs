@@ -177,12 +177,12 @@ Fetches image for connector logos using descriptive names.
 
 #### Route Parameters
 
-- `connector_id`: Descriptive name for the connector (e.g., `coinbase-wallet`)
+- `connector_id`: Descriptive name for the connector (e.g., `coinbaseWalletSDK`)
 - `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
 
 #### Example API Requests
 
-- Coinbase Wallet: `GET /v2/asset-image/connector/56x56/coinbase-wallet`
+- Coinbase Wallet: `GET /v2/asset-image/connector/56x56/coinbaseWalletSDK`
 - Safe: `GET /v2/asset-image/connector/56x56/safe`
 - Ledger: `GET /v2/asset-image/connector/56x56/ledger`
 - WalletConnect: `GET /v2/asset-image/connector/56x56/wallet-connect`
