@@ -26,6 +26,17 @@ All API endpoints expect the following mandatory query parameters:
   - Options: `string`
   - Example: `projectId=702e2d45...`
 
+### Optional Query Parameters
+
+All API endpoints support the following optional query parameters:
+
+- `env=`: Environment
+  - Options: `string`
+  - Example: `env=react-native@0.74.1`
+- `os=`: Operating System
+  - Options: `string`
+  - Example: `os=ios@17.4`
+
 ## Headers
 
 All API endpoints expect the following simple (i.e. non-preflight-dependent) headers:
