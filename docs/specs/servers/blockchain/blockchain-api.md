@@ -343,6 +343,7 @@ Used to lookup fungible assets balances
 {
     "projectId": string,
     "currency": string,
+    "namespace"?: string,
     "chain"?: string,
     "forceUpdate"?: string
 }
@@ -351,6 +352,9 @@ Used to lookup fungible assets balances
 * `projectId` - The project identifier.
 * `currency` - Currency to calculate the assets value. e.g. `usd`.
     * Supported currencies: `btc`, `eth`, `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`.
+* `namespace` - (Optional) Desired namespace for the `address`. Supported namespaces:
+    * `eip155` - (Default) Ethereum
+    * `solana` - Solana
 * `chain` - (Optional) Filter assets by CAIP-2 chain id. Supported chain IDs:
     * `eip155:1` - Ethereum
     * `eip155:5` - Goerli
@@ -394,17 +398,19 @@ Used to lookup fungible assets balances
 
 Used to lookup transactions list for an address.
 
-`GET /v1/account/{address}/history`
+`GET /v1/account/{address}/history?projectId={projectId}`
 
 #### Path parameters
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
+* `projectId` - The project identifier.
 
 #### Query parameters:
 
 ```typescript
 {
     projectId: string,
+    namespace?: string,
     currency?: string,
     cursor?: string,
     onramp?: string
@@ -412,6 +418,9 @@ Used to lookup transactions list for an address.
 ```
 
 * `projectId` - Unique project ID.
+* `namespace` - (Optional) Desired namespace for the `address`. Supported namespaces:
+    * `eip155` - (Default) Ethereum
+    * `solana` - Solana
 * `currency` - (Optional) Currency applied to prices. List of available currencies: `BTC, ETH, USD, EUR, GBP, AUD, CAD, INR,JPY`.
 * `cursor` - (Optional) Cursor for the next page of (100) results from the `next` response field.
 * `onramp` - (Optional) Onramp history from the onramp provider. List of available providers: `coinbase`.
