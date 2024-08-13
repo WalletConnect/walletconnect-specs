@@ -334,7 +334,7 @@ Used to lookup fungible assets balances
 
 #### Headers
 
-* `x-sdk-version` - The Web3Modal release version must be provided in a request headers.
+* `x-sdk-version` - The AppKit release version must be provided in a request headers.
 Otherwise the response will be an empty array.
 
 #### Path parameters
