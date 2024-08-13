@@ -330,12 +330,16 @@ The POST request body should be in JSON format with the following structure:
 
 Used to lookup fungible assets balances
 
-`GET /v1/account/{address}/balance?projectId={projectId}`
+`GET /v1/account/{address}/balance`
+
+#### Headers
+
+* `x-sdk-version` - The Web3Modal release version must be provided in a request headers.
+Otherwise the response will be an empty array.
 
 #### Path parameters
 
 * `address` - The address for lookup. eg. `0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb`
-* `projectId` - The project identifier
 
 #### Request arguments:
 
