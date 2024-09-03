@@ -30,7 +30,10 @@ The list of currently supported bundler names:
 List of supported `method` values:
 * `wallet_getCallsStatus` - Returns the status of a call batch that was sent via `wallet_sendCalls`.
 * `wallet_showCallsStatus` - Requests that a wallet shows information about a given call bundle that was sent with `wallet_sendCalls`.
+* `eth_sendUserOperation` - Send the user operation to the bundler. The v0.7 user operation object is expected.
 * `eth_getUserOperationReceipt` - Get the receipt for the UserOperation.
+* `eth_estimateUserOperationGas` - Simulates the user operation and estimates the appropriate gas limits for it.
+* `pm_sponsorUserOperation` - Endpoint for verifying paymasters.
 
 #### Success response body:
 
