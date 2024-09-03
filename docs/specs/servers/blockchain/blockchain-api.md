@@ -1,14 +1,14 @@
 # Blockchain API
 
-## Identity ENS lookups
+## Identity name lookups
 
-### ENS Name lookup
+### Name lookup
 
-Used to lookup ENS name and avatar for the Ethereum address.
+Used to lookup name and avatar for the provided address.
 
 `GET /v1/identity/{address}`
 
-* `address` - Ethereum address to lookup for the ENS name and avatar.
+* `address` - The address to lookup for the name and avatar.
 
 #### Query parameters:
 
@@ -25,7 +25,7 @@ If it's not set the Ethereum mainnet and ENS resolution is used.
 }
 ```
 
-* `name` - Registered address ENS name.
+* `name` - Registered address for the name.
 * `avatar` - URI of the avatar of presented.
 
 #### Response error codes:
