@@ -6,10 +6,15 @@
 
 Used to lookup ENS name and avatar for the Ethereum address.
 
-`GET /v1/identity/{address}?projectId={projectId}`
+`GET /v1/identity/{address}`
 
-* `address` - (Optional) Ethereum address to lookup for the ENS name and avatar.
+* `address` - Ethereum address to lookup for the ENS name and avatar.
+
+#### Query parameters:
+
 * `projectId` - The project identifier.
+* `chainId` - (Optional) CAIP-2 chain identifier to use for the address. 
+If it's not set the Ethereum mainnet and ENS resolution is used.
 
 #### Success response body:
 
@@ -25,7 +30,7 @@ Used to lookup ENS name and avatar for the Ethereum address.
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong requested address format.
+* `400 Bad request` - Wrong requested address format or unsupported chain ID.
 
 ## Hexless account profiles API
 
