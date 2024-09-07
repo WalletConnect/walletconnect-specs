@@ -2,7 +2,7 @@
 
 This doc should be used as a _source-of-truth_ and reflect the latest decisions and changes applied to the WalletConnect collection of client-to-client JSON-RPC methods for all platforms SDKs.
 
-### Definitions
+## Definitions
 
 - **Nullables:** Fields flagged as `Optional` can be omitted from the payload.
 - Unless explicitly mentioned that a response requires associated data, all methods response's follow a default JSON-RPC pattern for the success and failure cases:
@@ -18,9 +18,9 @@ error: {
 }
 ```
 
-### Methods
+## Methods
 
-#### wc_sessionPropose
+### wc_sessionPropose
 
 Used to propose a session through topic A. Requires a success response with associated data.
 
@@ -101,7 +101,7 @@ Auto Reject
 | Tag     | 1121     |
 ```
 
-#### wc_sessionSettle
+### wc_sessionSettle
 
 Used to settle a session over topic B.
 
@@ -153,7 +153,7 @@ true
 | Tag     | 1103     |
 ```
 
-#### wc_sessionUpdate
+### wc_sessionUpdate
 
 Used to update the namespaces of a session.
 
@@ -189,7 +189,7 @@ true
 | Tag     | 1105     |
 ```
 
-#### wc_sessionExtend
+### wc_sessionExtend
 
 Used to extend the lifetime of a session.
 
