@@ -144,6 +144,11 @@ Used to lookup for suggestions for the new name by returning 3 unique usernames.
 
 * `name` - The preffered name. Minimum 3 characters length.
 
+
+#### Query parameters:
+
+* `zone` - (Optional) Name zone for suggestions.
+
 #### Success response body:
 
 ```jsonc
