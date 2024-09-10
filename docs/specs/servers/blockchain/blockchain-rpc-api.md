@@ -3,7 +3,20 @@
 Blockchain RPC API for interacting with different blockchains.
 You can find the currently supported chains list in [SUPPORTED CHAINS](https://github.com/WalletConnect/blockchain-api/blob/master/SUPPORTED_CHAINS.md).
 
-## JSON-RPC
+## Supported chains list
+
+This endpoint returns the list of currently supported chains list in JSON format.
+
+`GET /v1/supported-chains`
+
+### Response format:
+
+The response in JSON format contains following objects:
+
+* `http` - List of supported chains in CAIP-2 format for HTTP requests.
+* `ws` - List of supported chains in CAIP-2 format for WebSocket connections.
+
+## JSON-RPC call
 
 Calling JSON-RPC operations on the blockchain network.
 
