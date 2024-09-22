@@ -89,7 +89,7 @@ const config = {
             items: [
               {
                 label: "Main Docs",
-                to: "https://docs.walletconnect.com/2.0/",
+                to: "https://docs.reown.com",
               },
             ],
           },
@@ -106,7 +106,7 @@ const config = {
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/walletconnect",
+                href: "https://twitter.com/reown_",
               },
             ],
           },
@@ -115,7 +115,7 @@ const config = {
             items: [
               {
                 label: "Blog",
-                href: "https://medium.com/walletconnect",
+                href: "https://reown.com/blog",
               },
               {
                 label: "GitHub",
