@@ -23,24 +23,42 @@ Used to get account list of active sessions
 
 * `400 Bad request` - Invalid requested address format.
 
-### Get permission by PCI
+### Get permissions by address
 
-Used to get permission by PCI
+Used to get permissions by address
 
-`GET /v1/sessions/{address}/{pci}?projectId={projectId}`
+`GET /v1/sessions/{address}?projectId={projectId}`
 
 * `address` - CAIP-10 address format.
-* `pci` - Permission identifier.
 * `projectId` - Required. The project identifier.
 
 #### Success response body:
 
+The response is a list of PCIs with permissions and policy:
+
 ```typescript
 {
-    "permissionType": string,
-    "data": string,
-    "required": boolean,
-    "onChainValidated": boolean
+    "pcis": [pci]
+}
+```
+
+The `pci` object:
+
+```typescript
+{
+    "project":
+    {
+      "id": string,
+      "name": string,
+      "url": ?string,
+      "iconUrl": ?string,
+    }
+    "pci": string,
+    "expiration": number,
+    "createdAt": number,
+    "permissions": [permission]
+    "policies": [policy],
+    "context": string
 }
 ```
 
