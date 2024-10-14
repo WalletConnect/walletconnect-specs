@@ -1,15 +1,20 @@
 # Blockchain API
 
-## Identity ENS lookups
+## Identity name lookups
 
-### ENS Name lookup
+### Name lookup
 
-Used to lookup ENS name and avatar for the Ethereum address.
+Used to lookup name and avatar for the provided address.
 
-`GET /v1/identity/{address}?projectId={projectId}`
+`GET /v1/identity/{address}`
 
-* `address` - (Optional) Ethereum address to lookup for the ENS name and avatar.
+* `address` - The address to lookup for the name and avatar.
+
+#### Query parameters:
+
 * `projectId` - The project identifier.
+* `chainId` - (Optional) CAIP-2 chain identifier to use for the address. 
+If it's not set the Ethereum mainnet and ENS resolution is used.
 
 #### Success response body:
 
@@ -20,12 +25,12 @@ Used to lookup ENS name and avatar for the Ethereum address.
 }
 ```
 
-* `name` - Registered address ENS name.
+* `name` - Registered address for the name.
 * `avatar` - URI of the avatar of presented.
 
 #### Response error codes:
 
-* `400 Bad request` - Wrong requested address format.
+* `400 Bad request` - Wrong requested address format or unsupported chain ID.
 
 ## Hexless account profiles API
 
