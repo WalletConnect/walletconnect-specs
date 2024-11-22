@@ -485,6 +485,7 @@ The POST request body should be in JSON format with the folowing structure:
     * `symbol` - Native asset or ERC-20 symbol. e.g. `ETH`.
     * `iconUrl` - URL of the asset icon.
     * `price` - Price of a single unit of the asset in currency calculated from the request argument.
+    * `decimals` - Asset decimals.
 
 #### Response error codes:
 
