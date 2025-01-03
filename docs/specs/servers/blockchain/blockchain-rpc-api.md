@@ -20,7 +20,7 @@ The response in JSON format contains following objects:
 
 Calling JSON-RPC operations on the blockchain network.
 
-`POST /v1?chainId={chainId}projectId={projectId}`
+`POST /v1?chainId={chainId}&projectId={projectId}`
 
 * `chainId` - CAIP-2 chain identifier.
 * `projectId` - The project identifier.
