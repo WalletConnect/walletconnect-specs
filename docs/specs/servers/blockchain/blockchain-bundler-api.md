@@ -11,7 +11,7 @@ Used to make a JSON-RPC call to the designated bundler.
 
 * `projectId` - Required. The project identifier.
 * `chainId` - CAIP-2 chain identifier.
-* `bundlerName` - Bundler name to use.
+* `bundler` - Bundler name to use.
 
 The list of currently supported bundler names: 
 * `pimlico` - [Pimlico bundler](https://docs.pimlico.io/permissionless/reference/bundler-actions/sendUserOperation).
@@ -28,12 +28,11 @@ The list of currently supported bundler names:
 ```
 
 List of supported `method` values:
-* `wallet_getCallsStatus` - Returns the status of a call batch that was sent via `wallet_sendCalls`.
-* `wallet_showCallsStatus` - Requests that a wallet shows information about a given call bundle that was sent with `wallet_sendCalls`.
 * `eth_sendUserOperation` - Send the user operation to the bundler. The v0.7 user operation object is expected.
 * `eth_getUserOperationReceipt` - Get the receipt for the UserOperation.
 * `eth_estimateUserOperationGas` - Simulates the user operation and estimates the appropriate gas limits for it.
-* `pm_sponsorUserOperation` - Endpoint for verifying paymasters.
+* `pm_sponsorUserOperation` - Paymaster UserOperation.
+* `pimlico_getUserOperationGasPrice` - Pimlico bundler specific method.
 
 #### Success response body:
 
