@@ -32,6 +32,8 @@ List of supported `method` values:
 * `eth_getUserOperationReceipt` - Get the receipt for the UserOperation.
 * `eth_estimateUserOperationGas` - Simulates the user operation and estimates the appropriate gas limits for it.
 * `pm_sponsorUserOperation` - Paymaster UserOperation.
+* `pm_getPaymasterData` - Returns values to be used in paymaster-related fields of a signed user operation.
+* `pm_getPaymasterStubData` - Stub values to be used in paymaster-related fields of an user operation for gas estimation.
 * `pimlico_getUserOperationGasPrice` - Pimlico bundler specific method.
 
 #### Success response body:
