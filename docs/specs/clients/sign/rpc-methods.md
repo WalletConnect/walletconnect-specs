@@ -267,7 +267,7 @@ When DApp is setting `expiry` params, client should insure that Relay Publish pa
 
 ```jsonc
 // Success result
-true
+any
 
 | IRN     |          |
 | ------- | -------- |
