@@ -54,7 +54,7 @@ The proposal namespace is what the dapp sends to the wallet and contains the cha
 
 The wallet then validates if the received Proposal Namespaces are valid. If they are not valid, then the session cannot be established and the wallet rejects it with a `1006` code that tells the dapp that the Proposal Namespaces are invalid.
 
-If they are valid, then the wallet if free to decide whether to approve the proposal, or reject it.
+If they are valid, then the wallet is free to decide whether to approve the proposal, or reject it.
 
 ## Session Namespace
 
