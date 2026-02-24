@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-const lightCodeTheme = require("prism-react-renderer/themes/github");
+const {themes} = require("prism-react-renderer");
+const darkCodeTheme = themes.dracula;
+const lightCodeTheme = themes.github;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -32,7 +33,7 @@ const config = {
           breadcrumbs: false,
           lastVersion: "current",
           routeBasePath: "/",
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.js",
           showLastUpdateTime: true,
           editUrl:
             "https://github.com/WalletConnect/walletconnect-specs/blob/main/",
@@ -48,7 +49,7 @@ const config = {
           ],
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: "./src/css/custom.css",
         },
       },
     ],
