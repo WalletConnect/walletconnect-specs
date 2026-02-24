@@ -8,7 +8,7 @@
 
     
 ### Peer B's registered methods:
-    var registeredMethods = [{ method = "wc_sessionPropose", type = ProtocolType.Sign }, { method = "wc_authRequest", type = ProtocolType.Auth }, { method = "wc_authBatchRequest", type = ProtocolType.Auth }]
+    var registeredMethods = [\{ method = "wc_sessionPropose", type = ProtocolType.Sign \}, \{ method = "wc_authRequest", type = ProtocolType.Auth \}, \{ method = "wc_authBatchRequest", type = ProtocolType.Auth \}]
 
 
 is valid? Yes
@@ -22,7 +22,7 @@ is valid? Yes
 
     
 ### Peer B's registered methods:
-    var registeredMethods = [{ method = "wc_sessionPropose", type = ProtocolType.Sign }, { method = "wc_authRequest", type = ProtocolType.Auth }, { method = "wc_authBatchRequest", type = ProtocolType.Auth }]
+    var registeredMethods = [\{ method = "wc_sessionPropose", type = ProtocolType.Sign \}, \{ method = "wc_authRequest", type = ProtocolType.Auth \}, \{ method = "wc_authBatchRequest", type = ProtocolType.Auth \}]
 
 
 is valid? Yes
@@ -36,7 +36,7 @@ is valid? Yes
 
     
 ### Peer B's registered methods:
-    var registeredMethods = [{ method = "wc_sessionPropose", type = ProtocolType.Sign }, { method = "wc_authRequest", type = ProtocolType.Auth }, { method = "wc_authBatchRequest", type = ProtocolType.Auth }]
+    var registeredMethods = [\{ method = "wc_sessionPropose", type = ProtocolType.Sign \}, \{ method = "wc_authRequest", type = ProtocolType.Auth \}, \{ method = "wc_authBatchRequest", type = ProtocolType.Auth \}]
 
 
 is valid? Yes
@@ -50,7 +50,7 @@ is valid? Yes
 
 
 ### Peer B's registered methods:
-    var registeredMethods = [{ method = "wc_sessionPropose", type = ProtocolType.Sign }]
+    var registeredMethods = [\{ method = "wc_sessionPropose", type = ProtocolType.Sign \}]
 
 
 is valid? No
@@ -64,7 +64,7 @@ is valid? No
 
 
 ### Peer B's registered methods:
-    var registeredMethods = [{ method = "wc_sessionProposeV2", type = ProtocolType.Sign },{ method = "wc_authBatchRequest", type = ProtocolType.Auth }]
+    var registeredMethods = [\{ method = "wc_sessionProposeV2", type = ProtocolType.Sign \},\{ method = "wc_authBatchRequest", type = ProtocolType.Auth \}]
 
 
 is valid? No

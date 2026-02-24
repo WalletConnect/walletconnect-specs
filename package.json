@@ -40,10 +40,8 @@
   "resolutions": {
     "braces": ">=3.0.3",
     "ws": ">=7.5.10",
-    "path-to-regexp": ">=0.1.12",
     "cross-spawn": ">=7.0.5",
-    "semver": ">=7.5.2",
-    "minimatch": ">=10.2.1"
+    "semver": ">=7.5.2"
   },
   "browserslist": {
     "production": [
