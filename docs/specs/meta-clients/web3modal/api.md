@@ -1,142 +1,261 @@
-# API
+# API (v2)
 
-Web3Modal has it's own api available at [api.web3modal.com](https://api.web3modal.com) that is used to fetch wallet data from a WalletConnect maintained [wallet & dapp registry](https://walletconnect.com/explorer).
+> For the deprecated v1 specification, see [here](./api-v1-legacy.md).
 
-All responses are cached for a minimum of 2h.
+## Query Parameters
+
+All API requests now use query parameters instead of custom headers for SDK metadata, making integration simpler and more compatible with common HTTP clients and browser caching mechanisms.
+
+### Mandatory Query Parameters
+
+All API endpoints expect the following mandatory query parameters:
+
+- `st=`: SDK type
+  - Options: `w3m | wcm`
+  - Example: `st=w3m`
+- `sf=`: SDK framework
+  - Options: `html | react | vue | react-native | flutter | swift | kotlin | unity`
+  - Example: `sf=react`
+- `sa=`: SDK adapter
+  - Options: `evm-wagmi | evm-ethers | evm-ethers5`
+  - Example: `sa=evm-wagmi`
+- `sv=`: SDK version
+  - Options: `string`
+  - Example: `sv=5.0.0`
+- `projectId=`: The project ID for tracking and analytics
+  - Options: `string`
+  - Example: `projectId=702e2d45...`
+
+### Optional Query Parameters
+
+All API endpoints support the following optional query parameters:
+
+- `env=`: Environment
+  - Options: `string`
+  - Example: `env=react-native@0.74.1`
+- `os=`: Operating System
+  - Options: `string`
+  - Example: `os=ios@17.4`
 
 ## Headers
 
-All api requests must contain following headers. See [types](./types.md)
+All API endpoints expect the following simple (i.e. non-preflight-dependent) headers:
 
-```ts
-interface Headers {
-  "x-project-id": string;
-  "x-sdk-type": SdkType;
-  "x-sdk-version": SdkVersion;
-}
-```
+- `Accept-Encoding`
+  - Options: `gzip | br`
+  - Example: `Accept-Encoding: gzip, br`
 
-## Methods
+## API Endpoints
 
-### GET `/getWallets`
+### `POST /v2/wallets`
 
-Returns total count and wallet data, based on provided body inputs. See [types](./types.md).
+Fetches wallet data based on following request body provided as a stringified JSON object (`Content-Type: text/plain`).
 
-```ts
-interface Request {
-  headers: Headers;
-}
-
-interface UrlQueryParams {
-  page: string; // eg. 1
-  entries: string; // eg. 100
-  search?: string; // eg. MetaMa...
-  include?: string; // eg. id1,id2,id3
-  exclude?: string; // eg. id1,id2,id3
-  chains?: string; // eg. eip155:1,solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp
-  platform?: "ios" | "android";
-}
-
-interface Response {
-  count: number;
-  data: Array<{
-    id: string;
-    name: string;
-    homepage: string;
-    image_id: string;
-    order: number;
-    mobile_link: string | null;
-    desktop_link: string | null;
-    webapp_link: string | null;
-    app_store: string | null;
-    play_store: string | null;
-    injected:
-      | {
-          namespace: string;
-          injected_id: string;
-        }[]
-      | null;
-  }>;
-}
-```
-
-### GET `/getWalletImage/:wallet_id`
-
-Returns image logo for requested `wallet_id`. See [types](./types.md).
-
-```ts
-interface Request {
-  headers: Headers;
-}
-
-type Response = Blob;
-```
-
-### GET `/public/getAssetImage/:asset_id`
-
-Returns image for public asset for requested `asset_id`, i.e network logo, token logo or connector logo.
-
-```ts
-interface Request {
-  headers: Headers;
-}
-
-type Response = Blob;
-```
-
-#### Known Static Asset IDs
-
-There are a number of known static asset IDs that can be used to fetch images, e.g. for networks and connectors:
+#### Request Body
 
 ```typescript
-// Maps EIP155 chain IDs -> `asset_id`
-const EIP155NetworkImageIds = {
-  // Ethereum
-  1: "692ed6ba-e569-459a-556a-776476829e00",
-  // Arbitrum
-  42161: "600a9a04-c1b9-42ca-6785-9b4b6ff85200",
-  // Avalanche
-  43114: "30c46e53-e989-45fb-4549-be3bd4eb3b00",
-  // Binance Smart Chain
-  56: "93564157-2e8e-4ce7-81df-b264dbee9b00",
-  // Fantom
-  250: "06b26297-fe0c-4733-5d6b-ffa5498aac00",
-  // Optimism
-  10: "ab9c186a-c52f-464b-2906-ca59d760a400",
-  // Polygon
-  137: "41d04d42-da3b-4453-8506-668cc0727900",
-  // Gnosis
-  100: "02b53f6a-e3d4-479e-1cb4-21178987d100",
-  // Evmos
-  9001: "f926ff41-260d-4028-635e-91913fc28e00",
-  // ZkSync
-  324: "b310f07f-4ef7-49f3-7073-2a0a39685800",
-  // Filecoin
-  314: "5a73b3dd-af74-424e-cae0-0de859ee9400",
-  // Iotx
-  4689: "34e68754-e536-40da-c153-6ef2e7188a00",
-  // Metis,
-  1088: "3897a66d-40b9-4833-162f-a2c90531c900",
-  // Moonbeam
-  1284: "161038da-44ae-4ec7-1208-0ea569454b00",
-  // Moonriver
-  1285: "f1d73bb6-5450-4e18-38f7-fb6484264a00",
-  // Zora
-  7777777: "845c60df-d429-4991-e687-91ae45791600",
-  // Celo
-  42220: "ab781bbc-ccc6-418d-d32d-789b15da1f00",
-  // Base
-  8453: "7289c336-3981-4081-c5f4-efc26ac64a00",
-  // Aurora
-  1313161554: "3ff73439-a619-4894-9262-4470c773a100",
-};
-
-// Maps connector name -> `asset_id`
-const ConnectorImageIds = {
-  coinbaseWallet: "0c2840c3-5b04-4c44-9661-fbd4b49e1800",
-  safe: "461db637-8616-43ce-035a-d89b8a1d5800",
-  ledger: "54a1aa77-d202-4f8d-0fb2-5d2bb6db0300",
-  walletConnect: "ef1a1fcf-7fe8-4d69-bd6d-fda1345b4400",
-  injected: "07ba87ed-43aa-4adf-4540-9e6a2b9cae00",
-};
+{
+  "offset": number, // Required - The number of items to skip before returning results (e.g. `0`)
+  "limit": number, // Required - Number of items to return per request (e.g. `100`)
+  "search": string | null, // Optional search term (e.g. `MetaMask`)
+  "include": string | null, // Optional comma-separated list of wallet IDs to include
+  "exclude": string | null, // Optional comma-separated list of wallet IDs to exclude
+  "chains": string | null, // Optional comma-separated list of chain identifiers (e.g. `eip155:1`)
+  "platform": string | null // Optional platform filter (`ios` or `android`)
+}
 ```
+
+#### Response
+
+```typescript
+{
+  "count": number,
+  "data": [
+    {
+      "id": string,
+      "name": string,
+      "homepage": string,
+      "image_id": string,
+      "order": number,
+      "desktop_link": string | null,
+      "webapp_link": string | null,
+      "app_store": string | null,
+      "play_store": string | null,
+      "mobile": {
+        deep_link: string | null,
+        universal_link: string | null
+      }
+      "injected": [
+        {
+          "namespace": string,
+          "injected_id": string
+        }
+      ] | null
+    }
+    "rdns": string | null
+    "chains": string[]
+  ]
+}
+```
+
+### `GET /v2/ios-data`
+
+Returns a list of iOS-facing wallet data, including the public Explorer ID and iOS deep link schema. This allows apps to check exhaustively what wallets are installed.
+
+#### Response
+
+```typescript
+{
+  "count": number,
+  "data": [
+    {
+      "id": string,
+      "ios_schema": string
+    }
+  ]
+}
+```
+
+### `GET /v2/android-data`
+
+Returns a list of Android-facing wallet data, including the public Explorer ID and Android App ID. This allows apps to check exhaustively what wallets are installed.
+
+#### Response
+
+```typescript
+{
+  "count": number,
+  "data": [
+    {
+      "id": string,
+      "android_app_id": string
+    }
+  ]
+}
+```
+
+### `GET /v2/wallet-image/{size}/{wallet_id}`
+
+Returns the image logo for the specified wallet ID.
+
+#### Route Parameters
+
+- `wallet_id`: The unique identifier for the wallet
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
+
+#### Response
+
+- A binary image file (Blob)
+
+### `GET /v2/asset-image/network/{size}/{asset_id}`
+
+Fetches images for network logos using well-defined CAIP identifiers.
+
+#### Route Parameters
+
+- `asset_id`: CAIP identifier for the network (e.g., `eip155-1`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
+
+#### Example API Requests
+
+- Ethereum: `GET /v2/asset-image/network/56x56/eip155-1`
+- Arbitrum: `GET /v2/asset-image/network/56x56/eip155-42161`
+- Avalanche: `GET /v2/asset-image/network/56x56/eip155-43114`
+- Binance Smart Chain: `GET /v2/asset-image/network/56x56/eip155-56`
+- Fantom: `GET /v2/asset-image/network/56x56/eip155-250`
+- Optimism: `GET /v2/asset-image/network/56x56/eip155-10`
+- Polygon: `GET /v2/asset-image/network/56x56/eip155-137`
+- Gnosis: `GET /v2/asset-image/network/56x56/eip155-100`
+- Evmos: `GET /v2/asset-image/network/56x56/eip155-9001`
+- ZkSync: `GET /v2/asset-image/network/56x56/eip155-324`
+- Filecoin: `GET /v2/asset-image/network/56x56/fil-314`
+- IoTeX: `GET /v2/asset-image/network/56x56/eip155-4689`
+- Metis: `GET /v2/asset-image/network/56x56/eip155-1088`
+- Moonbeam: `GET /v2/asset-image/network/56x56/eip155-1284`
+- Moonriver: `GET /v2/asset-image/network/56x56/eip155-1285`
+- Zora: `GET /v2/asset-image/network/56x56/eip155-7777777`
+- Celo: `GET /v2/asset-image/network/56x56/eip155-42220`
+- Base: `GET /v2/asset-image/network/56x56/eip155-8453`
+- Aurora: `GET /v2/asset-image/network/56x56/eip155-1313161554`
+
+#### Response
+
+- A binary image file (Blob)
+
+### `GET /v2/asset-image/connector/{size}/{connector_id}`
+
+Fetches image for connector logos using descriptive names.
+
+#### Route Parameters
+
+- `connector_id`: Descriptive name for the connector (e.g., `coinbaseWalletSDK`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
+
+#### Example API Requests
+
+- Coinbase Wallet: `GET /v2/asset-image/connector/56x56/coinbaseWalletSDK`
+- Safe: `GET /v2/asset-image/connector/56x56/safe`
+- Ledger: `GET /v2/asset-image/connector/56x56/ledger`
+- WalletConnect: `GET /v2/asset-image/connector/56x56/wallet-connect`
+- Injected (Generic Web3 Injected Connectors): `GET /v2/asset-image/connector/56x56/injected`
+
+#### Response
+
+- A binary image file (Blob)
+
+### `GET /v2/asset-image/token/{size}/{token_symbol}`
+
+Fetches image for known tokens using the token's ticker symbol.
+
+#### Route Parameters
+
+- `token_symbol`: The token's ticker symbol (e.g., `ETH`, `USDC`, `WBTC`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
+
+#### Example API Requests
+
+- Ethereum: `GET /v2/asset-image/token/56x56/ETH`
+- USD Coin: `GET /v2/asset-image/token/56x56/USDC`
+- Wrapped Bitcoin: `GET /v2/asset-image/token/56x56/WBTC`
+
+#### Response
+
+- A binary image file (Blob)
+
+### GET `/v2/asset-image/currency/{size}/{currency_symbol}`
+
+Fetches image for known fiat currencies using the currency's symbol.
+
+#### Route Parameters
+
+- `currency_symbol`: The currency's symbol (e.g., `USD`, `EUR`, `JPY`)
+- `size`: The predefined image size, described as `{width}x{height}` (see [Known Image Sizes](#known-image-sizes))
+
+#### Example API Requests
+
+- US Dollar: `GET /v2/asset-image/currency/56x56/USD`
+- Euro: `GET /v2/asset-image/currency/56x56/EUR`
+- Japanese Yen: `GET /v2/asset-image/currency/56x56/JPY`
+
+#### Response
+
+- A binary image file (Blob)
+
+### `GET /v2/analytics-config`
+
+Fetches the analytics configuration for the project based on the mandatory `projectId=` query parameter.
+
+#### Response
+
+```typescript
+{
+  isAnalyticsEnabled: boolean,
+}
+```
+
+## Known Image Sizes
+
+- `56x56`
+- `80x80`
+- `112x112`
+  `160x160`
